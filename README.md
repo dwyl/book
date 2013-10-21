@@ -12,18 +12,53 @@ The "*I just get things done*" developer who writes "*quick fixes*" and
 maintains "*I don't have time to write tests*" or 
 "*Writing tests for my code takes longer*" ... **Utter Nonsense**!
 
+- - -
+
+#### Installation
+
+```sh
+sudo npm install -g mocha
+```
+
+See: http://visionmedia.github.io/mocha/#installation
+
+#### First Tests
+
+```sh
+sudo npm install -g mocha
+```
+
+You should see something like this:
+
+![Mocha Installed](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-installed.png "Mocha Installed Successfully")
+
+
+confirm its working by typing:
+
+
+
+
+
+- - -
+
+### Background
+
 Code without tests is like a *building without a foundation*! 
 
 ![Building Collapse](https://raw.github.com/nelsonic/learn-mocha/master/images/building-collapse-940x627.jpg "Building Collapse")
 
 Its only a matter of *time* before it all comes crashing down ...
 
-
 Is Test Driven Development (TDD) a *silver bullet* for *all* my software
 development woes? *Short answer*: **No**. 
 There is a *lot* more that goes into writing *great* software than 
 *just* having tests. But *without tests* reliability is *impossible*.
 
+If you are *not* doing TDD in your projects I'm probably not going to be 
+the one to change your mind by evangelizing about it. I know plenty of
+people calling themesleves developers who stubbornly hold onto the idea 
+that testing is for "QA" or "That's why we have testers" and wish them 
+nothing but the best of luck! But for everyone else who understands 
 
 #### What is Mocha?
 
@@ -40,10 +75,6 @@ node.js web framework), Mocha is TJ's answer to the problem of testing JavaScrip
 - Code: https://github.com/visionmedia/mocha
 
 #### Why Mocha?
-
-- *Fast*. (300+ tests run in under a second)
-- Get started in 5 minutes (*read on...*)
-- Exceptionally **elegant** tests (*especially when written in CoffeeScript*)
 
 At last count there were 83 testing frameworks *listed* on the node.js 
 modules page: https://github.com/joyent/node/wiki/modules#wiki-testing 
@@ -62,20 +93,21 @@ Over the past 3 years I've tried:
 [Should](https://github.com/visionmedia/should.js), and
 [Vows](https://github.com/cloudhead/vows)
 
-My criteria is simple: 
+My **criteria** for chosing a testing framework: 
 
-- Simplicity 
-- Maturity ()
-- Automatic Test Running when File Changes (using 
-[Watchr](https://github.com/bevry/watchr)/[Grunt](http://gruntjs.com/))
+- **Simplicity** (one of TJ's *stated aims*)
+- **Elegance** (*especially when written in CoffeeScript*)
+- **Speed** (Mocha is *Fast*. 300+ tests run in under a second)
+- **Documentation** (plenty of real-world examples: http://visionmedia.github.io/mocha/)
+- **Maturity** (*Battle-tested* by *thousands* of developers!)
+
+Advanced: 
+
 - Easy to Trouble-shoot (Plenty of *Answered* Questions on 
 [stackoverflow](http://stackoverflow.com/questions/tagged/mocha?sort=frequent&pageSize=15))
-
-
-### Lets go!
-
-#### Installation
-
+- Automatic Test Running when File Changes (using 
+[Watchr](https://github.com/bevry/watchr)/[Grunt](http://gruntjs.com/))
+- Detailed reports of test execution (extensible reports!)
 
 
 ### Notes
@@ -87,11 +119,14 @@ My criteria is simple:
 - NetTuts: http://net.tutsplus.com/tutorials/javascript-ajax/better-coffeescript-testing-with-mocha/
 - Code Coverage: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
 
+- Grunt.js Mocha Plugins: http://gruntjs.com/plugins/mocha
 
 #### Further Reading
 
-- Cost of Testing (Testing takes "*twice as long*" = Myth): http://googletesting.blogspot.co.uk/2009/10/cost-of-testing.html
-- Estimating Testing Effort: http://stackoverflow.com/questions/1595346/estimating-of-testing-effort-as-a-percentage-of-development-time
+- Testing takes "*twice as long*" (Myth): http://googletesting.blogspot.co.uk/2009/10/cost-of-testing.html
+- Estimating Testing Effort as % of Development Time: http://stackoverflow.com/questions/1595346/estimating-of-testing-effort-as-a-percentage-of-development-time
 - Technical Debt (Bad Code): http://jessewarden.com/2010/07/agile-chronicles-12-technical-debt.html
 - Agile = an excuse for cowboys? Discussion: http://programmers.stackexchange.com/questions/11188/is-the-agile-approach-too-much-of-a-convenient-excuse-for-cowboys
+
+
     
