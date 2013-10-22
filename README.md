@@ -1,4 +1,4 @@
-learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha)
+learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png)](https://david-dm.org/nelsonic/learn-mocha)
 ===========
 
 *Quick Guide* to **mocha.js** **T**est **D**riven **D**evelopment (TDD) / 
