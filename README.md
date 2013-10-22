@@ -82,12 +82,35 @@ a good example to use. (If you can think of better TDD example tell me!)
 > Given a **Total Payable** and **Cash From Customer**
 > Return: **Change** (notes and coins).
 
+Essentially we are building a **calculator** that *only does* **subtraction**,
+but then also splits the **result** into the various **notes & coins**.
+
+In the UK we have the following Notes & Coins:
+
 ![GBP Notes](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-notes.jpg "GBP Notes")
 ![GBP Coins](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-coins.jpg "GBP Coins")
 
-Essentially we are building a calculator that only does subtraction,
-but then also splits the result into the various Notes & Coins.
+If we use the penny as the unit (i.e. 100 pennies in a pound) 
+the notes and coins can be represented as:
 
+- 5000 (£50)
+- 2000 (£20)
+- 1000 (£10)
+-  500 (£5)
+-  200 (£2)
+-  100 (£1)
+-   50 (50p)
+-   20 (20p)
+-   10 (10p)
+-    5 (5p)
+-    2 (2p)
+-    1 (1p)
+
+this can be represented as an Array:
+
+```javascript
+var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
+```
 
 
 #### Module File 
@@ -108,7 +131,7 @@ And add the following code:
 
 - - -
 
-
+### Background
 
 #### What is Mocha?
 
