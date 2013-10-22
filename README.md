@@ -20,27 +20,23 @@ maintains "*I don't have time to write tests*" or
 sudo npm install -g mocha
 ```
 
-See: http://visionmedia.github.io/mocha/#installation
-
-#### First Tests
-
-```sh
-sudo npm install -g mocha
-```
-
 You should see some output *confirming* it *installed*:
 
 ![Mocha Installed](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-installed.png "Mocha Installed Successfully")
 
-#### Create "./test" Directory
+More info: http://visionmedia.github.io/mocha/#installation
 
-In your project create a new directory to hold your tests:
+### First Tests
+
+#### Create Test Directory
+
+In your project create a new **/test** directory to hold your tests:
 
 ```sh
 mkdir test
 ```
 
-#### Your Tests Live in ./test/**test.js**
+#### Create test.js File 
 
 Now create a new file ./test/**test.js**:
 
@@ -73,17 +69,26 @@ mocha
 
 ![Mocha 1 Test Passes](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-1-test-passing.png "Mocha 1 Test Passes")
 
-### A More Useful Example (Cash Register Mini Project)
+### A More Useful TDD Example (Cash Register Mini Project)
 
-While I'm the first to 
+While I'm the first to agree that *cash-less* payments are the future,
+paying with cash is something *everyone* can relate to and is thereore 
+a good example to use. (If you can think of better TDD example tell me!)
 
 
-#### Module File
 
-Create a new file for our cash register **register.js**:
+#### Basic Requirements
+
+![GBP Coins](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-coins.jpg "GBP Coins")
+
+
+
+#### Module File 
+
+Create a new file for our cash register **cash.js**:
 
 ```sh
-vi register.js
+vi cash.js
 ```
 
 And add the following code:
