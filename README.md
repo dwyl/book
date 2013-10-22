@@ -373,6 +373,7 @@ https://github.com/nelsonic/learn-travis
 
 ![Travis Build Pass](https://raw.github.com/nelsonic/learn-mocha/master/images/learn-travis-build-passing.png "Travis Build Passing")
 
+Done.
 
 - - -
 
@@ -444,7 +445,7 @@ Advanced:
 #### Test Driven Development (TDD) Background/Philosophy 
 
 - Wikipedia (duh!): http://en.wikipedia.org/wiki/Test-driven_development
-- Excellent Explanation by Scott Wambler: http://www.agiledata.org/essays/tdd.html
+- Excellent Explanation by Scott Ambler: http://www.agiledata.org/essays/tdd.html
 
 
 #### Further Reading
