@@ -218,25 +218,48 @@ change       = [50,20,20]  // 50p, 20p, 20p
 Add the following test to ./test/**test.js**:
 
 ```javascript
-    it('getChange(210,300) should equal [50,20,20]', function(){
-        assert.equal(C.getChange(210,300), [50,20,20]);
-    })
+it('getChange(210,300) should equal [50,20,20]', function(){
+    assert.equal(C.getChange(210,300), [50,20,20]);
+})
 ```
 
 ![Mocha Assertion Error](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-assertionError.png "Mocha Assertion Error")
 
+#### Write the Method to Pass the Test
+
+What if I cheat?
+
+```javascript
+C.getChange = function (totalPayable, cashPaid) {
+    'use strict';
+    return [50, 20, 20];    // just enough to pass :-)
+};
+```
+
+This will pass:
+
+![Mocha Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-2-passing.png "Mocha 2 Passing")
+
+
+
+
+#### What If...?
+
+What if we feed our **getChange** method a string or two to confuse it?
+
+add the following code to ./test/**test.js**:
 
 
 
 
 
 
+- - - 
 
-
-
-
+### Bonus Level
 
 #### Code Coverage
+
 
 
 #### Travis

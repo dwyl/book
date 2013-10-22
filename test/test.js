@@ -9,7 +9,8 @@ describe('Cash Register', function(){
     })
 
     it('getChange(210,300) should equal [50,20,20]', function(){
-        assert.equal(C.getChange(210,300), [50,20,20]);
+        var change = C.getChange(210,300)
+        assert.deepEqual(change, [50, 20, 20]);
     })
 
   })
