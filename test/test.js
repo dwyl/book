@@ -21,7 +21,12 @@ describe('Cash Register', function(){
         assert.deepEqual(C.getChange(1487,10000), [5000, 2000, 1000, 500, 10, 2, 1 ]);
     })
 
+    // try to force an error:
+    it('getChange("random","str") to return [] (empty array)', function(){
+        // assert.throw(C.getChange("random","str"), Error, "totalPayable and cashPaid MUST both be numbers");
+        assert.deepEqual(C.getChange("random","str"), []);
 
+    })
 
   })
 })  

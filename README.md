@@ -334,24 +334,27 @@ it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', func
 ![Mocha 4 Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
 
 
-#### What If...?
-
-What if we feed our **getChange** method a string or two to confuse it?
-
-add the following code to ./test/**test.js**:
-
-
-
-
-
-
 - - - 
 
 ### Bonus Level
 
 #### Code Coverage
 
+We are using istanbul for code coverage. 
+If you are new to istanbul check out my brief tutorial: 
+https://github.com/nelsonic/learn-istanbul
 
+Run the following command to get a coverage report:
+```sh
+istanbul cover _mocha -- -R spec
+```
+You should see:
+
+![Istanbul Coverage](https://raw.github.com/nelsonic/learn-mocha/master/images/istanbul-cover-mocha.png "Istanbul Code Coverage")
+
+and the **lcov-report**:
+
+![Istanbul Coverage Report](https://raw.github.com/nelsonic/learn-mocha/master/images/istanbul-coverage-report.png "Istanbul Code Coverage Report")
 
 #### Travis
 
@@ -425,6 +428,7 @@ Advanced:
 - Code Coverage: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
 
 - Grunt.js Mocha Plugins: http://gruntjs.com/plugins/mocha
+- Test Coverage with Mocha: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
 
 #### Test Driven Development (TDD) Background/Philosophy 
 
