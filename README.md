@@ -145,9 +145,9 @@ mocha
 This error ("**Cannot find module '../cash.js'**") is pretty self explanatory.
 We haven't created the file yet so test.js is requesting a non-existent file!
 
-> Q: Why *deliberately* write a test we *know* is going to *fail*...?
-> A: To get used to the idea of *only* writing the code required to pass 
->    the current (*failing*) test.
+> **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
+> **A**: To get used to the idea of *only* writing the code required to *pass* 
+>    the *current* (*failing*) *test*.
 
 
 #### Create the Module File 
@@ -164,8 +164,7 @@ Re-run the **mocha** command in terminal, it will pass (*zero* tests)
 
 ![Mocha Pass 0 Tests](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-0-passing.png "Mocha Pass 0 Tests")
 
-Lets add a test and watch it fail (again) 
-add the following code to ./test/**test.js**:
+Lets add a test to ./test/**test.js** and watch it fail again:
 
 ```javascript
 var assert = require("assert"); // core module
@@ -183,6 +182,41 @@ describe('Cash Register', function(){
 Re-run `mocha`:
 
 ![Mocha 1 Test Failing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-first-test-failing.png "Mocha 1 Test Failing")
+
+#### Write *Just* Enough Code to Make the Test Pass
+
+Add the following to **cash.js**:
+
+```javascript
+var C = {};                    // C Object simplifies exporting the moduel
+C.getChange = function () {    // enough to satisfy the test
+    'use strict';              
+    return true;               // also passes JSLint
+};
+module.exports = C;            // export the module with a single method
+```
+
+Re-run `mocha` (now it passes):
+
+![Mocha 1 Test Passes](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-1-test-pass.png "Mocha 1 Test Passes")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
