@@ -118,32 +118,71 @@ simply use the cent, sen or rin as the unit and scale up notes.
 
 #### The First Test
 
-If you are *totally* new to TDD I recommend a quick read this 
-[intro article](http://www.agiledata.org/essays/tdd.html) (especially the 
-diagrams) otherwise this (test-fail-code-pass) process may seem *strange* ...
+If you are *totally* new to TDD I recommend reading this 
+[intro article](http://www.agiledata.org/essays/tdd.html) by Scott Ambler 
+(especially the diagrams) otherwise this (test-fail-code-pass) process 
+may seem *strange* ...
+
+In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
+write the code that makes the test pass.
+
+so, back in our ./test/**test.js** file add the following line:
+
+```javascript
+var C = require('../cash.js');  // our module
+```
 
 #### Watch it Fail
 
+Back in your terminal window, re-run the **mocha** command and watch it *fail*:
+
+```sh
+mocha
+```
+
+![Mocha TFD Fail](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-tfd-cannot-find-module-first-fail.png "Mocha TFD Fail")
+
+This error ("**Cannot find module '../cash.js'**") is pretty self explanatory.
+We haven't created the file yet so test.js is requesting a non-existent file!
+
+> Q: Why *deliberately* write a test we *know* is going to *fail*...?
+> A: To get used to the idea of *only* writing the code required to pass 
+>    the current (*failing*) test.
 
 
-#### Module File 
+#### Create the Module File 
 
 Create a new file for our cash register **cash.js**:
 
 ```sh
-vi cash.js
+touch cash.js
 ```
 
-we are not going to add any code to it just
+**Note**: We are *not* going to add any code to it just yet.
 
+Re-run the **mocha** command in terminal, it will pass (*zero* tests)
 
-And add the following code:
+![Mocha Pass 0 Tests](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-0-passing.png "Mocha Pass 0 Tests")
+
+Lets add a test and watch it fail (again) 
+add the following code to ./test/**test.js**:
 
 ```javascript
+var assert = require("assert"); // core module
+var C = require('../cash.js');  // our module
 
-
+describe('Cash Register', function(){
+  describe('Module C', function(){
+    it('should have a getChange Method', function(){
+      assert.equal(typeof C, 'object');
+      assert.equal(typeof C.getChange, 'function');
+    })
+  })
+})  
 ```
+Re-run `mocha`:
 
+![Mocha 1 Test Failing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-first-test-failing.png "Mocha 1 Test Failing")
 
 
 
