@@ -79,7 +79,14 @@ a good example to use. (If you can think of better TDD example tell me!)
 
 #### Basic Requirements
 
+> Given a **Total Payable** and **Cash From Customer**
+> Return: **Change** (notes and coins).
+
+![GBP Notes](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-notes.jpg "GBP Notes")
 ![GBP Coins](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-coins.jpg "GBP Coins")
+
+Essentially we are building a calculator that only does subtraction,
+but then also splits the result into the various Notes & Coins.
 
 
 
