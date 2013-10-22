@@ -8,7 +8,8 @@
   "author": "https://twitter.com/nelsonic",
   "version": "0.0.1",
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "chai":"*"
   },
   "scripts": {
     "test": "mocha"
