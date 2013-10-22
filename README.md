@@ -1,4 +1,4 @@
-learn-mocha [WORK IN PROGRESS . . . *DONT READ* THIS *YET*!! :-]
+learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha)
 ===========
 
 *Quick Guide* to **mocha.js** **T**est **D**riven **D**evelopment (TDD) / 
@@ -369,7 +369,9 @@ https://github.com/nelsonic/learn-travis
 
 ![Travis Enabled](https://raw.github.com/nelsonic/learn-mocha/master/images/travis-on.png "Travis Enabled")
 
+[![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha)
 
+![Travis Build Pass](https://raw.github.com/nelsonic/learn-mocha/master/images/learn-travis-build-passing.png "Travis Build Passing")
 
 
 - - -
