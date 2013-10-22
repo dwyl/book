@@ -84,7 +84,7 @@ a good example to use. (If you can think of better TDD example tell me!)
 > Return: **Change To Customer** (notes and coins).
 
 Essentially we are building a *simple* **calculator** that *only does* **subtraction** 
-(Total-Cash=Change), but also splits the **result** into the various **notes & coins**.
+(Total - Cash = Change), but also splits the **result** into the various **notes & coins**.
 
 In the UK we have the following Notes & Coins:
 
@@ -201,6 +201,29 @@ Re-run `mocha` (now it passes):
 ![Mocha 1 Test Passes](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-1-test-pass.png "Mocha 1 Test Passes")
 
 
+#### Write A Real Test
+
+Going back to the requirements, we need our getChange method to accept
+two arguments/parameters (**totalPayable** and **cashPaid**) and return an
+array containing the coins equal to the difference:
+
+e.g: 
+```
+totalPayable = 210         // £2.10
+cashPaid     = 300         // £3.00
+dfference    =  90         // 90p
+change       = [50,20,20]  // 50p, 20p, 20p
+```
+
+Add the following test to ./test/**test.js**:
+
+```javascript
+    it('getChange(210,300) should equal [50,20,20]', function(){
+        assert.equal(C.getChange(210,300), [50,20,20]);
+    })
+```
+
+![Mocha Assertion Error](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-assertionError.png "Mocha Assertion Error")
 
 
 
@@ -213,7 +236,10 @@ Re-run `mocha` (now it passes):
 
 
 
+#### Code Coverage
 
+
+#### Travis
 
 
 
