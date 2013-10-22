@@ -219,9 +219,12 @@ Add the following test to ./test/**test.js**:
 
 ```javascript
 it('getChange(210,300) should equal [50,20,20]', function(){
-    assert.equal(C.getChange(210,300), [50,20,20]);
+    assert.deepEqual(C.getChange(210,300), [50,20,20]);
 })
 ```
+
+**Note**: use assert.**deepEqual** for arrays 
+see: http://stackoverflow.com/questions/13225274/
 
 ![Mocha Assertion Error](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-assertionError.png "Mocha Assertion Error")
 
@@ -239,6 +242,73 @@ C.getChange = function (totalPayable, cashPaid) {
 This will pass:
 
 ![Mocha Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-2-passing.png "Mocha 2 Passing")
+
+This only works *once*. When the Spec (Test) Writer writes the next test, the method will need
+to be re-written to satisfy it.
+
+Lets try it.  Work out what you expect:
+```
+totalPayable = 486           // £4.86
+cashPaid     = 1000          // £10.00
+dfference    = 514           // £5.14
+change       = [500,10,2,2]  // £5, 10p, 2p, 2p
+```
+
+Add the following test to ./test/**test.js** and re-run `mocha`:
+
+```javascript
+it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
+    assert.deepEqual(C.getChange(486,1000), [500, 10, 2, 2]);
+})
+```
+
+As expected, our lazy method fails:
+
+![Mocha 3 Test Fails](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-2-passing-1-fail.png "Mocha 3rd Test Fails")
+
+#### Keep Cheating or Solve the Problem?
+
+We could keep cheating by writing a series of if statements:
+
+```javascript
+C.getChange = function (totalPayable, cashPaid) {
+    'use strict';
+    if(totalPayable == 486 && cashPaid == 1000)
+        return [500, 10, 2, 2]; 
+    else if(totalPayable == 210 && cashPaid == 300)
+        return [50, 20, 20]; 
+};
+```
+The *Arthur Andersen Approach* gets results:
+
+![Mocha 3 Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-3-passing.png "Mocha 3 Passing")
+
+But its arguably *more work* than simply *solving* the problem.
+Lets do that instead. 
+(**Note**: this is the *readable* version of the solution!)
+
+```javascript
+C.getChange = function (totalPayable, cashPaid) {
+    'use strict';
+    var change = [];
+    var length = C.coins.length;
+    var remaining = cashPaid - totalPayable;          // we reduce this below
+
+    for (var i = 0; i < length; i++) { // loop through array of notes & coins:
+        var coin = C.coins[i];
+
+        if(remaining/coin >= 1) { // check coin fits into the remaining amount
+            var times = Math.floor(remaining/coin);        // no partial coins
+
+            for(var j = 0; j < times; j++) {     // add coin to change x times
+                change.push(coin);            
+                remaining = remaining - coin;  // subtract coin from remaining
+            }
+        }
+    }
+    return change
+};
+```
 
 
 
