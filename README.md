@@ -53,7 +53,7 @@ var assert = require("assert"); // node.js core module
 describe('Array', function(){
   describe('#indexOf()', function(){
     it('should return -1 when the value is not present', function(){
-      assert.equal(-1, [1,2,3].indexOf(4));
+      assert.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so indexOf returns -1
     })
   })
 })
@@ -73,9 +73,8 @@ mocha
 ### A More Useful TDD Example (Cash Register Mini Project)
 
 While I'm the first to agree that *cash-less* payments are the future,
-paying with cash is something *everyone* can relate to and is thereore 
-a good example to use. (If you can think of better TDD example tell me!)
-
+paying with cash is something *everyone* can relate to and is therefore 
+a good example to use. (*think of better TDD example*? *tell me*!)
 
 
 #### Basic Requirements
