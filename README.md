@@ -352,13 +352,22 @@ You should see:
 
 ![Istanbul Coverage](https://raw.github.com/nelsonic/learn-mocha/master/images/istanbul-cover-mocha.png "Istanbul Code Coverage")
 
-and the **lcov-report**:
+or if you prefer the **lcov-report**:
 
 ![Istanbul Coverage Report](https://raw.github.com/nelsonic/learn-mocha/master/images/istanbul-coverage-report.png "Istanbul Code Coverage Report")
 
+> **100% Coverage** for Statements, Branches, Functions and Lines.
+
+
 #### Travis
 
+If you are new to Travis CI check out my tutorial: 
+https://github.com/nelsonic/learn-travis
 
+> Visit: https://travis-ci.org/profile
+> Enable Travis for learn-travis project
+
+![Travis Enabled](https://raw.github.com/nelsonic/learn-mocha/master/images/travis-on.png "Travis Enabled")
 
 
 

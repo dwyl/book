@@ -1,0 +1,16 @@
+{
+  "name": "learn-mocha",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nelsonic/learn-mocha.git"
+  },
+  "description": "Simple nodejs, travis and grunt demo",
+  "author": "https://twitter.com/nelsonic",
+  "version": "0.0.1",
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
