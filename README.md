@@ -10,7 +10,8 @@ We all know *Cowboy Coders*. (*If you don't, its you!*)
 
 The "*I just get things done*" developer who writes "*quick fixes*" and 
 maintains "*I don't have time to write tests*" or 
-"*Writing tests for my code takes longer*" ... **Utter Nonsense**!
+"*Writing tests for my code takes longer*" and then acts *surprised* when
+everything starts breaking ... "*it was working this morning*" ... *indeed*!
 
 - - -
 
@@ -80,10 +81,10 @@ a good example to use. (If you can think of better TDD example tell me!)
 #### Basic Requirements
 
 > Given a **Total Payable** and **Cash From Customer**
-> Return: **Change** (notes and coins).
+> Return: **Change To Customer** (notes and coins).
 
-Essentially we are building a **calculator** that *only does* **subtraction**,
-but then also splits the **result** into the various **notes & coins**.
+Essentially we are building a *simple* **calculator** that *only does* **subtraction** 
+(Total-Cash=Change), but also splits the **result** into the various **notes & coins**.
 
 In the UK we have the following Notes & Coins:
 
@@ -112,6 +113,18 @@ this can be represented as an Array:
 var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 ```
 
+**Note**: the same can be done for any other cash system ($ ¥ €) 
+simply use the cent, sen or rin as the unit and scale up notes.
+
+#### The First Test
+
+If you are *totally* new to TDD I recommend a quick read this 
+[intro article](http://www.agiledata.org/essays/tdd.html) (especially the 
+diagrams) otherwise this (test-fail-code-pass) process may seem *strange* ...
+
+#### Watch it Fail
+
+
 
 #### Module File 
 
@@ -121,12 +134,17 @@ Create a new file for our cash register **cash.js**:
 vi cash.js
 ```
 
+we are not going to add any code to it just
+
+
 And add the following code:
 
 ```javascript
 
 
 ```
+
+
 
 
 - - -
@@ -194,6 +212,12 @@ Advanced:
 - Code Coverage: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
 
 - Grunt.js Mocha Plugins: http://gruntjs.com/plugins/mocha
+
+#### Test Driven Development (TDD) Background/Philosophy 
+
+- Wikipedia (duh!): http://en.wikipedia.org/wiki/Test-driven_development
+- Excellent Explanation by Scott Wambler: http://www.agiledata.org/essays/tdd.html
+
 
 #### Further Reading
 
