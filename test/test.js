@@ -1,4 +1,5 @@
-var assert = require("assert"); // core module
+var chai = require('chai');
+var assert = chai.assert; 
 var C = require('../cash.js');  // our module
 
 describe('Cash Register', function(){
@@ -15,6 +16,12 @@ describe('Cash Register', function(){
     it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
         assert.deepEqual(C.getChange(486,1000), [500, 10, 2, 2]);
     })
+
+    it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(){
+        assert.deepEqual(C.getChange(1487,10000), [5000, 2000, 1000, 500, 10, 2, 1 ]);
+    })
+
+
 
   })
 })  

@@ -91,6 +91,10 @@ In the UK we have the following Notes & Coins:
 ![GBP Notes](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-notes.jpg "GBP Notes")
 ![GBP Coins](https://raw.github.com/nelsonic/learn-mocha/master/images/gbp-coins.jpg "GBP Coins")
 
+see: http://en.wikipedia.org/wiki/Banknotes_of_the_pound_sterling
+(technically there are also £100 and even £100,000,000 notes, 
+but these aren't common so we can leave them out. ;-)
+
 If we use the penny as the unit (i.e. 100 pennies in a pound) 
 the notes and coins can be represented as:
 
@@ -285,9 +289,11 @@ The *Arthur Andersen Approach* gets results:
 
 But its arguably *more work* than simply *solving* the problem.
 Lets do that instead. 
-(**Note**: this is the *readable* version of the solution!)
+(**Note**: this is the *readable* version of the solution! feel free to suggest a more compact algorithm)
 
 ```javascript
+var C = {};     // C Object simplifies exporting the module
+C.coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 C.getChange = function (totalPayable, cashPaid) {
     'use strict';
     var change = [];
@@ -310,7 +316,22 @@ C.getChange = function (totalPayable, cashPaid) {
 };
 ```
 
+Add one more test to ensure we are fully exercising our method:
 
+```
+totalPayable = 1487                                 // £14.87
+cashPaid     = 10000                                // £10.00
+dfference    = 8513                                 // £85.13
+change       = [5000, 2000, 1000, 500, 10, 2, 1 ]  // £50, £20, £10, £5, 10p, 2p, 1p
+```
+
+```javascript
+it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(){
+    assert.deepEqual(C.getChange(1487,10000), [5000, 2000, 1000, 500, 10, 2, 1 ]);
+})
+```
+
+![Mocha 4 Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
 
 
 #### What If...?
