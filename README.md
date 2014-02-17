@@ -1,4 +1,4 @@
-learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-mocha/badge.png)](https://coveralls.io/r/nelsonic/learn-mocha) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-mocha.png)](https://codeclimate.com/github/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png?theme=shields.io)](https://david-dm.org/nelsonic/learn-mocha)
+Learn Mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-mocha/badge.png)](https://coveralls.io/r/nelsonic/learn-mocha) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-mocha.png)](https://codeclimate.com/github/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png?theme=shields.io)](https://david-dm.org/nelsonic/learn-mocha)
 ===========
 
 *Quick Guide* to **mocha.js** **T**est **D**riven **D**evelopment (TDD) / 
@@ -442,8 +442,6 @@ Advanced:
 - DailyJS Mocha: http://dailyjs.com/2011/12/08/mocha/
 - Azat's Mocha Tutorial: http://webapplog.com/test-driven-development-in-node-js-with-mocha/
 - NetTuts: http://net.tutsplus.com/tutorials/javascript-ajax/better-coffeescript-testing-with-mocha/
-- Code Coverage: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
-
 - Grunt.js Mocha Plugins: http://gruntjs.com/plugins/mocha
 - Test Coverage with Mocha: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
 
