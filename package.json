@@ -9,7 +9,9 @@
   "version": "0.0.1",
   "devDependencies": {
     "mocha": "*",
-    "chai":"*"
+    "chai":"*",
+    "istanbul":"*",
+    "coveralls":"*"
   },
   "scripts": {
     "test": "mocha"

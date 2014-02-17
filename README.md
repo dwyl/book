@@ -1,4 +1,4 @@
-learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png)](https://david-dm.org/nelsonic/learn-mocha)
+learn-mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png)](https://david-dm.org/nelsonic/learn-mocha) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-mocha/badge.png)](https://coveralls.io/r/nelsonic/learn-mocha)
 ===========
 
 *Quick Guide* to **mocha.js** **T**est **D**riven **D**evelopment (TDD) / 
@@ -342,6 +342,12 @@ it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', func
 We are using istanbul for code coverage. 
 If you are new to istanbul check out my brief tutorial: 
 https://github.com/nelsonic/learn-istanbul
+
+Install istanbul:
+
+```sh
+npm install istanbul -g
+```
 
 Run the following command to get a coverage report:
 ```sh
