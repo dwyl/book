@@ -1,4 +1,4 @@
-Learn Mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-mocha/badge.png)](https://coveralls.io/r/nelsonic/learn-mocha) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-mocha.png)](https://codeclimate.com/github/nelsonic/learn-mocha) [![Dependencies](https://david-dm.org/nelsonic/learn-mocha.png?theme=shields.io)](https://david-dm.org/nelsonic/learn-mocha)
+Learn Mocha [![Build Status](https://travis-ci.org/nelsonic/learn-mocha.png?branch=master)](https://travis-ci.org/nelsonic/learn-mocha) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-mocha/badge.png)](https://coveralls.io/r/nelsonic/learn-mocha) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-mocha.png)](https://codeclimate.com/github/nelsonic/learn-mocha) [![devDependency Status](https://david-dm.org/nelsonic/learn-mocha/dev-status.svg)](https://david-dm.org/nelsonic/learn-mocha#info=devDependencies) 
 ===========
 
 *Quick Guide* to **mocha.js** Test Driven Development (TDD) in **node.js**
