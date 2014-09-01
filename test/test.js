@@ -1,5 +1,5 @@
-var chai = require('chai');
-var assert = chai.assert; 
+// var chai = require('chai');
+var assert = require('assert');
 var C = require('../cash.js');  // our module
 
 describe('Cash Register', function(){
@@ -29,5 +29,4 @@ describe('Cash Register', function(){
     })
 
   })
-})  
-
+})
