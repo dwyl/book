@@ -4,14 +4,13 @@
     "type": "git",
     "url": "https://github.com/nelsonic/learn-mocha.git"
   },
-  "description": "Simple nodejs, travis and grunt demo",
+  "description": "Simple mocha.js tutorial including istanbul test coverage",
   "author": "https://twitter.com/nelsonic",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
-    "mocha": "*",
-    "chai":"*",
-    "istanbul":"*",
-    "coveralls":"*"
+    "mocha": "1.21.4",
+    "istanbul":"0.3.2",
+    "coveralls":"2.11.1"
   },
   "scripts": {
     "test": "mocha",
