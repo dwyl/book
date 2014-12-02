@@ -57,7 +57,7 @@ describe('Array', function(){
 #### Run Test
 
 By typing the command **mocha** in your terminal the mocha comand line program
-will look for a **/test** directory and run any **.js** files it conains:
+will look for a **/test** directory and run any **.js** files it contains:
 
 ```sh
 mocha
