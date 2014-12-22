@@ -51,7 +51,7 @@ describe('Array', function(){
       assert.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so indexOf returns -1
     })
   })
-})
+});
 ```
 
 #### Run Test
@@ -175,7 +175,7 @@ describe('Cash Register', function(){
       assert.equal(typeof C.getChange, 'function');
     })
   })
-})  
+});  
 ```
 Re-run `mocha`:
 
@@ -306,7 +306,7 @@ C.getChange = function (totalPayable, cashPaid) {
             }
         }
     }
-    return change
+    return change;
 };
 ```
 
@@ -322,7 +322,7 @@ change       = [5000, 2000, 1000, 500, 10, 2, 1 ]   // £50, £20, £10, £5, 10
 ```javascript
 it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(){
     assert.deepEqual(C.getChange(1487,10000), [5000, 2000, 1000, 500, 10, 2, 1 ]);
-})
+});
 ```
 
 ![Mocha 4 Passing](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
