@@ -186,7 +186,7 @@ Re-run `mocha`:
 Add the following to **cash.js**:
 
 ```javascript
-var C = {};                    // C Object simplifies exporting the moduel
+var C = {};                    // C Object simplifies exporting the module
 C.getChange = function () {    // enough to satisfy the test
     'use strict';
     return true;               // also passes JSLint
