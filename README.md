@@ -24,7 +24,7 @@ You should see some output *confirming* it *installed*:
 
 ![Mocha Installed](https://raw.github.com/nelsonic/learn-mocha/master/images/mocha-installed.png "Mocha Installed Successfully")
 
-More info: http://visionmedia.github.io/mocha/#installation
+More info: http://mochajs.org/#installation
 
 ### First Tests
 
@@ -390,8 +390,8 @@ Made by [TJ Holowaychuk](https://twitter.com/tjholowaychuk) creator of
 [Express](https://github.com/visionmedia/express) (*by far* the *most popular*
 node.js web framework), Mocha is TJ's answer to the problem of testing JavaScript.
 
-- Site: http://visionmedia.github.io/mocha/
-- Code: https://github.com/visionmedia/mocha
+- Site: http://mochajs.org
+- Code: https://github.com/mochajs/mocha
 
 #### Why Mocha?
 
@@ -408,7 +408,7 @@ Over the past 3 years I've tried:
 [Cucumber](https://github.com/cucumber/cucumber-js),
 [Expresso](https://github.com/visionmedia/expresso)
 [Jasmine](https://github.com/mhevery/jasmine-node),
-[Mocha](http://visionmedia.github.io/mocha/),
+[Mocha](https://github.com/mochajs/mocha),
 [Nodeunit](https://github.com/caolan/nodeunit),
 [Should](https://github.com/visionmedia/should.js), and
 [Vows](https://github.com/cloudhead/vows)
@@ -418,7 +418,7 @@ My **criteria** for chosing a testing framework:
 - **Simplicity** (one of TJ's *stated aims*)
 - **Elegance** (*especially when written in CoffeeScript*)
 - **Speed** (Mocha is *Fast*. 300+ tests run in under a second)
-- **Documentation** (plenty of real-world examples: http://visionmedia.github.io/mocha/)
+- **Documentation** (plenty of real-world examples: http://mochajs.org)
 - **Maturity** (*Battle-tested* by *thousands* of developers!)
 
 Advanced:
