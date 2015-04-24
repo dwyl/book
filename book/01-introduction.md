@@ -8,12 +8,12 @@ scale as functionality grows.
 
 ![starts out easy](http://i.imgur.com/1usRwT6.png)
 
-
+![decision tree](http://i.imgur.com/DFYspgE.png)
 
 
 ![manual testing gets harder as features get added](http://i.imgur.com/BxCZ7Nl.png)
 
-
+![manual testing suited to](http://i.imgur.com/lCPdBav.jpg)
 
 
 ### Further Reading
@@ -21,3 +21,5 @@ scale as functionality grows.
 + A Software Testing Primer: http://www.nickjenkins.net/prose/testingPrimer.pdf
 
 [![Manual testing is tedious and boring](http://i.imgur.com/X8YTOQD.png)](https://www.youtube.com/watch?v=xCwkjZcEK6w)
+
+![relative cost of fixing a bug](http://i.imgur.com/Ie10VLv.jpg)
