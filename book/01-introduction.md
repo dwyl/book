@@ -11,7 +11,6 @@ who cling to the "**its not *my* job**" attitude towards writing tests.
 We want to dispel the *myth* that
 We want to change that by showing everyone how *productive
 
-
 ![starts out easy gets harder](http://i.imgur.com/1usRwT6.png)
 
 
@@ -37,7 +36,7 @@ can (should) be invited to test any new **User Interface** (UI),
 than watching people use your app/site*.
 + **Compliance Team** check over a product before it can be released (if you operate in a *regulated industry*)
 + **Penetration Testing** in many cases is still performed *manually* (albeit using
-  scripts and semi-automated tools) the expert tester still needs to observe the
+  scripts and semi-automated tools) the expert tester still needs to *observe* the
   output to confirm the system under test is not vulnerable to *know atacks*.
 
 ![manual testing suited to](http://i.imgur.com/lCPdBav.jpg)
@@ -54,6 +53,8 @@ https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet
 + Android QA testing: http://techcrunch.com/2012/06/02/android-qa-testing-quality-assurance/
 + The value of an external perspective:
 http://www.aranya.com/blog/Code_Elixir/The_Value_of_an_Outsiders_Perspective.html
++ International Software Testing Qualifications Board:
+http://www.istqb.org/about-istqb/facts-and-figures.html
 
 [![Manual testing is tedious and boring](http://i.imgur.com/X8YTOQD.png)](https://www.youtube.com/watch?v=xCwkjZcEK6w)
 
