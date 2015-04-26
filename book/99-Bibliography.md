@@ -1,4 +1,18 @@
 
+# Useful Resources
+
+## James Bach (The *Ronaldo* of Testing) Videos
+
++ **Open Lecture** by **James Bach** on **Software Testing**:
+https://www.youtube.com/watch?v=ILkT_HV9DVU (good intro to testing *mindset*)
++ James Bach on **testing** in an ***agile*** **software development team**:
+https://www.youtube.com/watch?v=vqwyMaHcjQE
+
+
+## General Testing Videos
+
++ Test is Dead (Google Test Automation Conference 2011 Keynote):
+https://www.youtube.com/watch?v=X1jWe5rOu3g Alberto Savoia
 
 
 ## List of JavaScript Testing Frameworks
@@ -9,8 +23,10 @@
 
 ### SauceLabs
 
++ What is SauceLabs? https://www.youtube.com/watch?v=97p4P6MwSxY
 + Mocha: https://saucelabs.com/javascript/mocha-js
-+
++ Intro to Mobile Testing on Sauce Labs:
+https://www.youtube.com/watch?v=2XQmnUdpkH8
 
 
 ### BrowserSwarm
