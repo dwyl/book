@@ -5,8 +5,11 @@
 
 + **Open Lecture** by **James Bach** on **Software Testing**:
 https://www.youtube.com/watch?v=ILkT_HV9DVU (good intro to testing *mindset*)
++ **Agile Software Testing** with James Bach:
+https://www.youtube.com/watch?v=SAhJf36_u5U
 + James Bach on **testing** in an ***agile*** **software development team**:
 https://www.youtube.com/watch?v=vqwyMaHcjQE
+(conversation about testing)
 
 
 ## General Testing Videos
