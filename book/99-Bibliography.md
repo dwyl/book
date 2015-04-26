@@ -1,0 +1,37 @@
+
+
+
+## List of JavaScript Testing Frameworks
+
+
+
+## Cross Browser Testing
+
+### SauceLabs
+
++ Mocha: https://saucelabs.com/javascript/mocha-js
++
+
+
+### BrowserSwarm
+
++ Microsoft announces BrowserSwarm:
+http://blogs.windows.com/ie/2013/09/26/introducing-browserswarm-less-time-testing-more-innovation-on-the-web/ sadly the site is unreachable: http://www.isup.me/browserswarm.com
++ SauceLabs blog post on BrowserSwarm: http://sauceio.com/index.php/2013/09/automatically-test-your-javascript-framework-with-browserswarm/
++ Site unreachable at time of writing: https://twitter.com/nelsonic/status/592215261324926976
+
+
+
+## List of Continuous Delivery Platforms
+
+
+
+### OpenSource (DIY)
+
++ Strider: https://github.com/strider-CD/strider
+(Open Source - Node.js + MongoDB)
++ Jenkins: https://jenkins-ci.org/content/about-jenkins-ci
+(Super powerful and "full featured" but has a steep learning curve
+and runs on Java so is *blocking* and memory-hungry)
+
+### Paid CD Services ("Free" for OpenSource Projects)
