@@ -1,6 +1,11 @@
 
 # Useful Resources
 
+## General Background Reading:
+
++ The TAO of Testing by **Jason Polites**:
+http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
+
 ## James Bach (The *Ronaldo* of Testing) Videos
 
 + **Open Lecture** by **James Bach** on **Software Testing**:
