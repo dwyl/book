@@ -21,7 +21,8 @@ https://www.youtube.com/watch?v=vqwyMaHcjQE
 
 + Test is Dead (Google Test Automation Conference 2011 Keynote):
 https://www.youtube.com/watch?v=X1jWe5rOu3g Alberto Savoia
-
++ Becoming a ***Software Testing Expert*** (James Bach | Google Tech Talks):
+https://www.youtube.com/watch?v=GhfVK_ubk8U
 
 ## List of JavaScript Testing Frameworks
 
