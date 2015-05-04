@@ -5,6 +5,9 @@
 
 + The TAO of Testing by **Jason Polites**:
 http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
++ Testing Code and Assuring Quality (*Kent Cowgill Presentation*
+  examples are perl-specific but still relevant) 
+http://www.slideshare.net/kcowgill/testing-code-and-assuring-quality
 
 ## James Bach (The *Ronaldo* of Testing) Videos
 
