@@ -1,5 +1,28 @@
 # TAP the Test *Anything* Protocol
 
+## Official Description
+
+> "*TAP, the* ***Test Anything Protocol***, *is a* ***simple text-based interface*** *between testing modules in a test harness. TAP started life as part of the test harness for Perl but now has implementations in C, C++, Python, PHP, Perl, Java,* ***JavaScript***, *and others.*" ~ from: https://testanything.org/
+
+## *English Translation*
+
+TAP is a standard format for automated test output that can be understood by both humans and computers.
+
+## Sample TAP Output
+
+```sh
+1..3
+ok 1 - Input file opened
+not ok 2 - First line of the input valid
+ok 3 - Read the rest of the file
+```
+
+This TAP output tells us that 3 tests were run.  
+Tap numbers tests as it finds them in your file(s).
+
+
+
+## Background Reading
 
 + TAP Home: https://testanything.org/
 + TAP Producers: http://testanything.org/producers.html
