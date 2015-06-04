@@ -1,6 +1,12 @@
+# Why? [![start with why](images/start-with-why.png)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
+
+
+
+
+
 ## *Manual* Testing
 
-*Many* people writing software *still* "*test*" their work by *manually*
+*Many* people writing software *today* *still* "*test*" their work by *manually*
 clicking-through their app *each time* they make a *change*.
 
 This works while an app is *small* and has few components, but ***does not
