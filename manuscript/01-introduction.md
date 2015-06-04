@@ -1,4 +1,4 @@
-# Why? [![start with why](images/start-with-why.png)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
+# Why?[^startwithwhy]
 
 
 
@@ -65,3 +65,5 @@ http://www.istqb.org/about-istqb/facts-and-figures.html
 [![Manual testing is tedious and boring](http://i.imgur.com/X8YTOQD.png)](https://www.youtube.com/watch?v=xCwkjZcEK6w)
 
 ![relative cost of fixing a bug](http://i.imgur.com/Ie10VLv.jpg)
+
+[^startwithwhy]: See: http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action
