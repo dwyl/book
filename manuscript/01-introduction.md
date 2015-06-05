@@ -1,8 +1,32 @@
 # Why?[^startwithwhy]
 
+There are *so many* reasons to test your software "*product*" we could write a book just on *why*; here are the top 5 reasons:
+
+## 1. Tranquillity
+
+This is the *first* (*reason to test*) because its the *answer* to
+"***what's in it for me?***" question - people who are sceptical about testing inevitably ask. The ***Peace of Mind*** you get from knowing your project/product works *consistently* means you can have a life instead of constantly worrying about stability.
+
+Unless you have a ...
+
+## 2. Useability
+
+Less Frustration for the People Using your Product!
+
+## 3. Trust
+
+How do you know the code you wrote a month ago is still working as expected?
+How can we be sure that a dependency we have included
+
+## 4. Lower Cost
 
 
+## 5. Conversion
 
+
+# Types of Testing
+
+> Tag Cloud or Diagram?
 
 ## *Manual* Testing
 
