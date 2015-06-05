@@ -1,27 +1,48 @@
 # Why?[^startwithwhy]
 
-There are *so many* reasons to test your software "*product*" we could write a book just on *why*; here are the top 5 reasons:
+There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top 7 reasons:
 
 ## 1. Tranquillity
 
-This is the *first* (*reason to test*) because its the *answer* to
-"***what's in it for me?***" question - people who are sceptical about testing inevitably ask. The ***Peace of Mind*** you get from knowing your project/product works *consistently* means you can have a life instead of constantly worrying about stability.
+This is the *first* (*reason to test*) because its the *answer* to the question:
+"***what's in it for me?***" - people who are *sceptical about testing
+inevitably ask*.  
+The ***Peace of Mind*** you get from knowing your project/product works
+*consistently* means you can have a life instead of constantly worrying
+about if something *else* has broken since the last "*patch*".
 
-Unless you have a ...
+*Some* people have a coding "*day job*" ~~they attend between 9-to-5,
+to collect a paycheck~~ to fund their other (*more important?*) activities;
+e.g. raising a family, traveling or playing/watching sport/music/video games.
+
+If you have trouble leaving your work at work (*because things are*
+  "***breaking***") or switching off, or just want some 
+"***work-life-balance***" (*automated*) ***testing*** is your ***best friend***!
+
+
 
 ## 2. Useability
 
-Less Frustration for the People Using your Product!
+When a site/app does not function as expected (*or worse, "breaks"*) when people
+attempt to use it, it frustrates them. If you have a way of *automatically testing*
+(*checking*) Less Frustration for the People Using your Product!
 
 ## 3. Trust
 
 How do you know the code you wrote a month ago is still working as expected?
 How can we be sure that a dependency we have included
 
-## 4. Lower Cost
+## 4. Cost (*Saving*)
 
 
 ## 5. Conversion
+
+
+## 6. Innovation
+
+
+
+## 7.
 
 
 # Types of Testing
