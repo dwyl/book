@@ -20,5 +20,5 @@ you will ***only write*** the code required ***to past the test***(*s*)
 Achieving 100% test coverage is only an issue for a project that
 has not been written with good discipline from the start.
 
-We will cover strategies for how to [***retrofit***](http://en.wikipedia.org/wiki/Patch_(computing))
+We will cover strategies for how to [***retrofit***](http://en.wikipedia.org/wiki/Patch_(computing)
 an existing project with tests later; lets focus on learning a few fundamentals first.
