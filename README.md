@@ -37,9 +37,10 @@ the one to change your mind by evangelizing about it ... I know
 people *calling* themesleves "developers" who stubbornly cling to the notion
 that *testing is for "QA"* or "*that's why we have testers*" or "*we will write tests later, we just need to release this ASAP!*" etc...  
 
-The days of poor quality software are *numbered*; people who continue to expect that inconsistent results will be rewarded are in for a rude awakening.
+The days of poor quality software are *numbered*; people who continue to expect *inconsistent results* to be rewarded are in for a "*surprise*"!
 
 ![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/they-took-our-jerbs.jpg "They Took Er Jerbs")
+
 
 This book is our effort to *accelerate* the process towards (*Total*) *Quality Code*! We invite *you* to be part of the ***TQM Software*** *movement* and bring all your friends/colleagues!
 
@@ -60,7 +61,7 @@ If you can handle a few typos and want to get started building better software A
 
 
 
-## Release Shedule
+## Release Schedule
 
 *Each day* for the next 4 months I will be writing *at least* 1 page and pushing it to GitHub (*which triggers the book publish script on LeanPub*) so there will be fresh content *every day*! I promise to make every effort to keep the signal-to-noise ratio as good as possible!
 
