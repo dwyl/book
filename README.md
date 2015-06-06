@@ -53,7 +53,7 @@ If you can handle a few typos and want to get started building better software A
 
 ## Spreading the Word >> *Please Re-Tweet*!
 
-[![Imgur](http://i.imgur.com/jCbU35t.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
+[![Imgur](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/pfst-initial-tweet-with-retweets)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
 
 
 
