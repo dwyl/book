@@ -6,7 +6,7 @@ at least once during your automated tests.
 
 **Q**: Why does it *matter* to have 100% test coverage?  
 **A**: If there is code in your project that you are not testing,
-how do you know its good? If you are not (*automatically*) checking
+how do you know it's good? If you are not (*automatically*) checking
 that everything still works as expected each time you add a new feature,
 how can you be *confident* that everything still runs as expected?
 
