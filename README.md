@@ -49,7 +49,7 @@ Be part of the ***TQM Software*** *movement* and invite all your friends/colleag
 ## The Book is Not Ready Yet, Should I Start Reading It?
 
 The answer is: ***it depends***.
-If you can handle a few typos and want to get started building better software ASAP, then start *now*! If you prefer to wait till its "ready", please start the repo, register your interest at: https://leanpub.com/practical-full-stack-testing
+If you can handle a few typos and want to get started building better software ASAP, then start *now*! If you prefer to wait till its "ready", please star the repo, register your interest at: https://leanpub.com/practical-full-stack-testing
 
 
 ## Spreading the Word >> *Please Re-Tweet*!
