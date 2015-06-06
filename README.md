@@ -80,14 +80,25 @@ If you have any ideas, comments or suggestions, please raise and issue on GitHub
 
 If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo. note: you may get quite a few emails... but if you are interested in building great quality software, the content should be relevant to you.
 
-## The Book is Open Source, Why are you Charging on LeanPub?
+## 100% Open Source
+
+Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all!
+
+![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
+
+I was lucky enough to be named after this guy!! (*Thanks Mom!*)
+
+
+
+### The Book is Open Source, Why is LeanPub Charging?
 
 Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*DRM-FREE*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
 
-## I Can't Afford to Pay for the Book ...
+## Can't Afford to Pay for the Book ...?
 
 If you are a student and strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [*personal-message me***](https://twitter.com/nelsonic) and I will send you the money via PayPal so you can still read the packaged version of the book - and receive all the updates - without any cost!!
 
-## Proceeds of Sale
+## Proceeds of Sale >> *South African Tecnhology School*
 
-***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the [***South African Technology School***](http://www.bbc.co.uk/education/clips/zjh4d2p) we are planning to *build* in 2016 in our quest to create *well-paid* (*remote*) Tech Jobs in Africa!
+***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the [***South African Technology School***](http://www.bbc.co.uk/education/clips/zjh4d2p)
+we plan to *build* in **2016** in our quest to create *well-paid* (*remote*) Tech Jobs in Africa!
