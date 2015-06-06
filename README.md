@@ -16,7 +16,7 @@ exclaims: "*I don't have time to write tests*" or
 "*Writing tests for my code takes longer*" and then acts *surprised* when
 everything starts breaking while claiming: "*it was working this morning*" ...
 
-## Code Without Test === Building Witouht Foundation!
+## Code Without Test === Building Without Foundation!
 
 Code without tests is like a *building without a foundation*!
 
