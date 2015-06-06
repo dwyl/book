@@ -37,9 +37,11 @@ the one to change your mind by evangelizing about it ... I know
 people *calling* themesleves "developers" who stubbornly cling to the notion
 that *testing is for "QA"* or "*that's why we have testers*" or "*we will write tests later, we just need to release this ASAP!*" etc...  
 
-The days of poor quality software are *numbered*; this book is our effort to *accelerate* the process towards (*Total*) *Quality Code*!
+The days of poor quality software are *numbered*; people who continue to expect that inconsistent results will be rewarded are in for a rude awakening.
 
-Be part of the ***TQM Software*** *movement* and invite all your friends/colleagues to join in!
+![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/they-took-our-jerbs.jpg "They Took Er Jerbs")
+
+This book is our effort to *accelerate* the process towards (*Total*) *Quality Code*! We invite *you* to be part of the ***TQM Software*** *movement* and bring all your friends/colleagues!
 
  <br />
 
@@ -102,7 +104,7 @@ we plan to *build* in **2016** in our quest to create (*well-paid +remote*) Tech
 
 [![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
 
-If after watching that video you aren't inspired to get involved,
+If after watching [*this video*](http://www.bbc.co.uk/education/clips/zjh4d2p) you aren't inspired to get involved,
 please let us know what *does* make you tick and we can donate the proceeds of your copy of the book to a different charity.
 
 
@@ -110,4 +112,4 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 
 ![aaand-its-gone-southpark](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/aaand-its-gone-southpark.jpg)
 
-If you are a student and/or strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic) 
+If you are a student and/or strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)

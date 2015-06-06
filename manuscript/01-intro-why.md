@@ -34,11 +34,17 @@ How can we be sure that a dependency we have included
 ## 4. Cost (*Saving*)
 
 
+
 ## 5. Conversion
+
+
 
 
 ## 6. Innovation
 
 
 
-## 7.
+
+## 7. Accountability
+
+[^1]: See: http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action

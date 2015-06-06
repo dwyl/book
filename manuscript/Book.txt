@@ -1,2 +1,1 @@
-chapter1.txt
-01-introduction.md
+01-intro-why.md
