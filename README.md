@@ -51,9 +51,10 @@ Be part of the ***TQM Software*** *movement* and invite all your friends/colleag
 The answer is: ***it depends***.
 If you can handle a few typos and want to get started building better software ASAP, then start *now*! If you prefer to wait till its "ready", please start the repo, register your interest at: https://leanpub.com/practical-full-stack-testing
 
+
 ## Spreading the Word >> *Please Re-Tweet*!
 
-[![Imgur](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/pfst-initial-tweet-with-retweets)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
+[![Imgur](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
 
 
 
@@ -78,3 +79,15 @@ If you have any ideas, comments or suggestions, please raise and issue on GitHub
 ### Watching the Repo (*to receive ALL the updates!*)
 
 If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo. note: you may get quite a few emails... but if you are interested in building great quality software, the content should be relevant to you.
+
+## The Book is Open Source, Why are you Charging on LeanPub?
+
+Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*DRM-FREE*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
+
+## I Can't Afford to Pay for the Book ...
+
+If you are a student and strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [*personal-message me***](https://twitter.com/nelsonic) and I will send you the money via PayPal so you can still read the packaged version of the book - and receive all the updates - without any cost!!
+
+## Proceeds of Sale
+
+***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the [***South African Technology School***](http://www.bbc.co.uk/education/clips/zjh4d2p) we are planning to *build* in 2016 in our quest to create *well-paid* (*remote*) Tech Jobs in Africa!
