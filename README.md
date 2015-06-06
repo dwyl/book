@@ -94,11 +94,20 @@ I was lucky enough to be named after this guy!! (*Thanks Mom!*)
 
 Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*DRM-FREE*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
 
+
+## Proceeds of Sale >> *South African Technology School*
+
+***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the ***South African Technology School***
+we plan to *build* in **2016** in our quest to create (*well-paid +remote*) Tech Jobs in Africa!
+
+[![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
+
+If after watching that video you aren't inspired to get involved,
+please let us know what *does* make you tick and we can donate the proceeds of your copy of the book to a different charity.
+
+
 ## Can't Afford to Pay for the Book ...?
 
-If you are a student and strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [*personal-message me***](https://twitter.com/nelsonic) and I will send you the money via PayPal so you can still read the packaged version of the book - and receive all the updates - without any cost!!
+![aaand-its-gone-southpark](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/aaand-its-gone-southpark.jpg)
 
-## Proceeds of Sale >> *South African Tecnhology School*
-
-***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the [***South African Technology School***](http://www.bbc.co.uk/education/clips/zjh4d2p)
-we plan to *build* in **2016** in our quest to create *well-paid* (*remote*) Tech Jobs in Africa!
+If you are a student and/or strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic) 
