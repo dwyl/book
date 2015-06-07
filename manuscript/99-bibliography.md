@@ -26,6 +26,9 @@ https://www.youtube.com/watch?v=vqwyMaHcjQE
 https://www.youtube.com/watch?v=X1jWe5rOu3g Alberto Savoia
 + Becoming a ***Software Testing Expert*** (James Bach | Google Tech Talks):
 https://www.youtube.com/watch?v=GhfVK_ubk8U
++ Real Software Engineering by: Glenn Vanderburg
+https://youtu.be/_EWUeZoyB0k
+"*Software Engineering as its taught at universities does not work...*"
 
 ## List of JavaScript Testing Frameworks
 
