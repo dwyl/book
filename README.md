@@ -7,7 +7,7 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 ## Cowboy Coders?
 
-![Cowboy Coder](https://raw.github.com/nelsonic/practical-full-stack-testing/master/images/cowboy-coder.png "Cowboy Coder")
+![Cowboy Coder](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/cowboy-coder.png "Cowboy Coder")
 
 We all know *Cowboy Coders*.
 
@@ -20,7 +20,7 @@ everything starts breaking while claiming: "*it was working this morning*" ...
 
 Code without tests is like a *building without a foundation*!
 
-![Building Collapse](https://raw.github.com/nelsonic/practical-full-stack-testing/master/images/building-collapse-940x627.jpg "Building Collapse")
+![Building Collapse](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/building-collapse-940x627.jpg "Building Collapse")
 
 Its only a matter of *time* before it all comes crashing down ...
 

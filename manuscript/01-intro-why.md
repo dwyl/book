@@ -16,14 +16,16 @@ The ***peace of mind*** you get from *knowing* your project/product works
 *consistently* means you can have a life instead of constantly worrying
 about if something *else* has broken since the last "*patch*".
 
+## 2. Trust
+
+![crowd surfing](images/crowd-surfing.jpg)
 
 
-## 2. Accountability
-
-If you have ever worked in a company/organisation where people dodge responsibility and are quick to blame others when things go wrong, I feel your pain. There is another way. When tests are written *before* the "solution",
+If you have ever worked in a company/organisation where people dodge responsibility and are quick to blame others when things go wrong, I feel your pain (*been there, it isn't fun*). There is another (*better*) way. When tests are written *before* the "solution" is implemented, everyone can see *exactly* what the new functionality is *meant* to do.
 
 How do you know the code you wrote a week/month/year ago is *still working* as expected?
-How can we be sure that a dependency we have included
+How can we be sure that a dependency we have included *always* works as advertised?
+
 
 
 ## 3. Cost (*Saving*)
@@ -50,7 +52,7 @@ Apps which are thoroughly tested tend to have fewer bugs and are thus far more u
 
 ![Amelia's Happy Day](images/amelia-happy-day.jpg)
 
-Make the people using your products/project happy by testing.
+Make the people using your product/project happy by testing it *before* giving it to them!
 
 
 [^startwithwhy]: See: http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action
