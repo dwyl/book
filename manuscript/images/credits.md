@@ -12,6 +12,10 @@ sourced: http://imgur.com/WVse8nl
 Could not find the Author or Copyright.
 If this image is yours and you prefer us not to use it, please say so!
 
+Matrix Phone (Nokia 8110)  
+Sourced: http://upload.wikimedia.org/wikipedia/commons/0/02/Matrixphone.jpg  
+Licensed under Creative Commons 3.0:   https://creativecommons.org/licenses/by-sa/3.0/
+
 
 ## Introduction > Why?
 <sup>
