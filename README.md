@@ -25,6 +25,7 @@ Some people have a natural aversion to the *idea* of testing because the *word* 
 
 ![Don't Panic!](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-dont-panic-unicorn.png "Don't Panic!")
 
+***Don't Panic***! Writing tests for your Web Application is on the opposite end of the *Fun* Spectrum from multiple choice tests we all know (*and hate*!)
 
 <br />
 
