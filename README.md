@@ -8,7 +8,12 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 ## What is Testing?!
 
-Some people just have a natural aversion to the *idea* of testing.
+
+## What (*Software*) Testing is *Not*...!
+
+![Software testing is not an exam](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/00-what-testing-is-not--multiple-choice-with-broken-pencil.jpg "Software Testing is NOT an Exam!")
+
+Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education*.
 
 <br />
 

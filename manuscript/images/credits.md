@@ -1,5 +1,12 @@
 # Photo Credits
 
+## ../README.md
+
+What Testing is NOT (*"Multiple Choice Test" - with broken pencil*)  
+sourced: https://www.flickr.com/photos/thedavisblog/2230010178  
+by Josh Davis (thedavisblog)  
+licensed under Creative Commons:   https://creativecommons.org/licenses/by-nd/2.0/
+
 ## Introduction > Why?
 <sup>
 
