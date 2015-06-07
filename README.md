@@ -1,20 +1,49 @@
 # Practical Full Stack Testing
 
-A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people developing ***robust*** **node.js** and **web / mobile** applications in teams!
+A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
 
 [![Build Status](https://travis-ci.org/nelsonic/practical-full-stack-testing.png?branch=master)](https://travis-ci.org/nelsonic/practical-full-stack-testing) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-full-stack-testing.png)](https://codeclimate.com/github/nelsonic/practical-full-stack-testing) [![devDependency Status](https://david-dm.org/nelsonic/practical-full-stack-testing/dev-status.svg)](https://david-dm.org/nelsonic/practical-full-stack-testing#info=devDependencies)
 
+<br />
+
+## What is Testing?!
+
+Some people just have a natural aversion to the *idea* of testing.
+
+<br />
+
+## No Tests? ... *We Can Fix That*!
+
+There are a number of reasons why people/teams/organisations *still* don't test their work. Take your pick from the following "reasons" (myths) about testing:
+
+- "*We don't have time to write tests, we just need to get this done Yesterday!*"
+- "*Testing takes too long and means we won't deliver as many features...*"
+- "*Its just a small fix, we don't need to write a test*..."
+- "*I'm a developer, I don't write tests, we need to hire a tester...*"
+- "*If I write a test for every bit of code, then I have to update the tests when I need to change the code, so it's twice as much work...*"
+
+and, last but not least:
+
+- "*That's the way we have always done it here...*"
+
+
+
+
+
+<br />
 
 ## Cowboy Coders?
 
 ![Cowboy Coder](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/cowboy-coder.png "Cowboy Coder")
 
-We all know *Cowboy Coders*.
-
-The "*I just get things done*" developer who writes "*quick fixes*" and
+We have all met a *Cowboy Coder* ... The "*I just get things done*"
+developer who writes "*quick fixes*" and
 exclaims: "*I don't have time to write tests*" or
 "*Writing tests for my code takes longer*" and then acts *surprised* when
-everything starts breaking while claiming: "*it was working this morning*" ...
+everything starts breaking while claiming: "*it was working this morning*" ... ***Please share this*** with them and help them see the light!
+
+
+<br />
 
 ## Code Without Test === Building Without Foundation!
 
@@ -27,22 +56,20 @@ Its only a matter of *time* before it all comes crashing down ...
 **Q**: *Is* Test Driven Development (TDD) a *silver bullet* for *all* my software development woes?  
 **A**: **No**.
 There is a *lot* more that goes into writing *great* software than
-*just* having tests. But *without tests* reliability is *impossible*.
+*just* having tests. But, ***without tests reliability is impossible***.
+
+
+<br />
 
 ## Embrace *"TQM"* Software and *Say No to Untested*!!
-
-If you are *not* doing TDD in your projects I *might* not be
-the one to change your mind by evangelizing about it ... I know
-(*and have worked with*) plenty of
-people *calling* themesleves "developers" who stubbornly cling to the notion
-that *testing is for "QA"* or "*that's why we have testers*" or "*we will write tests later, we just need to release this ASAP!*" etc...  
 
 The days of poor quality software are *numbered*; people who continue to expect *inconsistent results* to be rewarded are in for a "*surprise*"!
 
 ![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-full-stack-testing/master/manuscript/images/they-took-our-jerbs.jpg "They Took Er Jerbs")
 
 
-This book is our effort to *accelerate* the process towards (*Total*) *Quality Code*! We invite *you* to be part of the ***TQM Software*** *movement* and bring all your friends/colleagues!
+This book is our effort to *accelerate* the process towards (*Total*) *Quality Code*!  
+We invite *you* to be part of the ***TQM Software*** *movement* and bring all your friends/colleagues!
 
  <br />
 
@@ -111,8 +138,8 @@ If after watching [*this video*](http://www.bbc.co.uk/education/clips/zjh4d2p) y
 please let us know what *does* make you tick and we can donate the proceeds of your copy of the book to a different charity.
 
 
-## Can't Afford to Pay for the Book ...?
+## Low on Cash?
 
 ![aaand-its-gone-southpark](https://raw.githubusercontent.com/nelsonic/practical-full-stack-testing/master/manuscript/images/aaand-its-gone-southpark.jpg)
 
-If you are a student and/or strapped for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
+If you are a student and/or low for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)

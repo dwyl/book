@@ -2,7 +2,9 @@
 
 > "*For* ***every complex problem*** *there is an* ***answer*** *that is* ***clear, simple, and wrong***" ~ [H. L. Mencken](http://en.wikiquote.org/wiki/H._L._Mencken)
 
-There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top 5 reasons:
+Not testing your software has been demonstrated to be a recipe for failure.
+
+There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top ~~5~~ 7 reasons:
 
 ## 1. Tranquillity
 
@@ -19,17 +21,24 @@ The ***peace of mind*** you get from *knowing* your project/product works
 *consistently* means you can have a life instead of constantly worrying
 about if something *else* has broken since the last "*patch*".
 
-![What if you could rest knowing everything works exactly as expected?](images/00-the-beach-view.jpg)
+![Would you prefer to feel relaxed about your code?](images/00-the-beach-view.jpg)
 
-## 2. Trust
+Imagine being able to leave your work behind and relax knowing
+that all tests are passing and everything works as expected.
 
-![crowd surfing](images/crowd-surfing.jpg)
+## 2. Reliable
+
+When was the last time your team delivered a milestone 100% on time?
+
+If you have worked in a company/organisation where work does not get delivered on time, people dodge responsibility and are quick to blame others when things go wrong, I feel your pain (*been there, it isn't fun*).
+
+![Does your team always deliver on time?](images/01-alarm-clock-late.jpg)
+
+There is another (*better*) way. When tests are written *before* the "solution" is implemented, everyone can see *exactly* what the new functionality is *meant* to do.
+
+![How often do people on your team feel like this?](images/crowd-surfing.jpg)
 
 
-If you have ever worked in a company/organisation where people dodge responsibility and are quick to blame others when things go wrong, I feel your pain (*been there, it isn't fun*). There is another (*better*) way. When tests are written *before* the "solution" is implemented, everyone can see *exactly* what the new functionality is *meant* to do.
-
-How do you know the code you wrote a week/month/year ago is *still working* as expected?
-How can we be sure that a dependency we have included *always* works as advertised?
 
 
 
@@ -40,7 +49,7 @@ The *intial* cost of writing (*automated*) tests may *appear* higher, but *urge*
 You *could* just jump straight in/on your vehicle and get going without reading a map (*and hope to get there*) or take the extra few seconds to carefully input the destination into a GPS (*with turn-by-turn directions*)
 
 
-## X. Repeatability
+## 4. Repeatable
 
 > "*It was working on my machine this morning...*"
 
@@ -48,12 +57,20 @@ How many times have you heard this?
 
 http://en.wikipedia.org/wiki/Repeatability
 
-## 4. Innovation
+
+## 5. Predictable
+
+How do you know the code you wrote a week/month/year ago is *still working* as expected?
+How can we be sure that a dependency we have included *always* works as advertised?
+
+
+
+## 6. Innovation
 
 Having a reliable codebase means you can innovate faster without fear of breaking existing functionality.
 
 
-## 5. Happiness
+## 7. Happiness
 
 ![Amelia's Sad Face](images/amelia-sad-face.jpg)
 

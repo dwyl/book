@@ -10,3 +10,11 @@ If you have trouble switching off from your work leaving your work at work (*bec
 "***work-life-balance***" (*automated*) ***testing*** is your ***best friend***!
 
 Its so easy for a promising product to not fulfill its purpose.
+
+# Removed from readme
+
+If you are *not* doing TDD in your projects I *might* not be
+the one to change your mind by evangelizing about it ... I know
+(*and have worked with*) plenty of
+people *calling* themesleves "developers" who stubbornly cling to the notion
+that *testing is for "QA"* or "*that's why we have testers*" or "*we will write tests later, we just need to release this ASAP!*" etc...  

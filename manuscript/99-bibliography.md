@@ -8,6 +8,8 @@ http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
 + Testing Code and Assuring Quality (*Kent Cowgill Presentation*
   examples are perl-specific but still relevant)
 http://www.slideshare.net/kcowgill/testing-code-and-assuring-quality
++ The Economics of Testing:
+http://www.computerweekly.com/opinion/The-economics-of-software-testing
 
 ## James Bach (the *Ronaldo* of Testing) Videos
 
@@ -80,7 +82,7 @@ and runs on Java so is *blocking* and memory-hungry)
 + Is it OK to repeat code for unit tests?  http://programmers.stackexchange.com/questions/140331/is-it-ok-to-repeat-code-for-unit-tests
 
 
-# Other Interesting Testing-Related Tidbits
+# Other Interesting Testing-Related Reading
 
 + All about crash test dummies:
 http://video.nationalgeographic.com/video/i-didnt-know-that/idkt-crash-test-dummy
