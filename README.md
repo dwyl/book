@@ -2,7 +2,7 @@
 
 A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
 
-[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.png?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd) [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies)
+[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd) [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies)
 
 <br />
 
@@ -10,6 +10,7 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 
 ### Full-Stack JS?
+
 
 
 ### Test Driven Development?
@@ -20,7 +21,7 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 ![Software testing is not an exam](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-what-testing-is-not--multiple-choice-with-broken-pencil.jpg "Software Testing is NOT an Exam!")
 
-Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education* (*especially those of us who suffered from the experience!*)
+Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education* (*especially those of us who* [***suffered***](https://www.youtube.com/watch?v=J6lyURyVz7k) from the experience!*)
 
 
 <br />

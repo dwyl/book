@@ -4,9 +4,9 @@
     "type": "git",
     "url": "https://github.com/nelsonic/learn-mocha.git"
   },
-  "description": "Simple mocha.js tutorial including istanbul test coverage",
+  "description": "THE Book on Full-Stack JavaScript Web Application Test Driven Development (TDD)",
   "author": "https://twitter.com/nelsonic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "devDependencies": {
     "mocha": "1.21.4",
     "istanbul":"0.3.2",
