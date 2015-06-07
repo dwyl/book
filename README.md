@@ -21,7 +21,9 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 ![Software testing is not an exam](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-what-testing-is-not--multiple-choice-with-broken-pencil.jpg "Software Testing is NOT an Exam!")
 
-Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education* (*especially those of us who* [***suffered***](https://www.youtube.com/watch?v=J6lyURyVz7k) from the experience!*)
+Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education* (*especially those of us who* [***suffered***](https://www.youtube.com/watch?v=J6lyURyVz7k) *from the experience!*)
+
+![Don't Panic!](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-dont-panic-unicorn.png "Don't Panic!")
 
 
 <br />

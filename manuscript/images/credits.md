@@ -7,6 +7,11 @@ sourced: https://www.flickr.com/photos/thedavisblog/2230010178
 by Josh Davis (thedavisblog)  
 licensed under Creative Commons:   https://creativecommons.org/licenses/by-nd/2.0/
 
+Don't Panic Unicorn!
+sourced: http://imgur.com/WVse8nl  
+Could not find the Author or Copyright.
+If this image is yours and you prefer us not to use it, please say so!
+
 
 ## Introduction > Why?
 <sup>
