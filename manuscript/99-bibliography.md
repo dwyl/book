@@ -6,10 +6,10 @@
 + The TAO of Testing by **Jason Polites**:
 http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
 + Testing Code and Assuring Quality (*Kent Cowgill Presentation*
-  examples are perl-specific but still relevant) 
+  examples are perl-specific but still relevant)
 http://www.slideshare.net/kcowgill/testing-code-and-assuring-quality
 
-## James Bach (The *Ronaldo* of Testing) Videos
+## James Bach (the *Ronaldo* of Testing) Videos
 
 + **Open Lecture** by **James Bach** on **Software Testing**:
 https://www.youtube.com/watch?v=ILkT_HV9DVU (good intro to testing *mindset*)
@@ -63,3 +63,14 @@ http://blogs.windows.com/ie/2013/09/26/introducing-browserswarm-less-time-testin
 and runs on Java so is *blocking* and memory-hungry)
 
 ### Paid CD Services ("Free" for OpenSource Projects)
+
+
+# (Frequently Asked) Questions
+
++ Is it OK to repeat code for unit tests?  http://programmers.stackexchange.com/questions/140331/is-it-ok-to-repeat-code-for-unit-tests
+
+
+# Other Interesting Testing-Related Tidbits
+
++ All about crash test dummies:
+http://video.nationalgeographic.com/video/i-didnt-know-that/idkt-crash-test-dummy

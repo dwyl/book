@@ -1,2 +1,3 @@
 01-intro-why.md
+99-bibliography.md
 images/credits.md

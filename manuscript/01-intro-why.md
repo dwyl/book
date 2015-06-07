@@ -35,9 +35,16 @@ The *intial* cost of writing (*automated*) tests may *appear* higher, but *urge*
 You *could* just jump straight in/on your vehicle and get going without reading a map (*and hope to get there*) or take the extra few seconds to carefully input the destination into a GPS (*with turn-by-turn directions*)
 
 
+## X. Repeatability
+
+> "*It was working on my machine this morning...*"
+
+How many times have you heard this?
+
 ## 4. Innovation
 
 Having a reliable codebase means you can innovate faster without fear of breaking existing functionality.
+
 
 
 ## 5. Happiness
