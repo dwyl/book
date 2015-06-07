@@ -3,7 +3,7 @@
 A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people developing ***robust*** **node.js** and **web / mobile** applications in teams!
 
 [![Build Status](https://travis-ci.org/nelsonic/practical-full-stack-testing.png?branch=master)](https://travis-ci.org/nelsonic/practical-full-stack-testing) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-full-stack-testing.png)](https://codeclimate.com/github/nelsonic/practical-full-stack-testing) [![devDependency Status](https://david-dm.org/nelsonic/practical-full-stack-testing/dev-status.svg)](https://david-dm.org/nelsonic/practical-full-stack-testing#info=devDependencies)
-===========
+
 
 ## Cowboy Coders?
 
@@ -47,7 +47,9 @@ This book is our effort to *accelerate* the process towards (*Total*) *Quality C
  <br />
 
 
-# *Alpha*!
+# *Alpha* Preview
+
+> https://leanpub.com/practical-full-stack-testing
 
 ## The Book is Not Ready Yet, Should I Start Reading It?
 
