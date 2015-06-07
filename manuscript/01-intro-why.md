@@ -1,10 +1,12 @@
 # Why?[^startwithwhy]
 
+> "*For* ***every complex problem*** *there is an* ***answer*** *that is* ***clear, simple, and wrong***" ~ [H. L. Mencken](http://en.wikiquote.org/wiki/H._L._Mencken)
+
 There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top 5 reasons:
 
 ## 1. Tranquillity
 
-![tranquility stacked rocks](images/tranquility-stacked-rocks.jpg)
+![Do you ever feel like your project/codebase is brittle?](images/00-eggs-frying-pan-stress.png)
 
 This is the *first* (*reason to test*) because its the *answer* to the question:
 "***what's in it for me?***" - people who are *sceptical about testing
@@ -12,9 +14,12 @@ inevitably ask*.
 
 Working in a place without tests is stressful because you never know what is going  to "*break*" next. It can feel like your application is stuck together with *duck tape* and changing one thing will break another. If this sounds like a project you have worked on, get ready for a better life!
 
+
 The ***peace of mind*** you get from *knowing* your project/product works
 *consistently* means you can have a life instead of constantly worrying
 about if something *else* has broken since the last "*patch*".
+
+![What if you could rest knowing everything works exactly as expected?](images/00-the-beach-view.jpg)
 
 ## 2. Trust
 
@@ -41,10 +46,11 @@ You *could* just jump straight in/on your vehicle and get going without reading 
 
 How many times have you heard this?
 
+http://en.wikipedia.org/wiki/Repeatability
+
 ## 4. Innovation
 
 Having a reliable codebase means you can innovate faster without fear of breaking existing functionality.
-
 
 
 ## 5. Happiness

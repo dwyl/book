@@ -32,6 +32,13 @@ https://youtu.be/_EWUeZoyB0k
 
 ## List of JavaScript Testing Frameworks
 
++ Jasmine
++ Mocha
++ QUnit
++ TAP
++ TAPE
++ Lab
++ moar...?
 
 
 ## Cross Browser Testing
