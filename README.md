@@ -44,10 +44,14 @@ and, last but not least:
 
 - "*That's the way we have always done it here...*"
 
+As a comparison, [***this***](http://en.wikipedia.org/wiki/Nokia_8110) is how we ***used*** to do Mobile Phones ... How many people do you still see carrying "*The Matrix Phone*" (*which was all-the-rage in the* ***90's***!) *today*?
+
 ![Matrix Phone Nokia 8110](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-matrixphone.jpg "Matrix Phone Nokia 8110")
 
-As a comparison, [***this***](http://en.wikipedia.org/wiki/Nokia_8110) is how we ***used*** to do Mobile Phones ...  
-How many people do you still see carrying "*The Matrix Phone*" (*which was all-the-rage in the* ***90's***!) *today*? The we have better phones; we have better software development methods!
+![Steve Jobs introducing iPhone in 2007](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-steve-jobs-introduces-iphone.jpg "Steve Jobs introducing iPhone in 2007")
+
+
+We have better phones; shouldn't we also have better software development methods?
 
 <br />
 

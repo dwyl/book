@@ -4,7 +4,7 @@
 
 Not testing your software has been demonstrated to be a recipe for failure.
 
-There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top ~~5~~ 7 reasons:
+There are *so many* reasons to test your software "*product*" we could write a book just on *why testing is essential*; here are the top ~~5~~ 8 reasons:
 
 ## 1. Tranquillity
 
@@ -63,14 +63,18 @@ http://en.wikipedia.org/wiki/Repeatability
 How do you know the code you wrote a week/month/year ago is *still working* as expected?
 How can we be sure that a dependency we have included *always* works as advertised?
 
+## 6. Lean
 
 
-## 6. Innovation
+http://blog.rewardgateway.com/7-usability-barriers-obstructing-employee-engagement-avoid/
+
+
+## 8. Innovation
 
 Having a reliable codebase means you can innovate faster without fear of breaking existing functionality.
 
 
-## 7. Happiness
+## 9. Happiness
 
 ![Amelia's Sad Face](images/amelia-sad-face.jpg)
 
