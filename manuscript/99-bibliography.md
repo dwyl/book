@@ -1,7 +1,7 @@
 
-# Useful Resources
+# Bibliography / Useful Resources
 
-## General Background Reading:
+## Testing (General) Background Reading:
 
 + The TAO of Testing by **Jason Polites**:
 http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
@@ -86,3 +86,13 @@ and runs on Java so is *blocking* and memory-hungry)
 
 + All about crash test dummies:
 http://video.nationalgeographic.com/video/i-didnt-know-that/idkt-crash-test-dummy
+
+
+## Full Stack Developer?
+
++ What is a *Full Stack Developer*?
+http://www.laurencegellert.com/2012/08/what-is-a-full-stack-developer/
++ The Rise and Fall of the Full Stack Developer:
+http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-developer/
++ The Myth of the Full-stack Developer:
+http://andyshora.com/full-stack-developers.html

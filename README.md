@@ -1,19 +1,87 @@
-# Practical Full Stack JavaScript Test Driven Development
+# Practical Full-Stack JavaScript Web Application Test Driven Development
 
 A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
 
 [![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd) [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies)
 
+
 <br />
 
-## What is "*Full-Stack*" Test Driven Development ?!
+# Why?
+
+We build web apps to:
++ share information
++ connect & communicate with our friends, colleagues & communities
++ buy/sell things
++ run organisations/businesses
++ manage all aspects of our lives (calendars, task/time trackers etc)
++ have fun (online games!)
+
+We think it make sense for these apps to be *reliable*. Do you agree?  
+Reliability is achieved by testing.
+
+<br />
+
+# *What*?
+
+## "*Stack*"?
+
+A "stack" is the term use to describe all the components involved in a web app. The more comprehensive definition is:
+
+>"In computing, a solution stack is a set of software subsystems or components needed to create a complete platform such that no additional software is needed to support applications. Applications are said to "run on" or "run on top of" the resulting platform.
+
+> ... in a web application the architect defines the stack as the target operating system, web server, database, and programming language."
+
+A Typical Stack would include:
+
++ Linux/Unix as the ***Server*** Operating System (OS)
++ a ***web application framework*** running on the server. Example frameworks include:
+  + Ruby-on-Rails/Sinatra (Ruby),
+  + Django (Python),
+  + CodeIgniter/Symphony/Drupal (PHP),
+  + akka (Scala/Java),
+  + Express.js/Meteor.js/**Hapi.js** (JavaScript/Node.js), etc.
++ the (web app) framework connects to a ***database***. There are many databases (often referred to as "*data stores*"), the most popular are:
+  + SQL-Based: MySQL, PostgreSQL, MariaDB
+  + NoSQL: MongoDB, CouchDB, HBase, etc
+  + Search: ElasticSearch
+  + Key Value Store: Redis, LevelDB
++ Browser-based interactivity (*often referred to as the* "***Client***" *or* "***Front End***" *of the stack*).
+
+## "*Full-Stack*" JavaScript?
+
+The term "*Full Stack*" Developer has been around for a while.
+We like [@laurencegellert](https://twitter.com/laurencegellert)'s
+explanation:
+
+> "*a Full Stack Developer is someone with* ***familiarity in each layer***, ***if not mastery in many*** *and a* ***genuine interest in all software technology***."
+
+We *agree* with [@peteryared](https://twitter.com/peteryared) that it's *naive* to expect *anyone* to be an "*expert*" in *ever* aspect of our stack,
+but we do think that by using ***JavaScript*** as the (programming) language for Server (Node.js), Client (*take your pick of framework!*) and Datastore
+(*any of the NoSQL datastores which store JSON documents*).
+
+See: http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-developer/
+
+### "*Front End*"?
+
+In web development, there is ***one language*** that *all* web browsers understand: ***JavaScript***
+
+The web browser or mobile device (displaying content in a "*web view*")
+is referred to as the "*Front End"
 
 
-### Full-Stack JS?
+### "Back End"?
+
+When people refer to the "Back End" of an app they are describing the
+"*Server*" component(s).
+
+There are *many* technologies/languages/frameworks you can use to write
+your server. As stated above, for *simplicity* we prefer to use JavaScript (*Node.js*) on the server to keep one programming language across the stack and allow us to re-use view code for both server-side and client-side rendering.
 
 
+## Test Driven Development?
 
-### Test Driven Development?
+Writing tests for all aspects of your application.
 
 
 
@@ -165,6 +233,6 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 
 ## Low on Cash?
 
-![aaand-its-gone-southpark](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/aaand-its-gone-southpark.jpg)
+![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-aaand-its-gone-southpark.jpg)
 
-If you are a student and/or low for cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
+If you are a student and/or low on cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
