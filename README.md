@@ -2,14 +2,16 @@
 
 A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
 
-[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd) [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies)
+[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd)
+<!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
 
 <br />
 
-# Why?
+# *Why*?
 
-We build web apps to:
+We build web software applications for *many* reasons including:
+
 + share information
 + connect & communicate with our friends, colleagues & communities
 + buy/sell things
@@ -20,6 +22,17 @@ We build web apps to:
 We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
 Reliability is (*only*) achieved by testing.
+
+
+
+<br />
+
+
+# *Who*?
+
+We started writing our initial set of tutorials on
+
+Unlike mast other books written by
 
 <br />
 
@@ -234,7 +247,7 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 
 ## Low on Cash?
 
-![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-aaand-its-gone-southpark.jpg)
+![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-empty-pockets-no-money.jpg)
 
 If you are a student and/or low on cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
 
