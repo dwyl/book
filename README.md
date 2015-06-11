@@ -17,8 +17,9 @@ We build web apps to:
 + manage all aspects of our lives (calendars, task/time trackers etc)
 + have fun (online games!)
 
-We think it make sense for these apps to be *reliable*. Do you agree?  
-Reliability is achieved by testing.
+We think it make sense for the apps we build to be *reliable*.
+Do you agree?  
+Reliability is (*only*) achieved by testing.
 
 <br />
 
@@ -236,3 +237,5 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 ![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-aaand-its-gone-southpark.jpg)
 
 If you are a student and/or low on cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
+
+Preview Link: https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
