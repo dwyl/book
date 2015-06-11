@@ -221,18 +221,21 @@ If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo
 
 ## 100% Open Source
 
-Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all!
+Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all (*not controlled or monopolised for profit*)!
 
 ![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
-
-I was lucky enough to be named after this guy!! (*Thanks Mom!*)
 
 
 
 ### The Book is Open Source, Why is LeanPub Charging?
 
-Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*DRM-FREE*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
+Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*[DRM-FREE](https://en.wikipedia.org/wiki/Digital_rights_management#Opposition_to_DRM)*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
 
+Don't worry, its not "freemium" ...
+
+![freemium is not free](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-freemium-not-really.jpg)
+
+We are posting every word open on github, so if you don't *want or need* the Kindle or iBooks version, just read it online for *free*.
 
 ## Proceeds of Sale >> *South African Technology School*
 
