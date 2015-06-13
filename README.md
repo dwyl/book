@@ -6,6 +6,8 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 <!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
 
+<br />
+
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
 We build web software applications for *many* reasons including:
@@ -20,6 +22,7 @@ We build web software applications for *many* reasons including:
 We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
 Reliability is (*only*) achieved by testing.
+
 
 
 # *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
@@ -47,12 +50,12 @@ A Typical Stack would include:
   + Django (Python),
   + CodeIgniter/Symphony/Drupal (PHP),
   + akka (Scala/Java),
-  + Express.js/Meteor.js/**Hapi.js** (JavaScript/Node.js), etc.
+  + Express.js/Meteor.js/[_**Hapi.js**_](https://github.com/nelsonic/learn-hapi) (JavaScript/Node.js), etc.
 + the (web app) framework connects to a ***database***. There are many databases (often referred to as "*data stores*"), the most popular are:
   + SQL-Based: MySQL, PostgreSQL, MariaDB
-  + NoSQL: MongoDB, CouchDB, HBase, etc
-  + Search: ElasticSearch
-  + Key Value Store: Redis, LevelDB
+  + NoSQL: MongoDB, CouchDB, [_**RethinkDB**_](https://github.com/nelsonic/learn-rethinkdb/), HBase, etc
+  + Search: [_**ElasticSearch**_](https://github.com/docdis/learn-elasticsearch)
+  + Key Value Store: [_**Redis**_](https://github.com/docdis/learn-redis), LevelDB
 + Browser-based interactivity (*often referred to as the* "***Client***" *or* "***Front End***" *of the stack*).
 
 ## "*Full-Stack*" JavaScript?
