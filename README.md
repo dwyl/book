@@ -1,6 +1,6 @@
 # Practical Full-Stack JavaScript Web Application Test Driven Development
 
-A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
+A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** **web / mobile** applications in teams!
 
 [![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd)
 <!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
@@ -10,7 +10,7 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
-We build web software applications for *many* reasons including:
+We build web-based applications for *many* reasons including to:
 
 + share information
 + connect & communicate with our friends, colleagues & communities
@@ -21,11 +21,11 @@ We build web software applications for *many* reasons including:
 
 We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
-Reliability is (*only*) achieved by testing.
+Can reliability be achieved *without* testing...?
 
 ## Why Write a Book?
 
-This book is a collection of _**practical usage examples we wish we had when we started coding**_ and we hope are useful to _everyone_ hoping to learn to build better apps today! 
+This book is a collection of _**practical usage examples we wish we had when we started coding**_ and we hope are useful to _everyone_ hoping to learn to build better apps today!
 
 # *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
 
