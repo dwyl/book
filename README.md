@@ -23,7 +23,9 @@ We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
 Reliability is (*only*) achieved by testing.
 
+## Why Write a Book?
 
+This book is a collection of _**practical usage examples we wish we had when we started coding**_ and we hope are useful to _everyone_ hoping to learn to build better apps today! 
 
 # *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
 
