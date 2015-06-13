@@ -6,9 +6,7 @@ A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelo
 <!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
 
-<br />
-
-# *Why*?
+# *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
 We build web software applications for *many* reasons including:
 
@@ -24,17 +22,12 @@ Do you agree?
 Reliability is (*only*) achieved by testing.
 
 
+# *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
 
-<br />
+
+Unlike _most_ other books written by *one* person, *this* book has _**many contributors**_ and as such is the [_**Wisdom of the crowd**_](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
 
 
-# *Who*?
-
-We started writing our initial set of tutorials on
-
-Unlike mast other books written by
-
-<br />
 
 # *What*?
 
@@ -254,4 +247,18 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 
 If you are a student and/or low on cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
 
-Preview Link: https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
+## Preview Link
+
+
+https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
+
+
+## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
+
+[I](https://github.com/nelsonic) started writing tutorials on Test Driven Development (TDD) out of *frustration* when (_some individuals in_) my *then* team *complained* that "_testing is 'hard' and takes too long..._". It seemed *logical* to publish the tutorials/guides on GitHub (_as opposed to a company wiki or Google Docs_) so that others could benefit from the learning and submit ideas for improvement, updates or corrections in the form of GitHub issues or pull requests.
+
+A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later, we created a GitHub Community dedicated
+to curate coding tutorials: https://github.com/docdis
+(_which now has **many active members**_)
+
+All coding examples for this book are released as self-contained tutorials so you can *selectively learn* a *specific* tool/technique/technology and share *just* that one byte of learning with your team.

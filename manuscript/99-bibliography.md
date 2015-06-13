@@ -10,6 +10,7 @@ http://jasonpolites.github.io/tao-of-testing/intro-1.1.html
 http://www.slideshare.net/kcowgill/testing-code-and-assuring-quality
 + The Economics of Testing:
 http://www.computerweekly.com/opinion/The-economics-of-software-testing
++  Apium's 20 benefits of TDD: http://apiumtech.com/blog/20-benefits-of-test-driven-development/ (Thanks to @sarahabimay @foundersandcoders for sharing this!)
 
 ## James Bach (the *Ronaldo* of Testing) Videos
 
