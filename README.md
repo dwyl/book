@@ -21,7 +21,7 @@ We build web-based applications for *many* reasons including to:
 
 We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
-Can reliability be achieved *without* testing...?
+*Can* reliability be achieved *without* testing...?
 
 ## Why Write a Book?
 
@@ -29,9 +29,20 @@ This book is a collection of _**practical usage examples we wish we had when we 
 
 # *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
 
+## Readers
 
-Unlike _most_ other books written by *one* person, *this* book has _**many contributors**_ and as such is the [_**Wisdom of the crowd**_](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
+Learning Test Driven Development (TDD) is *relevant* to _**everyone writing code** at **any level**_.
 
+Most universities/schools (_still_) don't teach testing as the *foundation* for computer science / software engineering ... there are a number of _reasons_ for this, but the primary reason is the fact that learning institution curriculum is calcified.
+
+The result of people not learning testing at school is the _majority_ of companies/organisations *still* lack tests and the (_untested_) cycle perpetuates ...
+
+If you are still not writing tests _**why not**_?
+We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") and decide for yourself if you _still_ think its "_too difficult_" or "_takes longer_".
+
+## Writers
+
+Unlike _most_ other books written by *one* person, *this* book is not written by a  has _**many contributors**_ and as such is the [_**Wisdom of the crowd**_](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
 
 
 # *What*?
@@ -260,10 +271,10 @@ https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-
 
 ## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
 
-[I](https://github.com/nelsonic) started writing tutorials on Test Driven Development (TDD) out of *frustration* when (_some individuals in_) my *then* team *complained* that "_testing is 'hard' and takes too long..._". It seemed *logical* to publish the tutorials/guides on GitHub (_as opposed to a company wiki or Google Docs_) so that others could benefit from the learning and submit ideas for improvement, updates or corrections in the form of GitHub issues or pull requests.
+[_**I**_](https://github.com/nelsonic) started writing tutorials on Test Driven Development (TDD) out of *frustration* when (_some individuals in_) my *then* team *complained* that "_testing is 'hard' and takes too long..._". It seemed *logical* to publish the tutorials/guides on GitHub (_as opposed to a company wiki or Google Docs_) so that others could benefit from the learning and submit ideas for improvement, updates or corrections in the form of GitHub issues or pull requests.
 
 A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later, we created a GitHub Community dedicated
 to curate coding tutorials: https://github.com/docdis
 (_which now has **many active members**_)
 
-All coding examples for this book are released as self-contained tutorials so you can *selectively learn* a *specific* tool/technique/technology and share *just* that one byte of learning with your team.
+All coding examples for this book are released as self-contained tutorials so you can *selectively learn* a *specific* tool/technique/technology and share *just* that one _byte_ of learning with your team (_or that one special person in your life who refuses to get with the program!_)
