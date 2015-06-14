@@ -37,7 +37,7 @@ Most universities/schools (_still_) don't teach testing as the *foundation* for 
 
 The result of people not learning testing at school is the _majority_ of companies/organisations *still* lack tests and the (_untested_) cycle perpetuates ...
 
-If you are still not writing tests _**why not**_?
+If you are _still_ not writing tests _**why not**_?
 We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") and decide for yourself if you _still_ think its "_too difficult_" or "_takes longer_".
 
 ## Writers
@@ -148,7 +148,7 @@ We have better phones; shouldn't we also have better software development method
 
 ## Cowboy Coders?
 
-![Cowboy Coder](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/cowboy-coder.png "Cowboy Coder")
+![Cowboy Coder](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-cowboy-coder.png "Cowboy Coder")
 
 We have all met a *Cowboy Coder* ... The "*I just get things done*"
 developer who writes "*quick fixes*" and
@@ -163,7 +163,7 @@ everything starts breaking while claiming: "*it was working this morning*" ... *
 
 Code without tests is like a *building without a foundation*!
 
-![Building Collapse](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/building-collapse-940x627.jpg "Building Collapse")
+![Building Collapse](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-building-collapse-940x627.jpg "Building Collapse")
 
 Its only a matter of *time* before it all comes crashing down ...
 
@@ -179,7 +179,7 @@ There is a *lot* more that goes into writing *great* software than
 
 The days of poor quality software are *numbered*; people who continue to expect *inconsistent results* to be rewarded are in for a "*surprise*"!
 
-![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/they-took-our-jerbs.jpg "They Took Er Jerbs")
+![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-they-took-our-jerbs.jpg "They Took Er Jerbs")
 
 
 This book is our effort to *accelerate* the process towards ending un-tested software!
@@ -202,7 +202,7 @@ If you can handle a few typos and want to get started building better software A
 
 ## Spreading the Word >> *Please Re-Tweet*!
 
-[![Imgur](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
+[![initial tweet anouncing book](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
 
 
 
@@ -232,7 +232,7 @@ If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo
 
 Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all (*not controlled or monopolised for profit*)!
 
-![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
+![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
 
 
@@ -251,7 +251,7 @@ We are posting every word open on github, so if you don't *want or need* the Kin
 ***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the ***South African Technology School***
 we plan to *build* in **2016** in our quest to create (*well-paid +remote*) Tech Jobs in Africa!
 
-[![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
+[![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
 
 If after watching [*this video*](http://www.bbc.co.uk/education/clips/zjh4d2p) you aren't inspired to get involved,
 please let us know what *does* make you tick and we can donate the proceeds of your copy of the book to a different charity.

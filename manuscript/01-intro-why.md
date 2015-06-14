@@ -36,7 +36,7 @@ If you have worked in a company/organisation where work does not get delivered o
 
 There is another (*better*) way. When tests are written *before* the "solution" is implemented, everyone can see *exactly* what the new functionality is *meant* to do.
 
-![How often do people on your team feel like this?](images/crowd-surfing.jpg)
+![How often do people on your team feel like this?](images/01-crowd-surfing.jpg)
 
 
 
@@ -76,7 +76,7 @@ Having a reliable codebase means you can innovate faster without fear of breakin
 
 ## 9. Happiness
 
-![Amelia's Sad Face](images/amelia-sad-face.jpg)
+![Amelia's Sad Face](images/01-amelia-sad-face.jpg)
 
 When a site/app does *not* function as expected (*or worse, it "fails"*)
 when people attempt to use it, it frustrates them (*and they often leave for good*).
@@ -84,9 +84,9 @@ If you have a way of *automatically testing* (*checking*) everything works as pe
 
 Apps which are thoroughly tested tend to have fewer bugs and are thus far more user-friendly; this translates directly into happiness.
 
-![Amelia's Happy Day](images/amelia-happy-day.jpg)
+![Amelia's Happy Day](images/01-amelia-happy-day.jpg)
 
-Make the people using your product/project happy by testing it *before* giving it to them!
+Make the people using your product/project happy by (_extensively_) _**testing before releasing**_ it to them!
 
 ## 12 *More* Reasons to Practice TDD
 
