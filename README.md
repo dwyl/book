@@ -56,9 +56,9 @@ explanation:
 
 > "*a Full Stack Developer is someone with* ***familiarity in each layer***, ***if not mastery in many*** *and a* ***genuine interest in all software technology***."
 
-We *agree* with [@peteryared](https://twitter.com/peteryared) that it's *naive* to expect *anyone* to be an "*expert*" in *ever* aspect of our stack,
-but we do think that by using ***JavaScript*** as the (programming) language for Server (Node.js), Client (*take your pick of framework!*) and Datastore
-(*any of the NoSQL datastores which store JSON documents*).
+We agree with [@peteryared](https://twitter.com/peteryared) that it's naive to expect *anyone* to be an "*expert*" in *every* aspect of our stack,
+but we do think that by using ***JavaScript*** as the programming language for the server (Node.js), client (*take your pick of framework!*) and datastore
+(*any of the NoSQL datastores which store JSON documents*), it's easier to go "full stack".
 
 See: http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-developer/
 
@@ -67,7 +67,7 @@ See: http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-develo
 In web development, there is ***one language*** that *all* web browsers understand: ***JavaScript***
 
 The web browser or mobile device (displaying content in a "*web view*")
-is referred to as the "*Front End"
+is referred to as the "*Front End*"
 
 
 ### "Back End"?
