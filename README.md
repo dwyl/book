@@ -1,15 +1,17 @@
 # Practical Full-Stack JavaScript Web Application Test Driven Development
 
-A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** and **web / mobile** applications in teams!
+A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** **web / mobile** applications in teams!
 
-[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd) [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies)
+[![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd)
+<!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
 
 <br />
 
-# Why?
+# *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
-We build web apps to:
+We build web-based applications for *many* reasons including to:
+
 + share information
 + connect & communicate with our friends, colleagues & communities
 + buy/sell things
@@ -17,10 +19,31 @@ We build web apps to:
 + manage all aspects of our lives (calendars, task/time trackers etc)
 + have fun (online games!)
 
-We think it make sense for these apps to be *reliable*. Do you agree?  
-Reliability is achieved by testing.
+We think it make sense for the apps we build to be *reliable*.
+Do you agree?  
+*Can* reliability be achieved *without* testing...?
 
-<br />
+## Why Write a Book?
+
+This book is a collection of _**practical usage examples we wish we had when we started coding**_ and we hope are useful to _everyone_ hoping to learn to build better apps today!
+
+# *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
+
+## Readers
+
+Learning Test Driven Development (TDD) is *relevant* to _**everyone writing code** at **any level**_.
+
+Most universities/schools (_still_) don't teach testing as the *foundation* for computer science / software engineering ... there are a number of _reasons_ for this, but the primary reason is the fact that learning institution curriculum is calcified.
+
+The result of people not learning testing at school is the _majority_ of companies/organisations *still* lack tests and the (_untested_) cycle perpetuates ...
+
+If you are _still_ not writing tests _**why not**_?
+We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") and decide for yourself if you _still_ think its "_too difficult_" or "_takes longer_".
+
+## Writers
+
+Unlike _most_ other books written by *one* person, *this* book is not written by a  has _**many contributors**_ and as such is the [_**Wisdom of the crowd**_](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
+
 
 # *What*?
 
@@ -40,12 +63,12 @@ A Typical Stack would include:
   + Django (Python),
   + CodeIgniter/Symphony/Drupal (PHP),
   + akka (Scala/Java),
-  + Express.js/Meteor.js/**Hapi.js** (JavaScript/Node.js), etc.
+  + Express.js/Meteor.js/[_**Hapi.js**_](https://github.com/nelsonic/learn-hapi) (JavaScript/Node.js), etc.
 + the (web app) framework connects to a ***database***. There are many databases (often referred to as "*data stores*"), the most popular are:
   + SQL-Based: MySQL, PostgreSQL, MariaDB
-  + NoSQL: MongoDB, CouchDB, HBase, etc
-  + Search: ElasticSearch
-  + Key Value Store: Redis, LevelDB
+  + NoSQL: MongoDB, CouchDB, [_**RethinkDB**_](https://github.com/nelsonic/learn-rethinkdb/), HBase, etc
+  + Search: [_**ElasticSearch**_](https://github.com/docdis/learn-elasticsearch)
+  + Key Value Store: [_**Redis**_](https://github.com/docdis/learn-redis), LevelDB
 + Browser-based interactivity (*often referred to as the* "***Client***" *or* "***Front End***" *of the stack*).
 
 ## "*Full-Stack*" JavaScript?
@@ -125,7 +148,7 @@ We have better phones; shouldn't we also have better software development method
 
 ## Cowboy Coders?
 
-![Cowboy Coder](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/cowboy-coder.png "Cowboy Coder")
+![Cowboy Coder](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-cowboy-coder.png "Cowboy Coder")
 
 We have all met a *Cowboy Coder* ... The "*I just get things done*"
 developer who writes "*quick fixes*" and
@@ -140,7 +163,7 @@ everything starts breaking while claiming: "*it was working this morning*" ... *
 
 Code without tests is like a *building without a foundation*!
 
-![Building Collapse](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/building-collapse-940x627.jpg "Building Collapse")
+![Building Collapse](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-building-collapse-940x627.jpg "Building Collapse")
 
 Its only a matter of *time* before it all comes crashing down ...
 
@@ -156,7 +179,7 @@ There is a *lot* more that goes into writing *great* software than
 
 The days of poor quality software are *numbered*; people who continue to expect *inconsistent results* to be rewarded are in for a "*surprise*"!
 
-![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/they-took-our-jerbs.jpg "They Took Er Jerbs")
+![They Took Er Jerbs](https://raw.github.com/nelsonic/practical-js-tdd/master/manuscript/images/00-they-took-our-jerbs.jpg "They Took Er Jerbs")
 
 
 This book is our effort to *accelerate* the process towards ending un-tested software!
@@ -179,7 +202,7 @@ If you can handle a few typos and want to get started building better software A
 
 ## Spreading the Word >> *Please Re-Tweet*!
 
-[![Imgur](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
+[![initial tweet anouncing book](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
 
 
 
@@ -207,25 +230,28 @@ If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo
 
 ## 100% Open Source
 
-Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all!
+Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to! We (*strongly*) believe that Education should be open and freely available to all (*not controlled or monopolised for profit*)!
 
-![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
-
-I was lucky enough to be named after this guy!! (*Thanks Mom!*)
+![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
 
 
 ### The Book is Open Source, Why is LeanPub Charging?
 
-Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*DRM-FREE*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
+Yes, the book is (*and will always be!*) ***100% Open Source***, but LeanPub is kindly providing a way of "packaging" it up for people to read on their devices in the form of a (*[DRM-FREE](https://en.wikipedia.org/wiki/Digital_rights_management#Opposition_to_DRM)*) **PDF** (*readable on any device*) **Mobi** (*for our friends with kindle*) and **EPUB** (*for iDevices and Macs with iBooks*) they have infrastructure to pay for, so I think its fair to pay a fee for the service they provide ...
 
+Don't worry, its not "freemium" ...
+
+![freemium is not free](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-freemium-not-really.jpg)
+
+We are posting every word open on github, so if you don't *want or need* the Kindle or iBooks version, just read it online for *free*.
 
 ## Proceeds of Sale >> *South African Technology School*
 
 ***ALL*** the proceeds (*after LeanPub fees*) from the sale of this book will go into the #[**dwyl**](https://github.com/dwyl/) fund for the ***South African Technology School***
 we plan to *build* in **2016** in our quest to create (*well-paid +remote*) Tech Jobs in Africa!
 
-[![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
+[![BBC Video of School in Africa](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-bbc-school-video-screenshot.png)](http://www.bbc.co.uk/education/clips/zjh4d2p "BBC Video of School in South Africa")
 
 If after watching [*this video*](http://www.bbc.co.uk/education/clips/zjh4d2p) you aren't inspired to get involved,
 please let us know what *does* make you tick and we can donate the proceeds of your copy of the book to a different charity.
@@ -233,6 +259,22 @@ please let us know what *does* make you tick and we can donate the proceeds of y
 
 ## Low on Cash?
 
-![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-aaand-its-gone-southpark.jpg)
+![No Money?](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-empty-pockets-no-money.jpg)
 
 If you are a student and/or low on cash (*we've all been there*!) but still want to learn how to build great quality software, please [***personal-message me***](https://twitter.com/nelsonic)
+
+## Preview Link
+
+
+https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
+
+
+## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
+
+[_**I**_](https://github.com/nelsonic) started writing tutorials on Test Driven Development (TDD) out of *frustration* when (_some individuals in_) my *then* team *complained* that "_testing is 'hard' and takes too long..._". It seemed *logical* to publish the tutorials/guides on GitHub (_as opposed to a company wiki or Google Docs_) so that others could benefit from the learning and submit ideas for improvement, updates or corrections in the form of GitHub issues or pull requests.
+
+A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later, we created a GitHub Community dedicated
+to curate coding tutorials: https://github.com/docdis
+(_which now has **many active members**_)
+
+All coding examples for this book are released as self-contained tutorials so you can *selectively learn* a *specific* tool/technique/technology and share *just* that one _byte_ of learning with your team (_or that one special person in your life who refuses to get with the program!_)

@@ -65,4 +65,7 @@ licensed under Creative Commons: https://creativecommons.org/licenses/by-nd/2.0/
 
 Predictability
 
+Lean
+Photo: http://biketype.com/pics/5502/full/fixie_peacemaker.jpg
+
 </sup>
