@@ -1,33 +1,40 @@
-# Practical Full-Stack JavaScript Web Application Test Driven Development
+# The _Practical_ "Book"
+## on Full-Stack Web Application Development
 
-A ***practical guide*** to ***Full Stack*** ***T***est ***D***riven ***D***evelopment (TDD) for people building ***robust*** **node.js** **web / mobile** applications in teams!
+A ***practical guide*** to "***Full Stack***" Web Application Development
+for people building ***robust*** **web / mobile** app
+individually or in teams!
 
+<!-- re-enable "badges" once we have a demo app to show people
 [![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd)
-<!-- [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
+ [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
-
-<br />
 
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
-We build web-based applications for *many* reasons including to:
+We build web-based applications (_that "**Work Everywhere**"_)
+for *many* reasons including (to):
 
-+ share information
 + connect & communicate with our friends, colleagues & communities
-+ buy/sell things
-+ run organisations/businesses
++ share information
++ buy/sell things (_E-Commerce_)
 + manage all aspects of our lives (calendars, task/time trackers etc)
-+ have fun (online games!)
++ run organisations/businesses (_Administration, Workflow and "Management" Apps_)
++ have fun (_e.g. online games!_)
 
 We think it make sense for the apps we build to be *reliable*.
 Do you agree?  
 *Can* reliability be achieved *without* testing...?
 
-## Why Write a Book?
+## _Why_ Write a _Book_?
 
-This book is a collection of _**practical usage examples we wish we had when we started coding**_ and we hope are useful to _everyone_ hoping to learn to build better apps today!
+This book is a collection of _**practical usage examples for tools used to build web applications**_.  
+We ***wish*** we had this when we started coding, hopefully it's useful to other people!.
+
 
 # *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
+
+
 
 ## Readers
 
