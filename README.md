@@ -1,44 +1,131 @@
 # The _Practical_ "Book"
 ## on Full-Stack Web Application Development
 
-A ***practical guide*** to "***Full Stack***" Web Application Development
-for people building ***robust*** **web / mobile** app
-individually or in teams!
+A ***step-by-step guide*** to "***Full Stack***" Web Application Development
+for people building ***beautiful***, ***robust***& ***maintainable***
+**web / mobile** app individually or in teams!
 
 <!-- re-enable "badges" once we have a demo app to show people
 [![Build Status](https://travis-ci.org/nelsonic/practical-js-tdd.svg?branch=master)](https://travis-ci.org/nelsonic/practical-js-tdd) [![Code Climate](https://codeclimate.com/github/nelsonic/practical-js-tdd.png)](https://codeclimate.com/github/nelsonic/practical-js-tdd)
  [![devDependency Status](https://david-dm.org/nelsonic/practical-js-tdd/dev-status.svg)](https://david-dm.org/nelsonic/practical-js-tdd#info=devDependencies) -->
 
+# intro
 
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
+
+## _Why_ Should _Anyone_ Learn How to Build Web Apps _Today_?
+
+Considering that there are
+[_millions_ of "Apps"](https://www.statista.com/statistics/276623/number-of-apps-available-in-leading-app-stores/)
+_already_, why should I (_or anyone for that matter_) bother
+learning how to make _more_ of them?
+
+This is a _great_ question and one we ask _ourselves_
+[@dwylhq](https://twitter.com/dwylhq) _often_! <br />
+The _answer_ is _another_ question: do you think _all_ the world's
+problems/challenges have been _resolved_...? <br />
+To which the _answer_ is: ***not even close!***
+
+> Someone _recently_ asked: "_Is software engineering a **dead end** career?_"  
+https://www.quora.com/Is-software-engineering-a-dead-end-career
+
+It's `true` (_logical_) that ***eventually*** there _will_ be "_enough_" apps
+to _achieve_ "***all the things***" we need, but "_experts_" have
+been [_predicting_](https://news.ycombinator.com/item?id=11974922)
+the ["_end of software_"]() for the last 20 years.
+And yet, the _pace_ of change _continues_ to _accelerate_.
+
+> "***Software is eating the world***" ~ Marc Andreessen <br />
+http://www.wsj.com/articles/SB10001424053111903480904576512250915629460  
+**Tip**: _disable_ JS in your browser to _read_ the article without
+Rupert forcing you to _pay_ for knowledge! <br />
+**Five Years Later**:
+https://techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later/
+
+For the _foreseable future_ creating web applications
+with the tools/techniques outlined in this book will be a "_thing_".
+
+> "***You can mass-produce hardware; you cannot mass-produce software -
+  you cannot mass-produce the human mind***"" ~ Michio Kaku
+
+_Thankfully_, (_or perhaps sadly depending on your view_),
+software cannot be _mass produced_ ***yet*** ...
+Should you/we be "_afraid_" of [**AI**](https://youtu.be/05bGPiyM4jg)
+or _embrace_ it...?
+A _topic_ for another time ...
+for _now_, focus leveling-up your skills,
+so you can _understand_ the AI _debate_!
+
+![wiifm](https://cloud.githubusercontent.com/assets/194400/21926551/1e282c10-d97a-11e6-96f9-d7074a008f0e.jpg)
+
+### What's "In It" For _Me_?
+
+Our "_podium_" list of what ***you*** will _gain_ by learning this "_content_":
+
+1. The ***vocabulary*** to have **technical discussions** with web developers
+(_without sounding like a ["**poser**"](https://youtu.be/nB2ngWWhxEk?t=3m49s)
+which is **not** the same as a ["**beginner**"](https://youtu.be/kKO3dXiTl1s) ..._)
+even if you decide not be a full-time coder, if you know _how_ to code,
+you will have a _far_ more fruitful time working with technical people.
+2. The "***skills*** _to pay the bills_" which will let you build your _own_
+ideas get paid (_really well_) to work on a challenge with an _existing_ team.
+3. Meet & collaborate with ***interesting people*** on ideas that make
+the world a better place.
+
+## _Why_ Write a "_Book_"?
+
+The `main` reason we decided to organize our knowledge/experience as a "_book_"
+is to present the _series_ of tutorials in a _reasonably_ systematic/linear
+format that people can follow in an _order_.
+
+The _second_ reason is to make it "_portable_". By grouping all of our
+tutorials in a single PDF people can put it on their e-Reader and
+read it "**AFK**" or even pipe it through a "screen reader" as an Audio Book!
+
+This book is a _collection_ of ***practical usage examples for tools
+we use to build web apps***.  
+We ***wish*** we had this when we _started_ coding, hopefully it's
+***useful*** to other people!
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/the-book/issues)
+
+
+
+# *Who*?
+
+## Readers
+
+Who _should_ read this...?
+
+If you are (_already_) learning (_or want to learn how_) to build Web-based Apps
+(_that "**Work Everywhere**"_) using Open Source tools this book
+(_or it's individual self-contained/standalone "chapters"_)
+will be *relevant* to you. Our _aim_ is that the content is useful
+to ***everyone writing code*** _at_ ***any level***, however we are
+starting with "_complete beginner_" and will work our way up to "_advanced_"
+and will answer _any_ question you have along the way!
+
+
+## Writers
+
+Unlike _most_ other books written by *one* person or even handful of people,
+`this` book has _**many contributors**_ and is _constantly_ evolving.
+As such it is the
+[***Wisdom of the crowd***](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd).
+If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
+
+
+# *What*?
 
 We build web-based applications (_that "**Work Everywhere**"_)
 for *many* reasons including (to):
 
-+ connect & communicate with our friends, colleagues & communities
-+ share information
-+ buy/sell things (_E-Commerce_)
-+ manage all aspects of our lives (calendars, task/time trackers etc)
-+ run organisations/businesses (_Administration, Workflow and "Management" Apps_)
-+ have fun (_e.g. online games!_)
-
-We think it make sense for the apps we build to be *reliable*.
-Do you agree?  
-*Can* reliability be achieved *without* testing...?
-
-## _Why_ Write a _Book_?
-
-This book is a collection of _**practical usage examples for tools used to build web applications**_.  
-We ***wish*** we had this when we started coding, hopefully it's useful to other people!.
-
-
-# *Who*? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nelsonic/practical-js-tdd/issues)
-
-
-
-## Readers
-
-Learning Test Driven Development (TDD) is *relevant* to _**everyone writing code** at **any level**_.
++ ***Connect & communicate*** with our friends, colleagues & communities
++ ***Record & share*** information, knowledge, news, events, etc.
++ **Manage** all aspects of our lives (calendars, task/time trackers,
+  shopping/wish lists, etc.)
++ **Run** organisations/businesses (_Administration, Workflow & "Management" Apps_)
++ **Buy/sell** things (_E-Commerce_)
++ ***Have fun***! (_e.g. online games! augmented/virtual reality!_)
 
 Most universities/schools (_still_) don't teach testing as the *foundation* for computer science / software engineering ... there are a number of _reasons_ for this, but the primary reason is the fact that learning institution curriculum is calcified.
 
@@ -46,13 +133,6 @@ The result of people not learning testing at school is the _majority_ of compani
 
 If you are _still_ not writing tests _**why not**_?
 We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") and decide for yourself if you _still_ think its "_too difficult_" or "_takes longer_".
-
-## Writers
-
-Unlike _most_ other books written by *one* person, *this* book is not written by a  has _**many contributors**_ and as such is the [_**Wisdom of the crowd**_](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). If you spot an issue/typo in the text/code or have a better idea (e.g. a simpler explanation for a topic/concept) _please post_ an [issue](https://github.com/nelsonic/practical-js-tdd/issues) (_thanks!_)
-
-
-# *What*?
 
 ## "*Stack*"?
 
@@ -195,16 +275,12 @@ We invite *you* to be part of the ***TQM Software*** *movement* and bring all yo
  <br />
 
 
-# *Alpha* (Book) Preview
-
-***The Book on Web Application Testing*** is being written one-page-per-day and published at:
-
-> https://leanpub.com/practical-js-tdd
-
-## The Book is Not Ready Yet, Should I Start Reading It?
+## The Book is Not "Finished" Yet, Should I Start Reading It?
 
 The answer is: ***it depends***.
-If you can handle a few typos and want to get started building better software ASAP, then start *now*! If you prefer to wait till its "ready", please star the repo, register your interest at: https://leanpub.com/practical-js-tdd
+If you can handle a few typos and want to get started building better Apps ASAP,
+then start *now*! If you prefer to wait till its "ready", please star the repo,
+and come back later.
 
 
 ## Spreading the Word >> *Please Re-Tweet*!
@@ -219,16 +295,26 @@ If you can handle a few typos and want to get started building better software A
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-We hope this will be a (*highly*) ***collaborative*** effort! (We don't believe in "*lone wolf*" or "*basement genius*" approach to building things... we prefer the many minds/eyes/ideas Open Source culture!)
+We hope this will be a (*highly*) ***collaborative*** effort!
+(We don't believe in "*lone wolf*" or "*basement genius*" approach
+to building things... we prefer the many minds/eyes/ideas Open Source culture!)
 
-If you want to contribute you can get started by *reading* the files in the
- /**manuscript** directory. They are ordered numerically by chapter. e.g:
- manuscript/**01-intro-why.md** gives the top 7 reasons why people should be
- testing their work.
+> "_It is **amazing** what you can **accomplish**
+if you **do not care who gets** the **credit**_" ~ Harry Truman
+
+## Star the Project :star:
+
+The _easiest_ way you can _contribute_ is
+by "_starring_" this project on GitHub!
+This will help you to "_bookmark_" the content so you can return to it.
+But it will also help the people who "_follow_" you on GitHub to _discover_
+that you find it _interesting_ or _useful_.
+The _more_ people star and _share_
 
 ### Got Comments/Ideas/Suggestions/Issues ?
 
-If you have any ideas, comments or suggestions, please raise and issue on GitHub: https://github.com/nelsonic/practical-js-tdd/issues
+If you have any ideas, comments or suggestions,
+please raise an issue on GitHub: https://github.com/dwyl/the-book/issues
 
 
 ### Watching the Repo (*to receive ALL the updates!*)
@@ -241,7 +327,7 @@ Yes, the book is 100% Open Source on GitHub for anyone to read and contribute to
 
 ![education is the most powerful weapon](https://raw.githubusercontent.com/nelsonic/practical-js-tdd/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
-
+<!--
 
 ### The Book is Open Source, Why is LeanPub Charging?
 
@@ -275,13 +361,30 @@ If you are a student and/or low on cash (*we've all been there*!) but still want
 
 https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
 
+-->
 
 ## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
 
-[_**I**_](https://github.com/nelsonic) started writing tutorials on Test Driven Development (TDD) out of *frustration* when (_some individuals in_) my *then* team *complained* that "_testing is 'hard' and takes too long..._". It seemed *logical* to publish the tutorials/guides on GitHub (_as opposed to a company wiki or Google Docs_) so that others could benefit from the learning and submit ideas for improvement, updates or corrections in the form of GitHub issues or pull requests.
+[_**I**_](https://github.com/nelsonic) started writing tutorials
+on Test Driven Development (TDD) out of ***frustration***
+when (_some individuals in_) my *then* team *complained*
+that "_testing is 'hard' and takes too long..._".
+It seemed *logical* to publish the tutorials as step-by-step guides on GitHub
+(_as opposed to a company wiki or Google Docs which I had done before..._)
+so that others could benefit from the learning
+and submit ideas for improvement or requests for more detail via
+[questions (issues)](https://github.com/dwyl/the-book/issues),
+_updates_ or _corrections_ (_e.g. updating a link or fixing a typo!_)
+in the form of GitHub Pull Requests.
 
-A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later, we created a GitHub Community dedicated
-to curate coding tutorials: https://github.com/docdis
-(_which now has **many active members**_)
+A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later,
+we created a GitHub _Community_ (_Organisation_) dedicated to curating coding
+tutorials: https://github.com/dwyl (_which now has **many active members**_)
+and _collaboratively building useful tools using code_
+which _any_ organisation/school/buisness can use ***free of charge***!
 
-All coding examples for this book are released as self-contained tutorials so you can *selectively learn* a *specific* tool/technique/technology and share *just* that one _byte_ of learning with your team (_or that one special person in your life who refuses to get with the program!_)
+All coding examples for this book are released as self-contained/standalone
+tutorials so you can *selectively learn* a *specific* tool/technique/technology
+and share *just* that one _byte_ of learning with your team
+(_or that one **special person** in your life who you know has
+  **infinite potential** but keeps making excuses to not get with the program!_)
