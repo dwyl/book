@@ -13,7 +13,7 @@ for people building ***beautiful***, ***robust*** & ***maintainable***
 _Substitute_ the word "man" for "person" and the "read" for "code"
 for the **21st Century** _equivalent_.  
 [Coding is the ***new literacy***](http://www.huffingtonpost.com/the-harbus/coding-is-the-new-busines_b_11028790.html)
-and people who don't _make_ the time to _learn/practice_ are _destined for dissapointment_.
+and people who don't _make_ the time to _learn/practice_ are _destined for disappointment_.
 
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
@@ -30,9 +30,9 @@ _already_, why should I (_or anyone for that matter_) bother
 learning how to make _more_ of them?
 
 This is a _great_ question and one we ask _ourselves_
-[@dwylhq](https://twitter.com/dwylhq) _often_! <br />
+[@dwylhq](https://twitter.com/dwylhq) _often_!  
 The _answer_ is _another_ question: do you think _all_ the world's
-problems/challenges have been _resolved_...? <br />
+problems/challenges have been _resolved_...?   
 To which the _answer_ is: ***not even close!***
 
 > Someone _recently_ asked: "_Is software engineering a **dead end** career?_"  
@@ -48,14 +48,14 @@ the number of _jobs_ that aren't being filled because
 the "***skills shortage***" has ***increased sharply*** in recent years:
 http://www.bbc.co.uk/news/education-36783460
 
-> "***Software is eating the world***" ~ Marc Andreessen <br />
+> "***Software is eating the world***" ~ Marc Andreessen    
 http://www.wsj.com/articles/SB10001424053111903480904576512250915629460  
 **Tip**: _disable_ JS in your browser to _read_ the article without
-Rupert forcing you to _pay_ for knowledge! <br />
+Rupert forcing you to _pay_ for knowledge!     
 **Five Years Later**:
 https://techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later/
 
-For the _foreseable future_ creating web applications
+For the _foreseeable future_ creating web applications
 with the tools/techniques outlined in this book will be a "_thing_".
 
 > "***You can mass-produce hardware; you cannot mass-produce software -
@@ -66,7 +66,7 @@ software cannot be _mass produced_ ***yet*** ...
 Should you/we be "_afraid_" of [**AI**](https://youtu.be/05bGPiyM4jg)
 or _embrace_ it...?
 A _topic_ for another time ...
-for _now_, focus leveling-up your skills,
+for _now_, focus levelling-up your skills,
 so you can _understand_ the AI _debate_!
 
 !["What's In It For Me?"](https://cloud.githubusercontent.com/assets/194400/21926551/1e282c10-d97a-11e6-96f9-d7074a008f0e.jpg "What's In It For Me?")
@@ -94,7 +94,7 @@ As with _any_ skill, your coding skills are  whatever you `make` of them!
 ## _Why_ Write a "_Book_"?
 
 The `main` reason we decided to organize our knowledge/experience as a "_book_"
-is because people were _using_ (_and loving_) our tutorials _individually_
+is because people were _using_ (_and loving_) our tutorials _individually_.
 
 [![people-find-dwyl-tutorials-useful](https://cloud.githubusercontent.com/assets/194400/21953434/b44b311a-da2e-11e6-9675-e4af89bb8eaa.png)](https://twitter.com/dwylhq/status/775016209263845377)
 
@@ -104,10 +104,13 @@ but people _kept asking_ us:
 should follow your tutorials_...?" <br />
 > **Answer**: ***Yes***!
 
-The reason(s) we did not _state_ the order of learning `before` were:
+So we wanted to present our _series_ of tutorials in a _reasonably_ systematic/linear
+format that anyone can follow in an _order_.
+
+The reasons we did not _state_ the order of learning `before` were that:
 + the _sheer number_ of "_things_" to learn would have overwhelmed _us_.
 + there were _so many_ "_gaps_" in our documentation that we would
-have suffered from a _panic-induced "**blank page syndrome**" writers-block_
+have suffered from a _panic-induced "**blank page syndrome**" or writer's block_
 and never got _started_!
 
 We are _very_ conscious of the fact that there is a "_lot to learn_"
@@ -115,21 +118,18 @@ in order to build web applications.
 
 By making individual self-contained tutorials we were able to "_chunk_"
 the knowledge into parts that were relevant to people searching for
-a guid specific to that subject.
-
-present our _series_ of tutorials in a _reasonably_ systematic/linear
-format that anyone can follow in an _order_.
+a guide specific to that subject.
 
 The _second_ reason is to make it "_portable_". By grouping all of our
 tutorials in a single PDF people can put it on their e-Reader and
 read it "**AFK**" or even pipe it through a "screen reader"
 and listen as an _Audio Book_!
 
-> The _reason_ we wrote the _individual_ tutorials was out of _frustration_/_pain_
+> We wrote the _individual_ tutorials was out of _frustration_/_pain_
 of working in organisations where knowledge was not distributed.
 Count yourself _lucky_ if you have never worked at a company
 where people "_hoard_" and "_guard_" their knowledge/skill/data/insight because
-they think it will maintain their "_power_", "_position_" or "_infulence_".
+they think it will maintain their "_power_", "_position_" or "_influence_".
 We @dwylhq have worked in _many_ such companies and grew weary of
 the "_boss_" who kept "_secrets_" or the "_subject matter expert_"
 that could not be fired even though they were killing team morale.
@@ -144,12 +144,12 @@ Who _should_ read (_and practice_) this...?
 
 If you are (_already_) learning (_or want to learn how_)
 to build Web-based Applications (_that "**Work Everywhere**"_)
-using Open Source ***Free*** tools this book
-(_or it's individual self-contained/standalone "chapters"_)
+using Open Source, ***Free*** tools, this book
+(_or its individual self-contained/standalone "chapters"_)
 will be *relevant* to you. Our _aim_ is that the content is _useful_
-to ***everyone writing code*** _at_ ***any level***, however we are
+to ***everyone writing code*** _at_ ***any level***, but we are
 starting with a focus on "_complete beginner_" and will work our way
-up to "_advanced_" and will answer _any_ question you have along the journey!
+up to "_advanced_", answering _any_ question you have along the journey!
 
 If _anyone_ tells you that learning to code is a bad idea,
 just smile and think to yourself:
@@ -163,15 +163,15 @@ ignore them till they fade away***"
 
 Unlike _most_ other books written by *one* person or even handful of people,
 and "_published_" (_printed_) in paper
-`this` book has _**many contributors**_ and is _constinuously_ evolving.
+`this` book has _**many contributors**_ and is _continuously_ evolving.
 
 > “***Alone we can do so little; together we can do so much***” ~ Helen Keller
 
 As such it is the
 [***Wisdom of the crowd***](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd).
 So if you spot an issue/typo in the text/code or have a better idea
-(_e.g. a simpler explanation for a topic/concept_)
-_**please** post_ an [issue](https://github.com/dwyl/the-book/issues) (_thanks!_)
+(_e.g. a simpler explanation for a topic/concept_),
+_**please** post_ an [issue](https://github.com/dwyl/the-book/issues) (_thanks!_).
 
 
 # *What*?
@@ -218,7 +218,7 @@ We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") an
 ### "_Free_" and Open Source...?
 
 Yes, the book is **100% _Free_ and _Open Source_**  on GitHub for anyone to
-read and contribute to! <br />
+read and [contribute](#contribute) to!    
 We (*strongly*) believe that ***all learning materials*** should be
 open and freely available to all (*not controlled or "monopolized" for profit*)!
 
@@ -233,16 +233,16 @@ Some people are of the _opinion_ that:
 > "_If you're **good at something**, **never do it** for **free**_."
 ~ The Joker (The Dark Knight)
 
-We _dissagree_.
+We _disagree_.
 
 ![education is the most powerful weapon](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
 Obviously, putting together learning resources takes (_a lot of_) ***time***
-and most people don't have a lot of "_free time_"... <br />
+and most people don't have a lot of "_free time_"...   
 But we prefer to think of our knowledge sharing as an _investment_
-in our people/_team(s)_ that pays _handsomly_ (_and almost **immediately**_)
+in our people/_team(s)_ that pays _handsomely_ (_and almost **immediately**_)
 because it _systematically_ "_transfers knowledge_" which both
-improves the _pace_ of our work and reduces "_risk_" for our customers! <br />
+improves the _pace_ of our work and reduces "_risk_" for our customers!   
 Win-win-win-win!!
 
 ## What "Technology *Stack*" is Covered?
@@ -257,15 +257,15 @@ The more comprehensive definition is:
 A Typical Stack could include:
 
 + Linux/Unix as the ***Server*** Operating System (OS)
-+ a ***Web Application Framework*** running on the server. Example frameworks include:
++ A ***Web Application Framework*** running on the server. Example frameworks include:
   + Ruby-on-Rails/Sinatra (Ruby),
   + Django (Python),
   + CodeIgniter/Symphony/Drupal (PHP),
-  + akka (Scala/Java),
+  + Akka (Scala/Java),
   + Express.js/Meteor.js/[_**Hapi.js**_](https://github.com/nelsonic/learn-hapi)
   (JavaScript/Node.js), etc.
   + ***Phoenix***
-+ the (web app) framework connects to a ***database***.
++ A ***database*** to which the (web app) framework connects.
 There are many databases (often referred to as "*data stores*"),
 the most popular are:
   + SQL-Based: MySQL, PostgreSQL, MariaDB
@@ -274,7 +274,7 @@ the most popular are:
   + Search: [_**ElasticSearch**_](https://github.com/dwyl/learn-elasticsearch)
   + Key Value Store: [_**Redis**_](https://github.com/dwyl/learn-redis), LevelDB
 + Browser-based interactivity (*often referred to as the* "***Client***"
-*or* "***Front End***" *of the stack*).
+*or* "***Front End***" *of the stack*)
 
 The "Stack" we use is _evolving_ with the industry _innovation_.
 Please see: https://github.com/dwyl/technology-stack/
@@ -291,7 +291,7 @@ https://stackoverflow.com/research/developer-survey-2016#technology
 
 _And_... we will _also_ cover a few of the most "_Wanted_" (_i.e. in demand!_)
 technology skills which are _dramatically_ improving people's productivity,
-effectiveness and quality of output! (_get excited!!_)
+effectiveness and quality of output!
 
 https://stackoverflow.com/research/developer-survey-2016#most-popular-technologies-other
 ![stackoverflow-other-technologies](https://cloud.githubusercontent.com/assets/194400/21954067/28e98638-da3f-11e6-9e2a-0b1b080a826a.png)
@@ -313,7 +313,7 @@ See: http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-develo
 ### "*Front End*"?
 
 There is ***one (programming) language*** that *all* web
-browsers "understand": ***JavaScript***
+browsers "understand": ***JavaScript***.  
 As a result it is the _most popular programming language_
 (_see StackOverflow survey results above_!)
 
@@ -322,7 +322,7 @@ Additionally you will need to know two other "languages": HTML and CSS ... but:
 ![stay calm](https://cloud.githubusercontent.com/assets/194400/21954158/cea1b17a-da41-11e6-9f0e-a73627125934.png)
 
 The web browser or mobile device (displaying content in a "*web view*")
-is referred to as the "*Front End*"
+is referred to as the "*Front End*".
 
 ### "Back End"?
 
@@ -361,7 +361,8 @@ by "_starring_" this project on GitHub!
 This will help you to "_bookmark_" the content so you can return to it.
 But it will also help the people who "_follow_" you on GitHub to _discover_
 that you find it _interesting_ or _useful_.
-The _more_ people star and _share_
+
+The _more_ people star and _share_ the project, the more possible contributors are able to understand the value of contributing and *open sourcing their knowledge*!
 
 
 <!-- we need an "_official_" dwyl book tweet ...
@@ -381,8 +382,8 @@ and now we will have an "ad hoc but regular" cycle ...
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 We hope this will be a (*highly*) ***collaborative*** effort!
-(We don't believe in "*lone wolf*" or "*basement genius*" approach
-to building things... we prefer the many minds/eyes/ideas Open Source culture!)
+(We don't believe in the "*lone wolf*" or "*basement genius*" approach
+to building things... we prefer the many minds/eyes/ideas of Open Source culture!)
 
 > "_It is **amazing** what you can **accomplish**
 if you **do not care who gets** the **credit**_" ~ Harry Truman
@@ -440,7 +441,7 @@ https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-
 
 ## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
 
-[_**I**_](https://github.com/nelsonic) started writing tutorials
+I, [_**@nelsonic**_](https://github.com/nelsonic) started writing tutorials
 on Test Driven Development (TDD) out of ***frustration***
 when (_some individuals in_) my *then* team *complained*
 that "_testing/TDD is 'hard' and takes too long..._".
@@ -457,7 +458,7 @@ we created a GitHub [_Community_](https://github.com/dwyl) (_Organisation_)
 dedicated to curating coding
 tutorials: https://github.com/dwyl (_which now has **many active members**_)
 and _collaboratively building useful tools using code_
-which _any_ organisation/school/buisness can use ***free of charge***!
+which _any_ organisation/school/business can use ***free of charge***!
 
 All coding examples for this book are released as self-contained/standalone
 tutorials so you can *selectively learn* a *specific* tool/technique/technology
