@@ -9,8 +9,6 @@ for people building ***beautiful***, ***robust*** & ***maintainable***
 [![Build Status](https://travis-ci.org/dwyl/the-book.svg?branch=master)](https://travis-ci.org/dwyl/the-book) [![Code Climate](https://codeclimate.com/github/dwyl/the-book.png)](https://codeclimate.com/github/dwyl/the-book)
  [![devDependency Status](https://david-dm.org/dwyl/the-book/dev-status.svg)](https://david-dm.org/dwyl/the-book#info=devDependencies) -->
 
-# intro
-
 ![man-who-doesnt-read](https://cloud.githubusercontent.com/assets/194400/21953123/ec35895c-da26-11e6-9240-89be328c72e4.png)
 _Substitute_ the word "man" for "person" and the "read" for "code"
 for the **21st Century** _equivalent_.  
@@ -220,20 +218,34 @@ We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") an
 ### "_Free_" and Open Source...?
 
 Yes, the book is **100% _Free_ and _Open Source_**  on GitHub for anyone to
-read and contribute to! We (*strongly*) believe that Education should be
-open and freely available to all (*not controlled or monopolized for profit*)!
+read and contribute to! <br />
+We (*strongly*) believe that ***all learning materials*** should be
+open and freely available to all (*not controlled or "monopolized" for profit*)!
+
+There's no "_up sell_" or "_premium_" version of _any_ of our content.
+Learning is not our "_business_" and we have no _intention_ of charging
+for any of our _content_.
+
+![image](https://cloud.githubusercontent.com/assets/194400/21953835/78937bd6-da39-11e6-92a9-d18e79c5472d.png)
+
+Some people are of the _opinion_ that:
+
+> "_If you're **good at something**, **never do it** for **free**_."
+~ The Joker (The Dark Knight)
+
+We _dissagree_.
 
 ![education is the most powerful weapon](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
-Obviously, putting together learning resources takes time
-and most people don't have a lot of "_free time_"...
+Obviously, putting together learning resources takes (_a lot of_) ***time***
+and most people don't have a lot of "_free time_"... <br />
 But we prefer to think of our knowledge sharing as an _investment_
-in our people/_team(s)_ that pays _handsomly_ and _almost immediately_
+in our people/_team(s)_ that pays _handsomly_ (_and almost **immediately**_)
 because it _systematically_ "_transfers knowledge_" which both
-improves the _pace_ of our work and reduces "_risk_" for our customers!
+improves the _pace_ of our work and reduces "_risk_" for our customers! <br />
 Win-win-win-win!!
 
-## What "*Stack*" do you cover?
+## What "Technology *Stack*" is Covered?
 
 A "stack" is the term use to describe all the components involved in a web app.
 The more comprehensive definition is:
@@ -242,16 +254,17 @@ The more comprehensive definition is:
 
 > ... in a web application the architect defines the stack as the target operating system, web server, database, and programming language."
 
-A Typical Stack would include:
+A Typical Stack could include:
 
 + Linux/Unix as the ***Server*** Operating System (OS)
-+ a ***web application framework*** running on the server. Example frameworks include:
++ a ***Web Application Framework*** running on the server. Example frameworks include:
   + Ruby-on-Rails/Sinatra (Ruby),
   + Django (Python),
   + CodeIgniter/Symphony/Drupal (PHP),
   + akka (Scala/Java),
   + Express.js/Meteor.js/[_**Hapi.js**_](https://github.com/nelsonic/learn-hapi)
   (JavaScript/Node.js), etc.
+  + ***Phoenix***
 + the (web app) framework connects to a ***database***.
 There are many databases (often referred to as "*data stores*"),
 the most popular are:
@@ -263,10 +276,25 @@ the most popular are:
 + Browser-based interactivity (*often referred to as the* "***Client***"
 *or* "***Front End***" *of the stack*).
 
-The "Stack" we use is _evolving_ with the latest industry _innovation_.
+The "Stack" we use is _evolving_ with the industry _innovation_.
 Please see: https://github.com/dwyl/technology-stack/
-and if you want to `#GetInvolved` in the dicussion,
+and if you want to `#GetInvolved` in the discussion,
 read and comment on the issues: https://github.com/dwyl/technology-stack/issues
+
+### You Will Learn "_In Demand_" Tech Tools/Skills
+
+You will learn 3 of the "Top 10" most popular technologies of 2016
+(_which are still just as popular/relevant in 2017!_)
+
+https://stackoverflow.com/research/developer-survey-2016#technology
+![stackoverflow-most-popular-technologies](https://cloud.githubusercontent.com/assets/194400/21954032/a94f0128-da3e-11e6-95d4-64757a6175e7.png)
+
+_And_... we will _also_ cover a few of the most "_Wanted_" (_i.e. in demand!_)
+technology skills which are _dramatically_ improving people's productivity,
+effectiveness and quality of output! (_get excited!!_)
+
+https://stackoverflow.com/research/developer-survey-2016#most-popular-technologies-other
+![stackoverflow-other-technologies](https://cloud.githubusercontent.com/assets/194400/21954067/28e98638-da3f-11e6-9e2a-0b1b080a826a.png)
 
 ## "*Full-Stack*" JavaScript?
 
@@ -284,107 +312,39 @@ See: http://techcrunch.com/2014/11/08/the-rise-and-fall-of-the-full-stack-develo
 
 ### "*Front End*"?
 
-In web development, there is ***one language*** that *all* web browsers understand: ***JavaScript***
-As a result it is the _most popular programming language_:
+There is ***one (programming) language*** that *all* web
+browsers "understand": ***JavaScript***
+As a result it is the _most popular programming language_
+(_see StackOverflow survey results above_!)
 
+Additionally you will need to know two other "languages": HTML and CSS ... but:
+
+![stay calm](https://cloud.githubusercontent.com/assets/194400/21954158/cea1b17a-da41-11e6-9f0e-a73627125934.png)
 
 The web browser or mobile device (displaying content in a "*web view*")
 is referred to as the "*Front End*"
 
-
 ### "Back End"?
 
 When people refer to the "Back End" of an app they are describing the
-"*Server*" component(s).
+"*Web/Application Server*" component(s); don't worry, we will cover all of this
+and it's surprisingly fun!
+
+
+![front-end-back-end](https://cloud.githubusercontent.com/assets/194400/21954171/039c705e-da42-11e6-93d8-7883f365e5fb.png)
 
 There are *many* technologies/languages/frameworks you can use to write
-your server. As stated above, for *simplicity* we prefer to use JavaScript (*Node.js*) on the server to keep one programming language across the stack and allow us to re-use view code for both server-side and client-side rendering.
+your server. As stated above, for *simplicity* we prefer to use JavaScript
+(*Node.js*) on the server to keep one programming language across the stack
+and allow us to re-use view code for both server-side and client
+hence the _expression_ "Full-Stack"!
 
 
 ## Test Driven Development?
 
-Writing tests for all aspects of your application.
-
-
-
-## What (*Software*) Testing is *Not*...!
-
-![Software testing is not an exam](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-what-testing-is-not--multiple-choice-with-broken-pencil.jpg "Software Testing is NOT an Exam!")
-
-Some people have a natural aversion to the *idea* of testing because the *word* reminds them having to do exams in *formal education* (*especially those of us who* [***suffered***](https://www.youtube.com/watch?v=J6lyURyVz7k) *from the experience!*)
-
-![Don't Panic!](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-dont-panic-unicorn.png "Don't Panic!")
-
-***Don't Panic***! Writing tests for your Web Application is on the opposite end of the *Fun* Spectrum from multiple choice tests we all know (*and hate*!)
-
-<br />
-
-## No Tests? ... *We Can Fix That*!
-
-There are a number of "*reasons*" (*excuses*!) why people/teams/organisations *still* don't test their work.  
-Take your pick from the following:
-
-- "*We don't have time to write tests, we just need to get this done Yesterday!*"
-- "*Testing takes too long and means we won't deliver as many features...*"
-- "*Its just a small fix, we don't need to write a test*..."
-- "*I'm a developer, I don't write tests, we need to hire a tester...*"
-- "*If I write a test for every bit of code, then I have to update the tests when I need to change the code, so it's twice as much work...*"
-
-and, last but not least:
-
-- "*That's the way we have always done it here...*"
-
-As a comparison, [***this***](http://en.wikipedia.org/wiki/Nokia_8110) is how we ***used*** to do Mobile Phones ... How many people do you still see carrying "*The Matrix Phone*" (*which was all-the-rage in the* ***90's***!) *today*?
-
-![Matrix Phone Nokia 8110](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-matrixphone.jpg "Matrix Phone Nokia 8110")
-
-![Steve Jobs introducing iPhone in 2007](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-steve-jobs-introduces-iphone.jpg "Steve Jobs introducing iPhone in 2007")
-
-
-We have better phones; shouldn't we also have better software development methods?
-
-<br />
-
-## Cowboy Coders?
-
-![Cowboy Coder](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-cowboy-coder.png "Cowboy Coder")
-
-We have all met a *Cowboy Coder* ... The "*I just get things done*"
-developer who writes "*quick fixes*" and
-exclaims: "*I don't have time to write tests*" or
-"*Writing tests for my code takes longer*" and then acts *surprised* when
-everything starts breaking while claiming: "*it was working this morning*" ... ***Please share this*** with them and help them see the light!
-
-
-<br />
-
-## Code Without Test === Building Without Foundation!
-
-Code without tests is like a *building without a foundation*!
-
-![Building Collapse](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-building-collapse-940x627.jpg "Building Collapse")
-
-Its only a matter of *time* before it all comes crashing down ...
-
-**Q**: *Is* Test Driven Development (TDD) a *silver bullet* for *all* my software development woes?  
-**A**: **No**.
-There is a *lot* more that goes into writing *great* software than
-*just* having tests. But, ***without tests reliability is impossible***.
-
-
-<br />
-
-## *Say No to Untested Software (Web/Apps)!*
-
-The days of poor quality software are *numbered*; people who continue to expect *inconsistent results* to be rewarded are in for a "*surprise*"!
-
-![They Took Er Jerbs](https://raw.github.com/dwyl/the-book/master/manuscript/images/00-they-took-our-jerbs.jpg "They Took Er Jerbs")
-
-
-This book is our effort to *accelerate* the process towards ending un-tested software!
-We invite *you* to be part of the ***TQM Software*** *movement* and bring all your friends/colleagues!
-
- <br />
+This is where we _differ_ from almost _all_ the other "_beginner_" level books!
+We believe in writing _automated_ tests for all aspects of your application.
+So that is one of the _first_ things you will learn how to do!
 
 
 ## The Book is Not "Finished" Yet, Should I Start Reading It?
@@ -393,26 +353,6 @@ The answer is: ***it depends***.
 If you can handle a few typos and want to get started building better Apps ASAP,
 then start *now*! If you prefer to wait till its "ready", please star the repo,
 and come back later.
-
-
-## Spreading the Word >> *Please Re-Tweet*!
-
-[![initial tweet anouncing book](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
-
-
-
-## Release Schedule
-
-*Each day* for the next 4 months I will be writing *at least* 1 page and pushing it to GitHub (*which triggers the book publish script on LeanPub*) so there will be fresh content *every day*! I promise to make every effort to keep the signal-to-noise ratio as good as possible!
-
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
-
-We hope this will be a (*highly*) ***collaborative*** effort!
-(We don't believe in "*lone wolf*" or "*basement genius*" approach
-to building things... we prefer the many minds/eyes/ideas Open Source culture!)
-
-> "_It is **amazing** what you can **accomplish**
-if you **do not care who gets** the **credit**_" ~ Harry Truman
 
 ## Star the Project :star:
 
@@ -423,6 +363,30 @@ But it will also help the people who "_follow_" you on GitHub to _discover_
 that you find it _interesting_ or _useful_.
 The _more_ people star and _share_
 
+
+<!-- we need an "_official_" dwyl book tweet ...
+## Spreading the Word >> *Please Re-Tweet*!
+
+[![initial tweet anouncing book](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
+-->
+
+<!-- last year I did write a-page-a-day but not all in _one_ place...!!
+and now we will have an "ad hoc but regular" cycle ...
+
+## Release Schedule
+
+*Each day* for the next 4 months I will be writing *at least* 1 page and pushing it to GitHub (*which triggers the book publish script on LeanPub*) so there will be fresh content *every day*! I promise to make every effort to keep the signal-to-noise ratio as good as possible!
+-->
+
+## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
+We hope this will be a (*highly*) ***collaborative*** effort!
+(We don't believe in "*lone wolf*" or "*basement genius*" approach
+to building things... we prefer the many minds/eyes/ideas Open Source culture!)
+
+> "_It is **amazing** what you can **accomplish**
+if you **do not care who gets** the **credit**_" ~ Harry Truman
+
 ### Got Comments/Ideas/Suggestions/Issues ?
 
 If you have any ideas, comments or suggestions,
@@ -431,10 +395,14 @@ please raise an issue on GitHub: https://github.com/dwyl/the-book/issues
 
 ### Watching the Repo (*to receive ALL the updates!*)
 
-If you want to receive ***ALL*** the updates, you can **Watch** this GitHub repo. note: you may get quite a few emails... but if you are interested in building great quality software, the content should be relevant to you.
+If you want to receive ***ALL*** the updates,
+you _can_ **Watch** the GitHub repository.
+**Note**: you may get quite a few emails...
+but if you are interested in building great quality software
+the content should be relevant to you.
 
 
-<!--
+<!-- Should we *bother* with "LeanPub"...? see: https://github.com/dwyl/the-book/issues/64
 
 ### The Book is Open Source, Why is LeanPub Charging?
 
@@ -475,17 +443,18 @@ https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-
 [_**I**_](https://github.com/nelsonic) started writing tutorials
 on Test Driven Development (TDD) out of ***frustration***
 when (_some individuals in_) my *then* team *complained*
-that "_testing is 'hard' and takes too long..._".
+that "_testing/TDD is 'hard' and takes too long..._".
 It seemed *logical* to publish the tutorials as step-by-step guides on GitHub
 (_as opposed to a company wiki or Google Docs which I had done before..._)
-so that others could benefit from the learning
+so that complete strangers could benefit from the learning
 and submit ideas for improvement or requests for more detail via
 [questions (issues)](https://github.com/dwyl/the-book/issues),
 _updates_ or _corrections_ (_e.g. updating a link or fixing a typo!_)
 in the form of GitHub Pull Requests.
 
 A few (*hundred*) GitHub stars (_and encouraging feedback messages_) later,
-we created a GitHub _Community_ (_Organisation_) dedicated to curating coding
+we created a GitHub [_Community_](https://github.com/dwyl) (_Organisation_)
+dedicated to curating coding
 tutorials: https://github.com/dwyl (_which now has **many active members**_)
 and _collaboratively building useful tools using code_
 which _any_ organisation/school/buisness can use ***free of charge***!
@@ -495,3 +464,6 @@ tutorials so you can *selectively learn* a *specific* tool/technique/technology
 and share *just* that one _byte_ of learning with your team
 (_or that one **special person** in your life who you know has
   **infinite potential** but keeps making excuses to not get with the program!_)
+
+
+# Ready to get Started?!
