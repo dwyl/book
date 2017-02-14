@@ -32,7 +32,7 @@ learning how to make _more_ of them?
 This is a _great_ question and one we ask _ourselves_
 [@dwylhq](https://twitter.com/dwylhq) _often_!  
 The _answer_ is _another_ question: do you think _all_ the world's
-problems/challenges have been _resolved_...?   
+problems/challenges have been _resolved_...?
 To which the _answer_ is: ***not even close!***
 
 > Someone _recently_ asked: "_Is software engineering a **dead end** career?_"  
@@ -48,10 +48,10 @@ the number of _jobs_ that aren't being filled because
 the "***skills shortage***" has ***increased sharply*** in recent years:
 http://www.bbc.co.uk/news/education-36783460
 
-> "***Software is eating the world***" ~ Marc Andreessen    
+> "***Software is eating the world***" ~ Marc Andreessen
 http://www.wsj.com/articles/SB10001424053111903480904576512250915629460  
 **Tip**: _disable_ JS in your browser to _read_ the article without
-Rupert forcing you to _pay_ for knowledge!     
+Rupert forcing you to _pay_ for knowledge!
 **Five Years Later**:
 https://techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later/
 
@@ -218,7 +218,7 @@ We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") an
 ### "_Free_" and Open Source...?
 
 Yes, the book is **100% _Free_ and _Open Source_**  on GitHub for anyone to
-read and [contribute](#contribute) to!    
+read and [contribute](#contribute) to!
 We (*strongly*) believe that ***all learning materials*** should be
 open and freely available to all (*not controlled or "monopolized" for profit*)!
 
@@ -238,11 +238,11 @@ We _disagree_.
 ![education is the most powerful weapon](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
 
 Obviously, putting together learning resources takes (_a lot of_) ***time***
-and most people don't have a lot of "_free time_"...   
+and most people don't have a lot of "_free time_"...
 But we prefer to think of our knowledge sharing as an _investment_
 in our people/_team(s)_ that pays _handsomely_ (_and almost **immediately**_)
 because it _systematically_ "_transfers knowledge_" which both
-improves the _pace_ of our work and reduces "_risk_" for our customers!   
+improves the _pace_ of our work and reduces "_risk_" for our customers!
 Win-win-win-win!!
 
 ## What "Technology *Stack*" is Covered?
@@ -289,12 +289,15 @@ You will learn 3 of the "Top 10" most popular technologies of 2016
 https://stackoverflow.com/research/developer-survey-2016#technology
 ![stackoverflow-most-popular-technologies](https://cloud.githubusercontent.com/assets/194400/21954032/a94f0128-da3e-11e6-95d4-64757a6175e7.png)
 
-_And_... we will _also_ cover a few of the most "_Wanted_" (_i.e. in demand!_)
+### _Most Wanted_ Programming Languages
+
+_And_... we will _also_ cover three of the most "_Wanted_" (_i.e. in demand!_)
 technology skills which are _dramatically_ improving people's productivity,
 effectiveness and quality of output!
 
-https://stackoverflow.com/research/developer-survey-2016#most-popular-technologies-other
 ![stackoverflow-other-technologies](https://cloud.githubusercontent.com/assets/194400/21954067/28e98638-da3f-11e6-9e2a-0b1b080a826a.png)
+See: https://stackoverflow.com/research/developer-survey-2016#most-popular-technologies-other
+(_Click on "Wanted" tab to see the list_!)
 
 ## "*Full-Stack*" JavaScript?
 
