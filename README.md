@@ -187,7 +187,7 @@ _making **lots** of "**mistakes**"..._
 We have learned from our mistakes and _documented_ most of them!
 Hopefully it's ***useful*** to other people.
 
-### What can we _Make_ with the Knowledge/Skills in the Book?
+### What can we _Make_ with the Knowledge/Skills in the Book?
 
 The knowledge/skills you will gain from learning/practicing
 the content will allow you to build web-based applications (_that "**Work Everywhere**"_)
@@ -289,7 +289,7 @@ You will learn 3 of the "Top 10" most popular technologies of 2016
 https://stackoverflow.com/research/developer-survey-2016#technology
 ![stackoverflow-most-popular-technologies](https://cloud.githubusercontent.com/assets/194400/21954032/a94f0128-da3e-11e6-95d4-64757a6175e7.png)
 
-### _Most Wanted_ Programming Languages
+### _Most Wanted_ Programming Languages
 
 _And_... we will _also_ cover three of the most "_Wanted_" (_i.e. in demand!_)
 technology skills which are _dramatically_ improving people's productivity,
@@ -327,7 +327,7 @@ Additionally you will need to know two other "languages": HTML and CSS ... but:
 The web browser or mobile device (displaying content in a "*web view*")
 is referred to as the "*Front End*".
 
-### "Back End"?
+### "Back End"?
 
 When people refer to the "Back End" of an app they are describing the
 "*Web/Application Server*" component(s); don't worry, we will cover all of this
