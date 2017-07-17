@@ -15,6 +15,11 @@ for the **21st Century** _equivalent_.
 [Coding is the ***new literacy***](http://www.huffingtonpost.com/the-harbus/coding-is-the-new-busines_b_11028790.html)
 and people who don't _make_ the time to _learn/practice_ are _destined for disappointment_.
 
+# Contribute
+_**Please read** our_
+[**contribution guide**](https://github.com/dwyl/contributing)
+(_thank you_!)
+
 # *Why*? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
 ## _Why_ Should _Anyone_ Learn How to Build Web Apps _Today_?
