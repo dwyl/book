@@ -234,9 +234,10 @@ Some people are of the _opinion_ that:
 ~ The Joker (The Dark Knight)
 
 We _disagree_.
-
-![education is the most powerful weapon](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/00-Nelson-Mandela-Education-is-the-most-powerful-weapon-you-can-use-to-change-the-world.png)
-
+</br>
+<b>Education is the most powerful weapon</b>
+</br></br>
+<img src="https://cdn.shopify.com/s/files/1/0661/7423/files/inspire-blog-section.jpg?16519069034986191748"></img>
 Obviously, putting together learning resources takes (_a lot of_) ***time***
 and most people don't have a lot of "_free time_"...
 But we prefer to think of our knowledge sharing as an _investment_
