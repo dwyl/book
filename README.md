@@ -1,5 +1,9 @@
+<div align="center">
+
 # The _Practical_ "Book"
-## on _Crafting_ Full-Stack Web Applications
+## on _Crafting_ Full-Stack Web & Native Mobile Applications
+
+</div>
 
 A ***step-by-step guide*** to "***Full Stack***" Web Application Development
 for people building ***beautiful***, ***robust*** & ***maintainable***
