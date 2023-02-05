@@ -1,7 +1,6 @@
 <div align="center">
 
-# The _Practical_ "Book"
-## on _Crafting_ Full-Stack Web & Native Mobile Applications
+# The _Practical_ "Book" <br />on _Crafting_ Full-Stack Web & Native Mobile Apps
 
 </div>
 
