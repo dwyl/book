@@ -27,6 +27,8 @@ async
 atomics
 attr
 autocompletion
+auth
+Authentication
 AveragedCollection
 backend
 backported
