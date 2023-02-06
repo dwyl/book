@@ -1,12 +1,13 @@
 <div align="center">
 
-# The _Practical_ "Book" <br />on _Crafting_ Full-Stack Web & Native Mobile Apps
+# The _Practical_ "Book" <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
 
 </div>
 
-A ***step-by-step guide*** to "***Full Stack***" Web Application Development
+A ***step-by-step guide*** to "***Full Stack***" 
+Web & Mobile Application Development
 for people building ***beautiful***, ***robust*** & ***maintainable***
-**web / mobile** app individually or in teams!
+apps individually or in teams!
 
 <!-- re-enable "badges" once we have a demo app to show people
 [![Build Status](https://travis-ci.org/dwyl/the-book.svg?branch=master)](https://travis-ci.org/dwyl/the-book) [![Code Climate](https://codeclimate.com/github/dwyl/the-book.png)](https://codeclimate.com/github/dwyl/the-book)
@@ -49,17 +50,17 @@ the ["_end of software_"]() for the last 20 years.
 And yet, the _pace_ of change _continues_ to _accelerate_ and
 the number of _jobs_ that aren't being filled because
 the "***skills shortage***" has ***increased sharply*** in recent years:
-http://www.bbc.co.uk/news/education-36783460
+[bbc.co.uk/news/education-36783460](http://www.bbc.co.uk/news/education-36783460)
 
 > "***Software is eating the world***" ~ Marc Andreessen
-http://www.wsj.com/articles/SB10001424053111903480904576512250915629460  
+[wsj.com/articles/SB10001424053111903480904576512250915629460](http://www.wsj.com/articles/SB10001424053111903480904576512250915629460  )
 **Tip**: _disable_ JS in your browser to _read_ the article without
 Rupert forcing you to _pay_ for knowledge!
-**Five Years Later**:
-https://techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later/
+**Software is _still_ eating the world**:
+[techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later](https://techcrunch.com/2016/06/07/software-is-eating-the-world-5-years-later)
 
-For the _foreseeable future_ creating web applications
-with the tools/techniques outlined in this book will be a "_thing_".
+For the _foreseeable future_ creating web & mobile app
+with the tools/techniques outlined in this book will be a _thing_.
 
 > "***You can mass-produce hardware; you cannot mass-produce software -
   you cannot mass-produce the human mind***"" ~ Michio Kaku

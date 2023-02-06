@@ -1,8 +1,8 @@
 [package]
 name = "dwyl-book"
 version = "0.0.1"
-description = "The Rust Book"
-edition = "2018"
+description = "The dwyl Book"
+edition = "2023"
 
 [[bin]]
 name = "concat_chapters"
