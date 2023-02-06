@@ -7,8 +7,3 @@
   - [Why build Auth?](auth/00-why-auth.md)
   - [What are we building?](auth/01-what-auth.md)
 
-
-<!-- [Who?]() -->
-
-
-<!-- - [Chapter 1](./chapter_1.md) -->
