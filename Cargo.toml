@@ -2,7 +2,7 @@
 name = "dwyl-book"
 version = "0.0.1"
 description = "The dwyl Book"
-edition = "2023"
+edition = "2021"
 
 [[bin]]
 name = "concat_chapters"
