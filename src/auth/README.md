@@ -5,6 +5,8 @@ because nothing we found
 met our requirements
 for simplicity, security and speed.
 
+![auth-flow](https://user-images.githubusercontent.com/194400/218912832-e46b0206-8dbd-4589-8cbf-6a160610b580.png)
+
 Read our reasoning
 and journey in the next few pages.
 
