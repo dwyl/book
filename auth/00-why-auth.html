@@ -33,6 +33,7 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -148,27 +149,45 @@ and <em>studying</em> 30+ CMS/Frameworks
 &amp; Enterprise Auth providers
 we concluded 
 that all the Authentication/Authorization
-systems are still <em>way</em> too complex
-and required too many steps.
-Rather than lock ourselves into 
+systems are still <strong><em>way</em> too complex</strong>
+and required <strong><em>far</em> too many steps</strong>.</p>
+<p>Rather than lock ourselves into 
 something complex and then 
 be stuck with slow/no progress,
 we decided to build something from scratch
-that would allow us to <strong>move <em>much</em> faster</strong>.</p>
+that would allow us to <strong>move <em>much</em> faster</strong>
+in the <em>long</em> run.</p>
 <p>We have documented <em>all</em> the steps taken
 in creating our <code>auth</code> system
 in this book.
 The code is well documented, tested and maintained.</p>
+<h2 id="the-best-way-to-understand-something-is-to-build-it"><a class="header" href="#the-best-way-to-understand-something-is-to-build-it">The Best Way to <em>Understand</em> Something is to <em>Build</em> It!</a></h2>
 <p>We <em>encourage</em> anyone interested
 in <em>understanding</em> 
 how things work behind the scenes
 to read through the <code>auth</code> chapters.
-However we know this is not the most <em>exciting</em> 
-part of the stack. </p>
-<p>If you prefer to skip the <code>auth</code> section entirely,
+We've attempted to include <em>all</em> the steps
+we took so that anyone can grok it.</p>
+<p>However we know this is not the most <em>exciting</em> 
+part of the stack. 
+If you prefer to skip the <code>auth</code> section entirely,
 you can just <em>use</em> it 
 and treat it as a &quot;service&quot; that &quot;just works&quot;
 and only refer to specific parts when needed.</p>
+<h2 id="why-re-build-auth"><a class="header" href="#why-re-build-auth">Why <em>Re-build</em> <code>Auth</code>?</a></h2>
+<p>We learned a <em>lot</em> from building our <code>first</code> version
+of <code>auth</code> in <code>Elixir</code>.
+Our &quot;Version 1&quot; has been working in production for several years
+and thousands of people have used it successfully.
+The UI/UX for the &quot;end-user&quot; is fine;
+it's <em>fast</em> and already does what we need.
+We aren't going to change what the <code>person</code> <em>using</em> <code>auth</code>
+see very much in the next iteration.
+What is <strong><em>not</em> fine</strong> is the <em>maintainability</em> 
+and thus <em>extensibility</em> of the project.
+We recently saw this when we tried 
+to add a <code>new</code> feature to <code>auth</code>,
+but we saw <code>Ecto</code> constraint errors.  </p>
 
                     </main>
 
@@ -218,5 +237,6 @@ and only refer to specific parts when needed.</p>
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

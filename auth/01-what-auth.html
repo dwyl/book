@@ -33,6 +33,7 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -142,7 +143,72 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>Todo: insert images of </p>
+                        <h1 id="what-are-we-building"><a class="header" href="#what-are-we-building">What Are We Building?</a></h1>
+<p>We are building a **<em>complete</em> authentication system 
+that <em>anyone</em> can use
+to protect the personal data 
+of the <code>people</code> using an <code>App</code>.</p>
+<p>While we are starting from scratch 
+with zero code,
+we aren't working in a vacuum 
+or blinkered/blindfolded.
+We have build <code>auth</code>
+before in <code>PHP</code>, <code>Python</code>
+<a href="https://github.com/dwyl/hapi-auth-jwt2"><code>JavaScript/TypeScript</code></a>
+and most recently 
+<code>Elixir</code>
+and have <em>used</em>
+and <em>studied</em>
+several <code>auth</code> systems.
+This is an 
+<a href="https://en.wiktionary.org/wiki/otaku">otaku</a>
+for us;
+an obsession
+not just a side-project.
+If you feel that the <code>UI/UX</code> 
+of authentication is one 
+of the most important aspects
+of building any App,
+please read on. </p>
+<h2 id="starting-point"><a class="header" href="#starting-point">Starting Point?</a></h2>
+<p>As noted above,
+we are starting from scratch
+so there is zero &quot;baggage&quot; or &quot;legacy&quot;,
+but we are <em>informed</em> by our previous iteration of <code>auth</code>. </p>
+<p>Let's start by picking holes in our previous design.</p>
+<blockquote>
+<p><strong>Note</strong>: the objective of analysing our <em>own</em> code/design
+is not &quot;criticism&quot;, s
+it's <em>reflection</em>, <em>learning</em> and <em>continuous improvement</em>. </p>
+</blockquote>
+<h3 id="old-databse-entity-relational-diagram-erd"><a class="header" href="#old-databse-entity-relational-diagram-erd"><em>Old</em> Databse Entity Relational Diagram (ERD)</a></h3>
+<p>This is the ERD of the <em>old</em> version of <code>auth</code>:</p>
+<img width="1177" alt="image" src="https://user-images.githubusercontent.com/194400/218709796-0ef83fd1-7e20-4c95-8817-76598ca0f1f7.png">
+<p>If this diagram looks &quot;complicated&quot; to you right now,
+don't worry, we <em>agree</em>! 
+We're only sharing it here as a <em>reference</em>.
+It is not the &quot;goal&quot; to recreate this.
+Rather, our objective is to <em>simplify</em> it
+and remove any tables that we don't <em>need</em>.
+For example: 
+we will remove the 
+<code>tags</code>, <code>status</code>, <code>roles</code>
+tables from the database
+and instead define these exclusively in code.
+The reasoning is simple:
+this data does not change very often.
+So having it in <code>Postgres</code> and forcing
+a join for every query that requires the data
+is immensely resource-wasteful.</p>
+<p>Yes, the database purists would say:
+&quot;all data should be in the database&quot;.
+And &quot;old us&quot; would <em>agree</em> with that
+<a href="https://en.wikipedia.org/wiki/Dogma">dogma</a>.
+But what we've discovered in <em>practice</em>,
+is that we can define <em>metadata</em>
+in code and <em>significantly</em> 
+improve both reasoning about the entity relationships
+and query performance.</p>
 
                     </main>
 
@@ -186,5 +252,6 @@
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>
