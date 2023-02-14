@@ -1,7 +1,7 @@
 # `auth`
 
-We built an entire cohesive `auth` system 
-because nothing we found 
+We built a **_complete_ cohesive `auth` system** 
+because _nothing_ we found 
 met our requirements
 for simplicity, security and speed.
 
@@ -11,5 +11,8 @@ Read our reasoning
 and journey in the next few pages.
 
 At the very least you can 
-see if you _agree_ or not
+see if you _agree_ (or not)
 with our approach.
+
+As always,
+your feedback is very much welcome.
