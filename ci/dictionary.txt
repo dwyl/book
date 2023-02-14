@@ -1,4 +1,4 @@
-personal_ws-1.1 en 0 utf-8
+personal_ws-1.1 en 0 sutf-8
 abcabcabc
 abcd
 abcdefghijklmnopqrstuvwxyz
@@ -182,6 +182,7 @@ filmmaking
 Firefox
 FnMut
 FnOnce
+focussed
 formatter
 formatters
 FrenchToast
@@ -412,7 +413,7 @@ reformats
 refutability
 reimplement
 RemAssign
-repr
+repo
 representable
 request's
 resizes
