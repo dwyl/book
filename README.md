@@ -2,12 +2,20 @@
 
 # The _Practical_ "Book" <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
 
+![Build Status](https://github.com/dwyl/book/workflows/CI/badge.svg)
+
+
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/book/ci.yml?label=build&style=flat-square&branch=main)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/book/issues)
+[![HitCount](https://hits.dwyl.com/dwyl/book.svg)](https://github.com/dwyl/book)
+
 </div>
 
 A ***step-by-step guide*** to "***Full Stack***" 
 Web & Mobile Application Development
 for people building ***beautiful***, ***robust*** & ***maintainable***
 apps individually or in teams!
+
 
 <!-- re-enable "badges" once we have a demo app to show people
 [![Build Status](https://travis-ci.org/dwyl/the-book.svg?branch=master)](https://travis-ci.org/dwyl/the-book) [![Code Climate](https://codeclimate.com/github/dwyl/the-book.png)](https://codeclimate.com/github/dwyl/the-book)
