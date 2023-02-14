@@ -5,6 +5,11 @@ set -eu
 
 aspell --version
 
+# Note: to run aspell on Mac: https://formulae.brew.sh/formula/aspell
+# brew install aspell
+# then:
+# sh ci/spellcheck.sh list
+
 # Checks project Markdown files for spelling mistakes.
 
 # Notes:
