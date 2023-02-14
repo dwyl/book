@@ -1,9 +1,6 @@
 <div align="center">
 
-# The _Practical_ "Book" <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
-
-![Build Status](https://github.com/dwyl/book/workflows/CI/badge.svg)
-
+# The _Practical_ Book <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/book/ci.yml?label=build&style=flat-square&branch=main)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/book/issues)
@@ -16,10 +13,6 @@ Web & Mobile Application Development
 for people building ***beautiful***, ***robust*** & ***maintainable***
 apps individually or in teams!
 
-
-<!-- re-enable "badges" once we have a demo app to show people
-[![Build Status](https://travis-ci.org/dwyl/the-book.svg?branch=master)](https://travis-ci.org/dwyl/the-book) [![Code Climate](https://codeclimate.com/github/dwyl/the-book.png)](https://codeclimate.com/github/dwyl/the-book)
- [![devDependency Status](https://david-dm.org/dwyl/the-book/dev-status.svg)](https://david-dm.org/dwyl/the-book#info=devDependencies) -->
 
 ![man-who-doesnt-read](https://cloud.githubusercontent.com/assets/194400/21953123/ec35895c-da26-11e6-9240-89be328c72e4.png)
 _Substitute_ the word "man" for "person" and the "read" for "code"
