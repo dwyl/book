@@ -39,7 +39,7 @@ but we are _informed_ by our previous iteration of `auth`.
 Let's start by picking holes in our previous design.
 
 > **Note**: the objective of analysing our _own_ code/design
-is not "criticism", s
+is not "criticism",
 it's _reflection_, _learning_ and _continuous improvement_. 
 
 
