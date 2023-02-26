@@ -13,8 +13,8 @@ that includes _many_ features out-of-the-box.
 Our **`Auth` system** is a **standalone `Phoenix` instance**
 that has its' own **_separate_ database**.
 This is a very _deliberate_ choice.
-We want to enforce a complete 
-[separtion of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)
+We want to enforce a _complete_ 
+[**separation of concerns**](https://en.wikipedia.org/wiki/Separation_of_concerns)
 between `Auth` 
 and the `App` that _uses_ `Auth`.
 
@@ -36,18 +36,19 @@ and thus increase the time
 it takes someone to
 [grok](https://en.wikipedia.org/wiki/Grok).
 The longer it takes people to _understand_ the `App` code 
-the less likelye they are to _contribute_ to the `App`. 
+the less likely they are to _contribute_ to the `App`.
 
 > **Note**: we are _not_ suggesting 
 that people should not _also_ 
-try to understand what `Auth` is doing. 
+`try` to understand what `Auth` is doing. 
 On the contrary we want as many people as possible 
 to understand all aspects of our stack.
 However we acknowledge that `Auth`
 and "People Management" 
 is not the most _interesting_ part of the stack.
 It's akin to the "plumbing" in your home.
-Absolutely necessary and needs to function _flawlessly_.
+Absolutely necessary 
+and needs to function _flawlessly_.
 But not something you _actively_ think about
 unless there's something that isn't working as expected ... 
 
