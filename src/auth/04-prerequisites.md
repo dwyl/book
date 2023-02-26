@@ -16,7 +16,7 @@ elixir -v
 You should see output similar to the following:
 
 ```sh
-Erlang/OTP 25 [erts-13.1.4] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit] [dtrace]
+Erlang/OTP 25 [erts-13.1.4] [64-bit] [smp:10:10] [async-threads:1] [jit] [dtrace]
 
 Elixir 1.14.3 (compiled with Erlang/OTP 25)
 ```
@@ -36,9 +36,8 @@ Visit:
 [github.com/phoenixframework/phoenix/tags](https://github.com/phoenixframework/phoenix/tags)
 to remind yourself 
 of what the most recent version of `Phoenix` is.
-I our case, `v1.7.0` was published 
-[_yesterday_](https://phoenixframework.org/blog/phoenix-1.7-final-released). 🎉
-So that's what we are using.
+I our case, [`v1.7.0`](https://phoenixframework.org/blog/phoenix-1.7-final-released),
+so that's what we are using.
 
 Confirm that you have the latest version of `Phoenix`
 by running the command:

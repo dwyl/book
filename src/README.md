@@ -1,10 +1,10 @@
-# Intro
+# Intro 
 
 Our aim with writing a book 
 is to **_comprehensively_ document**
-everything we learned 
-while building our `App`
-and `API`.
+**_everything_ we learned** 
+while building our **`App`**
+and **`API`**.
 
 This is the **`handbook`** 
 we _wish_ we had 
@@ -53,3 +53,4 @@ please let us know! 🙏
 
 With that out of the way,
 let's get started learning by _doing_! 🚀
+

@@ -1,6 +1,6 @@
 # What Are We Building?
 
-We are building a **_complete_ authentication system 
+We are building a **_complete_ authentication system** 
 that _anyone_ can use
 to protect the personal data 
 of the `people` using an `App`.
@@ -34,7 +34,7 @@ please read on.
 As noted above,
 we are starting from scratch
 so there is zero "baggage" or "legacy",
-but we are _informed_ by our previous iteration of `auth`. 
+but we are _informed_ by our previous iterations of `auth`. 
 
 Let's start by picking holes in our previous design.
 

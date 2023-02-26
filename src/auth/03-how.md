@@ -51,8 +51,3 @@ Absolutely necessary
 and needs to function _flawlessly_.
 But not something you _actively_ think about
 unless there's something that isn't working as expected ... 
-
-We are using `phx.gen.auth` "generator" 
-that creates a bunch of code 
-see:
-[hexdocs.pm/phoenix/mix_phx_gen_auth](https://hexdocs.pm/phoenix/mix_phx_gen_auth.html)
