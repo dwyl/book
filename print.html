@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why-auth.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what-auth.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -341,6 +341,137 @@ But we can immediately spot something that incomplete/incorrect:
 <em><strong>who</strong></em> does a <code>group</code> &quot;belong&quot; to? 🤷‍♂️ </p>
 <p>Obviously it's &quot;unfair&quot; to pick holes in a feature that is incomplete.
 But it's &quot;broken&quot; and we (I) need to learn from it. 💭 </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-build-auth-from-first-principals"><a class="header" href="#how-to-build-auth-from-first-principals">How To Build <code>Auth</code> From First Principals</a></h1>
+<p>For the past 2 iterations,
+we have use the <code>Phoenix</code> Web Application framework
+to build our <code>Auth</code> system.
+The reasons for this choice
+are outlined in:
+<a href="https://github.com/dwyl/technology-stack#phoenix">dwyl/<strong>technology-stack</strong>#<strong>phoenix</strong></a>
+so won't be repeat it here.
+<code>Phoenix</code> is a &quot;batteries included&quot; framework
+that includes <em>many</em> features out-of-the-box.</p>
+<p>Our <strong><code>Auth</code> system</strong> is a <strong>standalone <code>Phoenix</code> instance</strong>
+that has its' own <strong><em>separate</em> database</strong>.
+This is a very <em>deliberate</em> choice.
+We want to enforce a <em>complete</em> 
+<a href="https://en.wikipedia.org/wiki/Separation_of_concerns"><strong>separation of concerns</strong></a>
+between <code>Auth</code> 
+and the <code>App</code> that <em>uses</em> <code>Auth</code>.</p>
+<p>@TODO: instert diagram illustrating relationship between <code>Auth</code> and <code>App</code>.</p>
+<p>Beyond the security benefits 
+of separating <code>Auth</code> 
+the practical rationale is simple:
+the code for building an <code>Auth</code> system 
+is 
+<a href="https://en.wiktionary.org/wiki/KLOC#Noun"><code>~3kloc</code></a>
+see: 
+<a href="https://en.wikipedia.org/wiki/Source_lines_of_code">wikipedia.org/Source_lines_of_code</a>
+If we include all the <code>Auth</code> code in our main <code>App</code>
+it adds to the <strong>complexity</strong> of the <code>App</code>
+and thus increase the time 
+it takes someone to
+<a href="https://en.wikipedia.org/wiki/Grok">grok</a>.
+The longer it takes people to <em>understand</em> the <code>App</code> code 
+the less likely they are to <em>contribute</em> to the <code>App</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: we are <em>not</em> suggesting 
+that people should not <em>also</em> 
+<code>try</code> to understand what <code>Auth</code> is doing. 
+On the contrary we want as many people as possible 
+to understand all aspects of our stack.
+However we acknowledge that <code>Auth</code>
+and &quot;People Management&quot; 
+is not the most <em>interesting</em> part of the stack.
+It's akin to the &quot;plumbing&quot; in your home.
+Absolutely necessary 
+and needs to function <em>flawlessly</em>.
+But not something you <em>actively</em> think about
+unless there's something that isn't working as expected ... </p>
+</blockquote>
+<p>We are using <code>phx.gen.auth</code> &quot;generator&quot; 
+that creates a bunch of code 
+see:
+<a href="https://hexdocs.pm/phoenix/mix_phx_gen_auth.html">hexdocs.pm/phoenix/mix_phx_gen_auth</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
+<p>Before you start building <code>auth</code>,
+ensure that you have the following on your computer:</p>
+<h2 id="latest-elixir"><a class="header" href="#latest-elixir">Latest <code>Elixir</code></a></h2>
+<p>In your terminal,
+run the following command:</p>
+<pre><code class="language-sh">elixir -v
+</code></pre>
+<p>You should see output similar to the following:</p>
+<pre><code class="language-sh">Erlang/OTP 25 [erts-13.1.4] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit] [dtrace]
+
+Elixir 1.14.3 (compiled with Erlang/OTP 25)
+</code></pre>
+<p>This is the latest and greatest version 
+of <code>Elixir</code> and <code>OTP</code>
+at the time of writing. 
+<a href="https://github.com/elixir-lang/elixir/tags">github.com/elixir-lang/elixir/tags</a></p>
+<blockquote>
+<p><strong>Note</strong>: if you have a <em>later</em> version,
+please consider creating a <code>Pull Request</code> 
+to update this section of the book.</p>
+</blockquote>
+<h2 id="latest-phoenix"><a class="header" href="#latest-phoenix"><em>Latest</em> <code>Phoenix</code></a></h2>
+<p>Visit: 
+<a href="https://github.com/phoenixframework/phoenix/tags">github.com/phoenixframework/phoenix/tags</a>
+to remind yourself 
+of what the most recent version of <code>Phoenix</code> is.
+I our case, <code>v1.7.0</code> was published 
+<a href="https://phoenixframework.org/blog/phoenix-1.7-final-released"><em>yesterday</em></a>. 🎉
+So that's what we are using.</p>
+<p>Confirm that you have the latest version of <code>Phoenix</code>
+by running the command:</p>
+<pre><code class="language-sh">mix phx.new -v
+</code></pre>
+<p>You should see something similar to:</p>
+<pre><code class="language-sh">Phoenix installer v1.7.0
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: if the version of <code>Phoenix</code> you are using
+is more recent than this, 
+please help us to update our docs:</p>
+</blockquote>
+<p>If you don't already have 
+the latest version of <code>Phoenix</code>,
+run the command: </p>
+<pre><code class="language-sh">mix archive.install hex phx_new
+</code></pre>
+<h2 id="postgresql-server"><a class="header" href="#postgresql-server"><code>PostgreSQL</code> Server</a></h2>
+<p><em>Confirm</em> <strong>PostgreSQL</strong> is running 
+(<em>so data can be stored</em>)
+run the following command:</p>
+<pre><code class="language-sh">lsof -i :5432
+</code></pre>
+<p>You should see output <em>similar</em> to the following:</p>
+<pre><code class="language-sh">COMMAND  PID  USER   FD  TYPE DEVICE                  SIZE/OFF NODE NAME
+postgres 529 Nelson  5u  IPv6 0xbc5d729e529f062b      0t0  TCP localhost:postgresql (LISTEN)
+postgres 529 Nelson  6u  IPv4 0xbc5d729e55a89a13      0t0  TCP localhost:postgresql (LISTEN)
+</code></pre>
+<p>This tells us that PostgreSQL is &quot;<em>listening</em>&quot; on TCP Port <code>5432</code>
+(<em>the default port</em>)</p>
+<p>If the <code>lsof</code> command does not yield any result
+in your terminal,
+run:</p>
+<pre><code class="language-sh">pg_isready
+</code></pre>
+<p>It should print the following:</p>
+<pre><code class="language-sh">/tmp:5432 - accepting connections
+</code></pre>
+<p>With all those 
+<a href="https://en.wikipedia.org/wiki/Preflight_checklist">&quot;pre-flight checks&quot;</a> 
+performed, let's <em>fly</em>! 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="create-the-new-auth-phoenix-project"><a class="header" href="#create-the-new-auth-phoenix-project">Create The New <code>Auth</code> Phoenix Project</a></h1>
+<p>In an empty working directory,
+using the 
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.New.html"><code>mix phx.new</code></a>
+generator,
+create a new <code>Phoenix</code> project:</p>
+<pre><code class="language-sh">
+</code></pre>
 
                     </main>
 
