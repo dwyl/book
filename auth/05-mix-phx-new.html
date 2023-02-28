@@ -148,8 +148,43 @@
 using the 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.New.html"><code>mix phx.new</code></a>
 generator,
-create a new <code>Phoenix</code> project:</p>
-<pre><code class="language-sh">
+create a new <code>Phoenix</code> project
+called &quot;auth&quot;:</p>
+<pre><code class="language-sh">mix phx.new auth
+</code></pre>
+<p>That will create a bunch of files.
+Most of them are &quot;boilerplate&quot; code 
+for configuring the <code>Phoenix</code> project
+and a load of <code>components</code>.
+We will use some of them and <code>delete</code>
+the rest. </p>
+<h2 id="run-the-phoenix-app"><a class="header" href="#run-the-phoenix-app">Run the <code>Phoenix</code> App</a></h2>
+<p>Once the dependencies are installed,
+run the following command in your terminal: </p>
+<pre><code class="language-sh">mix setup
+</code></pre>
+<p>Once everything is setup,
+run the <code>Phoenix</code> app 
+with the command:</p>
+<pre><code class="language-sh">mix phx.server
+</code></pre>
+<p>Open your web browser to: 
+<code>http://localhost:4000</code></p>
+<p>You should see something similar to the following: </p>
+<p><img src="https://user-images.githubusercontent.com/194400/221915847-cfd297f0-52ab-46f2-8e0a-bd58abad971a.png" alt="default-phoenix-homepage" /></p>
+<h2 id="run-the-tests"><a class="header" href="#run-the-tests">Run the Tests</a></h2>
+<p>Just to confirm everything is working,
+run the tests with the following command:</p>
+<pre><code class="language-sh">mix test
+</code></pre>
+<p>You should see output similar to the following:</p>
+<pre><code class="language-sh">Compiling 4 files (.ex)
+Generated auth app
+.....
+Finished in 0.1 seconds (0.05s async, 0.05s sync)
+5 tests, 0 failures
+
+Randomized with seed 50114
 </code></pre>
 
                     </main>

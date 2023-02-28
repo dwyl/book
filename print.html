@@ -147,9 +147,9 @@
                         <h1 id="intro"><a class="header" href="#intro">Intro</a></h1>
 <p>Our aim with writing a book 
 is to <strong><em>comprehensively</em> document</strong>
-everything we learned 
-while building our <code>App</code>
-and <code>API</code>.</p>
+<strong><em>everything</em> we learned</strong> 
+while building our <strong><code>App</code></strong>
+and <strong><code>API</code></strong>.</p>
 <p>This is the <strong><code>handbook</code></strong> 
 we <em>wish</em> we had 
 when we started our journey.
@@ -249,7 +249,7 @@ We recently saw this when we tried
 to add a <code>new</code> feature to <code>auth</code>,
 but we saw <code>Ecto</code> constraint errors.  </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-are-we-building"><a class="header" href="#what-are-we-building">What Are We Building?</a></h1>
-<p>We are building a **<em>complete</em> authentication system 
+<p>We are building a <strong><em>complete</em> authentication system</strong> 
 that <em>anyone</em> can use
 to protect the personal data 
 of the <code>people</code> using an <code>App</code>.</p>
@@ -279,7 +279,7 @@ please read on. </p>
 <p>As noted above,
 we are starting from scratch
 so there is zero &quot;baggage&quot; or &quot;legacy&quot;,
-but we are <em>informed</em> by our previous iteration of <code>auth</code>. </p>
+but we are <em>informed</em> by our previous iterations of <code>auth</code>. </p>
 <p>Let's start by picking holes in our previous design.</p>
 <blockquote>
 <p><strong>Note</strong>: the objective of analysing our <em>own</em> code/design
@@ -389,10 +389,6 @@ and needs to function <em>flawlessly</em>.
 But not something you <em>actively</em> think about
 unless there's something that isn't working as expected ... </p>
 </blockquote>
-<p>We are using <code>phx.gen.auth</code> &quot;generator&quot; 
-that creates a bunch of code 
-see:
-<a href="https://hexdocs.pm/phoenix/mix_phx_gen_auth.html">hexdocs.pm/phoenix/mix_phx_gen_auth</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
 <p>Before you start building <code>auth</code>,
 ensure that you have the following on your computer:</p>
@@ -402,7 +398,7 @@ run the following command:</p>
 <pre><code class="language-sh">elixir -v
 </code></pre>
 <p>You should see output similar to the following:</p>
-<pre><code class="language-sh">Erlang/OTP 25 [erts-13.1.4] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit] [dtrace]
+<pre><code class="language-sh">Erlang/OTP 25 [erts-13.1.4] [64-bit] [smp:10:10] [async-threads:1] [jit] [dtrace]
 
 Elixir 1.14.3 (compiled with Erlang/OTP 25)
 </code></pre>
@@ -420,9 +416,8 @@ to update this section of the book.</p>
 <a href="https://github.com/phoenixframework/phoenix/tags">github.com/phoenixframework/phoenix/tags</a>
 to remind yourself 
 of what the most recent version of <code>Phoenix</code> is.
-I our case, <code>v1.7.0</code> was published 
-<a href="https://phoenixframework.org/blog/phoenix-1.7-final-released"><em>yesterday</em></a>. 🎉
-So that's what we are using.</p>
+I our case, <a href="https://phoenixframework.org/blog/phoenix-1.7-final-released"><code>v1.7.0</code></a>,
+so that's what we are using.</p>
 <p>Confirm that you have the latest version of <code>Phoenix</code>
 by running the command:</p>
 <pre><code class="language-sh">mix phx.new -v
@@ -469,8 +464,43 @@ performed, let's <em>fly</em>! 🚀</p>
 using the 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.New.html"><code>mix phx.new</code></a>
 generator,
-create a new <code>Phoenix</code> project:</p>
-<pre><code class="language-sh">
+create a new <code>Phoenix</code> project
+called &quot;auth&quot;:</p>
+<pre><code class="language-sh">mix phx.new auth
+</code></pre>
+<p>That will create a bunch of files.
+Most of them are &quot;boilerplate&quot; code 
+for configuring the <code>Phoenix</code> project
+and a load of <code>components</code>.
+We will use some of them and <code>delete</code>
+the rest. </p>
+<h2 id="run-the-phoenix-app"><a class="header" href="#run-the-phoenix-app">Run the <code>Phoenix</code> App</a></h2>
+<p>Once the dependencies are installed,
+run the following command in your terminal: </p>
+<pre><code class="language-sh">mix setup
+</code></pre>
+<p>Once everything is setup,
+run the <code>Phoenix</code> app 
+with the command:</p>
+<pre><code class="language-sh">mix phx.server
+</code></pre>
+<p>Open your web browser to: 
+<code>http://localhost:4000</code></p>
+<p>You should see something similar to the following: </p>
+<p><img src="https://user-images.githubusercontent.com/194400/221915847-cfd297f0-52ab-46f2-8e0a-bd58abad971a.png" alt="default-phoenix-homepage" /></p>
+<h2 id="run-the-tests"><a class="header" href="#run-the-tests">Run the Tests</a></h2>
+<p>Just to confirm everything is working,
+run the tests with the following command:</p>
+<pre><code class="language-sh">mix test
+</code></pre>
+<p>You should see output similar to the following:</p>
+<pre><code class="language-sh">Compiling 4 files (.ex)
+Generated auth app
+.....
+Finished in 0.1 seconds (0.05s async, 0.05s sync)
+5 tests, 0 failures
+
+Randomized with seed 50114
 </code></pre>
 
                     </main>
