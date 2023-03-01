@@ -26,9 +26,14 @@ The word "**user**" is pervasive in computing:
 
 ![wikipedia-user-computer](https://user-images.githubusercontent.com/194400/223142338-11395ebc-2506-4114-895e-2051dcf8031f.png)
 
+Right there in the _definition_
+they clarify that a "user" is a "person" ...
+so why not just call them a `person`? 
+
 The fact that the term "**user**" is widely used
-doesn't make it _right_; it's just the `default` word
-many people have become accustomed to. 
+doesn't make it _right_; 
+it's just the `default` word
+many people have become accustomed to.
 
 Mega tech companies like Apple, Microsoft, Google and Facebook
 regularly use the word "user" or "users"
@@ -36,6 +41,27 @@ to describe the **`people`** that use their products and services.
 
 
 ![iamnotauser](https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png)
+
+## Personalization?
+
+Consider the word **`personalization`**.
+"_**Personalization** consists of tailoring 
+a service or a product 
+to accommodate specific individuals, 
+sometimes tied to groups or segments of individuals_."
+~ [wikipedia.org/wiki/Personalization](https://en.wikipedia.org/wiki/Personalization)
+
+The word isn't "userization",
+because the interface for the "user" is always the same; generic.
+Whereas the interface that is personalized 
+to an individual person is _just_ for them.
+
+We will be doing a _lot_ of **`personalization`**
+in our `App`
+and building tools that allow `people`
+to personalize their _own_ experience. 
+
+
 
 ## Recommended Reading
 

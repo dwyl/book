@@ -15,4 +15,4 @@ see if you _agree_ (or not)
 with our approach.
 
 As always,
-your feedback is very much welcome.
+your feedback is very much welcome. 🙏

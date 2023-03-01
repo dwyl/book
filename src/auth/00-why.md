@@ -16,9 +16,9 @@ that would allow us to **move _much_ faster**
 in the _long_ run.
 
 We have documented _all_ the steps taken
-in creating our `auth` system
-in this book.
-The code is well documented, tested and maintained.
+in creating our `auth` system.
+The code is well tested and maintained
+so _anyone_ can read how it all works.
 
 ## The Best Way to _Understand_ Something is to _Build_ It!
 
@@ -30,10 +30,10 @@ We've attempted to include _all_ the steps
 we took so that anyone can grok it.
 
 However we know this is not the most _exciting_ 
-part of the stack. 
+part of the application stack. 
 If you prefer to skip the `auth` section entirely,
 you can just _use_ it 
-and treat it as a "service" that "just works"
+and treat it as a "service" that "Just Works<sup>TM</sup>"
 and only refer to specific parts when needed.
 
 ## Why _Re-build_ `Auth`?
