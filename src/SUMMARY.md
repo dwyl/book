@@ -2,7 +2,6 @@
 
 [Introduction](./README.md)
 
-
 - [Authentication](./auth/README.md)
   - [Why build Auth?](auth/00-why.md)
   - [What are we building?](auth/01-what.md)
@@ -12,3 +11,4 @@
     - [Create New `Phoenix` Project](auth/05-mix-phx-new.md)
     - [Generate Auth Schema](auth/06-mix-gen-auth.md)
     - [Notes on Naming](auth/07-notes-on-naming.md)
+    - [Modals Are An _Antipattern_](auth/08-modals-antipattern.md)

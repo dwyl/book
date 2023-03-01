@@ -3,22 +3,25 @@
 Our aim with writing a book 
 is to **_comprehensively_ document**
 **_everything_ we learned** 
-while building our **`App`**
-and **`API`**.
+while building our 
+[**`App`**](https://github.com/dwyl/app)
+and 
+**`API`**.
 
-This is the **`handbook`** 
+This is the 
+[**handbook**](https://en.wikipedia.org/wiki/Handbook)
 we _wish_ we had 
 when we started our journey.
 Our goal is to have a book 
 that _anyone_ can use 
 to learn _exactly_ how we build/built
-_any_ aspect of our `App`. 
+_every_ aspect of our `App`. 
 
 We have already written over 
 **100 stand-alone tutorials**
 for various technologies/tools/frameworks.
 See:
-[dwyl?q=**learn**](https://github.com/dwyl?q=learn)
+[dwyl?q=**learn**](https://github.com/dwyl?q=learn) <br />
 The _advantage_ of 
 standalone/self-contained tutorials
 is that they are _focussed_ 
@@ -26,7 +29,7 @@ on one thing.
 The disadvantage 
 is that they lack clear progression.
 So people can be left asking:
-"What _next_?"
+"**What _next_**?"
 By contrast the objective in the `book`
 is to have a **_very_ clear progression**.
 
