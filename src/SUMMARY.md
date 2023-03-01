@@ -10,4 +10,6 @@
   - [How?](auth/03-how.md)
     - [Prerequisites](auth/04-prerequisites.md)
     - [Create New `Phoenix` Project](auth/05-mix-phx-new.md)
+    - [Generate Auth Schema](auth/06-mix-gen-auth.md)
+    - [Notes on Naming](auth/07-note-on-naming.md)
 

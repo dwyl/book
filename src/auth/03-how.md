@@ -18,7 +18,7 @@ We want to enforce a _complete_
 between `Auth` 
 and the `App` that _uses_ `Auth`.
 
-@TODO: instert diagram illustrating relationship between `Auth` and `App`.
+@TODO: insert diagram illustrating relationship between `Auth` and `App`.
 
 
 
