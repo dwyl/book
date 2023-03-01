@@ -17,6 +17,8 @@ allocator
 AlwaysEqual
 Amir
 anotherusername
+Antipattern
+antipattern
 APIs
 app's
 aren
