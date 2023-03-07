@@ -72,10 +72,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -83,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-note-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -358,7 +360,7 @@ We want to enforce a <em>complete</em>
 <a href="https://en.wikipedia.org/wiki/Separation_of_concerns"><strong>separation of concerns</strong></a>
 between <code>Auth</code> 
 and the <code>App</code> that <em>uses</em> <code>Auth</code>.</p>
-<p>@TODO: instert diagram illustrating relationship between <code>Auth</code> and <code>App</code>.</p>
+<p>@TODO: insert diagram illustrating relationship between <code>Auth</code> and <code>App</code>.</p>
 <p>Beyond the security benefits 
 of separating <code>Auth</code> 
 the practical rationale is simple:
@@ -502,6 +504,18 @@ Finished in 0.1 seconds (0.05s async, 0.05s sync)
 
 Randomized with seed 50114
 </code></pre>
+<p>With that out of the way,
+let's build!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generate-auth-files"><a class="header" href="#generate-auth-files">Generate Auth Files</a></h1>
+<p>The <code>phx.gen.auth</code> &quot;generator&quot; 
+creates a bunch of code 
+see:
+<a href="https://hexdocs.pm/phoenix/mix_phx_gen_auth.html">hexdocs.pm/phoenix/mix_phx_gen_auth</a></p>
+<pre><code class="language-sh">mix phx.gen.auth Accounts Person people
+</code></pre>
+<p>We will treat this code as &quot;scaffolding&quot; 
+and <code>delete</code> some of the unused code along the way. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="notes-on-naming"><a class="header" href="#notes-on-naming">Notes on Naming</a></h1>
 
                     </main>
 
