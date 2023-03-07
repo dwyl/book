@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-note-on-naming.html" class="active"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html" class="active"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,7 +145,85 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="notes-on-naming"><a class="header" href="#notes-on-naming">Notes on Naming</a></h1>
+                        <h1 id="notes-on-naming-conventions"><a class="header" href="#notes-on-naming-conventions">Notes on Naming Conventions</a></h1>
+<p>The words we use matter.
+To some people they matter <em>more</em> 
+than the <em>message</em> we are trying to convey.
+For some, if you speak or write
+a word that offends them (or <em>anyone</em> else)
+what you have to say no longer relevant.</p>
+<p>There are <em>many</em> words we avoid using
+in polite company such as 
+<a href="https://en.wikipedia.org/wiki/Profanity">profanity</a>
+or attempt to eliminate completely such as 
+<a href="https://en.wikipedia.org/wiki/Pejorative">pejorative</a>
+or 
+<a href="https://en.wikipedia.org/wiki/List_of_ethnic_slurs">ethnic slurs</a>.</p>
+<h2 id="user---person"><a class="header" href="#user---person"><del>User</del> -&gt; <code>Person</code></a></h2>
+<p>The word &quot;<strong>user</strong>&quot; is pervasive in computing:</p>
+<blockquote>
+<p>&quot;<em>A <strong><code>user</code></strong> is a <strong><code>person</code></strong> 
+who utilizes a computer or network service.</em>&quot;
+~ https://en.wikipedia.org/wiki/User_(computing)#Terminology</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/194400/223142338-11395ebc-2506-4114-895e-2051dcf8031f.png" alt="wikipedia-user-computer" /></p>
+<p>Right there in the <em>definition</em>
+they clarify that a &quot;user&quot; is a &quot;person&quot; ...
+so why not just call them a <code>person</code>? </p>
+<p>The fact that the term &quot;<strong>user</strong>&quot; is widely used
+doesn't make it <em>right</em>; 
+it's just the <code>default</code> word
+many people have become accustomed to.</p>
+<p>Mega tech companies like Apple, Microsoft, Google and Facebook
+regularly use the word &quot;user&quot; or &quot;users&quot;
+to describe the <strong><code>people</code></strong> that use their products and services.</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png" alt="iamnotauser" /></p>
+<h2 id="personalization"><a class="header" href="#personalization">Personalization?</a></h2>
+<p>Consider the word <strong><code>personalization</code></strong>.
+&quot;<em><strong>Personalization</strong> consists of tailoring 
+a service or a product 
+to accommodate specific individuals, 
+sometimes tied to groups or segments of individuals</em>.&quot;
+~ <a href="https://en.wikipedia.org/wiki/Personalization">wikipedia.org/wiki/Personalization</a></p>
+<p>The word isn't &quot;userization&quot;,
+because the interface for the &quot;user&quot; is always the same; generic.
+Whereas the interface that is personalized 
+to an individual person is <em>just</em> for them.</p>
+<p>We will be doing a <em>lot</em> of <strong><code>personalization</code></strong>
+in our <code>App</code>
+and building tools that allow <code>people</code>
+to personalize their <em>own</em> experience. </p>
+<h2 id="recommended-reading"><a class="header" href="#recommended-reading">Recommended Reading</a></h2>
+<ul>
+<li>Words Matter. Talk About People: 
+Not Customers, Not Consumers, Not Users:
+https://jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users</li>
+<li>Refuse to Call People ‘Users’:
+https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23</li>
+<li>The words you choose within your app 
+are an essential part of its experience:
+https://developer.apple.com/design/human-interface-guidelines/foundations/writing</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: <code>Apple</code>, while a proponent
+of carefully selecting words,
+often refer to the <code>people</code> 
+that buy and use 
+their products and services
+as &quot;users&quot;. 
+This is a legacy of their <em>age</em> as a company -
+they have been around since 
+<a href="https://en.wikipedia.org/wiki/Apple_Inc">1976</a> -
+and their <em>scale</em>;
+they have more than 
+<a href="https://www.macrumors.com/2023/02/02/apple-two-billion-active-devices"><strong>2 billion active devices</strong></a>.
+At that scale it's about numbers and &quot;users&quot;
+not individual <code>people</code>. 
+There are many great <code>people</code> at <code>Apple</code>
+who understand that words matter. 
+If the company was started today
+they would think twice about the &quot;users&quot; word.</p>
+</blockquote>
 
                     </main>
 
