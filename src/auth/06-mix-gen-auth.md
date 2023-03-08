@@ -130,11 +130,10 @@ at the created database tables.
 If you open the `auth_dev` 
 database in your Postgres GUI,
 e.g:
-[`DBEaver`](https://github.com/dwyl/learn-postgresql/issues/43)
-And view the 
+[`DBEaver`](https://github.com/dwyl/learn-postgresql/issues/43) <br />
+and view the 
 [ERD](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
-
-There are only two tables:
+there are only two tables:
 
 ![mix-phx-gen-auth-erd](https://user-images.githubusercontent.com/194400/223881258-be77ebdc-0114-4606-aac1-065f172b6727.png)
 
@@ -146,7 +145,6 @@ By default,
 does not setup any _protection_ 
 for personal data in the database.
 Email addresses are stored in-the-clear: 🙄 
-<img width="874" alt="image" src="">
 
 ![mix-phx-gen-auth-people-table-email-plaintext](https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png)
 

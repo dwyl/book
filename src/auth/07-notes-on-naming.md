@@ -93,13 +93,16 @@ treat their "users" as the `product`.
 > that make most of their money from ads._"
 > ~ [Ben Wolford](https://github.com/dwyl/learn-react/issues/23#issuecomment-1461358970)
 
-### `MAUs`
+## `DAUs`, `MAUs` 
 
 [`Facebook`](https://github.com/dwyl/learn-react/issues/23#issuecomment-406784935)
 will continue referring to `people` as "users"
 and more specifically 
+"[**DAUs**](https://en.wikipedia.org/wiki/Active_users)" 
+(_Daily_ Active Users)
+and 
 "[**MAUs**](https://github.com/dwyl/learn-react/issues/23#issuecomment-1458429682)"
-(Monthly Active Users).
+(_Monthly_ Active Users).
 They don't _want_ to think about the 
 `people` whose lives they are 
 [wasting](https://github.com/dwyl/home/issues/29)
@@ -154,7 +157,7 @@ Not Customers, Not Consumers, Not Users:
 are an essential part of its experience:
 [developer.apple.com/design/human-interface-guidelines/foundations/writing](https://developer.apple.com/design/human-interface-guidelines/foundations/writing)
 
-> **Note**: **`Apple**`**, while a proponent
+> **Note**: **`Apple**`** while a proponent
 > of carefully selecting words,
 > often refer to the `people` 
 > that buy and use 
