@@ -37,10 +37,9 @@ for companies
 that improperly store personal data.
 
 Most software engineers don't consider
-the law(s) around data protection. 
-But none of us have _any_ excuse 
+the law(s) around data protection
+but none of us have _any_ excuse 
 to ignore them even in basic projects.
-
 The good news is:
 protecting personal data
 is quite straightforward.
@@ -74,10 +73,13 @@ and wrote a comprehensive guide:
 We _highly_ recommend following step-by-step guide
 to understand this in detail.
 We aren't going to duplicate/repeat 
-any of the theory here. 
-Rather we are going to focus on using
-the package we created
+any of the _theory_ here. 
+Rather we are going to focus on 
+the _practice_ using
+the 
 [`fields`](https://github.com/dwyl/fields)
+package we created
+to implement transparent encryption.
 
 ## Using `Fields` to _Automatically_ Encrypt Personal Data
 

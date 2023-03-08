@@ -12,4 +12,4 @@
     - [Generate Auth Schema](auth/06-mix-gen-auth.md)
     - [Notes on Naming](auth/07-notes-on-naming.md)
     - [Modals Are An _Antipattern_](auth/08-modals-antipattern.md)
-    - [Encrypt Personal Data](src/auth/09-encrypt-data.md)
+    - [Encrypt Personal Data](auth/09-encrypt-data.md)

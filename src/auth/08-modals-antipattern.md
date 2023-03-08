@@ -12,16 +12,77 @@ and inadvertently making
 the experience/interface _worse_
 for the `person`.
 
+If you are unfamiliar with them,
+a good place to learn is:
+[bootstrap.com/modal](https://getbootstrap.com/docs/4.0/components/modal/)
+
+![bootstrap-modal](https://user-images.githubusercontent.com/194400/224336299-9d22426a-5efd-4cb4-8ee5-9d565f9f5a9c.png)
+
+A `modal` overlays information 
+on top of what is already displayed on the page.
+It hijacks the person's focus 
+to what the dev wants them to see
+and requires the person
+to _manually_ dismiss it 
+before being _allowed_ to resume what they were doing.
+This is an unwelcome interruption
+to the flow and a generally **_horrible_ experience**.
+
+`Modals` are a relic of the old web
+where ads hijacked people's screens with pop-ups:
+
+![pop-up-ads-90s](https://user-images.githubusercontent.com/194400/224343020-c1e0fc9c-7850-44e9-8df7-c5a5bdff8bfc.jpg)
+
+See:
+[wikipedia.org/Pop-up_ad](https://en.wikipedia.org/wiki/Pop-up_ad)
+
+The situation got completely out-of-hand
+and made browsing the web a _horrible_ experience.
+All modern browsers block pop-ups by default now
+but designers/devs who don't respect 
+the `people` using their site/app
+still reach for `modals` for hijacking attention.
+
+![modal-ad](https://user-images.githubusercontent.com/194400/208245674-cabc63f7-3975-4590-bc0d-b80e8823e200.png)
+
+Modals are almost _never_
+a good way of displaying information.
+
+## Modals in `Phoenix`?
+
 `Phoenix 1.7` added the new 
 [`modal`](https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/core_components.ex#L48) 
 component.
-We _wish_ the had not done it
+
+We _really wish_ the creators of `Phoenix` 
+had not done it
 because it will _inevitably_ be misused.
 Naive devs who mean well 
 but haven't studied UX,
 will use a `modal`
 when a basic `<div>`
 would be considerably better.
+
+It is used by `default` for inserting new content:
+
+![phoenix-modal-new-item](https://user-images.githubusercontent.com/194400/199604980-3a7d8c6a-82e3-488b-aebf-e3c6c28d9e1d.png)
+
+This is a _horrible_ experience.
+The `New Item` `modal` overlays the `Listing Items` page
+instead of just showing a `New Item` _page_. 
+This adds absolutely no value to the `person`
+inputing the `item`; 
+it's just a distraction.
+This shows that the devs building
+`Phoenix` have not done very much UX/Usability testing
+because this would _immediately_ confuse
+an older less tech-savvy person.
+They would ask is this page "Listing Items"
+or is it allowing me to create a "New Item"?
+And if they accidentally clicked/tapped
+on the "X" they would lose the text they inputted.
+Horrible.
+
 
 ## Quick Example
 
