@@ -122,15 +122,58 @@ Generated auth app
 15:04:11.310 [info] == Migrated 20230226095715 in 0.1s
 ```
 
+## Schema
+
 Let's take a quick look
 at the created database tables.
-But first ...
+
+If you open the `auth_dev` 
+database in your Postgres GUI,
+e.g:
+[`DBEaver`](https://github.com/dwyl/learn-postgresql/issues/43)
+And view the 
+[ERD](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
+
+There are only two tables:
+
+![mix-phx-gen-auth-erd](https://user-images.githubusercontent.com/194400/223881258-be77ebdc-0114-4606-aac1-065f172b6727.png)
+
+
+### Data in `people` and `people_tokens` tables
+
+By default,
+`mix phx.gen.auth` 
+does not setup any _protection_ 
+for personal data in the database.
+Email addresses are stored in-the-clear: 🙄 
+<img width="874" alt="image" src="">
+
+![mix-phx-gen-auth-people-table-email-plaintext](https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png)
+
+Similarly the `people_tokens` table stores `email` addresses as **`plaintext`** in the `sent_to` column:
+
+![people_token-email-plaintext](https://user-images.githubusercontent.com/194400/223948397-6984b456-8612-492b-bb79-84442c8b4241.png)
+
+
+This is **_obviously_ undesirable**. 🙃 
+This is a privacy/security issue
+waiting to become a scandal!
+We will address this _swiftly_
+in the following pages.
+
+But first, tests!
+
 
 ## Run The Tests
 
 Sadly, the `phx.gen.auth` 
-there to be a bunch of routes starting with the "/user" ...
-it doesn't respect the fact that we call them **`people`**
+there to be a bunch of routes 
+hard-coded with the "/user" prefix in the tests
+e.g: 
+[`test/auth_web/controllers/person_session_controller_test.exs#L15`](https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/test/auth_web/controllers/person_session_controller_test.exs#L15)
+
+The generator doesn't respect 
+the fact that we call them **`people`**
 when we invoked the command above. 
 so if you run the tests:
 

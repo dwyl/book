@@ -95,7 +95,7 @@ remove the line:
 From the file:
 [`/lib/auth_web/components/layouts/app.html.heex#L40`](https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/app.html.heex#L40)
 
-To disable all `flash` modals.
+To remove all `flash` modals.
 
 And just like magic,
 the tests that were failing previously,
@@ -116,3 +116,6 @@ Finished in 0.5 seconds (0.3s async, 0.1s sync)
 115 tests, 0 failures
 ```
 
+With all tests passing,
+we can _finally_ get on 
+with building `Auth`! 

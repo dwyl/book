@@ -1,7 +1,5 @@
 # Notes on Naming Conventions
 
-![iamnotauser](https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png)
-
 The words we use matter.
 To some people they matter _more_ 
 than the _message_ we are trying to convey.
@@ -80,7 +78,7 @@ treat their "users" as the `product`.
 
 ## The Product `Facebook` Sells is _You_
 
-![facebook-users-for-sale](https://user-images.githubusercontent.com/194400/223942613-bbc5ea60-2ff4-4751-9dad-11e151ca5248.png)
+[![facebook-users-for-sale](https://user-images.githubusercontent.com/194400/223942613-bbc5ea60-2ff4-4751-9dad-11e151ca5248.png)](https://slate.com/technology/2018/04/are-you-really-facebooks-product-the-history-of-a-dangerous-idea.html)
 
 > "_You may think Facebook is the product 
 > and you’re the client, 
@@ -139,23 +137,24 @@ and so I have doubts they can usher in
 the kind of improvements to technology we desperately need._"
 ~ [Adam Lefton](https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23)
 
+![iamnotauser](https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png)
 
 
 ## Recommended Reading
 
 + Words Matter. Talk About People: 
 Not Customers, Not Consumers, Not Users:
-https://jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users
+[jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users](https://jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users)
 + Refuse to Call People ‘Users’:
-https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23
-+ The words you choose within your app 
-are an essential part of its experience:
-https://developer.apple.com/design/human-interface-guidelines/foundations/writing
+[medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23](https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23)
 + Is Your Life Really Yours? 
   How ‘The Attention Merchants’ Got Inside Our Heads:
 [bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2](https://bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2/)
++ The words you choose within your app 
+are an essential part of its experience:
+[developer.apple.com/design/human-interface-guidelines/foundations/writing](https://developer.apple.com/design/human-interface-guidelines/foundations/writing)
 
-> **Note**: `Apple`, while a proponent
+> **Note**: **`Apple**`**, while a proponent
 > of carefully selecting words,
 > often refer to the `people` 
 > that buy and use 
@@ -171,5 +170,10 @@ https://developer.apple.com/design/human-interface-guidelines/foundations/writin
 > not individual `people`. 
 > There are many great `people` at `Apple`
 > who understand that words matter. 
-> If the company was started today
+> If the company was started today perhaps
 > they would think twice about the "users" word.
+> But sadly, even Apple are now in the advertising
+> business:
+> [wired.co.uk/article/apple-is-an-ad-company-now](https://www.wired.co.uk/article/apple-is-an-ad-company-now)
+> So they aren't likely to update 
+> the word they use to describe us.
