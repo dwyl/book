@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>book</title>
+        <title>dwyl book</title>
         <meta name="robots" content="noindex" />
 
 
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -114,7 +114,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">book</h1>
+                    <h1 class="menu-title">dwyl book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -150,20 +150,23 @@
 <p>Our aim with writing a book 
 is to <strong><em>comprehensively</em> document</strong>
 <strong><em>everything</em> we learned</strong> 
-while building our <strong><code>App</code></strong>
-and <strong><code>API</code></strong>.</p>
-<p>This is the <strong><code>handbook</code></strong> 
+while building our 
+<a href="https://github.com/dwyl/app"><strong><code>App</code></strong></a>
+and 
+<strong><code>API</code></strong>.</p>
+<p>This is the 
+<a href="https://en.wikipedia.org/wiki/Handbook"><strong>handbook</strong></a>
 we <em>wish</em> we had 
 when we started our journey.
 Our goal is to have a book 
 that <em>anyone</em> can use 
 to learn <em>exactly</em> how we build/built
-<em>any</em> aspect of our <code>App</code>. </p>
+<em>every</em> aspect of our <code>App</code>. </p>
 <p>We have already written over 
 <strong>100 stand-alone tutorials</strong>
 for various technologies/tools/frameworks.
 See:
-<a href="https://github.com/dwyl?q=learn">dwyl?q=<strong>learn</strong></a>
+<a href="https://github.com/dwyl?q=learn">dwyl?q=<strong>learn</strong></a> <br />
 The <em>advantage</em> of 
 standalone/self-contained tutorials
 is that they are <em>focussed</em> 
@@ -171,7 +174,7 @@ on one thing.
 The disadvantage 
 is that they lack clear progression.
 So people can be left asking:
-&quot;What <em>next</em>?&quot;
+&quot;<strong>What <em>next</em></strong>?&quot;
 By contrast the objective in the <code>book</code>
 is to have a <strong><em>very</em> clear progression</strong>.</p>
 <p>If you click the &quot;Print&quot; icon 
@@ -507,31 +510,180 @@ Randomized with seed 50114
 <p>With that out of the way,
 let's build!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generate-auth-files"><a class="header" href="#generate-auth-files">Generate Auth Files</a></h1>
-<p>For <code>auth v2</code><br />
+<p>In <code>auth v1</code> the <code>mix phx.gen.auth</code> generator 
+<a href="https://github.com/dwyl/auth/issues/207">didn't exist</a>
+so we had to hand-write all the code. 
+For <code>auth v2</code><br />
 we are using the <code>phx.gen.auth</code> &quot;generator&quot; 
 to provide some of the scaffolding
 and session management.
 see:
 <a href="https://hexdocs.pm/phoenix/mix_phx_gen_auth.html">hexdocs.pm/phoenix/mix_phx_gen_auth</a></p>
-<p>In your terminal, run th following command:</p>
+<p>In your terminal, run th following command: </p>
 <pre><code class="language-sh">mix phx.gen.auth Accounts Person people
 </code></pre>
 <p>The generator prompts with the following question:</p>
-<pre><code class="language-sh">
+<pre><code class="language-sh">An authentication system can be created in two different ways:
+- Using Phoenix.LiveView (default)
+- Using Phoenix.Controller only
+Do you want to create a LiveView based authentication system? [Yn]
 </code></pre>
-<p>and <code>delete</code> some of the unused code along the way. </p>
+<p>We answered <code>N</code> (No) 
+because we will be adding more advanced <code>auth</code> </p>
+<pre><code class="language-sh">* creating priv/repo/migrations/20230226095715_create_people_auth_tables.exs
+* creating lib/auth/accounts/person_notifier.ex
+* creating lib/auth/accounts/person.ex
+* creating lib/auth/accounts/person_token.ex
+* creating lib/auth_web/person_auth.ex
+* creating test/auth_web/person_auth_test.exs
+* creating lib/auth_web/controllers/person_session_controller.ex
+* creating test/auth_web/controllers/person_session_controller_test.exs
+* creating lib/auth_web/controllers/person_confirmation_html.ex
+* creating lib/auth_web/controllers/person_confirmation_html/new.html.heex
+* creating lib/auth_web/controllers/person_confirmation_html/edit.html.heex
+* creating lib/auth_web/controllers/person_confirmation_controller.ex
+* creating test/auth_web/controllers/person_confirmation_controller_test.exs
+* creating lib/auth_web/controllers/person_registration_html/new.html.heex
+* creating lib/auth_web/controllers/person_registration_controller.ex
+* creating test/auth_web/controllers/person_registration_controller_test.exs
+* creating lib/auth_web/controllers/person_registration_html.ex
+* creating lib/auth_web/controllers/person_reset_password_html.ex
+* creating lib/auth_web/controllers/person_reset_password_controller.ex
+* creating test/auth_web/controllers/person_reset_password_controller_test.exs
+* creating lib/auth_web/controllers/person_reset_password_html/edit.html.heex
+* creating lib/auth_web/controllers/person_reset_password_html/new.html.heex
+* creating lib/auth_web/controllers/person_session_html.ex
+* creating lib/auth_web/controllers/person_session_html/new.html.heex
+* creating lib/auth_web/controllers/person_settings_html.ex
+* creating lib/auth_web/controllers/person_settings_controller.ex
+* creating lib/auth_web/controllers/person_settings_html/edit.html.heex
+* creating test/auth_web/controllers/person_settings_controller_test.exs
+* creating lib/auth/accounts.ex
+* injecting lib/auth/accounts.ex
+* creating test/auth/accounts_test.exs
+* injecting test/auth/accounts_test.exs
+* creating test/support/fixtures/accounts_fixtures.ex
+* injecting test/support/fixtures/accounts_fixtures.ex
+* injecting test/support/conn_case.ex
+* injecting config/test.exs
+* injecting mix.exs
+* injecting lib/auth_web/router.ex
+* injecting lib/auth_web/router.ex - imports
+* injecting lib/auth_web/router.ex - plug
+* injecting lib/auth_web/components/layouts/root.html.heex
+
+Please re-fetch your dependencies with the following command:
+
+    $ mix deps.get
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+Once you are ready, visit &quot;/people/register&quot;
+to create your account and then access &quot;/dev/mailbox&quot; to
+see the account confirmation email.
+</code></pre>
+<p>That's a <em>lot</em> of code. 
+See the <code>git</code> commit:
+<a href="https://github.com/dwyl/auth/commit/90086a83c6968573f7d4c72b3882a247ac30112d"><code>90086a8</code></a>.
+We will use the session management 
+in our <code>auth</code> system
+and <code>delete</code> some of the unused code along the way. </p>
+<h2 id="migrate-the-schema"><a class="header" href="#migrate-the-schema">Migrate the Schema</a></h2>
+<p>When you run:</p>
+<pre><code class="language-sh">mix ecto.migrate
+</code></pre>
+<p>You will see the following output:</p>
+<pre><code class="language-sh">Generated auth app
+
+15:04:11.168 [info] == Running 20230226095715 Auth.Repo.Migrations.CreatePeopleAuthTables.change/0 forward
+
+15:04:11.173 [info] execute &quot;CREATE EXTENSION IF NOT EXISTS citext&quot;
+
+15:04:11.285 [info] create table people
+
+15:04:11.296 [info] create index people_email_index
+
+15:04:11.297 [info] create table people_tokens
+
+15:04:11.302 [info] create index people_tokens_person_id_index
+
+15:04:11.307 [info] create index people_tokens_context_token_index
+
+15:04:11.310 [info] == Migrated 20230226095715 in 0.1s
+</code></pre>
+<p>Let's take a quick look
+at the created database tables.
+But first ...</p>
+<h2 id="run-the-tests-1"><a class="header" href="#run-the-tests-1">Run The Tests</a></h2>
+<p>Sadly, the <code>phx.gen.auth</code> 
+there to be a bunch of routes starting with the &quot;/user&quot; ...
+it doesn't respect the fact that we call them <strong><code>people</code></strong>
+when we invoked the command above. 
+so if you run the tests:</p>
+<pre><code class="language-sh">mix test
+</code></pre>
+<p>You will see several warnings:</p>
+<pre><code class="language-sh">.warning: no route path for AuthWeb.Router matches &quot;/users/log_out&quot;
+  test/auth_web/controllers/person_registration_controller_test.exs:40: AuthWeb.PersonRegistrationControllerTest.&quot;test POST /people/register creates account and logs the person in&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/log_out&quot;
+  test/auth_web/controllers/person_session_controller_test.exs:40: AuthWeb.PersonSessionControllerTest.&quot;test POST /people/log_in logs the person in&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/settings&quot;
+  test/auth_web/controllers/person_session_controller_test.exs:39: AuthWeb.PersonSessionControllerTest.&quot;test POST /people/log_in logs the person in&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/settings&quot;
+  test/auth_web/controllers/person_registration_controller_test.exs:39: AuthWeb.PersonRegistrationControllerTest.&quot;test POST /people/register creates account and logs the person in&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/register&quot;
+  test/auth_web/controllers/person_session_controller_test.exs:15: AuthWeb.PersonSessionControllerTest.&quot;test GET /people/log_in renders log in page&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/register&quot;
+  test/auth_web/controllers/person_registration_controller_test.exs:12: AuthWeb.PersonRegistrationControllerTest.&quot;test GET /people/register renders registration page&quot;/1
+
+warning: no route path for AuthWeb.Router matches &quot;/users/log_in&quot;
+  test/auth_web/controllers/person_registration_controller_test.exs:11: AuthWeb.PersonRegistrationControllerTest.&quot;test GET /people/register renders registration page&quot;/1
+</code></pre>
+<p>And ultimately the tests fail: </p>
+<pre><code class="language-sh">...............................................................................
+Finished in 0.6 seconds (0.4s async, 0.2s sync)
+115 tests, 5 failures
+</code></pre>
+<p>This should be a easy to fix.</p>
+<p>Perform a find-and-replace for &quot;/users/&quot; to &quot;/people/&quot;</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223720287-98435204-8189-4baf-ab7b-a2a3f506b6dd.png" alt="replace-users-with-people" /></p>
+<p>Attempt to re-run the tests:</p>
+<pre><code class="language-sh">mix test
+</code></pre>
+<p>Sadly, 4 tests still fail:</p>
+<pre><code class="language-sh">  1) test POST /people/register creates account and logs the person in (AuthWeb.PersonRegistrationControllerTest)
+     test/auth_web/controllers/person_registration_controller_test.exs:24
+     Assertion with =~ failed
+     code:  assert response =~ email
+     left:  &quot;&lt;!DOCTYPE html&gt;\n&lt;html lang=\&quot;en\&quot; style=\&quot;scrollbar-gutter: stable;\&quot;&gt;\n  &lt;head&gt;\n etc.
+
+etc.
+
+.......................................................................
+Finished in 0.5 seconds (0.4s async, 0.1s sync)
+115 tests, 4 failures
+</code></pre>
+<p>We're going to have to investigate/update these tests <em>manually</em>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="notes-on-naming-conventions"><a class="header" href="#notes-on-naming-conventions">Notes on Naming Conventions</a></h1>
+<p><img src="https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png" alt="iamnotauser" /></p>
 <p>The words we use matter.
 To some people they matter <em>more</em> 
 than the <em>message</em> we are trying to convey.
 For some, if you speak or write
-a word that offends them (or <em>anyone</em> else)
-what you have to say no longer relevant.</p>
+a word that offends them (or <em>anyone</em> else),
+what you have to say is no longer relevant.</p>
 <p>There are <em>many</em> words we avoid using
 in polite company such as 
 <a href="https://en.wikipedia.org/wiki/Profanity">profanity</a>
-or attempt to eliminate completely such as 
-<a href="https://en.wikipedia.org/wiki/Pejorative">pejorative</a>
+and others we attempt to eliminate completely such as 
+<a href="https://en.wikipedia.org/wiki/Pejorative">pejorative</a> terms
 or 
 <a href="https://en.wikipedia.org/wiki/List_of_ethnic_slurs">ethnic slurs</a>.</p>
 <h2 id="user---person"><a class="header" href="#user---person"><del>User</del> -&gt; <code>Person</code></a></h2>
@@ -552,7 +704,6 @@ many people have become accustomed to.</p>
 <p>Mega tech companies like Apple, Microsoft, Google and Facebook
 regularly use the word &quot;user&quot; or &quot;users&quot;
 to describe the <strong><code>people</code></strong> that use their products and services.</p>
-<p><img src="https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png" alt="iamnotauser" /></p>
 <h2 id="personalization"><a class="header" href="#personalization">Personalization?</a></h2>
 <p>Consider the word <strong><code>personalization</code></strong>.
 &quot;<em><strong>Personalization</strong> consists of tailoring 
@@ -568,6 +719,37 @@ to an individual person is <em>just</em> for them.</p>
 in our <code>App</code>
 and building tools that allow <code>people</code>
 to personalize their <em>own</em> experience. </p>
+<h2 id="complete-clarity"><a class="header" href="#complete-clarity">Complete Clarity</a></h2>
+<p>We avoid using the word &quot;<em><strong>user</strong></em>&quot;
+in the <code>auth</code> system and our <code>App</code>
+because we consider it reductive
+and distances the <code>people</code> creating the <code>code</code>
+from the <code>people</code> <em>using</em> the product.</p>
+<p>Instead we refer to <code>people</code> using the <code>App</code>
+as <code>people</code> because it helps us 
+to <em>think</em> of them as <strong><em>real</em> <code>people</code></strong>.</p>
+<p>We cannot <em>force</em> anyone <code>else</code>
+to stop using the word &quot;user&quot;.
+It will still be the <code>default</code> for many companies.</p>
+<p><a href="https://github.com/dwyl/learn-react/issues/23#issuecomment-406784935"><code>Facebook</code></a>
+will continue referring to <code>people</code> as &quot;users&quot;
+and more specifically 
+&quot;<a href="https://github.com/dwyl/learn-react/issues/23#issuecomment-1458429682"><strong>MAUs</strong></a>&quot;
+(Monthly Active Users).
+They don't <em>want</em> to think about the 
+<code>people</code> whose lives they are 
+<a href="https://github.com/dwyl/home/issues/29">wasting</a>.</p>
+<p>We want to do the <em>exact</em> opposite of <code>Facebook</code> with our <code>App</code>;
+we want to <strong>help <code>people</code> <em>save</em> time</strong>!
+So we are using the word &quot;people&quot;
+and avoiding &quot;users&quot; wherever we can.</p>
+<blockquote>
+<p>&quot;<em>Simply put, the U-words have their origin in a more sanguine, naïve era. 
+As terms, I find them unethical and outdated, 
+and so I have doubts they can usher in 
+the kind of improvements to technology we desperately need.</em>&quot;
+~ <a href="https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23">Adam Lefton</a></p>
+</blockquote>
 <h2 id="recommended-reading"><a class="header" href="#recommended-reading">Recommended Reading</a></h2>
 <ul>
 <li>Words Matter. Talk About People: 
@@ -599,6 +781,96 @@ who understand that words matter.
 If the company was started today
 they would think twice about the &quot;users&quot; word.</p>
 </blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="modals-are-an-experience-antipattern"><a class="header" href="#modals-are-an-experience-antipattern">Modals Are An Experience <em>Antipattern</em></a></h1>
+<p>&quot;<em>An <strong>antipattern</strong> is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution, but <strong>isn't one</strong>.</em>&quot;
+~ Linda Rising - The Patterns Handbook
+<a href="https://en.wikipedia.org/wiki/Anti-pattern#:~:text=An%20antipattern%20is%20just%20like,%2C%20but%20isn&#x27;t%20one.">wikipedia.org/wiki/Anti-pattern</a></p>
+<p>9 times out of 10 
+when designers/egineers 
+employ a <code>modal</code> in an App.
+they are doing so inappropriately
+and inadvertently making 
+the experience/interface <em>worse</em>
+for the <code>person</code>.</p>
+<p><code>Phoenix 1.7</code> added the new 
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/core_components.ex#L48"><code>modal</code></a> 
+component.
+We <em>wish</em> the had not done it
+because it will <em>inevitably</em> be misused.
+Naive devs who mean well 
+but haven't studied UX,
+will use a <code>modal</code>
+when a basic <code>&lt;div&gt;</code>
+would be considerably better.</p>
+<h2 id="quick-example"><a class="header" href="#quick-example">Quick Example</a></h2>
+<p>After executing the <code>mix phx.gen.auth</code> command
+and then running the project with:</p>
+<pre><code class="language-sh">mix phx.server
+</code></pre>
+<p>The following 2 links 
+are added to the header 
+of home page: 
+<img width="1159" alt="phoenix-homepage-with-register-login-links" src="https://user-images.githubusercontent.com/194400/223761934-73e848c8-4ccd-44b3-ae8c-9376cd10fafb.png"></p>
+<p>The code that creates these links is: <a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/root.html.heex#L15-L55"><code>/lib/auth_web/components/layouts/root.html.heex#L15-L55</code></a></p>
+<p>Clicking on the <code>register</code> link we navigate to: http://localhost:4000/people/register
+<img width="771" alt="image" src="https://user-images.githubusercontent.com/194400/223764612-8cdae223-49f3-43ae-9e24-c22a4e2caada.png"></p>
+<p>Here we can enter an <code>Email</code> and <code>Password</code> to and click on the <code>Create an account</code> button:
+<img width="771" alt="phoenix-auth-register-account" src="https://user-images.githubusercontent.com/194400/223766668-b0dcab60-be53-480e-9e4d-d1795ae57bdb.png"></p>
+<p>This redirects us back to the homepage <code>http://localhost:4000/</code> and we see the following <code>modal</code>:
+<img width="801" alt="phoenix-auth-register-success-modal" src="https://user-images.githubusercontent.com/194400/223767398-b1ac4510-a941-4d23-a748-1da6946cdd41.png"></p>
+<p>The person viewing this screen 
+has to <em>manually</em> dismiss
+the <code>modal</code> in order to see 
+the content that is <em>relevant</em> to them: </p>
+<p><img src="https://user-images.githubusercontent.com/194400/223803237-55458f41-1456-4981-b531-3fdafb6b74ba.png" alt="phoenix-auth-email-in-header" /></p>
+<p>Inspecting the <code>DOM</code> of the page in our browser:
+<img width="1297" alt="image" src="https://user-images.githubusercontent.com/194400/223771234-b839c8fe-feb9-481c-ba66-40dabba374fc.png"></p>
+<p>We see that the <code>&lt;div id=&quot;flash&quot;</code> 
+has the following <code>HTML</code>: </p>
+<pre><code class="language-html">&lt;div id=&quot;flash&quot; phx-mounted=&quot;[[&amp;quot;show&amp;quot;,{&amp;quot;display&amp;quot;:null,&amp;quot;time&amp;quot;:200,&amp;quot;to&amp;quot;:&amp;quot;#flash&amp;quot;,&amp;quot;transition&amp;quot;:[[&amp;quot;transition-all&amp;quot;,&amp;quot;transform&amp;quot;,&amp;quot;ease-out&amp;quot;,&amp;quot;duration-300&amp;quot;],[&amp;quot;opacity-0&amp;quot;,&amp;quot;translate-y-4&amp;quot;,&amp;quot;sm:translate-y-0&amp;quot;,&amp;quot;sm:scale-95&amp;quot;],[&amp;quot;opacity-100&amp;quot;,&amp;quot;translate-y-0&amp;quot;,&amp;quot;sm:scale-100&amp;quot;]]}]]&quot; phx-click=&quot;[[&amp;quot;push&amp;quot;,{&amp;quot;event&amp;quot;:&amp;quot;lv:clear-flash&amp;quot;,&amp;quot;value&amp;quot;:{&amp;quot;key&amp;quot;:&amp;quot;info&amp;quot;}}],[&amp;quot;hide&amp;quot;,{&amp;quot;time&amp;quot;:200,&amp;quot;to&amp;quot;:&amp;quot;#flash&amp;quot;,&amp;quot;transition&amp;quot;:[[&amp;quot;transition-all&amp;quot;,&amp;quot;transform&amp;quot;,&amp;quot;ease-in&amp;quot;,&amp;quot;duration-200&amp;quot;],[&amp;quot;opacity-100&amp;quot;,&amp;quot;translate-y-0&amp;quot;,&amp;quot;sm:scale-100&amp;quot;],[&amp;quot;opacity-0&amp;quot;,&amp;quot;translate-y-4&amp;quot;,&amp;quot;sm:translate-y-0&amp;quot;,&amp;quot;sm:scale-95&amp;quot;]]}]]&quot; role=&quot;alert&quot; class=&quot;fixed hidden top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-3 shadow-md shadow-zinc-900/5 ring-1 bg-emerald-50 text-emerald-800 ring-emerald-500 fill-cyan-900&quot; style=&quot;display: block;&quot;&gt;
+  &lt;p class=&quot;flex items-center gap-1.5 text-[0.8125rem] font-semibold leading-6&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot; class=&quot;h-4 w-4&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 20 20&quot;&gt;
+        &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Success!
+  &lt;/p&gt;
+  &lt;p class=&quot;mt-2 text-[0.8125rem] leading-5&quot;&gt;Person created successfully.&lt;/p&gt;
+  &lt;button type=&quot;button&quot; class=&quot;group absolute top-2 right-1 p-2&quot; aria-label=&quot;close&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot; class=&quot;h-5 w-5 stroke-current opacity-40 group-hover:opacity-70&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+        &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>This is a <em>lot</em> of code 
+just to inform the <code>person</code>
+that the successfully registered.</p>
+<p>We <em>know</em> there's a <em>much</em> better way.
+We will be <em>demonstrating</em> it 
+in the next few pages.</p>
+<p>For now, we're just going to 
+remove the line:</p>
+<pre><code class="language-html">&lt;.flash_group flash={@flash} /&gt;
+</code></pre>
+<p>From the file:
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/app.html.heex#L40"><code>/lib/auth_web/components/layouts/app.html.heex#L40</code></a></p>
+<p>To disable all <code>flash</code> modals.</p>
+<p>And just like magic,
+the tests that were failing previously,
+because the <code>modal</code> (noise)
+was covering the <code>email</code> address,
+now pass: </p>
+<pre><code class="language-sh">mix test 
+
+Compiling 2 files (.ex)
+The database for Auth.Repo has already been created
+
+19:08:47.892 [info] Migrations already up
+..........................................................
+.........................................................
+Finished in 0.5 seconds (0.3s async, 0.1s sync)
+115 tests, 0 failures
+</code></pre>
 
                     </main>
 

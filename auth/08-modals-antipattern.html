@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modals Are An Antipattern - dwyl book</title>
+
+
+        <!-- Custom HTML head -->
+        <script defer data-domain="dwyl.github.io" src="https://plausible.io/js/script.js"></script>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html" class="active"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwyl book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="modals-are-an-experience-antipattern"><a class="header" href="#modals-are-an-experience-antipattern">Modals Are An Experience <em>Antipattern</em></a></h1>
+<p>&quot;<em>An <strong>antipattern</strong> is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution, but <strong>isn't one</strong>.</em>&quot;
+~ Linda Rising - The Patterns Handbook
+<a href="https://en.wikipedia.org/wiki/Anti-pattern#:~:text=An%20antipattern%20is%20just%20like,%2C%20but%20isn&#x27;t%20one.">wikipedia.org/wiki/Anti-pattern</a></p>
+<p>9 times out of 10 
+when designers/egineers 
+employ a <code>modal</code> in an App.
+they are doing so inappropriately
+and inadvertently making 
+the experience/interface <em>worse</em>
+for the <code>person</code>.</p>
+<p><code>Phoenix 1.7</code> added the new 
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/core_components.ex#L48"><code>modal</code></a> 
+component.
+We <em>wish</em> the had not done it
+because it will <em>inevitably</em> be misused.
+Naive devs who mean well 
+but haven't studied UX,
+will use a <code>modal</code>
+when a basic <code>&lt;div&gt;</code>
+would be considerably better.</p>
+<h2 id="quick-example"><a class="header" href="#quick-example">Quick Example</a></h2>
+<p>After executing the <code>mix phx.gen.auth</code> command
+and then running the project with:</p>
+<pre><code class="language-sh">mix phx.server
+</code></pre>
+<p>The following 2 links 
+are added to the header 
+of home page: 
+<img width="1159" alt="phoenix-homepage-with-register-login-links" src="https://user-images.githubusercontent.com/194400/223761934-73e848c8-4ccd-44b3-ae8c-9376cd10fafb.png"></p>
+<p>The code that creates these links is: <a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/root.html.heex#L15-L55"><code>/lib/auth_web/components/layouts/root.html.heex#L15-L55</code></a></p>
+<p>Clicking on the <code>register</code> link we navigate to: http://localhost:4000/people/register
+<img width="771" alt="image" src="https://user-images.githubusercontent.com/194400/223764612-8cdae223-49f3-43ae-9e24-c22a4e2caada.png"></p>
+<p>Here we can enter an <code>Email</code> and <code>Password</code> to and click on the <code>Create an account</code> button:
+<img width="771" alt="phoenix-auth-register-account" src="https://user-images.githubusercontent.com/194400/223766668-b0dcab60-be53-480e-9e4d-d1795ae57bdb.png"></p>
+<p>This redirects us back to the homepage <code>http://localhost:4000/</code> and we see the following <code>modal</code>:
+<img width="801" alt="phoenix-auth-register-success-modal" src="https://user-images.githubusercontent.com/194400/223767398-b1ac4510-a941-4d23-a748-1da6946cdd41.png"></p>
+<p>The person viewing this screen 
+has to <em>manually</em> dismiss
+the <code>modal</code> in order to see 
+the content that is <em>relevant</em> to them: </p>
+<p><img src="https://user-images.githubusercontent.com/194400/223803237-55458f41-1456-4981-b531-3fdafb6b74ba.png" alt="phoenix-auth-email-in-header" /></p>
+<p>Inspecting the <code>DOM</code> of the page in our browser:
+<img width="1297" alt="image" src="https://user-images.githubusercontent.com/194400/223771234-b839c8fe-feb9-481c-ba66-40dabba374fc.png"></p>
+<p>We see that the <code>&lt;div id=&quot;flash&quot;</code> 
+has the following <code>HTML</code>: </p>
+<pre><code class="language-html">&lt;div id=&quot;flash&quot; phx-mounted=&quot;[[&amp;quot;show&amp;quot;,{&amp;quot;display&amp;quot;:null,&amp;quot;time&amp;quot;:200,&amp;quot;to&amp;quot;:&amp;quot;#flash&amp;quot;,&amp;quot;transition&amp;quot;:[[&amp;quot;transition-all&amp;quot;,&amp;quot;transform&amp;quot;,&amp;quot;ease-out&amp;quot;,&amp;quot;duration-300&amp;quot;],[&amp;quot;opacity-0&amp;quot;,&amp;quot;translate-y-4&amp;quot;,&amp;quot;sm:translate-y-0&amp;quot;,&amp;quot;sm:scale-95&amp;quot;],[&amp;quot;opacity-100&amp;quot;,&amp;quot;translate-y-0&amp;quot;,&amp;quot;sm:scale-100&amp;quot;]]}]]&quot; phx-click=&quot;[[&amp;quot;push&amp;quot;,{&amp;quot;event&amp;quot;:&amp;quot;lv:clear-flash&amp;quot;,&amp;quot;value&amp;quot;:{&amp;quot;key&amp;quot;:&amp;quot;info&amp;quot;}}],[&amp;quot;hide&amp;quot;,{&amp;quot;time&amp;quot;:200,&amp;quot;to&amp;quot;:&amp;quot;#flash&amp;quot;,&amp;quot;transition&amp;quot;:[[&amp;quot;transition-all&amp;quot;,&amp;quot;transform&amp;quot;,&amp;quot;ease-in&amp;quot;,&amp;quot;duration-200&amp;quot;],[&amp;quot;opacity-100&amp;quot;,&amp;quot;translate-y-0&amp;quot;,&amp;quot;sm:scale-100&amp;quot;],[&amp;quot;opacity-0&amp;quot;,&amp;quot;translate-y-4&amp;quot;,&amp;quot;sm:translate-y-0&amp;quot;,&amp;quot;sm:scale-95&amp;quot;]]}]]&quot; role=&quot;alert&quot; class=&quot;fixed hidden top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-3 shadow-md shadow-zinc-900/5 ring-1 bg-emerald-50 text-emerald-800 ring-emerald-500 fill-cyan-900&quot; style=&quot;display: block;&quot;&gt;
+  &lt;p class=&quot;flex items-center gap-1.5 text-[0.8125rem] font-semibold leading-6&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot; class=&quot;h-4 w-4&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 20 20&quot;&gt;
+        &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Success!
+  &lt;/p&gt;
+  &lt;p class=&quot;mt-2 text-[0.8125rem] leading-5&quot;&gt;Person created successfully.&lt;/p&gt;
+  &lt;button type=&quot;button&quot; class=&quot;group absolute top-2 right-1 p-2&quot; aria-label=&quot;close&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot; class=&quot;h-5 w-5 stroke-current opacity-40 group-hover:opacity-70&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+        &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z&quot; clip-rule=&quot;evenodd&quot;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>This is a <em>lot</em> of code 
+just to inform the <code>person</code>
+that the successfully registered.</p>
+<p>We <em>know</em> there's a <em>much</em> better way.
+We will be <em>demonstrating</em> it 
+in the next few pages.</p>
+<p>For now, we're just going to 
+remove the line:</p>
+<pre><code class="language-html">&lt;.flash_group flash={@flash} /&gt;
+</code></pre>
+<p>From the file:
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/app.html.heex#L40"><code>/lib/auth_web/components/layouts/app.html.heex#L40</code></a></p>
+<p>To disable all <code>flash</code> modals.</p>
+<p>And just like magic,
+the tests that were failing previously,
+because the <code>modal</code> (noise)
+was covering the <code>email</code> address,
+now pass: </p>
+<pre><code class="language-sh">mix test 
+
+Compiling 2 files (.ex)
+The database for Auth.Repo has already been created
+
+19:08:47.892 [info] Migrations already up
+..........................................................
+.........................................................
+Finished in 0.5 seconds (0.3s async, 0.1s sync)
+115 tests, 0 failures
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../auth/07-notes-on-naming.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../auth/07-notes-on-naming.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
