@@ -75,6 +75,27 @@ to _think_ of them as **_real_ `people`**.
 We cannot _force_ anyone `else`
 to stop using the word "user".
 It will still be the `default` for many companies.
+Especially the company who 
+treat their "users" as the `product`.
+
+## The Product `Facebook` Sells is _You_
+
+![facebook-users-for-sale](https://user-images.githubusercontent.com/194400/223942613-bbc5ea60-2ff4-4751-9dad-11e151ca5248.png)
+
+> "_You may think Facebook is the product 
+> and you’re the client, 
+> but that’s not entirely true. 
+> There’s a reason tech companies 
+> call us **users** and not customers. 
+> It’s because we’re just people 
+> who come and use the interface. 
+> The **product** `Facebook` sells is **`you`**. 
+> The advertisers are the customers. 
+> That goes for all tech companies 
+> that make most of their money from ads._"
+> ~ [Ben Wolford](https://github.com/dwyl/learn-react/issues/23#issuecomment-1461358970)
+
+### `MAUs`
 
 [`Facebook`](https://github.com/dwyl/learn-react/issues/23#issuecomment-406784935)
 will continue referring to `people` as "users"
@@ -83,12 +104,34 @@ and more specifically
 (Monthly Active Users).
 They don't _want_ to think about the 
 `people` whose lives they are 
-[wasting](https://github.com/dwyl/home/issues/29).
+[wasting](https://github.com/dwyl/home/issues/29)
+and in many cases
+[destroying](https://github.com/dwyl/learn-react/issues/23#issuecomment-1350769626).
 
-We want to do the _exact_ opposite of `Facebook` with our `App`;
+We want to do the _exact_ opposite 
+of `Facebook` with our `App`;
 we want to **help `people` _save_ time**!
 So we are using the word "people"
 and avoiding "users" wherever we can.
+
+## Not Just `Facebook`
+
+Facebook is just the most obvious
+and _egregious_ example.
+All the top tech companies
+harvest your personal data 
+and sell it to advertisers.
+[`Apple`](https://www.wired.co.uk/article/apple-is-an-ad-company-now), 
+[`Amazon`](https://www.ben-evans.com/benedictevans/2023/3/6/ways-to-think-about-amazon-advertising), 
+[`Disney`](https://www.reuters.com/business/media-telecom/disney-secures-9-billion-upfront-ad-sales-2022-07-18/),
+[`Google`](https://www.statista.com/statistics/266249/advertising-revenue-of-google/), 
+[`Microsoft`](https://en.wikipedia.org/wiki/Microsoft_Advertising), 
+[`NetFlix`](https://www.statista.com/statistics/1361989/netflix-ad-revenue),
+[`Twitter`](https://www.businessofapps.com/data/twitter-statistics/),
+[`Uber`](https://www.reuters.com/technology/uber-looks-boost-digital-ad-revenue-with-new-advertising-division-2022-10-19/) 
+are all in the `advertising` business
+whether you realize it or not.
+They are all "attention merchants".
 
 > "_Simply put, the U-words have their origin in a more sanguine, naïve era. 
 As terms, I find them unethical and outdated, 
@@ -108,6 +151,9 @@ https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-u
 + The words you choose within your app 
 are an essential part of its experience:
 https://developer.apple.com/design/human-interface-guidelines/foundations/writing
++ Is Your Life Really Yours? 
+  How ‘The Attention Merchants’ Got Inside Our Heads:
+[bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2](https://bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2/)
 
 > **Note**: `Apple`, while a proponent
 > of carefully selecting words,
