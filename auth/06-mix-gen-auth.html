@@ -249,13 +249,41 @@ and <code>delete</code> some of the unused code along the way. </p>
 
 15:04:11.310 [info] == Migrated 20230226095715 in 0.1s
 </code></pre>
+<h2 id="schema"><a class="header" href="#schema">Schema</a></h2>
 <p>Let's take a quick look
-at the created database tables.
-But first ...</p>
+at the created database tables.</p>
+<p>If you open the <code>auth_dev</code> 
+database in your Postgres GUI,
+e.g:
+<a href="https://github.com/dwyl/learn-postgresql/issues/43"><code>DBEaver</code></a>
+And view the 
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">ERD</a></p>
+<p>There are only two tables:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223881258-be77ebdc-0114-4606-aac1-065f172b6727.png" alt="mix-phx-gen-auth-erd" /></p>
+<h3 id="data-in-people-and-people_tokens-tables"><a class="header" href="#data-in-people-and-people_tokens-tables">Data in <code>people</code> and <code>people_tokens</code> tables</a></h3>
+<p>By default,
+<code>mix phx.gen.auth</code> 
+does not setup any <em>protection</em> 
+for personal data in the database.
+Email addresses are stored in-the-clear: 🙄 
+<img width="874" alt="image" src=""></p>
+<p><img src="https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png" alt="mix-phx-gen-auth-people-table-email-plaintext" /></p>
+<p>Similarly the <code>people_tokens</code> table stores <code>email</code> addresses as <strong><code>plaintext</code></strong> in the <code>sent_to</code> column:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223948397-6984b456-8612-492b-bb79-84442c8b4241.png" alt="people_token-email-plaintext" /></p>
+<p>This is <strong><em>obviously</em> undesirable</strong>. 🙃 
+This is a privacy/security issue
+waiting to become a scandal!
+We will address this <em>swiftly</em>
+in the following pages.</p>
+<p>But first, tests!</p>
 <h2 id="run-the-tests"><a class="header" href="#run-the-tests">Run The Tests</a></h2>
 <p>Sadly, the <code>phx.gen.auth</code> 
-there to be a bunch of routes starting with the &quot;/user&quot; ...
-it doesn't respect the fact that we call them <strong><code>people</code></strong>
+there to be a bunch of routes 
+hard-coded with the &quot;/user&quot; prefix in the tests
+e.g: 
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/test/auth_web/controllers/person_session_controller_test.exs#L15"><code>test/auth_web/controllers/person_session_controller_test.exs#L15</code></a></p>
+<p>The generator doesn't respect 
+the fact that we call them <strong><code>people</code></strong>
 when we invoked the command above. 
 so if you run the tests:</p>
 <pre><code class="language-sh">mix test

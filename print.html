@@ -613,13 +613,41 @@ and <code>delete</code> some of the unused code along the way. </p>
 
 15:04:11.310 [info] == Migrated 20230226095715 in 0.1s
 </code></pre>
+<h2 id="schema"><a class="header" href="#schema">Schema</a></h2>
 <p>Let's take a quick look
-at the created database tables.
-But first ...</p>
+at the created database tables.</p>
+<p>If you open the <code>auth_dev</code> 
+database in your Postgres GUI,
+e.g:
+<a href="https://github.com/dwyl/learn-postgresql/issues/43"><code>DBEaver</code></a>
+And view the 
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">ERD</a></p>
+<p>There are only two tables:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223881258-be77ebdc-0114-4606-aac1-065f172b6727.png" alt="mix-phx-gen-auth-erd" /></p>
+<h3 id="data-in-people-and-people_tokens-tables"><a class="header" href="#data-in-people-and-people_tokens-tables">Data in <code>people</code> and <code>people_tokens</code> tables</a></h3>
+<p>By default,
+<code>mix phx.gen.auth</code> 
+does not setup any <em>protection</em> 
+for personal data in the database.
+Email addresses are stored in-the-clear: 🙄 
+<img width="874" alt="image" src=""></p>
+<p><img src="https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png" alt="mix-phx-gen-auth-people-table-email-plaintext" /></p>
+<p>Similarly the <code>people_tokens</code> table stores <code>email</code> addresses as <strong><code>plaintext</code></strong> in the <code>sent_to</code> column:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223948397-6984b456-8612-492b-bb79-84442c8b4241.png" alt="people_token-email-plaintext" /></p>
+<p>This is <strong><em>obviously</em> undesirable</strong>. 🙃 
+This is a privacy/security issue
+waiting to become a scandal!
+We will address this <em>swiftly</em>
+in the following pages.</p>
+<p>But first, tests!</p>
 <h2 id="run-the-tests-1"><a class="header" href="#run-the-tests-1">Run The Tests</a></h2>
 <p>Sadly, the <code>phx.gen.auth</code> 
-there to be a bunch of routes starting with the &quot;/user&quot; ...
-it doesn't respect the fact that we call them <strong><code>people</code></strong>
+there to be a bunch of routes 
+hard-coded with the &quot;/user&quot; prefix in the tests
+e.g: 
+<a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/test/auth_web/controllers/person_session_controller_test.exs#L15"><code>test/auth_web/controllers/person_session_controller_test.exs#L15</code></a></p>
+<p>The generator doesn't respect 
+the fact that we call them <strong><code>people</code></strong>
 when we invoked the command above. 
 so if you run the tests:</p>
 <pre><code class="language-sh">mix test
@@ -672,7 +700,6 @@ Finished in 0.5 seconds (0.4s async, 0.1s sync)
 </code></pre>
 <p>We're going to have to investigate/update these tests <em>manually</em>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="notes-on-naming-conventions"><a class="header" href="#notes-on-naming-conventions">Notes on Naming Conventions</a></h1>
-<p><img src="https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png" alt="iamnotauser" /></p>
 <p>The words we use matter.
 To some people they matter <em>more</em> 
 than the <em>message</em> we are trying to convey.
@@ -734,7 +761,7 @@ It will still be the <code>default</code> for many companies.
 Especially the company who 
 treat their &quot;users&quot; as the <code>product</code>.</p>
 <h2 id="the-product-facebook-sells-is-you"><a class="header" href="#the-product-facebook-sells-is-you">The Product <code>Facebook</code> Sells is <em>You</em></a></h2>
-<p><img src="https://user-images.githubusercontent.com/194400/223942613-bbc5ea60-2ff4-4751-9dad-11e151ca5248.png" alt="facebook-users-for-sale" /></p>
+<p><a href="https://slate.com/technology/2018/04/are-you-really-facebooks-product-the-history-of-a-dangerous-idea.html"><img src="https://user-images.githubusercontent.com/194400/223942613-bbc5ea60-2ff4-4751-9dad-11e151ca5248.png" alt="facebook-users-for-sale" /></a></p>
 <blockquote>
 <p>&quot;<em>You may think Facebook is the product 
 and you’re the client, 
@@ -789,22 +816,23 @@ and so I have doubts they can usher in
 the kind of improvements to technology we desperately need.</em>&quot;
 ~ <a href="https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23">Adam Lefton</a></p>
 </blockquote>
+<p><img src="https://user-images.githubusercontent.com/194400/223168289-b44149c8-56da-4348-8561-4f9904007f72.png" alt="iamnotauser" /></p>
 <h2 id="recommended-reading"><a class="header" href="#recommended-reading">Recommended Reading</a></h2>
 <ul>
 <li>Words Matter. Talk About People: 
 Not Customers, Not Consumers, Not Users:
-https://jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users</li>
+<a href="https://jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users">jnd.org/words_matter_talk_about_people_not_customers_not_consumers_not_users</a></li>
 <li>Refuse to Call People ‘Users’:
-https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23</li>
-<li>The words you choose within your app 
-are an essential part of its experience:
-https://developer.apple.com/design/human-interface-guidelines/foundations/writing</li>
+<a href="https://medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23">medium.com/s/user-friendly/why-im-done-saying-user-user-experience-and-ux-in-2019-4fdfc6b7de23</a></li>
 <li>Is Your Life Really Yours? 
 How ‘The Attention Merchants’ Got Inside Our Heads:
 <a href="https://bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2/">bigthink.com/high-culture/tim-wu-on-the-attention-merchants-2</a></li>
+<li>The words you choose within your app 
+are an essential part of its experience:
+<a href="https://developer.apple.com/design/human-interface-guidelines/foundations/writing">developer.apple.com/design/human-interface-guidelines/foundations/writing</a></li>
 </ul>
 <blockquote>
-<p><strong>Note</strong>: <code>Apple</code>, while a proponent
+<p><strong>Note</strong>: <strong><code>Apple**</code></strong>, while a proponent
 of carefully selecting words,
 often refer to the <code>people</code> 
 that buy and use 
@@ -820,8 +848,13 @@ At that scale it's about numbers and &quot;users&quot;
 not individual <code>people</code>. 
 There are many great <code>people</code> at <code>Apple</code>
 who understand that words matter. 
-If the company was started today
-they would think twice about the &quot;users&quot; word.</p>
+If the company was started today perhaps
+they would think twice about the &quot;users&quot; word.
+But sadly, even Apple are now in the advertising
+business:
+<a href="https://www.wired.co.uk/article/apple-is-an-ad-company-now">wired.co.uk/article/apple-is-an-ad-company-now</a>
+So they aren't likely to update 
+the word they use to describe us.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modals-are-an-experience-antipattern"><a class="header" href="#modals-are-an-experience-antipattern">Modals Are An Experience <em>Antipattern</em></a></h1>
 <p>&quot;<em>An <strong>antipattern</strong> is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution, but <strong>isn't one</strong>.</em>&quot;
@@ -896,7 +929,7 @@ remove the line:</p>
 </code></pre>
 <p>From the file:
 <a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/layouts/app.html.heex#L40"><code>/lib/auth_web/components/layouts/app.html.heex#L40</code></a></p>
-<p>To disable all <code>flash</code> modals.</p>
+<p>To remove all <code>flash</code> modals.</p>
 <p>And just like magic,
 the tests that were failing previously,
 because the <code>modal</code> (noise)
@@ -913,6 +946,9 @@ The database for Auth.Repo has already been created
 Finished in 0.5 seconds (0.3s async, 0.1s sync)
 115 tests, 0 failures
 </code></pre>
+<p>With all tests passing,
+we can <em>finally</em> get on 
+with building <code>Auth</code>! </p>
 
                     </main>
 
