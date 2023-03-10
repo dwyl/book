@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html" class="active"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html" class="active"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../src/auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -255,18 +255,17 @@ at the created database tables.</p>
 <p>If you open the <code>auth_dev</code> 
 database in your Postgres GUI,
 e.g:
-<a href="https://github.com/dwyl/learn-postgresql/issues/43"><code>DBEaver</code></a>
-And view the 
-<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">ERD</a></p>
-<p>There are only two tables:</p>
+<a href="https://github.com/dwyl/learn-postgresql/issues/43"><code>DBEaver</code></a> <br />
+and view the 
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">ERD</a>
+there are only two tables:</p>
 <p><img src="https://user-images.githubusercontent.com/194400/223881258-be77ebdc-0114-4606-aac1-065f172b6727.png" alt="mix-phx-gen-auth-erd" /></p>
 <h3 id="data-in-people-and-people_tokens-tables"><a class="header" href="#data-in-people-and-people_tokens-tables">Data in <code>people</code> and <code>people_tokens</code> tables</a></h3>
 <p>By default,
 <code>mix phx.gen.auth</code> 
 does not setup any <em>protection</em> 
 for personal data in the database.
-Email addresses are stored in-the-clear: 🙄 
-<img width="874" alt="image" src=""></p>
+Email addresses are stored in-the-clear: 🙄 </p>
 <p><img src="https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png" alt="mix-phx-gen-auth-people-table-email-plaintext" /></p>
 <p>Similarly the <code>people_tokens</code> table stores <code>email</code> addresses as <strong><code>plaintext</code></strong> in the <code>sent_to</code> column:</p>
 <p><img src="https://user-images.githubusercontent.com/194400/223948397-6984b456-8612-492b-bb79-84442c8b4241.png" alt="people_token-email-plaintext" /></p>
