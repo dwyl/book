@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="src/auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -869,16 +869,62 @@ they are doing so inappropriately
 and inadvertently making 
 the experience/interface <em>worse</em>
 for the <code>person</code>.</p>
+<p>If you are unfamiliar with them,
+a good place to learn is:
+<a href="https://getbootstrap.com/docs/4.0/components/modal/">bootstrap.com/modal</a></p>
+<p><img src="https://user-images.githubusercontent.com/194400/224336299-9d22426a-5efd-4cb4-8ee5-9d565f9f5a9c.png" alt="bootstrap-modal" /></p>
+<p>A <code>modal</code> overlays information 
+on top of what is already displayed on the page.
+It hijacks the person's focus 
+to what the dev wants them to see
+and requires the person
+to <em>manually</em> dismiss it 
+before being <em>allowed</em> to resume what they were doing.
+This is an unwelcome interruption
+to the flow and a generally <strong><em>horrible</em> experience</strong>.</p>
+<p><code>Modals</code> are a relic of the old web
+where ads hijacked people's screens with pop-ups:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/224343020-c1e0fc9c-7850-44e9-8df7-c5a5bdff8bfc.jpg" alt="pop-up-ads-90s" /></p>
+<p>See:
+<a href="https://en.wikipedia.org/wiki/Pop-up_ad">wikipedia.org/Pop-up_ad</a></p>
+<p>The situation got completely out-of-hand
+and made browsing the web a <em>horrible</em> experience.
+All modern browsers block pop-ups by default now
+but designers/devs who don't respect 
+the <code>people</code> using their site/app
+still reach for <code>modals</code> for hijacking attention.</p>
+<p><img src="https://user-images.githubusercontent.com/194400/208245674-cabc63f7-3975-4590-bc0d-b80e8823e200.png" alt="modal-ad" /></p>
+<p>Modals are almost <em>never</em>
+a good way of displaying information.</p>
+<h2 id="modals-in-phoenix"><a class="header" href="#modals-in-phoenix">Modals in <code>Phoenix</code>?</a></h2>
 <p><code>Phoenix 1.7</code> added the new 
 <a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/core_components.ex#L48"><code>modal</code></a> 
-component.
-We <em>wish</em> the had not done it
+component.</p>
+<p>We <em>really wish</em> the creators of <code>Phoenix</code> 
+had not done it
 because it will <em>inevitably</em> be misused.
 Naive devs who mean well 
 but haven't studied UX,
 will use a <code>modal</code>
 when a basic <code>&lt;div&gt;</code>
 would be considerably better.</p>
+<p>It is used by <code>default</code> for inserting new content:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/199604980-3a7d8c6a-82e3-488b-aebf-e3c6c28d9e1d.png" alt="phoenix-modal-new-item" /></p>
+<p>This is a <em>horrible</em> experience.
+The <code>New Item</code> <code>modal</code> overlays the <code>Listing Items</code> page
+instead of just showing a <code>New Item</code> <em>page</em>. 
+This adds absolutely no value to the <code>person</code>
+inputing the <code>item</code>; 
+it's just a distraction.
+This shows that the devs building
+<code>Phoenix</code> have not done very much UX/Usability testing
+because this would <em>immediately</em> confuse
+an older less tech-savvy person.
+They would ask is this page &quot;Listing Items&quot;
+or is it allowing me to create a &quot;New Item&quot;?
+And if they accidentally clicked/tapped
+on the &quot;X&quot; they would lose the text they inputted.
+Horrible.</p>
 <h2 id="quick-example"><a class="header" href="#quick-example">Quick Example</a></h2>
 <p>After executing the <code>mix phx.gen.auth</code> command
 and then running the project with:</p>
@@ -952,6 +998,227 @@ Finished in 0.5 seconds (0.3s async, 0.1s sync)
 we can <em>finally</em> get on 
 with building <code>Auth</code>! </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="encrypt-personal-data"><a class="header" href="#encrypt-personal-data">Encrypt Personal Data</a></h1>
+<p>As previously noted
+the schema created by the 
+<code>phx.gen.auth</code> generator
+leaves <strong><code>email</code></strong> addresses stored 
+as 
+<a href="https://en.wikipedia.org/wiki/Plaintext"><strong><code>plaintext</code></strong></a>:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/223880353-98597d83-cb9c-424d-bcb0-2121ecd743c0.png" alt="mix-phx-gen-auth-people-table-email-plaintext" /></p>
+<p>It's disappointing to us 
+that this is the <code>default</code>
+and many devs
+will <em>naively</em> think this is &quot;OK&quot;.</p>
+<h2 id="its-never-ok-to-store-personal-data-as-plaintext"><a class="header" href="#its-never-ok-to-store-personal-data-as-plaintext">It's <em>Never</em> &quot;OK&quot; to Store Personal Data as <code>plaintext</code></a></h2>
+<p>It might be <em>tempting</em> 
+to store personal data as 
+human-readable text
+during development
+to make it easier to debug,
+but we urge <em>everyone</em>
+to resist this temptation!
+<a href="https://en.wikipedia.org/wiki/Data_breach">Data breaches</a>
+happen <em>every</em> day.
+Breaches can <em>destroy</em> the reputation
+of a company.
+Thankfully,
+the EU now has stronger laws
+in the form of the
+<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>
+(GDPR),
+which carry heavy fines
+for companies
+that improperly store personal data.</p>
+<p>Most software engineers don't consider
+the law(s) around data protection
+but none of us have <em>any</em> excuse 
+to ignore them even in basic projects.
+The good news is:
+protecting personal data
+is quite straightforward.</p>
+<h2 id="why-encrypt-now"><a class="header" href="#why-encrypt-now">Why Encrypt <em>Now</em>?</a></h2>
+<p>We <em>know</em> this might feel like a deeply technical
+step to have so early on in 
+the creation of the <code>auth</code> App.
+Why don't we just <em>skip</em> this 
+and focus on the interface <code>people</code> will <em>see</em>?
+We feel that getting the data privacy/security
+right from the <em>start</em>
+is essential for building a robust
+and therefore trustworthy app. 
+We will get to the interface design 
+in the next chapter
+so if you prefer that part,
+feel free to speed-read/run this
+and only return to it when you 
+need a deeper understanding.</p>
+<h2 id="how-to-encrypt-sensitive-data"><a class="header" href="#how-to-encrypt-sensitive-data">How To Encrypt Sensitive Data?</a></h2>
+<p>When we first started using <code>Elixir</code> in 2016
+we explored the topic of 
+encrypting personal data in <em>depth</em>
+and wrote a comprehensive guide:
+<a href="https://github.com/dwyl/phoenix-ecto-encryption-example"><code>dwyl/phoenix-ecto-encryption-example</code></a>
+We <em>highly</em> recommend following step-by-step guide
+to understand this in detail.
+We aren't going to duplicate/repeat 
+any of the <em>theory</em> here. 
+Rather we are going to focus on 
+the <em>practice</em> using
+the 
+<a href="https://github.com/dwyl/fields"><code>fields</code></a>
+package we created
+to implement transparent encryption.</p>
+<h2 id="using-fields-to-automatically-encrypt-personal-data"><a class="header" href="#using-fields-to-automatically-encrypt-personal-data">Using <code>Fields</code> to <em>Automatically</em> Encrypt Personal Data</a></h2>
+<p>Following the instructions in the 
+<a href="https://github.com/dwyl/fields"><code>fields</code></a>
+repo, open the <code>mix.exs</code> file
+and locate the <code>defp deps do</code> section
+and add <code>fields</code> to the list:</p>
+<pre><code class="language-elixir">{:fields, &quot;~&gt; 2.10.3&quot;},
+</code></pre>
+<p>Save the <code>mix.exs</code> file and run:</p>
+<pre><code class="language-sh">mix deps.get
+</code></pre>
+<h3 id="create-environment-variables"><a class="header" href="#create-environment-variables">Create Environment Variables</a></h3>
+<p><code>fields</code> expects an `environment variable</p>
+<p>e.g. using the <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Secret.html"><code>phx.gen.secret</code></a> command:</p>
+<pre><code class="language-sh">mix phx.gen.secret
+</code></pre>
+<p>You should see output similar to:</p>
+<pre><code class="language-sh">XGYVueuky4DT0s0ks2MPzHpucyl+9e/uY4UusEfgyR2qeNApzoYGSH+Y55cfDj1Y
+</code></pre>
+<p>Export this key in your terminal with the following command:</p>
+<pre><code class="language-sh">export ENCRYPTION_KEYS=XGYVueuky4DT0s0ks2MPzHpucyl+9e/uY4UusEfgyR2qeNApzoYGSH+Y55cfDj1Y
+</code></pre>
+<p>Run the <code>phx.gen.secret</code> command again 
+and export it as <code>SECRET_KEY_BASE</code>, e.g:</p>
+<pre><code class="language-sh">export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
+</code></pre>
+<p>We use an <code>.env</code> file on <code>localhost</code>:</p>
+<pre><code class="language-sh">export ENCRYPTION_KEYS=XGYVueuky4DT0s0ks2MPzHpucyl+9e/uY4UusEfgyR2qeNApzoYGSH+Y55cfDj1Y
+export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
+</code></pre>
+<p>See:
+<a href="https://github.com/dwyl/auth/blob/main/.env_sample"><code>.env_sample</code></a> 
+for a sample including 
+all the recommended/required environment variables
+for running the <code>auth</code> app.</p>
+<p>Now to the <em>interesting</em> part!</p>
+<h2 id="update-peopleemail-data-type"><a class="header" href="#update-peopleemail-data-type">Update <code>people.email</code> Data Type</a></h2>
+<p>The <code>phx.gen.auth</code> generator
+created the <code>people</code> schema
+with the <code>:email</code> field defined as a <code>:string</code>:</p>
+<pre><code class="language-sh">field :email, :string
+</code></pre>
+<p>See: 
+<a href="https://github.com/dwyl/auth/blob/da0af7ee702c278714b47f92045edce4adad542a/lib/auth/accounts/person.ex#L6"><code>lib/auth/accounts/person.ex#L6</code></a></p>
+<h3 id="create-migration-file"><a class="header" href="#create-migration-file">Create Migration File</a></h3>
+<p>Using <a href="https://hexdocs.pm/ecto_sql/Ecto.Migration.html#module-creating-your-first-migration"><code>Ecto.Migration</code></a>
+run the following command 
+to create a migration file 
+with a descriptive name:</p>
+<pre><code class="language-sh">mix ecto.gen.migration modify_people_email_string_binary
+</code></pre>
+<p>You should see output similar to:</p>
+<pre><code class="language-sh">* creating priv/repo/migrations/20230309145958_modify_people_email_string_binary.exs
+</code></pre>
+<p>Open the file in your editor. You should see:</p>
+<pre><code class="language-elixir">defmodule Auth.Repo.Migrations.ModifyPeopleEmailStringBinary do
+  use Ecto.Migration
+
+  def change do
+
+  end
+end
+</code></pre>
+<p>Update it to include the <code>alter</code> statement:</p>
+<pre><code class="language-elixir">defmodule Auth.Repo.Migrations.ModifyPeopleEmailStringBinary do
+  use Ecto.Migration
+
+  def change do
+    alter table(:people) do
+      remove :email
+      add :email, :binary
+      add ...
+    end
+
+    alter table(:people_tokens) do
+      remove :sent_to
+      add :sent_to, :binary
+    end
+  end
+end
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: we tried using 
+<a href="https://hexdocs.pm/ecto_sql/Ecto.Migration.html#modify/3"><code>Ecto.Migration.modify/3</code></a>
+to modify the field type
+but got the error:</p>
+</blockquote>
+<pre><code class="language-sh">15:06:13.691 [info] alter table people
+** (Postgrex.Error) ERROR 42804 (datatype_mismatch) column &quot;email&quot; cannot be cast automatically to type bytea
+
+    hint: You might need to specify &quot;USING email::bytea&quot;.
+</code></pre>
+<p>Given that this is a new project 
+and there is no data in the DB,
+we decided it was easier 
+to remove and re-add the <code>email</code> column/field.</p>
+<p>Save the migration file and run:</p>
+<pre><code class="language-sh">mix ecto.reset
+</code></pre>
+<p>You should see output similar to the following:</p>
+<pre><code class="language-sh">15:13:29.989 [info] == Migrated 20230226095715 in 0.0s
+
+15:13:30.057 [info] == Running 20230309145958 Auth.Repo.Migrations.ModifyPeopleEmailStringBinary.change/0 forward
+
+15:13:30.058 [info] alter table people
+
+15:13:30.059 [info] alter table people_tokens
+
+15:13:30.059 [info] == Migrated 20230309145958 in 0.0s
+</code></pre>
+<p>### Update <code>person.email</code></p>
+<p>Open 
+<code>lib/auth/accounts/person.ex</code>
+and replace the line:</p>
+<pre><code class="language-elixir">field :email, :string
+</code></pre>
+<p>With:</p>
+<pre><code class="language-elixir">field :email, Fields.EmailEncrypted
+field :email_hash, Fields.EmailHash
+</code></pre>
+<p>Sadly, this <em>essential</em> privacy/security enhancement 
+was not quite as straightforward as we had hoped 
+and had quite a few ramifications.
+The boilerplate code 
+generated by <code>phx.gen.auth</code>
+was relying on <code>person.email</code> being <code>plaintext</code>
+so we ended up having to make several changes.</p>
+<p>Rather than repeating all of these here
+which will take up a <em>lot</em> of space
+and duplicate the code unessessarily,
+we recommend you read through the git commit:
+<a href="https://github.com/dwyl/auth/pull/231/commits/2bbba99c7057f0d2943dd8327be52ccf1a1bd58c"><code>#2bbba99</code></a></p>
+<p>In a follow-up section 
+we will be removing most of this code
+because we don't <em>want</em> to
+use links in emails to verify <code>people</code>.
+Instead we will be using one-time-numeric codes.</p>
+<p>Following the changes made in: 
+<a href="https://github.com/dwyl/auth/pull/231/commits/2bbba99c7057f0d2943dd8327be52ccf1a1bd58c"><code>#2bbba99</code></a></p>
+<p>If we now run a query to view the data in the <code>people</code> table:</p>
+<pre><code class="language-sql">SELECT id, email, inserted_at FROM people;
+</code></pre>
+<p>We see that the <code>email</code> is now a binary blob 
+<img width="1096" alt="image" src="https://user-images.githubusercontent.com/194400/224109679-0084ae9d-a1e8-48f2-a083-94aff46d7137.png"></p>
+<p>Registration and Login still works as expected:
+<img width="1159" alt="image" src="https://user-images.githubusercontent.com/194400/224111036-7a4e5764-8966-4b97-aaea-515c8e3b7fd4.png"></p>
+<p>But now the personal data 
+captured in registration is stored 
+<strong><code>encrypted</code></strong> at rest 
+the way it should be. 🔐 </p>
+<p>Now we can get on with <em>building</em> <code>auth</code>!</p>
 
                     </main>
 

@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html" class="active"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../src/auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html" class="active"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -156,16 +156,62 @@ they are doing so inappropriately
 and inadvertently making 
 the experience/interface <em>worse</em>
 for the <code>person</code>.</p>
+<p>If you are unfamiliar with them,
+a good place to learn is:
+<a href="https://getbootstrap.com/docs/4.0/components/modal/">bootstrap.com/modal</a></p>
+<p><img src="https://user-images.githubusercontent.com/194400/224336299-9d22426a-5efd-4cb4-8ee5-9d565f9f5a9c.png" alt="bootstrap-modal" /></p>
+<p>A <code>modal</code> overlays information 
+on top of what is already displayed on the page.
+It hijacks the person's focus 
+to what the dev wants them to see
+and requires the person
+to <em>manually</em> dismiss it 
+before being <em>allowed</em> to resume what they were doing.
+This is an unwelcome interruption
+to the flow and a generally <strong><em>horrible</em> experience</strong>.</p>
+<p><code>Modals</code> are a relic of the old web
+where ads hijacked people's screens with pop-ups:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/224343020-c1e0fc9c-7850-44e9-8df7-c5a5bdff8bfc.jpg" alt="pop-up-ads-90s" /></p>
+<p>See:
+<a href="https://en.wikipedia.org/wiki/Pop-up_ad">wikipedia.org/Pop-up_ad</a></p>
+<p>The situation got completely out-of-hand
+and made browsing the web a <em>horrible</em> experience.
+All modern browsers block pop-ups by default now
+but designers/devs who don't respect 
+the <code>people</code> using their site/app
+still reach for <code>modals</code> for hijacking attention.</p>
+<p><img src="https://user-images.githubusercontent.com/194400/208245674-cabc63f7-3975-4590-bc0d-b80e8823e200.png" alt="modal-ad" /></p>
+<p>Modals are almost <em>never</em>
+a good way of displaying information.</p>
+<h2 id="modals-in-phoenix"><a class="header" href="#modals-in-phoenix">Modals in <code>Phoenix</code>?</a></h2>
 <p><code>Phoenix 1.7</code> added the new 
 <a href="https://github.com/dwyl/auth/blob/90086a83c6968573f7d4c72b3882a247ac30112d/lib/auth_web/components/core_components.ex#L48"><code>modal</code></a> 
-component.
-We <em>wish</em> the had not done it
+component.</p>
+<p>We <em>really wish</em> the creators of <code>Phoenix</code> 
+had not done it
 because it will <em>inevitably</em> be misused.
 Naive devs who mean well 
 but haven't studied UX,
 will use a <code>modal</code>
 when a basic <code>&lt;div&gt;</code>
 would be considerably better.</p>
+<p>It is used by <code>default</code> for inserting new content:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/199604980-3a7d8c6a-82e3-488b-aebf-e3c6c28d9e1d.png" alt="phoenix-modal-new-item" /></p>
+<p>This is a <em>horrible</em> experience.
+The <code>New Item</code> <code>modal</code> overlays the <code>Listing Items</code> page
+instead of just showing a <code>New Item</code> <em>page</em>. 
+This adds absolutely no value to the <code>person</code>
+inputing the <code>item</code>; 
+it's just a distraction.
+This shows that the devs building
+<code>Phoenix</code> have not done very much UX/Usability testing
+because this would <em>immediately</em> confuse
+an older less tech-savvy person.
+They would ask is this page &quot;Listing Items&quot;
+or is it allowing me to create a &quot;New Item&quot;?
+And if they accidentally clicked/tapped
+on the &quot;X&quot; they would lose the text they inputted.
+Horrible.</p>
 <h2 id="quick-example"><a class="header" href="#quick-example">Quick Example</a></h2>
 <p>After executing the <code>mix phx.gen.auth</code> command
 and then running the project with:</p>
@@ -247,7 +293,7 @@ with building <code>Auth</code>! </p>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../src/auth/09-encrypt-data.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../auth/09-encrypt-data.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -261,7 +307,7 @@ with building <code>Auth</code>! </p>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../src/auth/09-encrypt-data.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../auth/09-encrypt-data.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
