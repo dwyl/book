@@ -13,5 +13,5 @@
     - [Notes on Naming](auth/07-notes-on-naming.md)
     - [Modals Are An _Antipattern_](auth/08-modals-antipattern.md)
     - [Encrypt Personal Data](auth/09-encrypt-data.md)
-- [MVP](mvp/README.md)
-  - [Lists][mvp/15-lists.md] 
+- [MVP](./mvp/README.md)
+  - [Lists](mvp/15-lists.md)

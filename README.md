@@ -2,7 +2,7 @@
 
 # The _Practical_ Book <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/book/ci.yml?label=build&style=flat-square&branch=main)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/book/ci.yml?label=build&style=flat-square&branch=main)](https://github.com/dwyl/book/actions)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/book/issues)
 [![HitCount](https://hits.dwyl.com/dwyl/book.svg)](https://github.com/dwyl/book)
 

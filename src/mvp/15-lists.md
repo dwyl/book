@@ -18,9 +18,16 @@ Just the handful of tables
 you've already seen in the previous sections.
 
 Our reasons for adding `lists` now are:
-**a)** Separate `lists` for different areas of life/work is on our 
-[product roadmap](https://github.com/dwyl/product-roadmap). <br />
-**b)** We want to use `lists` as the basis for organising and 
+**a)** Separate `lists` 
+for different areas of life/work 
+is on our 
+[product roadmap](https://github.com/dwyl/product-roadmap). 
+specifically:
+[dwyl/app/**issues/271&&](https://github.com/dwyl/app/issues/271)
+<br />
+**b)** We want to use `lists` 
+as the basis for organizing 
+and 
 [re-ordering `items`](https://github.com/dwyl/mvp/issues/145). <br />
 **c)** `lists` will unlock other functionalty we have planned
 that will make the `App` more _useful_.
