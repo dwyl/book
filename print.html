@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="mvp/index.html"><strong aria-hidden="true">2.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mvp/15-lists.html"><strong aria-hidden="true">2.1.</strong> Lists</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -510,7 +510,9 @@ Randomized with seed 50114
 <p>With that out of the way,
 let's build!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generate-auth-files"><a class="header" href="#generate-auth-files">Generate Auth Files</a></h1>
-<p>In <code>auth v1</code> the <code>mix phx.gen.auth</code> generator 
+<p>In <code>auth v1</code> the 
+<a href="https://github.com/phoenixframework/phoenix/blob/v1.7.1/guides/authentication/mix_phx_gen_auth.md#L1"><code>mix phx.gen.auth</code></a> 
+generator 
 <a href="https://github.com/dwyl/auth/issues/207">didn't exist</a>
 so we had to hand-write all the code. 
 For <code>auth v2</code><br />
@@ -1210,15 +1212,72 @@ Instead we will be using one-time-numeric codes.</p>
 <p>If we now run a query to view the data in the <code>people</code> table:</p>
 <pre><code class="language-sql">SELECT id, email, inserted_at FROM people;
 </code></pre>
-<p>We see that the <code>email</code> is now a binary blob 
-<img width="1096" alt="image" src="https://user-images.githubusercontent.com/194400/224109679-0084ae9d-a1e8-48f2-a083-94aff46d7137.png"></p>
-<p>Registration and Login still works as expected:
-<img width="1159" alt="image" src="https://user-images.githubusercontent.com/194400/224111036-7a4e5764-8966-4b97-aaea-515c8e3b7fd4.png"></p>
+<p>We see that the <code>email</code> is now a binary blob, 
+i.e: <em>encrypted</em>:</p>
+<img width="1096" alt="image" src="https://user-images.githubusercontent.com/194400/224109679-0084ae9d-a1e8-48f2-a083-94aff46d7137.png">
+<p>This cannot be read by anyone 
+who does not have the encryption key.
+So if the database is somehow compromised,
+it's <em>useless</em> to the attacker. </p>
+<p>Registration and Login still works as expected:</p>
+<img width="1159" alt="image" src="https://user-images.githubusercontent.com/194400/224111036-7a4e5764-8966-4b97-aaea-515c8e3b7fd4.png">
 <p>But now the personal data 
 captured in registration is stored 
 <strong><code>encrypted</code></strong> at rest 
 the way it should be. 🔐 </p>
 <p>Now we can get on with <em>building</em> <code>auth</code>!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="minimum-viable-product-mvp"><a class="header" href="#minimum-viable-product-mvp">Minimum Viable Product (MVP)</a></h1>
+<p><em>All</em> Apps start with an MVP. 
+In our case we created a <em>separate</em> repository:
+<a href="https://github.com/dwyl/mvp">github.com/dwyl/<strong>mvp</strong></a>
+so that the most <em>basic</em> version of our <code>App</code> 
+could be used as a reference by other people building MVPs.</p>
+<h1 id="todo"><a class="header" href="#todo">TODO:</a></h1>
+<p>Lift the contents of 
+<a href="https://github.com/dwyl/mvp/blob/7c0a29cfe71582a9aada531af339afdd2734b809/BUILDIT.md?plain=1">github.com/dwyl/mvp/BUILDIT.md</a>
+and split it into separate files here in <code>book</code>.
+See: 
+<a href="https://github.com/dwyl/mvp/issues/350">dwyl/mvp/<strong>issues/350</strong></a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
+<p>Our <strong>MVP <code>App</code></strong> already has 
+much of the basic functionality we need/want 
+but it's lacking a way to organize
+<code>items</code> into distinct projects/areas.
+Let's fix that by introducing <code>lists</code>!</p>
+<h2 id="quick-recap"><a class="header" href="#quick-recap">Quick Recap</a></h2>
+<p>Until this point we've <em>deliberately</em> kept the <code>MVP</code>
+as lean as possible to avoid complexity.
+The ERD is currently just:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/231414683-6fce1fd8-aead-471d-8789-a4a0111f7ce8.png" alt="erd-before-lists" /></p>
+<p>Just the handful of tables
+you've already seen in the previous sections.</p>
+<p>Our reasons for adding <code>lists</code> now are:
+<strong>a)</strong> Separate <code>lists</code> 
+for different areas of life/work 
+is on our 
+<a href="https://github.com/dwyl/product-roadmap">product roadmap</a>. 
+specifically:
+<a href="https://github.com/dwyl/app/issues/271">dwyl/app/**issues/271&amp;&amp;</a>
+<br />
+<strong>b)</strong> We want to use <code>lists</code> 
+as the basis for organizing 
+and 
+<a href="https://github.com/dwyl/mvp/issues/145">re-ordering <code>items</code></a>. <br />
+<strong>c)</strong> <code>lists</code> will unlock other functionalty we have planned
+that will make the <code>App</code> more <em>useful</em>.</p>
+<h2 id="create-lists-schema"><a class="header" href="#create-lists-schema">Create <code>Lists</code> Schema</a></h2>
+<p>Create the <code>lists</code> and <code>list_items</code> database schemas
+with the following 
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><strong><code>mix phx.gen.schema</code></strong></a>
+commands:</p>
+<pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string person_id:integer
+mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists position:integer person_id:integer
+</code></pre>
+<p>At the end of this step,
+we have the following database
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
+(ERD):</p>
+<p><img src="mvp/here" alt="mvp-erd-list_items" /></p>
 
                     </main>
 
