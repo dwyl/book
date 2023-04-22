@@ -290,10 +290,18 @@ If we now run a query to view the data in the `people` table:
 ```sql
 SELECT id, email, inserted_at FROM people;
 ```
-We see that the `email` is now a binary blob 
+We see that the `email` is now a binary blob, 
+i.e: _encrypted_:
+
 <img width="1096" alt="image" src="https://user-images.githubusercontent.com/194400/224109679-0084ae9d-a1e8-48f2-a083-94aff46d7137.png">
 
+This cannot be read by anyone 
+who does not have the encryption key.
+So if the database is somehow compromised,
+it's _useless_ to the attacker. 
+
 Registration and Login still works as expected:
+
 <img width="1159" alt="image" src="https://user-images.githubusercontent.com/194400/224111036-7a4e5764-8966-4b97-aaea-515c8e3b7fd4.png">
 
 But now the personal data 

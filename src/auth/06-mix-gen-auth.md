@@ -1,6 +1,8 @@
 # Generate Auth Files
 
-In `auth v1` the `mix phx.gen.auth` generator 
+In `auth v1` the 
+[`mix phx.gen.auth`](https://github.com/phoenixframework/phoenix/blob/v1.7.1/guides/authentication/mix_phx_gen_auth.md#L1) 
+generator 
 [didn't exist](https://github.com/dwyl/auth/issues/207)
 so we had to hand-write all the code. 
 For `auth v2`  
