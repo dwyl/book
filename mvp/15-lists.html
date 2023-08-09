@@ -89,11 +89,33 @@
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
@@ -146,60 +168,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
-<p>Our <strong>MVP <code>App</code></strong> already has 
-much of the basic functionality we need/want 
-but it's lacking a way to organize
-<code>items</code> into distinct projects/areas.
-Let's fix that by introducing <code>lists</code>!</p>
-<h2 id="quick-recap"><a class="header" href="#quick-recap">Quick Recap</a></h2>
-<p>Up till this point we've <em>deliberately</em> kept the <code>MVP</code>
-as lean as possible to avoid complexity. <br />
-The 
-<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
-(ERD) is currently just:</p>
-<p><img src="https://user-images.githubusercontent.com/194400/233317695-3e036f1f-db13-4697-aa49-fe767a86a773.png" alt="mvp-erd-before-lists" /></p>
-<p>Just the handful of tables
-you've already seen in the previous sections.</p>
-<p>Our reasons for adding <code>lists</code> <em>now</em> are: <br />
-<strong>a)</strong> Separate <code>lists</code> 
-for different areas of life/work 
-is on our 
-<a href="https://github.com/dwyl/product-roadmap">product roadmap</a>. 
-<em>specifically</em>:
-<a href="https://github.com/dwyl/app/issues/271">dwyl/app/<strong>issues/271</strong></a>
-<br />
-<strong>b)</strong> We want to use <code>lists</code> 
-as the basis for organizing 
-and 
-<a href="https://github.com/dwyl/mvp/issues/145">re-ordering <code>items</code></a>. <br />
-<strong>c)</strong> <code>lists</code> will unlock other functionality we have planned
-that will make the <code>App</code> more <em>useful</em>.</p>
-<h2 id="create-lists-schema"><a class="header" href="#create-lists-schema">Create <code>Lists</code> Schema</a></h2>
-<p>Create the <code>lists</code> and <code>list_items</code> tables
-with the following 
-<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><strong><code>mix phx.gen.schema</code></strong></a>
-commands:</p>
-<pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string
-mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
-</code></pre>
-<p>Once we run <code>mix ecto.migrate</code>,
-we have the following database
-ERD:</p>
-<p><img src="https://user-images.githubusercontent.com/194400/233316755-96fb001d-ac16-4cad-99b0-b562c0128c1f.png" alt="mvp-erd-with-lists-and-list_items" /></p>
-<p>The <code>gen.schema</code> command only creates the migration files
-and the corresponding schema in the 
-<a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
-directory of our <code>Phoenix App</code>.
-It does not create any <code>CRUD</code> functions or tests.
-This is fine because <em>most</em> of what we need is bespoke.</p>
-<p>We <em>manually</em> created the following files:</p>
-<ul>
-<li>test/app/list_test.exs</li>
-<li>test/app/list_items_test.exs</li>
-</ul>
-<blockquote>
-<p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
-</blockquote>
 
                     </main>
 
