@@ -136,8 +136,19 @@ def add_list_item(item, list, person_id, position) do
 end
 ```
 
-The first 3 arguments to this function are self-explanatory,
-but the final one `position` is there to help us _order_ the `list`.
+The first 3 arguments are self-explanatory;
+the final one, `position` is there to help us _order_ the `list`!
+As you may have noticed in the `mix gen.schema` command above
+for the `list_items` table, the `position` field is a `Float`. 
+e.g: `1.0` 
+We have very deliberately chosen a `Float` not an `Integer`
+so that we can use this for easy append-only positional sorting. 
+More on this later in the "Reordering" chapter. 
+But if you want to see the discussion/history 
+of how we arrived at this,
+see: 
+[dwyl/mvp#145](https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575)
+
 
 
 
@@ -203,4 +214,41 @@ AND l.text = 'All'
 -- AND l.text NOT IN ('All')
 AND i.text IS NOT NULL
 ORDER BY i.id DESC
+```
+
+```sql
+-- Sub-query to get around SQL grouping constraints:
+SELECT i.id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+```
+
+Working:
+```sql
+SELECT li.item_id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id, li.list_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+```
+
+```sql
+SELECT id, list_id, item_id, count(*)
+FROM list_items
+-- WHERE person_id=2
+GROUP BY list_id, item_id
+```
+
+```sql
+SELECT list_id, item_id, COUNT(*)
+FROM list_items
+GROUP BY list_id, item_id
 ```
