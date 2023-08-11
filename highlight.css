@@ -14,7 +14,7 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #282a36;
+  /* background: #282a36; */
 }
 
 .hljs-built_in,
@@ -78,4 +78,8 @@
 
 .hljs-emphasis {
   font-style: italic;
+}
+
+.hljs .language-elixir {
+  background: #282c34;
 }
