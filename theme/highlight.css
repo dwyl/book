@@ -83,3 +83,8 @@
 .language-elixir {
   background: #282c34;
 }
+
+.language-bash {
+  background: black;
+  color: #47cf73;
+}
