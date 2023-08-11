@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="mvp/index.html"><strong aria-hidden="true">2.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mvp/15-lists.html"><strong aria-hidden="true">2.1.</strong> Lists</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="atm/index.html"><strong aria-hidden="true">2.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="atm/01-browser-agent.html"><strong aria-hidden="true">2.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">2.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="mvp/index.html"><strong aria-hidden="true">3.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mvp/16-lists.html"><strong aria-hidden="true">3.1.</strong> Lists</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1248,7 +1248,88 @@ captured in registration is stored
 <strong><code>encrypted</code></strong> at rest 
 the way it should be. 🔐 </p>
 <p>Now we can get on with <em>building</em> <code>auth</code>!</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="minimum-viable-product-mvp"><a class="header" href="#minimum-viable-product-mvp">Minimum Viable Product (MVP)</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-build-an-metrics-dashboard"><a class="header" href="#how-to-build-an-metrics-dashboard">How to Build an Metrics Dashboard</a></h1>
+<pre><code class="language-sh">mix phx.new atm --no-mailer
+</code></pre>
+<p>We won't send <code>email</code> from this app.
+But we want everything <code>else</code> 
+<code>Phoenix</code> has to offer. 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="parse-and-store-browser-user-agent-string"><a class="header" href="#parse-and-store-browser-user-agent-string">Parse and Store Browser User Agent String</a></h1>
+<p>The <em>first</em> data we want to parse and store 
+is the Web Browser 
+<a href="https://en.wikipedia.org/wiki/User_agent">User Agent</a>
+so that we know what devices and browsers are visiting.</p>
+<p>There is a lot of info about User Agents on <strong>MDN</strong>:
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent">developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent</a>
+recommended reading for the curious.</p>
+<p>For our purposes 
+we only need to extract the <code>user_agent</code> data that interest us
+and thankfully, 
+<a href="https://github.com/mneudert"><code>@mneudert</code></a>
+has created a handy library we can use:
+<a href="https://github.com/elixir-inspector/ua_inspector"><strong><code>ua_inspector</code></strong></a></p>
+<h2 id="ua_inspector-usage-example"><a class="header" href="#ua_inspector-usage-example"><code>ua_inspector</code> Usage Example</a></h2>
+<p>From the <code>ua_inspector</code> docs we get the following sample code/output:</p>
+<pre><code class="language-elixir">iex&gt; UAInspector.parse(&quot;Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53&quot;)
+%UAInspector.Result{
+  client: %UAInspector.Result.Client{
+    engine: &quot;WebKit&quot;,
+    engine_version: &quot;537.51.1&quot;,
+    name: &quot;Mobile Safari&quot;,
+    type: &quot;browser&quot;,
+    version: &quot;7.0&quot;
+  },
+  device: %UAInspector.Result.Device{
+    brand: &quot;Apple&quot;,
+    model: &quot;iPad&quot;,
+    type: &quot;tablet&quot;
+  },
+  os: %UAInspector.Result.OS{
+    name: &quot;iOS&quot;,
+    platform: :unknown,
+    version: &quot;7.0.4&quot;
+  },
+  user_agent: &quot;Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53&quot;
+}
+</code></pre>
+<p>Additionally there is following sample output for a non-browser agent (<code>Google Bot</code>):</p>
+<pre><code class="language-elixir">iex&gt; UAInspector.parse(&quot;Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36&quot;)
+%UAInspector.Result.Bot{
+  category: &quot;Search bot&quot;,
+  name: &quot;Googlebot&quot;,
+  producer: %UAInspector.Result.BotProducer{
+    name: &quot;Google Inc.&quot;,
+    url: &quot;http://www.google.com&quot;
+  },
+  url: &quot;http://www.google.com/bot.html&quot;,
+  user_agent: &quot;Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36&quot;
+}
+</code></pre>
+<p>From this sample output 
+we can extract the following fields:</p>
+<ul>
+<li><code>engine</code>: <code>String</code> e.g: &quot;WebKit&quot;</li>
+<li><code>engine_version</code>: <code>String</code> e.g: &quot;537.51.1&quot; - sadly we can't store this as <code>float</code> unless we lose the last digit ...</li>
+<li><code>name</code>: <code>String</code> e.g: &quot;Mobile Safari&quot;</li>
+<li><code>version</code>: <code>Float</code> e.g: &quot;7.0&quot; - we will <em>parse</em> this <code>float</code> so that we can run queries on it.</li>
+<li><code>brand</code>: <code>String</code> e.g: &quot;Apple&quot;</li>
+<li><code>model</code>: <code>String</code> e.g: &quot;iPad&quot;</li>
+<li><code>device_type</code>: <code>String</code> e.g: &quot;tablet&quot;</li>
+<li><code>os_name</code>: <code>String</code> e.g: &quot;iOS&quot;</li>
+<li><code>platform</code>: <code>String</code> e.g: &quot;unknown&quot; - <code>Atom.to_string(:unknown)</code></li>
+<li><code>os_version</code>: <code>String</code> e.g: &quot;7.0.4&quot;</li>
+<li><code>url</code>: <code>String</code> e.g: &quot;http://www.google.com/bot.html&quot; - used by non-human agents; blank if null.</li>
+<li><code>user_agent</code>: <code>String</code>, the <em>full</em> agent string.
+Even though <code>ua_inspector</code> does a good job of parsing the <code>user_agent</code>,
+we are storing the <em>full</em> <code>user_agent</code> string 
+so that we can sense-check the parsed data when needed.</li>
+</ul>
+<p>Fields we will ignore:</p>
+<ul>
+<li><code>type</code>: <code>String</code> e.g: &quot;browser&quot; - we will skip this field as it's implied. </li>
+<li></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="minimum-viable-product-mvp"><a class="header" href="#minimum-viable-product-mvp">Minimum Viable Product (MVP)</a></h1>
 <p><em>All</em> Apps start with an MVP. 
 In our case we created a <em>separate</em> repository:
 <a href="https://github.com/dwyl/mvp">github.com/dwyl/<strong>mvp</strong></a>
@@ -1261,6 +1342,202 @@ and split it into separate files here in <code>book</code>.
 See: 
 <a href="https://github.com/dwyl/mvp/issues/350">dwyl/mvp/<strong>issues/350</strong></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
+<p>Our <strong>MVP <code>App</code></strong> already has 
+much of the basic functionality we need/want 
+but it's sorely lacking 
+a way to <strong><em>organize</em> <code>items</code></strong> 
+into distinct projects/areas.
+Let's fix that by introducing <code>lists</code>!</p>
+<h2 id="quick-recap"><a class="header" href="#quick-recap">Quick Recap</a></h2>
+<p>Up till this point we've <em>deliberately</em> kept the <code>MVP</code>
+as lean as possible to avoid complexity. <br />
+The 
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
+(ERD) is currently:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/233317695-3e036f1f-db13-4697-aa49-fe767a86a773.png" alt="mvp-erd-before-lists" /></p>
+<p>Just the four tables
+you've already seen 
+in the previous sections.</p>
+<p>Our reasons for adding <code>lists</code> <em>now</em> are: <br /></p>
+<p><strong>a)</strong> Separate <code>lists</code> 
+for different areas of life/work 
+have been on our 
+<a href="https://github.com/dwyl/product-roadmap">product roadmap</a> for a while ... <br />
+<em>specifically</em>:
+<a href="https://github.com/dwyl/app/issues/271">dwyl/app#<strong>271</strong></a>
+<br /></p>
+<p><strong>b)</strong> We want to use <code>lists</code> 
+as the basis for organizing 
+and 
+<a href="https://github.com/dwyl/mvp/issues/145"><strong>re-ordering <code>items</code></strong></a>. <br /></p>
+<p><strong>c)</strong> <code>lists</code> will unlock other functionality we have planned
+that will make the <code>App</code> more <em>useful</em> both to individuals and teams.</p>
+<h2 id="create-lists-and-list_items-schemas"><a class="header" href="#create-lists-and-list_items-schemas">Create <code>lists</code> and <code>list_items</code> Schemas</a></h2>
+<p>Create the <code>lists</code> and <code>list_items</code> tables
+with the following 
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><strong><code>mix phx.gen.schema</code></strong></a>
+commands:</p>
+<pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string
+mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
+</code></pre>
+<p>Once we run <code>mix ecto.migrate</code>,
+we have the following database
+ERD:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/233316755-96fb001d-ac16-4cad-99b0-b562c0128c1f.png" alt="mvp-erd-with-lists-and-list_items" /></p>
+<p>These two new database tables
+are everything we need 
+to build the <code>lists</code> features. 🎉</p>
+<p>## Create Tests (TDD)</p>
+<p>The <code>gen.schema</code> command only creates the migration files
+and the corresponding schema in the 
+<a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
+directory of our <code>Phoenix App</code>.
+It does not create any <code>CRUD</code> functions or tests.
+This is fine because <em>most</em> of what we need is bespoke.</p>
+<p>We <em>manually</em> created the following test files:</p>
+<ul>
+<li>test/app/list_test.exs</li>
+<li>test/app/list_items_test.exs</li>
+</ul>
+<blockquote>
+<p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
+</blockquote>
+<p>Rather than <em>duplicating</em> large blocks of test code here,
+we refer readers to the source (hyperlinked above).
+The tests were written in the order they appear in the files
+and the corresponding functions to make the tests pass
+were created as needed.
+Thus ensuring we only have code that is required
+to deliver the features.</p>
+<p>The main functions to pay attention to 
+in the newly created files are:
+<code>create_list/1</code> 
+that creates a new <code>list</code>
+and
+<code>add_list_item/4</code> 
+which adds an <code>item</code> to a <code>list</code>.
+Both are dead simple and well-documented.</p>
+<h3 id="create_list1"><a class="header" href="#create_list1"><code>create_list/1</code></a></h3>
+<p><code>create_list/1</code> receives a <code>Map</code> of <code>attrs</code> (attributes)
+which it validates using <code>changeset/2</code> function
+and then inserts into the <code>lists</code> table
+via the <code>PaperTrail.insert()</code> function:</p>
+<pre><code class="language-elixir">def create_list(attrs) do
+  %List{}
+  |&gt; changeset(attrs)
+  |&gt; PaperTrail.insert()
+end
+</code></pre>
+<p>If you are new to the <code>PaperTrail</code> package and the benefits it offers,
+we wrote a quick intro:
+<a href="https://github.com/dwyl/phoenix-papertrail-demo">dwyl/phoenix-papertrail-demo</a></p>
+<p>The gist is this: it gives us version history for records in our database
+without significant query overhead. </p>
+<h2 id="add_list_item4"><a class="header" href="#add_list_item4"><code>add_list_item/4</code></a></h2>
+<p><code>add_list_item/4</code> as you would expect,
+adds an <code>item</code> to a <code>list</code> for the given <code>person_id</code></p>
+<pre><code class="language-elixir">def add_list_item(item, list, person_id, position) do
+  %ListItem{
+    item: item,
+    list: list,
+    person_id: person_id,
+    position: position
+  }
+  |&gt; changeset()
+  |&gt; Repo.insert()
+end
+</code></pre>
+<p>The first 3 arguments are self-explanatory;
+the final one, <code>position</code> is there to help us <em>order</em> the <code>list</code>!
+As you may have noticed in the <code>mix gen.schema</code> command above
+for the <code>list_items</code> table, the <code>position</code> field is a <code>Float</code>. 
+e.g: <code>1.0</code> 
+We have very deliberately chosen a <code>Float</code> not an <code>Integer</code>
+so that we can use this for easy append-only positional sorting. 
+More on this later in the &quot;Reordering&quot; chapter. 
+But if you want to see the discussion/history 
+of how we arrived at this,
+see: 
+<a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
+<pre><code class="language-sql">-- SELECT i.id, i.person_id, i.text AS item_text, l.text as list_text, li.list_id, li.position
+SELECT i.id
+FROM items i
+LEFT JOIN list_items li
+ON i.id = li.item_id
+LEFT JOIN lists l
+ON li.list_id = l.id
+WHERE i.person_id = 0
+AND l.text != 'All'
+-- GROUP BY i.id
+ORDER BY i.id DESC
+
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, 
+FROM list_items li
+JOIN items i 
+ON i.id = li.item_id
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, li.list_id, l.text AS list_text
+FROM list_items li
+JOIN lists l
+ON li.list_id = l.id
+JOIN items i 
+ON i.id = li.item_id
+AND l.text NOT LIKE 'All'
+AND i.text NOT NULL
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text
+FROM items i
+INNER JOIN list_items li ON i.id = li.item_id
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text--, li.list_id, l.text as list_text
+FROM items i
+-- JOIN list_items li ON i.id = li.item_id
+-- JOIN lists l ON li.list_id = l.id
+WHERE i.person_id = 2
+-- AND l.text NOT IN ('All')
+AND i.text IS NOT NULL
+ORDER BY i.id DESC
+</code></pre>
+<pre><code class="language-sql">SELECT li.item_id, i.text as item_text, li.list_id, l.text as list_text
+FROM items i
+JOIN list_items li ON i.id = li.item_id
+JOIN lists l ON li.list_id = l.id
+WHERE i.person_id = 2
+AND l.text = 'All'
+-- AND l.text NOT IN ('All')
+AND i.text IS NOT NULL
+ORDER BY i.id DESC
+</code></pre>
+<pre><code class="language-sql">-- Sub-query to get around SQL grouping constraints:
+SELECT i.id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+</code></pre>
+<p>Working:</p>
+<pre><code class="language-sql">SELECT li.item_id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id, li.list_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+</code></pre>
+<pre><code class="language-sql">SELECT id, list_id, item_id, count(*)
+FROM list_items
+-- WHERE person_id=2
+GROUP BY list_id, item_id
+</code></pre>
+<pre><code class="language-sql">SELECT list_id, item_id, COUNT(*)
+FROM list_items
+GROUP BY list_id, item_id
+</code></pre>
 
                     </main>
 

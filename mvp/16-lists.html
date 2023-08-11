@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lists - dwyl book</title>
+
+
+        <!-- Custom HTML head -->
+        <script defer data-domain="dwyl.github.io" src="https://plausible.io/js/script.js"></script>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../atm/index.html"><strong aria-hidden="true">2.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../atm/01-browser-agent.html"><strong aria-hidden="true">2.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="../atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">2.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../mvp/index.html"><strong aria-hidden="true">3.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mvp/16-lists.html" class="active"><strong aria-hidden="true">3.1.</strong> Lists</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwyl book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
+<p>Our <strong>MVP <code>App</code></strong> already has 
+much of the basic functionality we need/want 
+but it's sorely lacking 
+a way to <strong><em>organize</em> <code>items</code></strong> 
+into distinct projects/areas.
+Let's fix that by introducing <code>lists</code>!</p>
+<h2 id="quick-recap"><a class="header" href="#quick-recap">Quick Recap</a></h2>
+<p>Up till this point we've <em>deliberately</em> kept the <code>MVP</code>
+as lean as possible to avoid complexity. <br />
+The 
+<a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
+(ERD) is currently:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/233317695-3e036f1f-db13-4697-aa49-fe767a86a773.png" alt="mvp-erd-before-lists" /></p>
+<p>Just the four tables
+you've already seen 
+in the previous sections.</p>
+<p>Our reasons for adding <code>lists</code> <em>now</em> are: <br /></p>
+<p><strong>a)</strong> Separate <code>lists</code> 
+for different areas of life/work 
+have been on our 
+<a href="https://github.com/dwyl/product-roadmap">product roadmap</a> for a while ... <br />
+<em>specifically</em>:
+<a href="https://github.com/dwyl/app/issues/271">dwyl/app#<strong>271</strong></a>
+<br /></p>
+<p><strong>b)</strong> We want to use <code>lists</code> 
+as the basis for organizing 
+and 
+<a href="https://github.com/dwyl/mvp/issues/145"><strong>re-ordering <code>items</code></strong></a>. <br /></p>
+<p><strong>c)</strong> <code>lists</code> will unlock other functionality we have planned
+that will make the <code>App</code> more <em>useful</em> both to individuals and teams.</p>
+<h2 id="create-lists-and-list_items-schemas"><a class="header" href="#create-lists-and-list_items-schemas">Create <code>lists</code> and <code>list_items</code> Schemas</a></h2>
+<p>Create the <code>lists</code> and <code>list_items</code> tables
+with the following 
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><strong><code>mix phx.gen.schema</code></strong></a>
+commands:</p>
+<pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string
+mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
+</code></pre>
+<p>Once we run <code>mix ecto.migrate</code>,
+we have the following database
+ERD:</p>
+<p><img src="https://user-images.githubusercontent.com/194400/233316755-96fb001d-ac16-4cad-99b0-b562c0128c1f.png" alt="mvp-erd-with-lists-and-list_items" /></p>
+<p>These two new database tables
+are everything we need 
+to build the <code>lists</code> features. 🎉</p>
+<p>## Create Tests (TDD)</p>
+<p>The <code>gen.schema</code> command only creates the migration files
+and the corresponding schema in the 
+<a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
+directory of our <code>Phoenix App</code>.
+It does not create any <code>CRUD</code> functions or tests.
+This is fine because <em>most</em> of what we need is bespoke.</p>
+<p>We <em>manually</em> created the following test files:</p>
+<ul>
+<li>test/app/list_test.exs</li>
+<li>test/app/list_items_test.exs</li>
+</ul>
+<blockquote>
+<p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
+</blockquote>
+<p>Rather than <em>duplicating</em> large blocks of test code here,
+we refer readers to the source (hyperlinked above).
+The tests were written in the order they appear in the files
+and the corresponding functions to make the tests pass
+were created as needed.
+Thus ensuring we only have code that is required
+to deliver the features.</p>
+<p>The main functions to pay attention to 
+in the newly created files are:
+<code>create_list/1</code> 
+that creates a new <code>list</code>
+and
+<code>add_list_item/4</code> 
+which adds an <code>item</code> to a <code>list</code>.
+Both are dead simple and well-documented.</p>
+<h3 id="create_list1"><a class="header" href="#create_list1"><code>create_list/1</code></a></h3>
+<p><code>create_list/1</code> receives a <code>Map</code> of <code>attrs</code> (attributes)
+which it validates using <code>changeset/2</code> function
+and then inserts into the <code>lists</code> table
+via the <code>PaperTrail.insert()</code> function:</p>
+<pre><code class="language-elixir">def create_list(attrs) do
+  %List{}
+  |&gt; changeset(attrs)
+  |&gt; PaperTrail.insert()
+end
+</code></pre>
+<p>If you are new to the <code>PaperTrail</code> package and the benefits it offers,
+we wrote a quick intro:
+<a href="https://github.com/dwyl/phoenix-papertrail-demo">dwyl/phoenix-papertrail-demo</a></p>
+<p>The gist is this: it gives us version history for records in our database
+without significant query overhead. </p>
+<h2 id="add_list_item4"><a class="header" href="#add_list_item4"><code>add_list_item/4</code></a></h2>
+<p><code>add_list_item/4</code> as you would expect,
+adds an <code>item</code> to a <code>list</code> for the given <code>person_id</code></p>
+<pre><code class="language-elixir">def add_list_item(item, list, person_id, position) do
+  %ListItem{
+    item: item,
+    list: list,
+    person_id: person_id,
+    position: position
+  }
+  |&gt; changeset()
+  |&gt; Repo.insert()
+end
+</code></pre>
+<p>The first 3 arguments are self-explanatory;
+the final one, <code>position</code> is there to help us <em>order</em> the <code>list</code>!
+As you may have noticed in the <code>mix gen.schema</code> command above
+for the <code>list_items</code> table, the <code>position</code> field is a <code>Float</code>. 
+e.g: <code>1.0</code> 
+We have very deliberately chosen a <code>Float</code> not an <code>Integer</code>
+so that we can use this for easy append-only positional sorting. 
+More on this later in the &quot;Reordering&quot; chapter. 
+But if you want to see the discussion/history 
+of how we arrived at this,
+see: 
+<a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
+<pre><code class="language-sql">-- SELECT i.id, i.person_id, i.text AS item_text, l.text as list_text, li.list_id, li.position
+SELECT i.id
+FROM items i
+LEFT JOIN list_items li
+ON i.id = li.item_id
+LEFT JOIN lists l
+ON li.list_id = l.id
+WHERE i.person_id = 0
+AND l.text != 'All'
+-- GROUP BY i.id
+ORDER BY i.id DESC
+
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, 
+FROM list_items li
+JOIN items i 
+ON i.id = li.item_id
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, li.list_id, l.text AS list_text
+FROM list_items li
+JOIN lists l
+ON li.list_id = l.id
+JOIN items i 
+ON i.id = li.item_id
+AND l.text NOT LIKE 'All'
+AND i.text NOT NULL
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text
+FROM items i
+INNER JOIN list_items li ON i.id = li.item_id
+</code></pre>
+<pre><code class="language-sql">SELECT i.id, i.text as item_text--, li.list_id, l.text as list_text
+FROM items i
+-- JOIN list_items li ON i.id = li.item_id
+-- JOIN lists l ON li.list_id = l.id
+WHERE i.person_id = 2
+-- AND l.text NOT IN ('All')
+AND i.text IS NOT NULL
+ORDER BY i.id DESC
+</code></pre>
+<pre><code class="language-sql">SELECT li.item_id, i.text as item_text, li.list_id, l.text as list_text
+FROM items i
+JOIN list_items li ON i.id = li.item_id
+JOIN lists l ON li.list_id = l.id
+WHERE i.person_id = 2
+AND l.text = 'All'
+-- AND l.text NOT IN ('All')
+AND i.text IS NOT NULL
+ORDER BY i.id DESC
+</code></pre>
+<pre><code class="language-sql">-- Sub-query to get around SQL grouping constraints:
+SELECT i.id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+</code></pre>
+<p>Working:</p>
+<pre><code class="language-sql">SELECT li.item_id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id, li.list_id
+FROM (
+  SELECT DISTINCT ON (li.item_id, li.list_id) *
+  FROM list_items li 
+  WHERE li.person_id = 2
+) li
+JOIN items i ON li.list_id = i.id
+LEFT JOIN timers as t ON t.item_id = i.id
+</code></pre>
+<pre><code class="language-sql">SELECT id, list_id, item_id, count(*)
+FROM list_items
+-- WHERE person_id=2
+GROUP BY list_id, item_id
+</code></pre>
+<pre><code class="language-sql">SELECT list_id, item_id, COUNT(*)
+FROM list_items
+GROUP BY list_id, item_id
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mvp/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mvp/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
