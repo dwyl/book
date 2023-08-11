@@ -14,7 +14,7 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  /* background: #282a36; */
+  background: #e6e7ed;
 }
 
 .hljs-built_in,
