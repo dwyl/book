@@ -9,6 +9,7 @@
 
         <!-- Custom HTML head -->
         <script defer data-domain="dwyl.github.io" src="https://plausible.io/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/elixir.min.js"></script>
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1459,85 +1460,6 @@ But if you want to see the discussion/history
 of how we arrived at this,
 see: 
 <a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
-<pre><code class="language-sql">-- SELECT i.id, i.person_id, i.text AS item_text, l.text as list_text, li.list_id, li.position
-SELECT i.id
-FROM items i
-LEFT JOIN list_items li
-ON i.id = li.item_id
-LEFT JOIN lists l
-ON li.list_id = l.id
-WHERE i.person_id = 0
-AND l.text != 'All'
--- GROUP BY i.id
-ORDER BY i.id DESC
-
-</code></pre>
-<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, 
-FROM list_items li
-JOIN items i 
-ON i.id = li.item_id
-</code></pre>
-<pre><code class="language-sql">SELECT i.id, i.text as item_text, li.id as lid, li.list_id, l.text AS list_text
-FROM list_items li
-JOIN lists l
-ON li.list_id = l.id
-JOIN items i 
-ON i.id = li.item_id
-AND l.text NOT LIKE 'All'
-AND i.text NOT NULL
-</code></pre>
-<pre><code class="language-sql">SELECT i.id, i.text as item_text
-FROM items i
-INNER JOIN list_items li ON i.id = li.item_id
-</code></pre>
-<pre><code class="language-sql">SELECT i.id, i.text as item_text--, li.list_id, l.text as list_text
-FROM items i
--- JOIN list_items li ON i.id = li.item_id
--- JOIN lists l ON li.list_id = l.id
-WHERE i.person_id = 2
--- AND l.text NOT IN ('All')
-AND i.text IS NOT NULL
-ORDER BY i.id DESC
-</code></pre>
-<pre><code class="language-sql">SELECT li.item_id, i.text as item_text, li.list_id, l.text as list_text
-FROM items i
-JOIN list_items li ON i.id = li.item_id
-JOIN lists l ON li.list_id = l.id
-WHERE i.person_id = 2
-AND l.text = 'All'
--- AND l.text NOT IN ('All')
-AND i.text IS NOT NULL
-ORDER BY i.id DESC
-</code></pre>
-<pre><code class="language-sql">-- Sub-query to get around SQL grouping constraints:
-SELECT i.id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id
-FROM (
-  SELECT DISTINCT ON (li.item_id, li.list_id) *
-  FROM list_items li 
-  WHERE li.person_id = 2
-) li
-JOIN items i ON li.list_id = i.id
-LEFT JOIN timers as t ON t.item_id = i.id
-</code></pre>
-<p>Working:</p>
-<pre><code class="language-sql">SELECT li.item_id, i.text, i.status, i.person_id, li.position, t.start, t.stop, t.id as timer_id, li.list_id
-FROM (
-  SELECT DISTINCT ON (li.item_id, li.list_id) *
-  FROM list_items li 
-  WHERE li.person_id = 2
-) li
-JOIN items i ON li.list_id = i.id
-LEFT JOIN timers as t ON t.item_id = i.id
-</code></pre>
-<pre><code class="language-sql">SELECT id, list_id, item_id, count(*)
-FROM list_items
--- WHERE person_id=2
-GROUP BY list_id, item_id
-</code></pre>
-<pre><code class="language-sql">SELECT list_id, item_id, COUNT(*)
-FROM list_items
-GROUP BY list_id, item_id
-</code></pre>
 
                     </main>
 
