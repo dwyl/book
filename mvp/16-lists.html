@@ -257,7 +257,7 @@ ERD:</p>
 <p>These two new database tables
 are everything we need 
 to build the <code>lists</code> features. 🎉</p>
-<p>## Create Tests (TDD)</p>
+<p>## Create Tests Files (TDD)</p>
 <p>The <code>gen.schema</code> command only creates the migration files
 and the corresponding schema files in the 
 <a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
@@ -270,28 +270,81 @@ This is fine because <em>most</em> of what we need is bespoke.</p>
 <li>test/app/list_items_test.exs</li>
 </ul>
 <p>Inside the test files we have all the tests necessary 
-to build the <em>baseline</em> <code>lists</code> features. 
-e.g:</p>
-<pre><code class="language-elixir">
+to build the <em>baseline</em> <code>lists</code> features. </p>
+<p>In 
+<code>test/app/list_test.exs</code>
+add: </p>
+<pre><code class="language-elixir">defmodule App.ListTest do
+  use App.DataCase, async: true
+  alias App.{List}
+
+  describe &quot;list&quot; do
+    @valid_attrs %{text: &quot;My List&quot;, person_id: 1, status: 2}
+    @update_attrs %{text: &quot;some updated text&quot;, person_id: 1}
+    @invalid_attrs %{text: nil}
+
+    test &quot;create_list/1 with valid data creates a list&quot; do
+      assert {:ok, %{model: list, version: _version}} =
+               List.create_list(@valid_attrs)
+
+      assert list.text == @valid_attrs.text
+      l = List.get_person_lists(list.person_id) |&gt; Enum.at(0)
+      assert l.text == @valid_attrs.text
+    end
+
+    test &quot;create_list/1 with invalid data returns error changeset&quot; do
+      assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
+    end
+
+    test &quot;get_list!/2 returns the list with given id&quot; do
+      {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+      assert List.get_list!(list.id).text == list.text
+    end
+  end
+end
+</code></pre>
+<h3 id="define-the-basic-lists-functions"><a class="header" href="#define-the-basic-lists-functions">Define the basic <code>lists</code> functions</a></h3>
+<p>In the 
+<code>lib/app/list.ex</code>
+file, 
+add the following functions:</p>
+<pre><code class="language-elixir">def changeset(list, attrs) do
+  list
+  |&gt; cast(attrs, [:text, :person_id, :status])
+  |&gt; validate_required([:text, :person_id])
+end
+
+def create_list(attrs) do
+  %List{}
+  |&gt; changeset(attrs)
+  |&gt; PaperTrail.insert()
+end
+
+def get_list!(id) do
+  List
+  |&gt; Repo.get!(id)
+end
 </code></pre>
 <blockquote>
 <p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
 </blockquote>
-<p>Rather than <em>duplicating</em> large blocks of test code here,
+<!--
+Rather than _duplicating_ large blocks of test code here,
 we refer readers to the source (hyperlinked above).
 The tests were written in the order they appear in the files
 and the corresponding functions to make the tests pass
 were created as needed.
 Thus ensuring we only have code that is required
-to deliver the features.</p>
+to deliver the features.
+-->
 <p>The main functions to pay attention to 
 in the newly created files are:
-<code>create_list/1</code> 
+<code>App.List.create_list/1</code> 
 that creates a new <code>list</code>
 and
-<code>add_list_item/4</code> 
+<code>App.ListItem.add_list_item/4</code> 
 which adds an <code>item</code> to a <code>list</code>.
-Both are dead simple and well-documented.</p>
+Both are simple and well-documented.</p>
 <h3 id="create_list1"><a class="header" href="#create_list1"><code>create_list/1</code></a></h3>
 <p><code>create_list/1</code> receives a <code>Map</code> of <code>attrs</code> (attributes)
 which it validates using <code>changeset/2</code> function
