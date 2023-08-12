@@ -108,7 +108,7 @@ These two new database tables
 are everything we need 
 to build the `lists` features. 🎉
 
-## Create Tests (TDD)
+## Create Tests Files (TDD)
 
 The `gen.schema` command only creates the migration files
 and the corresponding schema files in the 
@@ -124,14 +124,71 @@ We _manually_ created the following test files:
 
 Inside the test files we have all the tests necessary 
 to build the _baseline_ `lists` features. 
-e.g:
+
+In 
+`test/app/list_test.exs`
+add: 
 
 ```elixir
+defmodule App.ListTest do
+  use App.DataCase, async: true
+  alias App.{List}
 
+  describe "list" do
+    @valid_attrs %{text: "My List", person_id: 1, status: 2}
+    @update_attrs %{text: "some updated text", person_id: 1}
+    @invalid_attrs %{text: nil}
+
+    test "create_list/1 with valid data creates a list" do
+      assert {:ok, %{model: list, version: _version}} =
+               List.create_list(@valid_attrs)
+
+      assert list.text == @valid_attrs.text
+      l = List.get_person_lists(list.person_id) |> Enum.at(0)
+      assert l.text == @valid_attrs.text
+    end
+
+    test "create_list/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
+    end
+
+    test "get_list!/2 returns the list with given id" do
+      {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+      assert List.get_list!(list.id).text == list.text
+    end
+  end
+end
+```
+
+### Define the basic `lists` functions
+
+In the 
+`lib/app/list.ex`
+file, 
+add the following functions:
+
+```elixir
+def changeset(list, attrs) do
+  list
+  |> cast(attrs, [:text, :person_id, :status])
+  |> validate_required([:text, :person_id])
+end
+
+def create_list(attrs) do
+  %List{}
+  |> changeset(attrs)
+  |> PaperTrail.insert()
+end
+
+def get_list!(id) do
+  List
+  |> Repo.get!(id)
+end
 ```
 
 > **TODO**: hyperlink these two files, once they are merged into `main`.
 
+<!--
 Rather than _duplicating_ large blocks of test code here,
 we refer readers to the source (hyperlinked above).
 The tests were written in the order they appear in the files
@@ -139,15 +196,16 @@ and the corresponding functions to make the tests pass
 were created as needed.
 Thus ensuring we only have code that is required
 to deliver the features.
+-->
 
 The main functions to pay attention to 
 in the newly created files are:
-`create_list/1` 
+`App.List.create_list/1` 
 that creates a new `list`
 and
-`add_list_item/4` 
+`App.ListItem.add_list_item/4` 
 which adds an `item` to a `list`.
-Both are dead simple and well-documented.
+Both are simple and well-documented.
 
 ### `create_list/1`
 
