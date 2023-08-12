@@ -436,6 +436,9 @@ end
 
 We wrote this using `SQL` because it's easier to debug.
 If `Ecto` had a `Repo.last` function, I would use that instead.
+If you want to help with refactoring this,
+[stackoverflow.com/questions/32653391/select-latest-entry-ecto-phoenix](https://stackoverflow.com/questions/32653391/how-to-select-the-latest-entry-from-database-with-ecto-phoenix)
+looks like a good starting point. 💭
 
 
 ## Add _Existing_ `itmes` to the "All" `list`
@@ -463,11 +466,12 @@ test "add_items_to_all_list/1 to seed the All list" do
   all_list = App.List.get_list_by_text!(person_id, "All")
   count_before = App.ListItem.next_position_on_list(all_list.id)
   assert count_before == 1
+
   item_ids = App.ListItem.get_items_on_all_list(person_id)
   assert length(item_ids) == 0
+
   App.ListItem.add_items_to_all_list(person_id)
   updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
-  # dbg(updated_item_ids)
   assert length(updated_item_ids) ==
             length(App.Item.all_items_for_person(person_id))
 
@@ -476,3 +480,31 @@ test "add_items_to_all_list/1 to seed the All list" do
 end
 ```
 
+That's a very long test.
+Take a moment to read it through.
+Remember: this will be deleted,
+it's just data migration code.
+
+
+### Define `add_items_to_all_list/1`
+
+In the 
+`lib/app/list_item.ex`
+file,
+add the `add_items_to_all_list/1` function definition:
+
+```elixir
+def add_items_to_all_list(person_id) do
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  all_items = App.Item.all_items_for_person(person_id)
+  item_ids_in_all_list = get_items_on_all_list(person_id)
+
+  all_items
+  |> Enum.with_index()
+  |> Enum.each(fn {item, index} ->
+    unless Enum.member?(item_ids_in_all_list, item.id) do
+      add_list_item(item, all_list, person_id, (index + 1) / 1)
+    end
+  end)
+end
+```
