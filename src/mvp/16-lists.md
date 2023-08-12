@@ -208,5 +208,271 @@ see:
 [dwyl/mvp#145](https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575)
 
 
+## Get `lists` for a `person`
 
+To display the `lists` 
+that belong to a `person` 
+we need a simple query.
+
+### Test `get_person_lists/1`
+
+Open the 
+`test/app/list_test.exs`
+file 
+and add the following test:
+
+```elixir
+test "get_person_lists/1 returns the lists for the person_id" do
+  person_id = 3
+  lists_before = App.List.get_person_lists(person_id)
+  assert length(lists_before) == 0
+
+  # Create a couple of lists
+  {:ok, %{model: all_list}} =
+    %{text: "All", person_id: person_id, status: 2}
+    |> App.List.create_list()
+
+  {:ok, %{model: recipe_list}} =
+    %{text: "Recipes", person_id: person_id, status: 2}
+    |> App.List.create_list()
+
+  # Retrieve the lists for the person_id:
+  lists_after = App.List.get_person_lists(person_id)
+  assert length(lists_after) == 2
+  assert Enum.member?(lists_after, all_list)
+  assert Enum.member?(lists_after, recipe_list)
+end
+```
+
+### Implment the `get_person_lists/1` function
+
+Implement the function 
+as simply as possible:
+
+```elixir
+@doc """
+`get_person_lists/1` gets all lists for a person by `person_id`.
+"""
+def get_person_lists(person_id) do
+  List
+  |> where(person_id: ^person_id)
+  |> Repo.all()
+end
+```
+
+Make sure the test is passing as we will be using this function next!
+
+## Create the "All" default `list`
+
+In order to have sorting/reordering of `list_items`
+(see below)
+we _first_ need to have a `list`!
+Rather than forcing `people` 
+to _manually_ create their "All" `list`
+before they know what a `list` _is_,
+it will be created for them _automatically_
+when they first authenticate.
+
+### Test `get_list_by_text!/2` 
+
+In the 
+`test/app/list_test.exs`
+file,
+create the following test:
+
+```elixir
+test "get_list_by_text!/2 returns the list for the person_id by text" do
+  person_id = 4
+  %{text: "All", person_id: person_id, status: 2}
+    |> App.List.create_list()
+  list = App.List.get_list_by_text!(person_id, "All")
+  assert list.text == "All"
+end
+```
+
+### Define `get_list_by_text!/2` 
+
+This is one is dead simple thanks to `Ecto` compact syntax:
+
+```elixir
+def get_list_by_text!(person_id, text) do
+  Repo.get_by(List, text: text, person_id: person_id)
+end
+```
+
+> **Note**: we may need to use  
+[`Repo.one/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:one/2)
+if we think there's a chance a `person` 
+may have _multiple_ `lists` with `"All`" in the `list.text`. 
+
+## Default `lists`
+
+We want `people` to use our `App` 
+for a wide variety of areas in their life+work.
+Therefore we are creating several `default` `lists` 
+for them when they first authenticate.
+See: [dwyl/mvp#401](https://github.com/dwyl/mvp/issues/401)
+for the discussion.
+
+### Test creating "Default" `lists`
+
+Let's write a quick test to
+confirm that our `default lists` are created.
+
+```elixir
+test "create_default_lists/1 creates the default lists" do
+  # Should have no lists:
+  person_id = 3
+  lists = App.List.get_person_lists(person_id)
+  assert length(lists) == 0
+  # Create the default lists for this person_id:
+  assert List.create_default_lists(person_id) |> length() == 9
+end
+```
+
+> **Note**: at present we have **9** `default lists`
+This is just a _suggested_ collection of _generic_ `lists`. 
+We could easily have fewer or more.
+Please discuss! 
+[dwyl/mvp#401](https://github.com/dwyl/mvp/issues/401)
+
+### Define `create_default_lists/1`
+
+```elixir
+@default_lists ~w(All Goals Fitness Meals Recipes Reading Shopping Today Todo)
+@doc """
+`create_default_lists/1` create the default "All" list
+for the `person_id` if it does not already exist.
+"""
+def create_default_lists(person_id) do
+  # Check if the "All" list exists for the person_id
+  lists = get_person_lists(person_id)
+  # Extract just the list.text (name) from the person's lists:
+  list_names = Enum.reduce(lists, [], fn l, acc -> [l.text | acc] end)
+  # Quick check for length of lists:
+  if length(list_names) < length(@default_lists) do
+    create_list_if_not_exists(list_names, person_id)
+    # Re-fetch the list of lists for the person_id
+    get_person_lists(person_id)
+  else
+    # Return the list we got above
+    lists
+  end
+end
+
+@doc """
+`create_list_if_not_exists/1` create the default "All" list
+for the `person_id` if it does not already exist.
+"""
+def create_list_if_not_exists(list_names, person_id) do
+  Enum.each(@default_lists, fn name ->
+    # Create the list if it does not already exists
+    unless Enum.member?(list_names, name) do
+      %{text: name, person_id: person_id, status: 2}
+      |> List.create_list()
+    end
+  end)
+end
+```
+
+## Get the `list_item.position` for an `item` on a given `list`
+
+If we're going to be altering the `position` of `items` in a `list`,
+one of the helper functions we're going to need
+is the ability to retrieve the _current_ `position` of `item` on that `list`.
+
+### Test `get_list_item_position/2`
+
+In the
+`test/app/list_items_test.exs`
+file,
+add the following test:
+
+```elixir
+@valid_attrs %{text: "Go Surfing", person_id: 0, status: 2}
+test "get_list_item_position/2 retrieves the position of an item in a list" do
+  {:ok, %{model: item, version: _version}} =
+      Item.create_item(@valid_attrs)
+  {:ok, li1} = App.ListItem.add_item_to_all_list(item)
+  assert li1.position == 1.0
+
+  # Note: this conversion from Int to Binary is to simulate the
+  # binary that the LiveView sends to this function ...
+  item_id = Integer.to_string(item.id)
+  pos = App.ListItem.get_list_item_position(item_id, li1.list_id)
+
+  assert li1.position == pos
+end
+```
+
+### Define `get_list_item_position/2`
+
+In the 
+`lib/app/list_item.ex`
+file,
+add the following defintion for 
+`get_list_item_position/2`:
+
+```elixir
+def get_list_item_position(item_id, list_id) do
+  item_id =
+    if Useful.typeof(item_id) == "binary" do
+      {int, _} = Integer.parse(item_id)
+      int
+    else
+      item_id
+    end
+
+  sql = """
+  SELECT li.position FROM list_items li
+  WHERE li.item_id = $1 AND li.list_id = $2
+  ORDER BY li.inserted_at DESC LIMIT 1
+  """
+
+  result = Ecto.Adapters.SQL.query!(Repo, sql, [item_id, list_id])
+  result.rows |> List.first() |> List.first()
+end
+```
+
+We wrote this using `SQL` because it's easier to debug.
+If `Ecto` had a `Repo.last` function, I would use that instead.
+
+
+## Add _Existing_ `itmes` to the "All" `list`
+
+One final function we need
+in order to _retroactively_ add `lists`
+to our `MVP` App that started out _without_ `lists`
+is a function to add all the _existing_ `items`
+to the newly created "All" `list`. 
+
+### Test `add_items_to_all_list/1`
+
+> **Note**: This is a _temporary_ function that we will `delete`
+once all the _existing_ people using the `MVP`
+have transitioned their `items` to the "All" `list`.
+But we still need to have a _test_ for it!
+
+Open 
+`test/app/list_items_test.exs`
+and add the following test:
+
+```elixir
+test "add_items_to_all_list/1 to seed the All list" do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  # dbg(updated_item_ids)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+```
 
