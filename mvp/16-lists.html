@@ -175,9 +175,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
-<p>Our <strong>MVP <code>App</code></strong> already has 
+<p>Our <strong>MVP App</strong> already has 
 much of the basic functionality we need/want 
-but it's sorely lacking 
+but is sorely lacking 
 a way to <strong><em>organize</em> <code>items</code></strong> 
 into distinct projects/areas.
 Let's fix that by introducing <code>lists</code>!</p>
@@ -208,11 +208,48 @@ that will make the <code>App</code> more <em>useful</em> both to individuals and
 <h2 id="create-lists-and-list_items-schemas"><a class="header" href="#create-lists-and-list_items-schemas">Create <code>lists</code> and <code>list_items</code> Schemas</a></h2>
 <p>Create the <code>lists</code> and <code>list_items</code> tables
 with the following 
-<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><strong><code>mix phx.gen.schema</code></strong></a>
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
 commands:</p>
 <pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string
 mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
 </code></pre>
+<p>Those two commands will create the following migrations:</p>
+<p><a href="https://github.com/dwyl/mvp/blob/fa0b79eebbe582e3b24213a2c657d0fc343782c9/priv/repo/migrations/20230416001029_create_lists.exs"><code>20230416001029_create_lists.exs</code></a></p>
+<pre><code class="language-elixir">defmodule App.Repo.Migrations.CreateLists do
+  use Ecto.Migration
+
+  def change do
+    create table(:lists) do
+      add :text, :string
+      add :person_id, :integer
+      add :status, :integer
+
+      timestamps()
+    end
+  end
+end
+</code></pre>
+<p><a href="https://github.com/dwyl/mvp/blob/54aff67d172ad372c5ee1ffd9c41f24b093b78d4/priv/repo/migrations/20230416001045_create_list_items.exs"><code>20230416001045_create_list_items.exs</code></a></p>
+<pre><code class="language-elixir">defmodule App.Repo.Migrations.CreateListItems do
+  use Ecto.Migration
+
+  def change do
+    create table(:list_items) do
+      add :person_id, :integer
+      add :position, :float
+      add :item_id, references(:items, on_delete: :nothing)
+      add :list_id, references(:lists, on_delete: :nothing)
+
+      timestamps()
+    end
+
+    create index(:list_items, [:item_id])
+    create index(:list_items, [:list_id])
+  end
+end
+</code></pre>
+<p>The Database tables these migrations create 
+are very simple.</p>
 <p>Once we run <code>mix ecto.migrate</code>,
 we have the following database
 ERD:</p>
@@ -222,7 +259,7 @@ are everything we need
 to build the <code>lists</code> features. 🎉</p>
 <p>## Create Tests (TDD)</p>
 <p>The <code>gen.schema</code> command only creates the migration files
-and the corresponding schema in the 
+and the corresponding schema files in the 
 <a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
 directory of our <code>Phoenix App</code>.
 It does not create any <code>CRUD</code> functions or tests.
@@ -232,6 +269,11 @@ This is fine because <em>most</em> of what we need is bespoke.</p>
 <li>test/app/list_test.exs</li>
 <li>test/app/list_items_test.exs</li>
 </ul>
+<p>Inside the test files we have all the tests necessary 
+to build the <em>baseline</em> <code>lists</code> features. 
+e.g:</p>
+<pre><code class="language-elixir">
+</code></pre>
 <blockquote>
 <p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
 </blockquote>
@@ -261,11 +303,15 @@ via the <code>PaperTrail.insert()</code> function:</p>
   |&gt; PaperTrail.insert()
 end
 </code></pre>
+<p>The <code>attrs</code> are just
+<code>person_id</code> the <code>id</code> of the <code>person</code> creating the list, 
+<code>text</code> the name/description of the list 
+and <code>status</code> (optional).</p>
 <p>If you are new to the <code>PaperTrail</code> package and the benefits it offers,
 we wrote a quick intro:
 <a href="https://github.com/dwyl/phoenix-papertrail-demo">dwyl/phoenix-papertrail-demo</a></p>
 <p>The gist is this: it gives us version history for records in our database
-without significant query overhead. </p>
+without any query overhead. </p>
 <h2 id="add_list_item4"><a class="header" href="#add_list_item4"><code>add_list_item/4</code></a></h2>
 <p><code>add_list_item/4</code> as you would expect,
 adds an <code>item</code> to a <code>list</code> for the given <code>person_id</code></p>
@@ -284,7 +330,7 @@ end
 the final one, <code>position</code> is there to help us <em>order</em> the <code>list</code>!
 As you may have noticed in the <code>mix gen.schema</code> command above
 for the <code>list_items</code> table, the <code>position</code> field is a <code>Float</code>. 
-e.g: <code>1.0</code> 
+e.g: <code>1.0</code>. 
 We have very deliberately chosen a <code>Float</code> not an <code>Integer</code>
 so that we can use this for easy append-only positional sorting. 
 More on this later in the &quot;Reordering&quot; chapter. 
