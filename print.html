@@ -1512,6 +1512,229 @@ But if you want to see the discussion/history
 of how we arrived at this,
 see: 
 <a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
+<h2 id="get-lists-for-a-person"><a class="header" href="#get-lists-for-a-person">Get <code>lists</code> for a <code>person</code></a></h2>
+<p>To display the <code>lists</code> 
+that belong to a <code>person</code> 
+we need a simple query.</p>
+<h3 id="test-get_person_lists1"><a class="header" href="#test-get_person_lists1">Test <code>get_person_lists/1</code></a></h3>
+<p>Open the 
+<code>test/app/list_test.exs</code>
+file 
+and add the following test:</p>
+<pre><code class="language-elixir">test &quot;get_person_lists/1 returns the lists for the person_id&quot; do
+  person_id = 3
+  lists_before = App.List.get_person_lists(person_id)
+  assert length(lists_before) == 0
+
+  # Create a couple of lists
+  {:ok, %{model: all_list}} =
+    %{text: &quot;All&quot;, person_id: person_id, status: 2}
+    |&gt; App.List.create_list()
+
+  {:ok, %{model: recipe_list}} =
+    %{text: &quot;Recipes&quot;, person_id: person_id, status: 2}
+    |&gt; App.List.create_list()
+
+  # Retrieve the lists for the person_id:
+  lists_after = App.List.get_person_lists(person_id)
+  assert length(lists_after) == 2
+  assert Enum.member?(lists_after, all_list)
+  assert Enum.member?(lists_after, recipe_list)
+end
+</code></pre>
+<h3 id="implment-the-get_person_lists1-function"><a class="header" href="#implment-the-get_person_lists1-function">Implment the <code>get_person_lists/1</code> function</a></h3>
+<p>Implement the function 
+as simply as possible:</p>
+<pre><code class="language-elixir">@doc &quot;&quot;&quot;
+`get_person_lists/1` gets all lists for a person by `person_id`.
+&quot;&quot;&quot;
+def get_person_lists(person_id) do
+  List
+  |&gt; where(person_id: ^person_id)
+  |&gt; Repo.all()
+end
+</code></pre>
+<p>Make sure the test is passing as we will be using this function next!</p>
+<h2 id="create-the-all-default-list"><a class="header" href="#create-the-all-default-list">Create the &quot;All&quot; default <code>list</code></a></h2>
+<p>In order to have sorting/reordering of <code>list_items</code>
+(see below)
+we <em>first</em> need to have a <code>list</code>!
+Rather than forcing <code>people</code> 
+to <em>manually</em> create their &quot;All&quot; <code>list</code>
+before they know what a <code>list</code> <em>is</em>,
+it will be created for them <em>automatically</em>
+when they first authenticate.</p>
+<h3 id="test-get_list_by_text2"><a class="header" href="#test-get_list_by_text2">Test <code>get_list_by_text!/2</code></a></h3>
+<p>In the 
+<code>test/app/list_test.exs</code>
+file,
+create the following test:</p>
+<pre><code class="language-elixir">test &quot;get_list_by_text!/2 returns the list for the person_id by text&quot; do
+  person_id = 4
+  %{text: &quot;All&quot;, person_id: person_id, status: 2}
+    |&gt; App.List.create_list()
+  list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  assert list.text == &quot;All&quot;
+end
+</code></pre>
+<h3 id="define-get_list_by_text2"><a class="header" href="#define-get_list_by_text2">Define <code>get_list_by_text!/2</code></a></h3>
+<p>This is one is dead simple thanks to <code>Ecto</code> compact syntax:</p>
+<pre><code class="language-elixir">def get_list_by_text!(person_id, text) do
+  Repo.get_by(List, text: text, person_id: person_id)
+end
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: we may need to use<br />
+<a href="https://hexdocs.pm/ecto/Ecto.Repo.html#c:one/2"><code>Repo.one/2</code></a>
+if we think there's a chance a <code>person</code> 
+may have <em>multiple</em> <code>lists</code> with <code>&quot;All</code>&quot; in the <code>list.text</code>. </p>
+</blockquote>
+<h2 id="default-lists"><a class="header" href="#default-lists">Default <code>lists</code></a></h2>
+<p>We want <code>people</code> to use our <code>App</code> 
+for a wide variety of areas in their life+work.
+Therefore we are creating several <code>default</code> <code>lists</code> 
+for them when they first authenticate.
+See: <a href="https://github.com/dwyl/mvp/issues/401">dwyl/mvp#401</a>
+for the discussion.</p>
+<h3 id="test-creating-default-lists"><a class="header" href="#test-creating-default-lists">Test creating &quot;Default&quot; <code>lists</code></a></h3>
+<p>Let's write a quick test to
+confirm that our <code>default lists</code> are created.</p>
+<pre><code class="language-elixir">test &quot;create_default_lists/1 creates the default lists&quot; do
+  # Should have no lists:
+  person_id = 3
+  lists = App.List.get_person_lists(person_id)
+  assert length(lists) == 0
+  # Create the default lists for this person_id:
+  assert List.create_default_lists(person_id) |&gt; length() == 9
+end
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: at present we have <strong>9</strong> <code>default lists</code>
+This is just a <em>suggested</em> collection of <em>generic</em> <code>lists</code>. 
+We could easily have fewer or more.
+Please discuss! 
+<a href="https://github.com/dwyl/mvp/issues/401">dwyl/mvp#401</a></p>
+</blockquote>
+<h3 id="define-create_default_lists1"><a class="header" href="#define-create_default_lists1">Define <code>create_default_lists/1</code></a></h3>
+<pre><code class="language-elixir">@default_lists ~w(All Goals Fitness Meals Recipes Reading Shopping Today Todo)
+@doc &quot;&quot;&quot;
+`create_default_lists/1` create the default &quot;All&quot; list
+for the `person_id` if it does not already exist.
+&quot;&quot;&quot;
+def create_default_lists(person_id) do
+  # Check if the &quot;All&quot; list exists for the person_id
+  lists = get_person_lists(person_id)
+  # Extract just the list.text (name) from the person's lists:
+  list_names = Enum.reduce(lists, [], fn l, acc -&gt; [l.text | acc] end)
+  # Quick check for length of lists:
+  if length(list_names) &lt; length(@default_lists) do
+    create_list_if_not_exists(list_names, person_id)
+    # Re-fetch the list of lists for the person_id
+    get_person_lists(person_id)
+  else
+    # Return the list we got above
+    lists
+  end
+end
+
+@doc &quot;&quot;&quot;
+`create_list_if_not_exists/1` create the default &quot;All&quot; list
+for the `person_id` if it does not already exist.
+&quot;&quot;&quot;
+def create_list_if_not_exists(list_names, person_id) do
+  Enum.each(@default_lists, fn name -&gt;
+    # Create the list if it does not already exists
+    unless Enum.member?(list_names, name) do
+      %{text: name, person_id: person_id, status: 2}
+      |&gt; List.create_list()
+    end
+  end)
+end
+</code></pre>
+<h2 id="get-the-list_itemposition-for-an-item-on-a-given-list"><a class="header" href="#get-the-list_itemposition-for-an-item-on-a-given-list">Get the <code>list_item.position</code> for an <code>item</code> on a given <code>list</code></a></h2>
+<p>If we're going to be altering the <code>position</code> of <code>items</code> in a <code>list</code>,
+one of the helper functions we're going to need
+is the ability to retrieve the <em>current</em> <code>position</code> of <code>item</code> on that <code>list</code>.</p>
+<h3 id="test-get_list_item_position2"><a class="header" href="#test-get_list_item_position2">Test <code>get_list_item_position/2</code></a></h3>
+<p>In the
+<code>test/app/list_items_test.exs</code>
+file,
+add the following test:</p>
+<pre><code class="language-elixir">@valid_attrs %{text: &quot;Go Surfing&quot;, person_id: 0, status: 2}
+test &quot;get_list_item_position/2 retrieves the position of an item in a list&quot; do
+  {:ok, %{model: item, version: _version}} =
+      Item.create_item(@valid_attrs)
+  {:ok, li1} = App.ListItem.add_item_to_all_list(item)
+  assert li1.position == 1.0
+
+  # Note: this conversion from Int to Binary is to simulate the
+  # binary that the LiveView sends to this function ...
+  item_id = Integer.to_string(item.id)
+  pos = App.ListItem.get_list_item_position(item_id, li1.list_id)
+
+  assert li1.position == pos
+end
+</code></pre>
+<h3 id="define-get_list_item_position2"><a class="header" href="#define-get_list_item_position2">Define <code>get_list_item_position/2</code></a></h3>
+<p>In the 
+<code>lib/app/list_item.ex</code>
+file,
+add the following defintion for 
+<code>get_list_item_position/2</code>:</p>
+<pre><code class="language-elixir">def get_list_item_position(item_id, list_id) do
+  item_id =
+    if Useful.typeof(item_id) == &quot;binary&quot; do
+      {int, _} = Integer.parse(item_id)
+      int
+    else
+      item_id
+    end
+
+  sql = &quot;&quot;&quot;
+  SELECT li.position FROM list_items li
+  WHERE li.item_id = $1 AND li.list_id = $2
+  ORDER BY li.inserted_at DESC LIMIT 1
+  &quot;&quot;&quot;
+
+  result = Ecto.Adapters.SQL.query!(Repo, sql, [item_id, list_id])
+  result.rows |&gt; List.first() |&gt; List.first()
+end
+</code></pre>
+<p>We wrote this using <code>SQL</code> because it's easier to debug.
+If <code>Ecto</code> had a <code>Repo.last</code> function, I would use that instead.</p>
+<h2 id="add-existing-itmes-to-the-all-list"><a class="header" href="#add-existing-itmes-to-the-all-list">Add <em>Existing</em> <code>itmes</code> to the &quot;All&quot; <code>list</code></a></h2>
+<p>One final function we need
+in order to <em>retroactively</em> add <code>lists</code>
+to our <code>MVP</code> App that started out <em>without</em> <code>lists</code>
+is a function to add all the <em>existing</em> <code>items</code>
+to the newly created &quot;All&quot; <code>list</code>. </p>
+<h3 id="test-add_items_to_all_list1"><a class="header" href="#test-add_items_to_all_list1">Test <code>add_items_to_all_list/1</code></a></h3>
+<blockquote>
+<p><strong>Note</strong>: This is a <em>temporary</em> function that we will <code>delete</code>
+once all the <em>existing</em> people using the <code>MVP</code>
+have transitioned their <code>items</code> to the &quot;All&quot; <code>list</code>.
+But we still need to have a <em>test</em> for it!</p>
+</blockquote>
+<p>Open 
+<code>test/app/list_items_test.exs</code>
+and add the following test:</p>
+<pre><code class="language-elixir">test &quot;add_items_to_all_list/1 to seed the All list&quot; do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  # dbg(updated_item_ids)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+</code></pre>
 
                     </main>
 
