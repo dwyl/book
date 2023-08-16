@@ -23,5 +23,4 @@ and cursor tracking across browsers/devices.
 If you are totally new to drag-and-drop,
 we suggest following at least that one for full context.
 
-## 
 

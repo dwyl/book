@@ -19,3 +19,4 @@
 - [MVP](./mvp/README.md)
   - [Lists](mvp/16-lists.md)
   - [Reordering](mvp/17-reordering.md)
+  - [Stats](mvp/20-stats.md)
