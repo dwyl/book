@@ -94,10 +94,6 @@ defmodule App.Repo.Migrations.CreateListItems do
 end
 ```
 
-The Database tables these migrations create 
-are very simple.
-
-
 Once we run `mix ecto.migrate`,
 we have the following database
 ERD:
@@ -108,7 +104,14 @@ These two new database tables
 are everything we need 
 to build the `lists` features. 🎉
 
-## Create Tests Files (TDD)
+<!--
+## Preview 
+
+By the end of this chapter we will have ...
+-->
+
+
+## Create Tests Files (TDD)
 
 The `gen.schema` command only creates the migration files
 and the corresponding schema files in the 
@@ -308,9 +311,6 @@ Implement the function
 as simply as possible:
 
 ```elixir
-@doc """
-`get_person_lists/1` gets all lists for a person by `person_id`.
-"""
 def get_person_lists(person_id) do
   List
   |> where(person_id: ^person_id)
@@ -398,10 +398,7 @@ Please discuss!
 
 ```elixir
 @default_lists ~w(All Goals Fitness Meals Recipes Reading Shopping Today Todo)
-@doc """
-`create_default_lists/1` create the default "All" list
-for the `person_id` if it does not already exist.
-"""
+
 def create_default_lists(person_id) do
   # Check if the "All" list exists for the person_id
   lists = get_person_lists(person_id)
