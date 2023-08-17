@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="atm/index.html"><strong aria-hidden="true">2.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="atm/01-browser-agent.html"><strong aria-hidden="true">2.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">2.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="mvp/index.html"><strong aria-hidden="true">3.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mvp/16-lists.html"><strong aria-hidden="true">3.1.</strong> Lists</a></li><li class="chapter-item expanded "><a href="mvp/17-reordering.html"><strong aria-hidden="true">3.2.</strong> Reordering</a></li><li class="chapter-item expanded "><a href="mvp/20-stats.html"><strong aria-hidden="true">3.3.</strong> Stats</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="auth/index.html"><strong aria-hidden="true">1.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/00-why.html"><strong aria-hidden="true">1.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="auth/01-what.html"><strong aria-hidden="true">1.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/02-database-schema-review.html"><strong aria-hidden="true">1.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="auth/03-how.html"><strong aria-hidden="true">1.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auth/04-prerequisites.html"><strong aria-hidden="true">1.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="auth/05-mix-phx-new.html"><strong aria-hidden="true">1.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="auth/06-mix-gen-auth.html"><strong aria-hidden="true">1.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="auth/07-notes-on-naming.html"><strong aria-hidden="true">1.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="auth/08-modals-antipattern.html"><strong aria-hidden="true">1.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="auth/09-encrypt-data.html"><strong aria-hidden="true">1.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="atm/index.html"><strong aria-hidden="true">2.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="atm/01-browser-agent.html"><strong aria-hidden="true">2.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">2.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="mvp/index.html"><strong aria-hidden="true">3.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mvp/16-lists.html"><strong aria-hidden="true">3.1.</strong> Lists</a></li><li class="chapter-item expanded "><a href="mvp/17-list_items.html"><strong aria-hidden="true">3.2.</strong> Lists Items</a></li><li class="chapter-item expanded "><a href="mvp/18-reordering.html"><strong aria-hidden="true">3.3.</strong> Reordering</a></li><li class="chapter-item expanded "><a href="mvp/20-stats.html"><strong aria-hidden="true">3.4.</strong> Stats</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1379,13 +1379,12 @@ and
 <a href="https://github.com/dwyl/mvp/issues/145"><strong>re-ordering <code>items</code></strong></a>. <br /></p>
 <p><strong>c)</strong> <code>lists</code> will unlock other functionality we have planned
 that will make the <code>App</code> more <em>useful</em> both to individuals and teams.</p>
-<h2 id="create-lists-and-list_items-schemas"><a class="header" href="#create-lists-and-list_items-schemas">Create <code>lists</code> and <code>list_items</code> Schemas</a></h2>
-<p>Create the <code>lists</code> and <code>list_items</code> tables
+<h2 id="create-lists-schema"><a class="header" href="#create-lists-schema">Create <code>lists</code> Schema</a></h2>
+<p>Create the <code>lists</code> table
 with the following 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
-commands:</p>
-<pre><code class="language-sh">mix phx.gen.schema List lists person_id:integer status:integer text:string
-mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
+command:</p>
+<pre><code class="language-sh">mix phx.gen.schema List lists name:string person_id:integer status:integer
 </code></pre>
 <p>Those two commands will create the following migrations:</p>
 <p><a href="https://github.com/dwyl/mvp/blob/fa0b79eebbe582e3b24213a2c657d0fc343782c9/priv/repo/migrations/20230416001029_create_lists.exs"><code>20230416001029_create_lists.exs</code></a></p>
@@ -1394,7 +1393,7 @@ mix phx.gen.schema ListItems list_items item_id:references:items list_id:referen
 
   def change do
     create table(:lists) do
-      add :text, :string
+      add :name, :string
       add :person_id, :integer
       add :status, :integer
 
@@ -1403,95 +1402,160 @@ mix phx.gen.schema ListItems list_items item_id:references:items list_id:referen
   end
 end
 </code></pre>
-<p><a href="https://github.com/dwyl/mvp/blob/54aff67d172ad372c5ee1ffd9c41f24b093b78d4/priv/repo/migrations/20230416001045_create_list_items.exs"><code>20230416001045_create_list_items.exs</code></a></p>
-<pre><code class="language-elixir">defmodule App.Repo.Migrations.CreateListItems do
-  use Ecto.Migration
-
-  def change do
-    create table(:list_items) do
-      add :person_id, :integer
-      add :position, :float
-      add :item_id, references(:items, on_delete: :nothing)
-      add :list_id, references(:lists, on_delete: :nothing)
-
-      timestamps()
-    end
-
-    create index(:list_items, [:item_id])
-    create index(:list_items, [:list_id])
-  end
-end
-</code></pre>
 <p>Once we run <code>mix ecto.migrate</code>,
 we have the following database
 ERD:</p>
-<p><img src="https://user-images.githubusercontent.com/194400/233316755-96fb001d-ac16-4cad-99b0-b562c0128c1f.png" alt="mvp-erd-with-lists-and-list_items" /></p>
-<p>These two new database tables
-are everything we need 
-to build the <code>lists</code> features. 🎉</p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/7efb0f30-077a-4fe3-84f1-41e187116cfe" alt="mvp-erd-with-lists" /></p>
+<p>This new database table
+lets us create a <code>list</code>
+but there is still more work to be done
+to enable the features we want.</p>
+<h2 id="quick-look-at-libapplistex-file"><a class="header" href="#quick-look-at-libapplistex-file">Quick Look at <code>/lib/app/list.ex</code> file</a></h2>
+<p>The <code>mix phx.gen.schema</code> command created the 
+<a href="mvp/"><code>lib/app/list.ex</code></a>
+file with the following:</p>
+<pre><code class="language-elixir">defmodule App.List do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema &quot;lists&quot; do
+    field :name, :string
+    field :person_id, :integer
+    field :status, :integer
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(list, attrs) do
+    list
+    |&gt; cast(attrs, [:name, :person_id, :status])
+    |&gt; validate_required([:name, :person_id])
+  end
+end
+</code></pre>
+<p>The <code>schema</code> matches the <code>migration</code> above.
+Just the 3 fields we need for creating <code>lists</code>:</p>
+<ol>
+<li><code>name</code> - the <em>name</em> of the list. a <code>:string</code> of arbitrary length.</li>
+<li><code>person_id</code> - the <code>id</code> of the <code>person</code> who created the <code>list</code></li>
+<li><code>status</code> - the <code>status</code> (represented as an <code>Integer</code>) for the <code>list</code>. 
+see: 
+<a href="https://github.com/dwyl/statuses">dwyl/statuses</a></li>
+</ol>
+<p>The only function in the <code>list.ex</code> file is <code>changeset/2</code>
+which just checks the fields in teh <code>attrs</code> Map
+and validates the data that are <code>required</code> to create a <code>list</code>.</p>
 <!--
 ## Preview 
 
 By the end of this chapter we will have ...
 -->
-<h2 id="create-tests-files-tdd"><a class="header" href="#create-tests-files-tdd">Create Tests Files (TDD)</a></h2>
-<p>The <code>gen.schema</code> command only creates the migration files
-and the corresponding schema files in the 
+<h2 id="create-list_testexs-tests-file-tdd"><a class="header" href="#create-list_testexs-tests-file-tdd">Create <code>list_test.exs</code> Tests File (TDD)</a></h2>
+<p>The <code>gen.schema</code> command only creates the migration file
+and the corresponding schema file in the 
 <a href="https://github.com/dwyl/mvp/tree/main/lib/app"><code>lib/app</code></a> 
 directory of our <code>Phoenix App</code>.
 It does not create any <code>CRUD</code> functions or tests.
 This is fine because <em>most</em> of what we need is bespoke.</p>
-<p>We <em>manually</em> created the following test files:</p>
-<ul>
-<li>test/app/list_test.exs</li>
-<li>test/app/list_items_test.exs</li>
-</ul>
-<p>Inside the test files we have all the tests necessary 
-to build the <em>baseline</em> <code>lists</code> features. </p>
-<p>In 
+<p><em>Manually</em> create the test file with the following path:
+<code>test/app/list_test.exs</code>.</p>
+<p>In the test file
 <code>test/app/list_test.exs</code>
-add: </p>
+add the following test code: </p>
 <pre><code class="language-elixir">defmodule App.ListTest do
   use App.DataCase, async: true
   alias App.{List}
 
   describe &quot;list&quot; do
-    @valid_attrs %{text: &quot;My List&quot;, person_id: 1, status: 2}
-    @update_attrs %{text: &quot;some updated text&quot;, person_id: 1}
-    @invalid_attrs %{text: nil}
+    @valid_attrs %{name: &quot;My List&quot;, person_id: 1, status: 2}
+    @update_attrs %{name: &quot;some updated text&quot;, person_id: 1}
+    @invalid_attrs %{name: nil}
+
+    test &quot;get_list!/2 returns the list with given id&quot; do
+      {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+      assert List.get_list!(list.id).name == list.name
+    end
 
     test &quot;create_list/1 with valid data creates a list&quot; do
       assert {:ok, %{model: list, version: _version}} =
                List.create_list(@valid_attrs)
 
-      assert list.text == @valid_attrs.text
-      l = List.get_person_lists(list.person_id) |&gt; Enum.at(0)
-      assert l.text == @valid_attrs.text
+      assert list.name == @valid_attrs.name
     end
 
     test &quot;create_list/1 with invalid data returns error changeset&quot; do
       assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
     end
 
-    test &quot;get_list!/2 returns the list with given id&quot; do
+    test &quot;update_list/2 with valid data updates the list&quot; do
       {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
-      assert List.get_list!(list.id).text == list.text
+
+      assert {:ok, %{model: list, version: _version}} =
+               List.update_list(list, @update_attrs)
+
+      assert list.name == &quot;some updated text&quot;
     end
   end
 end
 </code></pre>
+<p>Once you've saved the file, 
+run the tests with the following command:</p>
+<pre><code class="language-sh">mix test test/app/list_test.exs
+</code></pre>
+<p>You should see all four tests fail 
+(because the functions they invoke do not yet exist):</p>
+<pre><code class="language-sh">1) test list create_list/1 with valid data creates a list (App.ListTest)
+     test/app/list_test.exs:15
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: &quot;My List&quot;, person_id: 1})
+       test/app/list_test.exs:17: (test)
+
+  2) test list create_list/1 with invalid data returns error changeset (App.ListTest)
+     test/app/list_test.exs:24
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{text: nil})
+       test/app/list_test.exs:25: (test)
+
+  3) test list get_list!/2 returns the list with given id (App.ListTest)
+     test/app/list_test.exs:10
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: &quot;My List&quot;, person_id: 1})
+       test/app/list_test.exs:11: (test)
+
+  4) test list update_list/2 with valid data updates the list (App.ListTest)
+     test/app/list_test.exs:28
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: &quot;My List&quot;, person_id: 1})
+       test/app/list_test.exs:29: (test)
+
+
+Finished in 0.03 seconds (0.03s async, 0.00s sync)
+4 tests, 4 failures
+
+Randomized with seed 730787
+</code></pre>
+<p>This is <em>expected</em>. 
+Let's create the required functions.</p>
 <h3 id="define-the-basic-lists-functions"><a class="header" href="#define-the-basic-lists-functions">Define the basic <code>lists</code> functions</a></h3>
 <p>In the 
 <code>lib/app/list.ex</code>
 file, 
-add the following functions:</p>
-<pre><code class="language-elixir">def changeset(list, attrs) do
-  list
-  |&gt; cast(attrs, [:text, :person_id, :status])
-  |&gt; validate_required([:text, :person_id])
-end
-
-def create_list(attrs) do
+add the following <code>aliases</code> near the top of the file:</p>
+<pre><code class="language-elixir">alias App.{Repo}
+alias PaperTrail
+alias __MODULE__
+</code></pre>
+<p>Next add the following functions:</p>
+<pre><code class="language-elixir">def create_list(attrs) do
   %List{}
   |&gt; changeset(attrs)
   |&gt; PaperTrail.insert()
@@ -1501,26 +1565,23 @@ def get_list!(id) do
   List
   |&gt; Repo.get!(id)
 end
+
+def update_list(%List{} = list, attrs) do
+  list
+  |&gt; List.changeset(attrs)
+  |&gt; PaperTrail.update()
+end
 </code></pre>
 <blockquote>
 <p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
 </blockquote>
-<!--
-Rather than _duplicating_ large blocks of test code here,
-we refer readers to the source (hyperlinked above).
-The tests were written in the order they appear in the files
-and the corresponding functions to make the tests pass
-were created as needed.
-Thus ensuring we only have code that is required
-to deliver the features.
--->
 <p>The main functions to pay attention to 
 in the newly created files are:
 <code>App.List.create_list/1</code> 
 that creates a new <code>list</code>
 and
-<code>App.ListItem.add_list_item/4</code> 
-which adds an <code>item</code> to a <code>list</code>.
+<code>App.List.update_list/2</code> 
+which updates a <code>list</code>.
 Both are simple and well-documented.</p>
 <h3 id="create_list1"><a class="header" href="#create_list1"><code>create_list/1</code></a></h3>
 <p><code>create_list/1</code> receives a <code>Map</code> of <code>attrs</code> (attributes)
@@ -1542,32 +1603,7 @@ we wrote a quick intro:
 <a href="https://github.com/dwyl/phoenix-papertrail-demo">dwyl/phoenix-papertrail-demo</a></p>
 <p>The gist is this: it gives us version history for records in our database
 without any query overhead. </p>
-<h2 id="add_list_item4"><a class="header" href="#add_list_item4"><code>add_list_item/4</code></a></h2>
-<p><code>add_list_item/4</code> as you would expect,
-adds an <code>item</code> to a <code>list</code> for the given <code>person_id</code></p>
-<pre><code class="language-elixir">def add_list_item(item, list, person_id, position) do
-  %ListItem{
-    item: item,
-    list: list,
-    person_id: person_id,
-    position: position
-  }
-  |&gt; changeset()
-  |&gt; Repo.insert()
-end
-</code></pre>
-<p>The first 3 arguments are self-explanatory;
-the final one, <code>position</code> is there to help us <em>order</em> the <code>list</code>!
-As you may have noticed in the <code>mix gen.schema</code> command above
-for the <code>list_items</code> table, the <code>position</code> field is a <code>Float</code>. 
-e.g: <code>1.0</code>. 
-We have very deliberately chosen a <code>Float</code> not an <code>Integer</code>
-so that we can use this for easy append-only positional sorting. 
-More on this later in the &quot;Reordering&quot; chapter. 
-But if you want to see the discussion/history 
-of how we arrived at this,
-see: 
-<a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
+<p>HERE!</p>
 <h2 id="get-lists-for-a-person"><a class="header" href="#get-lists-for-a-person">Get <code>lists</code> for a <code>person</code></a></h2>
 <p>To display the <code>lists</code> 
 that belong to a <code>person</code> 
@@ -1584,11 +1620,11 @@ and add the following test:</p>
 
   # Create a couple of lists
   {:ok, %{model: all_list}} =
-    %{text: &quot;All&quot;, person_id: person_id, status: 2}
+    %{name: &quot;All&quot;, person_id: person_id, status: 2}
     |&gt; App.List.create_list()
 
   {:ok, %{model: recipe_list}} =
-    %{text: &quot;Recipes&quot;, person_id: person_id, status: 2}
+    %{name: &quot;Recipes&quot;, person_id: person_id, status: 2}
     |&gt; App.List.create_list()
 
   # Retrieve the lists for the person_id:
@@ -1624,7 +1660,7 @@ file,
 create the following test:</p>
 <pre><code class="language-elixir">test &quot;get_list_by_text!/2 returns the list for the person_id by text&quot; do
   person_id = 4
-  %{text: &quot;All&quot;, person_id: person_id, status: 2}
+  %{name: &quot;All&quot;, person_id: person_id, status: 2}
     |&gt; App.List.create_list()
   list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
   assert list.text == &quot;All&quot;
@@ -1633,7 +1669,7 @@ end
 <h3 id="define-get_list_by_text2"><a class="header" href="#define-get_list_by_text2">Define <code>get_list_by_text!/2</code></a></h3>
 <p>This is one is dead simple thanks to <code>Ecto</code> compact syntax:</p>
 <pre><code class="language-elixir">def get_list_by_text!(person_id, text) do
-  Repo.get_by(List, text: text, person_id: person_id)
+  Repo.get_by(List, name: text, person_id: person_id)
 end
 </code></pre>
 <blockquote>
@@ -1695,7 +1731,7 @@ def create_list_if_not_exists(list_names, person_id) do
   Enum.each(@default_lists, fn name -&gt;
     # Create the list if it does not already exists
     unless Enum.member?(list_names, name) do
-      %{text: name, person_id: person_id, status: 2}
+      %{name: name, person_id: person_id, status: 2}
       |&gt; List.create_list()
     end
   end)
@@ -1710,7 +1746,7 @@ is the ability to retrieve the <em>current</em> <code>position</code> of <code>i
 <code>test/app/list_items_test.exs</code>
 file,
 add the following test:</p>
-<pre><code class="language-elixir">@valid_attrs %{text: &quot;Go Surfing&quot;, person_id: 0, status: 2}
+<pre><code class="language-elixir">@valid_attrs %{name: &quot;Go Surfing&quot;, person_id: 0, status: 2}
 test &quot;get_list_item_position/2 retrieves the position of an item in a list&quot; do
   {:ok, %{model: item, version: _version}} =
       Item.create_item(@valid_attrs)
@@ -1812,6 +1848,83 @@ add the <code>add_items_to_all_list/1</code> function definition:</p>
   end)
 end
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="create-list_items-schemas"><a class="header" href="#create-list_items-schemas">Create <code>list_items</code> Schemas</a></h2>
+<p>Create the <code>list_items</code> table 
+with the following
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
+command:</p>
+<pre><code class="language-sh">mix phx.gen.schema ListItems list_items list_id:references:lists person_id:integer seq:string
+</code></pre>
+<p>That command will create the following migration:
+<a href="https://github.com/dwyl/mvp/blob/54aff67d172ad372c5ee1ffd9c41f24b093b78d4/priv/repo/migrations/20230416001045_create_list_items.exs"><code>20230416001045_create_list_items.exs</code></a></p>
+<pre><code class="language-elixir">defmodule App.Repo.Migrations.CreateListItems do
+  use Ecto.Migration
+
+  def change do
+    create table(:list_items) do
+      add :list_id, references(:lists, on_delete: :nothing)
+      add :person_id, :integer
+      add :seq, :string
+
+      timestamps()
+    end
+
+    create index(:list_items, [:list_id])
+  end
+end
+</code></pre>
+<p>Run <code>mix ecto.migrate</code>,
+and you should see the following table:</p>
+<p>And the ERD
+will now look like this:</p>
+<h1 id="todo-insert-erd-after-list_items"><a class="header" href="#todo-insert-erd-after-list_items">TODO: Insert ERD after <code>list_items</code></a></h1>
+<blockquote>
+<p><strong>Note</strong>: we briefly considered using an <code>{:array, integer}</code> 
+for storing the <code>squence</code> of <code>item.ids</code> 
+which are <em>currently</em> <code>Integers</code> 
+because <code>Postgres</code> defaults to using a <code>SERIAL</code> for table Ids.
+<code>SERIAL</code> is an auto-incrementing <code>Integer</code>; e.g: 1, 2, 3, etc.
+<em>However</em> we want our <code>App</code> to be offline-first
+which means that the <code>item.id</code> <em>cannot</em> be an <code>Integer</code>
+if we want to avoid conflicts. </p>
+</blockquote>
+<h2 id="crete-testapplist_items_testexs-file"><a class="header" href="#crete-testapplist_items_testexs-file">Crete <code>test/app/list_items_test.exs</code> file</a></h2>
+<p>As previously noted, the
+<code>mix phx.gen.schema</code> command
+does not create any <code>CRUD</code> functions 
+or the corresponding <code>test</code> file
+for the <code>schema</code>.</p>
+<p>Create the file with the path:
+<code>test/app/list_items_test.exs</code> 
+and add the following code to it:</p>
+<pre><code class="language-elixir">
+</code></pre>
+<h2 id="add_list_item4"><a class="header" href="#add_list_item4"><code>add_list_item/4</code></a></h2>
+<p><code>add_list_item/4</code> as you would expect,
+adds an <code>item</code> to a <code>list</code> for the given <code>person_id</code></p>
+<pre><code class="language-elixir">def add_list_item(item, list, person_id, position) do
+  %ListItem{
+    item: item,
+    list: list,
+    person_id: person_id,
+    position: position
+  }
+  |&gt; changeset()
+  |&gt; Repo.insert()
+end
+</code></pre>
+<p>The first 3 arguments are self-explanatory;
+the final one, <code>position</code> is there to help us <em>order</em> the <code>list</code>!
+As you may have noticed in the <code>mix gen.schema</code> command above
+for the <code>list_items</code> table, the <code>position</code> field is a <code>Float</code>. 
+e.g: <code>1.0</code>. 
+We have very deliberately chosen a <code>Float</code> not an <code>Integer</code>
+so that we can use this for easy append-only positional sorting. 
+More on this later in the &quot;Reordering&quot; chapter. 
+But if you want to see the discussion/history 
+of how we arrived at this,
+see: 
+<a href="https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575">dwyl/mvp#145</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reordering-list_items"><a class="header" href="#reordering-list_items">Reordering <code>list_items</code></a></h1>
 <p>The <code>people</code> who 
 <a href="https://github.com/dwyl/mvp/issues/140">tested</a>
