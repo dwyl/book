@@ -144,7 +144,8 @@ It does not create any `CRUD` functions or tests.
 This is fine because _most_ of what we need is bespoke.
 
 
-_Manually_ create the test file with the following path:
+_Manually_ create the test file 
+with the following path:
 `test/app/list_test.exs`.
 
 In the test file
@@ -285,7 +286,7 @@ in the newly created files are:
 that creates a new `list`
 and
 `App.List.update_list/2` 
-which updates a `list`.
+which updates the `list`.
 Both are simple and well-documented.
 
 ### `create_list/1`
@@ -303,19 +304,20 @@ def create_list(attrs) do
 end
 ```
 
-The `attrs` are just
-`person_id` the `id` of the `person` creating the list, 
-`text` the name/description of the list 
-and `status` (optional).
+The `attrs` are just:
++ `name` the name/description of the list 
++ `person_id` the `id` of the `person` creating the list, and
++ `status` (optional) an `integer` representing the `status` of the `list`,
+this is useful later when people have a `draft` or `archived` `list`. 
 
-If you are new to the `PaperTrail` package and the benefits it offers,
+If you are new to the `PaperTrail` package 
+and the benefits it offers,
 we wrote a quick intro:
 [dwyl/phoenix-papertrail-demo](https://github.com/dwyl/phoenix-papertrail-demo)
 
 The gist is this: it gives us version history for records in our database
 without any query overhead. 
 
-HERE!
 
 ## Get `lists` for a `person`
 
@@ -323,7 +325,7 @@ To display the `lists`
 that belong to a `person` 
 we need a simple query.
 
-### Test `get_person_lists/1`
+### Test `get_lists_for_person/1`
 
 Open the 
 `test/app/list_test.exs`
@@ -331,42 +333,69 @@ file
 and add the following test:
 
 ```elixir
-test "get_person_lists/1 returns the lists for the person_id" do
+test "get_lists_for_person/1 returns the lists for the person_id" do
   person_id = 3
-  lists_before = App.List.get_person_lists(person_id)
+  lists_before = App.List.get_lists_for_person(person_id)
   assert length(lists_before) == 0
 
   # Create a couple of lists
   {:ok, %{model: all_list}} =
-    %{name: "All", person_id: person_id, status: 2}
+    %{name: "all", person_id: person_id, status: 2}
     |> App.List.create_list()
 
   {:ok, %{model: recipe_list}} =
-    %{name: "Recipes", person_id: person_id, status: 2}
+    %{name: "recipes", person_id: person_id, status: 2}
     |> App.List.create_list()
 
   # Retrieve the lists for the person_id:
-  lists_after = App.List.get_person_lists(person_id)
+  lists_after = App.List.get_lists_for_person(person_id)
   assert length(lists_after) == 2
   assert Enum.member?(lists_after, all_list)
   assert Enum.member?(lists_after, recipe_list)
 end
 ```
 
-### Implment the `get_person_lists/1` function
+### Implment the `get_lists_for_person/1` function
 
-Implement the function 
+In the `lib/app/list.ex` file,
+implement the function 
 as simply as possible:
 
 ```elixir
-def get_person_lists(person_id) do
+def get_lists_for_person(person_id) do
   List
   |> where(person_id: ^person_id)
   |> Repo.all()
 end
 ```
 
-Make sure the test is passing as we will be using this function next!
+For this function to work, 
+replace the line:
+
+```elixir
+import Ecto.Changeset
+```
+
+With:
+
+```elixir
+import Ecto.{Changeset, Query}
+```
+
+i.e. we need to import the 
+[`Ecto.Query`](https://hexdocs.pm/ecto/Ecto.Query.html)
+module 
+to gain access to the the 
+[`where/3`](https://hexdocs.pm/ecto/Ecto.Query.html#where/3)
+filtering function.
+
+> **Note**: If you're rusty on `Ecto.Query`,
+refresh your memory on: 
+[elixirschool.com/ecto/querying_basics](https://elixirschool.com/en/lessons/ecto/querying_basics)
+And if you get stuck, please just open an issue. 
+
+Make sure the test is passing 
+as we will be using this function next!
 
 ## Create the "All" default `list`
 
@@ -429,7 +458,7 @@ confirm that our `default lists` are created.
 test "create_default_lists/1 creates the default lists" do
   # Should have no lists:
   person_id = 3
-  lists = App.List.get_person_lists(person_id)
+  lists = App.List.get_lists_for_person(person_id)
   assert length(lists) == 0
   # Create the default lists for this person_id:
   assert List.create_default_lists(person_id) |> length() == 9
@@ -449,14 +478,14 @@ Please discuss!
 
 def create_default_lists(person_id) do
   # Check if the "All" list exists for the person_id
-  lists = get_person_lists(person_id)
+  lists = get_lists_for_person(person_id)
   # Extract just the list.text (name) from the person's lists:
   list_names = Enum.reduce(lists, [], fn l, acc -> [l.text | acc] end)
   # Quick check for length of lists:
   if length(list_names) < length(@default_lists) do
     create_list_if_not_exists(list_names, person_id)
     # Re-fetch the list of lists for the person_id
-    get_person_lists(person_id)
+    get_lists_for_person(person_id)
   else
     # Return the list we got above
     lists
