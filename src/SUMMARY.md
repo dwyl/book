@@ -18,5 +18,6 @@
   - [User Agent Schema](atm/02-gen-schema-user_agents.md)
 - [MVP](./mvp/README.md)
   - [Lists](mvp/16-lists.md)
-  - [Reordering](mvp/17-reordering.md)
+  - [Lists Items](mvp/17-list_items.md)
+  - [Reordering](mvp/18-reordering.md)
   - [Stats](mvp/20-stats.md)

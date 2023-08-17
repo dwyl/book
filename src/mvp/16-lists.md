@@ -40,17 +40,19 @@ and
 that will make the `App` more _useful_ both to individuals and teams.
 
 
-## Create `lists` and `list_items` Schemas
+## Create `lists` Schema
 
-Create the `lists` and `list_items` tables
+Create the `lists` table
 with the following 
 [`mix phx.gen.schema`](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html)
-commands:
+command:
 
 ```sh
-mix phx.gen.schema List lists person_id:integer status:integer text:string
-mix phx.gen.schema ListItems list_items item_id:references:items list_id:references:lists person_id:integer position:float
+mix phx.gen.schema List lists name:string person_id:integer status:integer
 ```
+
+
+
 
 Those two commands will create the following migrations:
 
@@ -62,7 +64,7 @@ defmodule App.Repo.Migrations.CreateLists do
 
   def change do
     create table(:lists) do
-      add :text, :string
+      add :name, :string
       add :person_id, :integer
       add :status, :integer
 
@@ -72,37 +74,58 @@ defmodule App.Repo.Migrations.CreateLists do
 end
 ```
 
-[`20230416001045_create_list_items.exs`](https://github.com/dwyl/mvp/blob/54aff67d172ad372c5ee1ffd9c41f24b093b78d4/priv/repo/migrations/20230416001045_create_list_items.exs)
-
-```elixir
-defmodule App.Repo.Migrations.CreateListItems do
-  use Ecto.Migration
-
-  def change do
-    create table(:list_items) do
-      add :person_id, :integer
-      add :position, :float
-      add :item_id, references(:items, on_delete: :nothing)
-      add :list_id, references(:lists, on_delete: :nothing)
-
-      timestamps()
-    end
-
-    create index(:list_items, [:item_id])
-    create index(:list_items, [:list_id])
-  end
-end
-```
-
 Once we run `mix ecto.migrate`,
 we have the following database
 ERD:
 
-![mvp-erd-with-lists-and-list_items](https://user-images.githubusercontent.com/194400/233316755-96fb001d-ac16-4cad-99b0-b562c0128c1f.png)
+![mvp-erd-with-lists](https://github.com/dwyl/mvp/assets/194400/7efb0f30-077a-4fe3-84f1-41e187116cfe)
 
-These two new database tables
-are everything we need 
-to build the `lists` features. 🎉
+This new database table
+lets us create a `list`
+but there is still more work to be done
+to enable the features we want.
+
+
+## Quick Look at `/lib/app/list.ex` file
+
+The `mix phx.gen.schema` command created the 
+[`lib/app/list.ex`]()
+file with the following:
+
+```elixir
+defmodule App.List do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "lists" do
+    field :name, :string
+    field :person_id, :integer
+    field :status, :integer
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(list, attrs) do
+    list
+    |> cast(attrs, [:name, :person_id, :status])
+    |> validate_required([:name, :person_id])
+  end
+end
+```
+
+The `schema` matches the `migration` above.
+Just the 3 fields we need for creating `lists`:
+1. `name` - the _name_ of the list. a `:string` of arbitrary length.
+2. `person_id` - the `id` of the `person` who created the `list`
+3. `status` - the `status` (represented as an `Integer`) for the `list`. 
+see: 
+[dwyl/statuses](https://github.com/dwyl/statuses)
+
+The only function in the `list.ex` file is `changeset/2`
+which just checks the fields in teh `attrs` Map
+and validates the data that are `required` to create a `list`.
+
 
 <!--
 ## Preview 
@@ -111,26 +134,22 @@ By the end of this chapter we will have ...
 -->
 
 
-## Create Tests Files (TDD)
+## Create `list_test.exs` Tests File (TDD)
 
-The `gen.schema` command only creates the migration files
-and the corresponding schema files in the 
+The `gen.schema` command only creates the migration file
+and the corresponding schema file in the 
 [`lib/app`](https://github.com/dwyl/mvp/tree/main/lib/app) 
 directory of our `Phoenix App`.
 It does not create any `CRUD` functions or tests.
 This is fine because _most_ of what we need is bespoke.
 
-We _manually_ created the following test files:
 
-+ test/app/list_test.exs
-+ test/app/list_items_test.exs
+_Manually_ create the test file with the following path:
+`test/app/list_test.exs`.
 
-Inside the test files we have all the tests necessary 
-to build the _baseline_ `lists` features. 
-
-In 
+In the test file
 `test/app/list_test.exs`
-add: 
+add the following test code: 
 
 ```elixir
 defmodule App.ListTest do
@@ -138,45 +157,108 @@ defmodule App.ListTest do
   alias App.{List}
 
   describe "list" do
-    @valid_attrs %{text: "My List", person_id: 1, status: 2}
-    @update_attrs %{text: "some updated text", person_id: 1}
-    @invalid_attrs %{text: nil}
+    @valid_attrs %{name: "My List", person_id: 1, status: 2}
+    @update_attrs %{name: "some updated text", person_id: 1}
+    @invalid_attrs %{name: nil}
+
+    test "get_list!/2 returns the list with given id" do
+      {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+      assert List.get_list!(list.id).name == list.name
+    end
 
     test "create_list/1 with valid data creates a list" do
       assert {:ok, %{model: list, version: _version}} =
                List.create_list(@valid_attrs)
 
-      assert list.text == @valid_attrs.text
-      l = List.get_person_lists(list.person_id) |> Enum.at(0)
-      assert l.text == @valid_attrs.text
+      assert list.name == @valid_attrs.name
     end
 
     test "create_list/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
     end
 
-    test "get_list!/2 returns the list with given id" do
+    test "update_list/2 with valid data updates the list" do
       {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
-      assert List.get_list!(list.id).text == list.text
+
+      assert {:ok, %{model: list, version: _version}} =
+               List.update_list(list, @update_attrs)
+
+      assert list.name == "some updated text"
     end
   end
 end
 ```
+
+Once you've saved the file, 
+run the tests with the following command:
+
+```sh
+mix test test/app/list_test.exs
+```
+
+You should see all four tests fail 
+(because the functions they invoke do not yet exist):
+
+```sh
+1) test list create_list/1 with valid data creates a list (App.ListTest)
+     test/app/list_test.exs:15
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: "My List", person_id: 1})
+       test/app/list_test.exs:17: (test)
+
+  2) test list create_list/1 with invalid data returns error changeset (App.ListTest)
+     test/app/list_test.exs:24
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: assert {:error, %Ecto.Changeset{}} = List.create_list(@invalid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{text: nil})
+       test/app/list_test.exs:25: (test)
+
+  3) test list get_list!/2 returns the list with given id (App.ListTest)
+     test/app/list_test.exs:10
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: "My List", person_id: 1})
+       test/app/list_test.exs:11: (test)
+
+  4) test list update_list/2 with valid data updates the list (App.ListTest)
+     test/app/list_test.exs:28
+     ** (UndefinedFunctionError) function App.List.create_list/1 is undefined or private
+     code: {:ok, %{model: list, version: _version}} = List.create_list(@valid_attrs)
+     stacktrace:
+       (app 1.0.0) App.List.create_list(%{status: 2, text: "My List", person_id: 1})
+       test/app/list_test.exs:29: (test)
+
+
+Finished in 0.03 seconds (0.03s async, 0.00s sync)
+4 tests, 4 failures
+
+Randomized with seed 730787
+```
+
+This is _expected_. 
+Let's create the required functions.
+
 
 ### Define the basic `lists` functions
 
 In the 
 `lib/app/list.ex`
 file, 
-add the following functions:
+add the following `aliases` near the top of the file:
 
 ```elixir
-def changeset(list, attrs) do
-  list
-  |> cast(attrs, [:text, :person_id, :status])
-  |> validate_required([:text, :person_id])
-end
+alias App.{Repo}
+alias PaperTrail
+alias __MODULE__
+```
 
+Next add the following functions:
+
+```elixir
 def create_list(attrs) do
   %List{}
   |> changeset(attrs)
@@ -187,27 +269,23 @@ def get_list!(id) do
   List
   |> Repo.get!(id)
 end
+
+def update_list(%List{} = list, attrs) do
+  list
+  |> List.changeset(attrs)
+  |> PaperTrail.update()
+end
 ```
 
 > **TODO**: hyperlink these two files, once they are merged into `main`.
-
-<!--
-Rather than _duplicating_ large blocks of test code here,
-we refer readers to the source (hyperlinked above).
-The tests were written in the order they appear in the files
-and the corresponding functions to make the tests pass
-were created as needed.
-Thus ensuring we only have code that is required
-to deliver the features.
--->
 
 The main functions to pay attention to 
 in the newly created files are:
 `App.List.create_list/1` 
 that creates a new `list`
 and
-`App.ListItem.add_list_item/4` 
-which adds an `item` to a `list`.
+`App.List.update_list/2` 
+which updates a `list`.
 Both are simple and well-documented.
 
 ### `create_list/1`
@@ -237,37 +315,7 @@ we wrote a quick intro:
 The gist is this: it gives us version history for records in our database
 without any query overhead. 
 
-## `add_list_item/4`
-
-`add_list_item/4` as you would expect,
-adds an `item` to a `list` for the given `person_id`
-
-```elixir
-def add_list_item(item, list, person_id, position) do
-  %ListItem{
-    item: item,
-    list: list,
-    person_id: person_id,
-    position: position
-  }
-  |> changeset()
-  |> Repo.insert()
-end
-```
-
-The first 3 arguments are self-explanatory;
-the final one, `position` is there to help us _order_ the `list`!
-As you may have noticed in the `mix gen.schema` command above
-for the `list_items` table, the `position` field is a `Float`. 
-e.g: `1.0`. 
-We have very deliberately chosen a `Float` not an `Integer`
-so that we can use this for easy append-only positional sorting. 
-More on this later in the "Reordering" chapter. 
-But if you want to see the discussion/history 
-of how we arrived at this,
-see: 
-[dwyl/mvp#145](https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575)
-
+HERE!
 
 ## Get `lists` for a `person`
 
@@ -290,11 +338,11 @@ test "get_person_lists/1 returns the lists for the person_id" do
 
   # Create a couple of lists
   {:ok, %{model: all_list}} =
-    %{text: "All", person_id: person_id, status: 2}
+    %{name: "All", person_id: person_id, status: 2}
     |> App.List.create_list()
 
   {:ok, %{model: recipe_list}} =
-    %{text: "Recipes", person_id: person_id, status: 2}
+    %{name: "Recipes", person_id: person_id, status: 2}
     |> App.List.create_list()
 
   # Retrieve the lists for the person_id:
@@ -341,7 +389,7 @@ create the following test:
 ```elixir
 test "get_list_by_text!/2 returns the list for the person_id by text" do
   person_id = 4
-  %{text: "All", person_id: person_id, status: 2}
+  %{name: "All", person_id: person_id, status: 2}
     |> App.List.create_list()
   list = App.List.get_list_by_text!(person_id, "All")
   assert list.text == "All"
@@ -354,7 +402,7 @@ This is one is dead simple thanks to `Ecto` compact syntax:
 
 ```elixir
 def get_list_by_text!(person_id, text) do
-  Repo.get_by(List, text: text, person_id: person_id)
+  Repo.get_by(List, name: text, person_id: person_id)
 end
 ```
 
@@ -423,7 +471,7 @@ def create_list_if_not_exists(list_names, person_id) do
   Enum.each(@default_lists, fn name ->
     # Create the list if it does not already exists
     unless Enum.member?(list_names, name) do
-      %{text: name, person_id: person_id, status: 2}
+      %{name: name, person_id: person_id, status: 2}
       |> List.create_list()
     end
   end)
@@ -444,7 +492,7 @@ file,
 add the following test:
 
 ```elixir
-@valid_attrs %{text: "Go Surfing", person_id: 0, status: 2}
+@valid_attrs %{name: "Go Surfing", person_id: 0, status: 2}
 test "get_list_item_position/2 retrieves the position of an item in a list" do
   {:ok, %{model: item, version: _version}} =
       Item.create_item(@valid_attrs)
