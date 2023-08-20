@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <div align="center">
 
 # The _Practical_ Book <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
@@ -8,10 +15,36 @@
 
 </div>
 
+
 A ***step-by-step guide*** to "***Full Stack***" 
 Web & Mobile Application Development
 for people building ***beautiful***, ***robust*** & ***maintainable***
 apps individually or in teams!
+
+
+# How? 
+
+
+## Read it Online
+
+
+
+## Read it _Offline_ 
+
+
+## _Run_ it on your `localhost`
+
+
+
+# Contributing
+
+If you want to help us improve this book,
+the easiest way is to edit it directly on `GitHub`:
+[dwyl/book/src](https://github.com/dwyl/book/tree/main/src)
+
+
+
+<!--
 
 
 ![man-who-doesnt-read](https://cloud.githubusercontent.com/assets/194400/21953123/ec35895c-da26-11e6-9240-89be328c72e4.png)
@@ -218,7 +251,7 @@ We are "_fixing_" the "_problem_".
 <!--
 If you are _still_ not writing tests _**why not**_?
 We _urge_ you to _read_ the *first* chapter ("_A Brief Introduction to TDD_") and decide for yourself if you _still_ think its "_too difficult_" or "_takes longer_".
--->
+
 
 ### "_Free_" and Open Source...?
 
@@ -378,15 +411,15 @@ The _more_ people star and _share_ the project, the more possible contributors a
 ## Spreading the Word >> *Please Re-Tweet*!
 
 [![initial tweet anouncing book](https://raw.githubusercontent.com/dwyl/the-book/master/manuscript/images/pfst-initial-tweet-with-retweets.png)](https://twitter.com/nelsonic/status/607053734502375424) *click on the image to re-tweet!* (*thanks!*)
--->
 
-<!-- last year I did write a-page-a-day but not all in _one_ place...!!
+
+last year I did write a-page-a-day but not all in _one_ place...!!
 and now we will have an "ad hoc but regular" cycle ...
 
 ## Release Schedule
 
 *Each day* for the next 4 months I will be writing *at least* 1 page and pushing it to GitHub (*which triggers the book publish script on LeanPub*) so there will be fresh content *every day*! I promise to make every effort to keep the signal-to-noise ratio as good as possible!
--->
+
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
@@ -446,7 +479,7 @@ If you are a student and/or low on cash (*we've all been there*!) but still want
 
 https://leanpub.com/the-practical-book-on-full-stack-javascript-web-application-test-driven-development/preview/links
 
--->
+
 
 ## History (*[tl;dr](https://en.wiktionary.org/wiki/TL;DR)*)
 
@@ -477,3 +510,5 @@ and share *just* that one _byte_ of learning with your team
 
 
 # Ready to get Started?!
+
+-->
