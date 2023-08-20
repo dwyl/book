@@ -1,4 +1,9 @@
-## Create `list_items` Schemas
+# `list_items`
+
+`list_items` allow us track which `items` are on a given `list`
+and the `sequence` they are in.
+
+## Create `list_items` Schema
 
 Create the `list_items` table 
 with the following
@@ -33,13 +38,19 @@ end
 Run `mix ecto.migrate`,
 and you should see the following table:
 
-And the ERD
+And the **ERD**
 will now look like this:
 
+<img width="550" alt="dwyl-mvp-ERD-with-list_items" src="https://github.com/dwyl/mvp/assets/194400/a81f51b1-0327-4f33-b417-67f37ae889b2">
 
-# TODO: Insert ERD after `list_items`
-
-
+As you can see from this **ERD**,
+the `list_items` table 
+is _not_ connected to the `items` table.
+This is deliberate; not a "mistake"
+from a database design perspective.
+We don't _need_ the `foreign key` relationship
+to achieve our desired result.
+We can still write the query we want to select the `items`.
 
 > **Note**: we briefly considered using an `{:array, integer}` 
 for storing the `squence` of `item.ids` 
@@ -60,7 +71,7 @@ for the `schema`.
 
 Create the file with the path:
 `test/app/list_items_test.exs` 
-and add the following code to it:
+and add the following test code to it:
 
 ```elixir
 
@@ -98,3 +109,145 @@ of how we arrived at this,
 see: 
 [dwyl/mvp#145](https://github.com/dwyl/mvp/issues/145#issuecomment-1492132575)
 
+
+
+
+
+
+## Get the `list_item.position` for an `item` on a given `list`
+
+If we're going to be altering the `position` of `items` in a `list`,
+one of the helper functions we're going to need
+is the ability to retrieve the _current_ `position` of `item` on that `list`.
+
+### Test `get_list_item_position/2`
+
+In the
+`test/app/list_items_test.exs`
+file,
+add the following test:
+
+```elixir
+@valid_attrs %{name: "Go Surfing", person_id: 0, status: 2}
+test "get_list_item_position/2 retrieves the position of an item in a list" do
+  {:ok, %{model: item, version: _version}} =
+      Item.create_item(@valid_attrs)
+  {:ok, li1} = App.ListItem.add_item_to_all_list(item)
+  assert li1.position == 1.0
+
+  # Note: this conversion from Int to Binary is to simulate the
+  # binary that the LiveView sends to this function ...
+  item_id = Integer.to_string(item.id)
+  pos = App.ListItem.get_list_item_position(item_id, li1.list_id)
+
+  assert li1.position == pos
+end
+```
+
+### Define `get_list_item_position/2`
+
+In the 
+`lib/app/list_item.ex`
+file,
+add the following defintion for 
+`get_list_item_position/2`:
+
+```elixir
+def get_list_item_position(item_id, list_id) do
+  item_id =
+    if Useful.typeof(item_id) == "binary" do
+      {int, _} = Integer.parse(item_id)
+      int
+    else
+      item_id
+    end
+
+  sql = """
+  SELECT li.position FROM list_items li
+  WHERE li.item_id = $1 AND li.list_id = $2
+  ORDER BY li.inserted_at DESC LIMIT 1
+  """
+
+  result = Ecto.Adapters.SQL.query!(Repo, sql, [item_id, list_id])
+  result.rows |> List.first() |> List.first()
+end
+```
+
+We wrote this using `SQL` because it's easier to debug.
+If `Ecto` had a `Repo.last` function, I would use that instead.
+If you want to help with refactoring this,
+[stackoverflow.com/questions/32653391/select-latest-entry-ecto-phoenix](https://stackoverflow.com/questions/32653391/how-to-select-the-latest-entry-from-database-with-ecto-phoenix)
+looks like a good starting point. 💭
+
+
+
+
+
+
+## Add _Existing_ `itmes` to the "All" `list`
+
+One final function we need
+in order to _retroactively_ add `lists`
+to our `MVP` App that started out _without_ `lists`
+is a function to add all the _existing_ `items`
+to the newly created "All" `list`. 
+
+### Test `add_items_to_all_list/1`
+
+> **Note**: This is a _temporary_ function that we will `delete`
+once all the _existing_ people using the `MVP`
+have transitioned their `items` to the "All" `list`.
+But we still need to have a _test_ for it!
+
+Open 
+`test/app/list_items_test.exs`
+and add the following test:
+
+```elixir
+test "add_items_to_all_list/1 to seed the All list" do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+```
+
+That's a very long test.
+Take a moment to read it through.
+Remember: this will be deleted,
+it's just data migration code.
+
+
+### Define `add_items_to_all_list/1`
+
+In the 
+`lib/app/list_item.ex`
+file,
+add the `add_items_to_all_list/1` function definition:
+
+```elixir
+def add_items_to_all_list(person_id) do
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  all_items = App.Item.all_items_for_person(person_id)
+  item_ids_in_all_list = get_items_on_all_list(person_id)
+
+  all_items
+  |> Enum.with_index()
+  |> Enum.each(fn {item, index} ->
+    unless Enum.member?(item_ids_in_all_list, item.id) do
+      add_list_item(item, all_list, person_id, (index + 1) / 1)
+    end
+  end)
+end
+```
