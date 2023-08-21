@@ -611,6 +611,7 @@ For that, we will create two template files that will be used as SVG with an arr
 Create the following two files.
 
 `lib/app_web/templates/table_component/arrow_down.html.heex`
+
 ```html
 <span
   class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
@@ -632,6 +633,7 @@ Create the following two files.
 ```
 
 `lib/app_web/templates/table_component/arrow_up.html.heex`
+
 ```html
 <%= if @invisible do %>
   <span
@@ -824,7 +826,8 @@ sort_order: :asc
 - `sort_column`: Represents the column on which the table is currently sorted. By default, it's set to `:person_id`.
 - `sort_order`: Represents the order in which the table is currently sorted. By default, it's set to `:asc` (ascending).
 
-A new function, `handle_event/3`, has been added to handle the "sort" event, which is triggered when a user clicks on a table column header to sort by that column.
+A new function, `handle_event/3`, has been added to handle the "sort" event, 
+which is triggered when a user clicks on a table column header to sort by that column.
 
 ```elixir
 def handle_event("sort", %{"key" => key}, socket) do
@@ -833,8 +836,11 @@ def handle_event("sort", %{"key" => key}, socket) do
 This function takes in an event payload with a key (the column to sort by) and the current socket.
 
 - The provided key is converted to an atom to get the `sort_column`.
-- The `sort_order` is determined using the `toggle_sort_order/1` function. If the clicked column (`sort_column`) is the same as the one currently being sorted, the sort order is toggled (from ascending to descending or vice versa). If it's a different column, the sort order is set to ascending by default.
-- With the determined `sort_column` and `sort_order`, the function fetches the sorted metrics using `Item.person_with_item_and_timer_count/2`.
+- The `sort_order` is determined using the `toggle_sort_order/1` function. If the clicked column (`sort_column`) 
+is the same as the one currently being sorted, the sort order is toggled (from ascending to descending or vice versa). 
+If it's a different column, the sort order is set to ascending by default.
+- With the determined `sort_column` and `sort_order`, 
+the function fetches the sorted metrics using `Item.person_with_item_and_timer_count/2`.
 - Finally, the `socket` is updated with the new metrics and sorting parameters.
 
 A private helper function, `toggle_sort_order/1`, has been introduced to toggle the sorting order:
@@ -845,7 +851,8 @@ defp toggle_sort_order(:desc), do: :asc
 
 If the current order is ascending (`:asc`), it returns descending (`:desc`), and vice versa.
 
-These modifications enhance the `AppWeb.StatsLive` module with dynamic sorting capabilities. Users can now click on table column headers to sort the table's content based on the chosen column, and the sort order will toggle between ascending and descending with each click.
+These modifications enhance the `AppWeb.StatsLive` module with dynamic sorting capabilities. 
+Users can now click on table column headers to sort the table's content based on the chosen column, and the sort order will toggle between ascending and descending with each click.
 
 Finally, we need to update our usage of the Table LiveComponent for the usage of these new sort variables.
 
@@ -889,7 +896,8 @@ We are just passing the `sort_column` and `sort_order` to the live component to 
 > Remember the `key` attribute that we created before? It's used to determine which column was clicked and to trigger the sort event.
 
 With that, we finished all of our tasks! Yay! Let's run the application and see our results:
-```
+
+```sh
 mix s
 ```
 
@@ -1135,7 +1143,8 @@ end
 ```
 
 Let's run the tests:
-```
+
+```sh
 mix t
 ```
 

@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <div align="center">
 
 # The _Practical_ Book <br />on <br />_Crafting_ Full-Stack Web & Mobile Apps
@@ -27,13 +20,38 @@ apps individually or in teams!
 
 ## Read it Online
 
+Read it 
+[dwyl.github.io/book](https://dwyl.github.io/book/)
 
 
 ## Read it _Offline_ 
 
+While viewing the online version,
+click the "Print" icon 
+in the top-right of this screen: ↗️
+
+<img width="97" alt="image" src="https://user-images.githubusercontent.com/194400/219624215-3d780055-5151-4e2e-8632-893578c4412b.png">
+
+Then you can save the page 
+either as `HTML` or `PDF`
+and read it ***offline***
+without any distractions.
+
 
 ## _Run_ it on your `localhost`
 
+Run the following commands:
+
+```sh
+git clone git@github.com:dwyl/book.git & cd book
+cargo install mdbook
+mdbook serve --open
+```
+
+> **Note**: that `cargo` command 
+_assumes_ you have `Rust` installed on your machine.
+If you don't already, see: 
+[dwyl/learn-rust#installing](https://github.com/dwyl/learn-rust#installing)
 
 
 # Contributing
@@ -43,6 +61,14 @@ the easiest way is to edit it directly on `GitHub`:
 [dwyl/book/src](https://github.com/dwyl/book/tree/main/src)
 
 
+## Editing on `localhost`
+
+Just open the `/src` directory and edit the file you want to improve.
+
+> **Note**: If you get stuck,
+we recommend reading:
+[rust-lang/mdBook](https://rust-lang.github.io/mdBook/).
+You don't need to know `Rust` to understand any of it.
 
 <!--
 
