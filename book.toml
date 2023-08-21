@@ -1,6 +1,30 @@
 [book]
-authors = ["nelsonic"]
+authors = ["Ines Teles", "Lucas Reis", "Nelson"]
 language = "en"
 multilingual = false
 src = "src"
 title = "dwyl book"
+description = "The @dwyl book on Web & Mobile Application Development"
+
+
+[rust]
+edition = "2018"
+
+[output.html]
+mathjax-support = true
+site-url = "/book/"
+git-repository-url = "https://github.com/dwyl/book/tree/main/src"
+edit-url-template = "https://github.com/dwyl/book/edit/main/{path}"
+
+[output.html.playground]
+editable = true
+line-numbers = true
+
+[output.html.search]
+limit-results = 20
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2

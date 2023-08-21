@@ -1,12 +1,13 @@
 # Intro 
 
-Our aim with writing a book 
+Our aim with writing a `book` 
 is to **_comprehensively_ document**
 **_everything_ we learned** 
 while building our 
 [**`App`**](https://github.com/dwyl/app)
 and 
-**`API`**.
+**`API`**
+in a _single_ place.
 
 This is the 
 [**handbook**](https://en.wikipedia.org/wiki/Handbook)
@@ -23,9 +24,9 @@ for various technologies/tools/frameworks.
 See:
 [dwyl?q=**learn**](https://github.com/dwyl?q=learn) <br />
 The _advantage_ of 
-standalone/self-contained tutorials
-is that they are _focussed_ 
-on one thing.
+**standalone/self-contained tutorials**
+is that they are 
+**_focussed_ on one thing**.
 The disadvantage 
 is that they lack clear progression.
 So people can be left asking:
@@ -41,7 +42,7 @@ in the top-right of this screen: ↗️
 You can save a PDF copy of the book 
 and read it ***offline*** in your own time
 without any distractions.
-Of if you have good internet,
+Or if you have good internet,
 you can follow along 
 and _build_ the `App` step-by-step.
 
