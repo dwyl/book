@@ -38,6 +38,8 @@
 
         <!-- Custom theme stylesheets -->
 
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
     <div id="body-container">
@@ -148,6 +150,12 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        <a href="https://github.com/dwyl/book/tree/main/src" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/dwyl/book/edit/main/src/mvp/20-stats.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -174,12 +182,1009 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="todo"><a class="header" href="#todo">TODO</a></h1>
-<p>Please copy the additions made to <code>BUILDIT.md</code> from the MVP 
-for the &quot;Stats Page&quot; from that repo to this.
-Ref: https://github.com/dwyl/mvp/pull/399</p>
-<p>Spliting out the pages means we don't have to keep shifting sections
-and we can start to expand our &quot;book&quot;.</p>
+                        <h1 id="metrics"><a class="header" href="#metrics">Metrics</a></h1>
+<p>This chapter adds a few basic metrics for the <code>people</code> using the <code>MVP</code>. 📈 <br />
+If you have ideas for additional stats you want to see,
+please open an issue:
+<a href="https://github.com/dwyl/mvp/issues">dwyl/mvp/issues</a> 🙏</p>
+<h2 id="adding-sorting-to-the-track-metrics-table-and-more-additional-fields"><a class="header" href="#adding-sorting-to-the-track-metrics-table-and-more-additional-fields">Adding Sorting to the track metrics table and more additional fields</a></h2>
+<p>What happens when we need to track more <code>metrics</code>?
+And even, when we get more users on the <code>MVP</code>?</p>
+<p>How can we sort the <code>columns</code> to make it easier to understand the data?</p>
+<p>One of the most intuitive ways to manage large datasets is by enabling sorting.
+It allows users to arrange data in a manner that's most meaningful to them, be it in ascending or descending order.
+This makes it significantly easier to spot trends, anomalies, or specific data points.</p>
+<p>In this section, we will <code>supercharge</code> our track metrics table, we will:</p>
+<ul>
+<li>Introduce new columns (First Joined, Last Item Inserted and Total Elapsed Time)</li>
+<li>Highlight your user on the table</li>
+<li>Create a Table <code>LiveComponent</code> to componentize our table that can be used throughout the application</li>
+<li>Implement Column Sorting</li>
+</ul>
+<p>Sneak Peek ;D
+<img width="1016" alt="image" src="https://github.com/dwyl/mvp/assets/2154092/2240d91f-cdf3-4b6c-ba05-1929b764c7d8"></p>
+<h2 id="add-new-columns"><a class="header" href="#add-new-columns">Add new columns</a></h2>
+<p>With the growth of our MVP, we've identified the need for more detailed metrics. This involves adding more fields to our existing stats query.</p>
+<p>Since our new fields have dates to be shown we need a way to format them.</p>
+<p>Let's create a new file called <code>date_time_helper.ex</code> inside the <code>lib/app</code> folder.</p>
+<pre><code class="language-elixir">defmodule App.DateTimeHelper do
+  require Decimal
+  alias Timex.{Duration}
+
+  def format_date(date) do
+    Calendar.strftime(date, &quot;%m/%d/%Y %H:%M:%S&quot;)
+  end
+
+  def format_duration(nil), do: &quot;&quot;
+
+  def format_duration(seconds) when Decimal.is_decimal(seconds) do
+    duration = seconds |&gt; Decimal.to_integer() |&gt; Duration.from_seconds()
+
+    Timex.format_duration(duration, :humanized)
+  end
+
+  def format_duration(_seconds), do: &quot;&quot;
+end
+</code></pre>
+<p>This is a new helper module that we are going to use to format dates and durations.</p>
+<p>We will need the <code>Decimal</code> and the <a href="https://hexdocs.pm/timex/Timex.html">Timex</a> library to format it.</p>
+<p><code>require Decimal</code></p>
+<p>This line tells Elixir that you will be using macros from the Decimal module. This is needed because the code calls Decimal.is_decimal/1 later.</p>
+<p><code>alias Timex.{Duration}</code></p>
+<p>An alias is a way to reference a module with a shorter name. Here, we're creating an alias for Timex.Duration so that we can simply write Duration instead of the full module name.</p>
+<pre><code class="language-elixir">def format_date(date) do
+  Calendar.strftime(date, &quot;%m/%d/%Y %H:%M:%S&quot;)
+end
+</code></pre>
+<p>This function takes in a date and returns a formatted string in the pattern &quot;MM/DD/YYYY HH:MM:SS&quot;. It uses the strftime function from the <a href="https://hexdocs.pm/elixir/1.13/Calendar.html">Calendar</a> module to accomplish this.</p>
+<pre><code class="language-elixir">def format_duration(nil), do: &quot;&quot;
+
+def format_duration(seconds) when Decimal.is_decimal(seconds) do
+  duration = seconds |&gt; Decimal.to_integer() |&gt; Duration.from_seconds()
+
+  Timex.format_duration(duration, :humanized)
+end
+
+def format_duration(_seconds), do: &quot;&quot;
+</code></pre>
+<p>The first function clause matches when the input is nil. It simply returns an empty string.</p>
+<p>The second clause is where the <code>juicy</code> is, it  matches when the given seconds is a decimal (in this case, it's what is going to be return from Ecto). It does the following:</p>
+<ul>
+<li>Checks if seconds is a decimal using Decimal.is_decimal/1.</li>
+<li>Converts the decimal value of seconds to an integer using Decimal.to_integer/1.</li>
+<li>Converts the integer value to a duration using <a href="https://hexdocs.pm/timex/Timex.Duration.html#from_seconds/1">Duration.from_seconds/1</a>.</li>
+<li>Formats the duration using <a href="https://hexdocs.pm/timex/Timex.html#format_duration/2">Timex.format_duration/2</a> with a :humanized option.</li>
+</ul>
+<p>The last clause of the format_duration/1 function matches any input (other than nil and decimals, which were handled by the previous clauses). This function simply returns an empty string.</p>
+<p>In summary, this App.DateTimeHelper module provides utility functions to format dates and durations. Dates are formatted in the &quot;MM/DD/YYYY HH:MM:SS&quot; pattern, while durations are formatted in a humanized form if they are decimals; otherwise, an empty string is returned. If we want we could possibly extend this module to more utilities functions.</p>
+<p>Now, we can create some tests for this new module, inside the <code>test/app</code> create a new file called <code>date_time_helper_test.exs</code> with the following content.</p>
+<pre><code class="language-elixir">defmodule App.DateTimeHelperTest do
+  use ExUnit.Case
+  alias App.DateTimeHelper
+  alias Timex
+
+  describe &quot;format_date/1&quot; do
+    test &quot;formats a date correctly&quot; do
+      dt = Timex.parse!(&quot;2023-08-02T15:30:30+00:00&quot;, &quot;{ISO:Extended}&quot;)
+      assert DateTimeHelper.format_date(dt) == &quot;08/02/2023 15:30:30&quot;
+    end
+  end
+
+  describe &quot;format_duration/1&quot; do
+    test &quot;returns an empty string for nil&quot; do
+      assert DateTimeHelper.format_duration(nil) == &quot;&quot;
+    end
+
+    test &quot;returns an empty string when other than decimal&quot; do
+      assert DateTimeHelper.format_duration(12345) == &quot;&quot;
+    end
+
+    test &quot;formats a duration correctly&quot; do
+      duration_seconds = Decimal.new(12345)
+
+      assert DateTimeHelper.format_duration(duration_seconds) ==
+               &quot;3 hours, 25 minutes, 45 seconds&quot;
+    end
+
+    test &quot;formats a zero decimal duration correctly&quot; do
+      duration_seconds = Decimal.new(0)
+
+      assert DateTimeHelper.format_duration(duration_seconds) ==
+               &quot;0 microseconds&quot;
+    end
+  end
+end
+</code></pre>
+<p>This file tests various cases using the <code>DateTimeHelper</code>, feel free to take your time to understand each one.</p>
+<p>With our Helper fully tested we can now modify our <code>item.ex</code> to return the new columns that we want in our Stats Live page.</p>
+<p>Open <code>item.ex</code> and update the <code>person_with_item_and_timer_count/0</code> method:</p>
+<pre><code class="language-elixir">def person_with_item_and_timer_count() do
+  sql = &quot;&quot;&quot;
+  SELECT i.person_id,
+  COUNT(distinct i.id) AS &quot;num_items&quot;,
+  COUNT(distinct t.id) AS &quot;num_timers&quot;,
+  MIN(i.inserted_at) AS &quot;first_inserted_at&quot;,
+  MAX(i.inserted_at) AS &quot;last_inserted_at&quot;,
+  SUM(EXTRACT(EPOCH FROM (t.stop - t.start))) AS &quot;total_timers_in_seconds&quot;
+  FROM items i
+  LEFT JOIN timers t ON t.item_id = i.id
+  GROUP BY i.person_id
+  &quot;&quot;&quot;
+
+  Ecto.Adapters.SQL.query!(Repo, sql)
+  |&gt; map_columns_to_values()
+end
+</code></pre>
+<p>We are just adding three new columns to it, <code>first_inserted_at</code>, <code>last_inserted_at</code> and <code>total_timers_in_seconds</code>.</p>
+<p><code>MIN(i.inserted_at) AS &quot;first_inserted_at&quot;</code></p>
+<p>This column gets the earliest <code>inserted_at</code> timestamp from the <code>items</code> table for each <code>person_id</code>. The <code>MIN</code> SQL function retrieves the minimum value in the <code>inserted_at</code> column for each group of records with the same <code>person_id</code>.</p>
+<p><code>MAX(i.inserted_at) AS &quot;last_inserted_at&quot;</code></p>
+<p>Conversely, this column gets the most recent <code>inserted_at</code> timestamp from the <code>items</code> table for each <code>person_id</code>. The <code>MAX</code> SQL function retrieves the maximum value in the <code>inserted_at</code> column for each group of records with the same <code>person_id</code>.</p>
+<p><code>SUM(EXTRACT(EPOCH FROM (t.stop - t.start))) AS &quot;total_timers_in_seconds&quot;</code></p>
+<p>This one is more tricky, but don't worry. This column calculates the total duration of all timers associated with each item for a given <code>person_id</code>.</p>
+<p>The inner expression <code>(t.stop - t.start)</code> calculates the duration of each timer by subtracting the start time from the stop time, this will give us a resulted timestamp that is the difference between the two.</p>
+<p>The <code>EXTRACT(EPOCH FROM ...)</code> function then converts this duration into <code>seconds</code>. Finally, the SUM function aggregates (sums up) all these durations for each group of records with the same <code>person_id</code>.</p>
+<p>You can read more about the EXTRACT PostgreSQL function <a href="https://www.postgresqltutorial.com/postgresql-date-functions/postgresql-extract/">here</a>.</p>
+<p>Done!</p>
+<p>There is one last thing we need to do to show our new columns on the Phoenix template.</p>
+<p>We need to add a helpers in our <code>stats_live.ex</code> file so we can format the date and duration.</p>
+<p>Open this file and add the following code in the beggining of the file and the two methods on the end:</p>
+<pre><code class="language-elixir">defmodule AppWeb.StatsLive do
+  ...
+  alias App.{Item, DateTimeHelper}
+  ...
+
+  def format_date(date) do
+    DateTimeHelper.format_date(date)
+  end
+
+  def format_seconds(seconds) do
+    DateTimeHelper.format_duration(seconds)
+  end
+end
+</code></pre>
+<p>This is just calling the DateTimeHelper module with the methods that we created.</p>
+<p>Great! Now we can show or new columns inside the <code>Phoenix</code> Template.</p>
+<p>Open the <code>stats_live.html.heex</code> and update the table to add the new columns and fields:</p>
+<pre><code class="language-html">&lt;table class=&quot;text-sm text-left text-gray-500 dark:text-gray-400 table-auto&quot;&gt;
+  &lt;thead class=&quot;text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400&quot;&gt;
+    &lt;tr&gt;
+      ...
+      &lt;th scope=&quot;col&quot; class=&quot;px-6 py-3 text-center&quot;&gt;
+        First Joined
+      &lt;/th&gt;
+      &lt;th scope=&quot;col&quot; class=&quot;px-6 py-3 text-center&quot;&gt;
+        Last Item Inserted
+      &lt;/th&gt;
+      &lt;th scope=&quot;col&quot; class=&quot;px-6 py-3 text-center&quot;&gt;
+        Total Elapsed Time
+      &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;%= for metric &lt;- @metrics do %&gt;
+      &lt;tr class=&quot;bg-white border-b dark:bg-gray-800 dark:border-gray-700&quot;&gt;
+        ...
+        &lt;td class=&quot;px-6 py-4 text-center&quot;&gt;
+          &lt;%= format_date(metric.first_inserted_at) %&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot;&gt;
+          &lt;%= format_date(metric.last_inserted_at) %&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot;&gt;
+          &lt;%= format_seconds(metric.total_timers_in_seconds) %&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;% end %&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p>Done! Now we have our new columns and rows with the appropriate information as planned and already formatted.</p>
+<p>The next tasks will only enhance that!</p>
+<h2 id="highlight-your-user-on-the-table"><a class="header" href="#highlight-your-user-on-the-table">Highlight your user on the table</a></h2>
+<p>To emphasize the currently logged-in user within the table, we'll first need to retrieve the user's information within our Phoenix LiveView, similar to how <code>app_live</code> operates.</p>
+<p>Begin by opening <code>stats_live.ex</code> and add the following code:</p>
+<pre><code class="language-elixir">defmodule AppWeb.StatsLive do
+  ...
+  @stats_topic &quot;stats&quot;
+
+  defp get_person_id(assigns), do: assigns[:person][:id] || 0
+
+  @impl true
+  def mount(_params, _session, socket) do
+    ...
+
+    person_id = get_person_id(socket.assigns)
+    metrics = Item.person_with_item_and_timer_count()
+
+    {:ok,
+     assign(socket,
+       person_id: person_id,
+       metrics: metrics,
+     )}
+  end
+
+  ...
+end
+</code></pre>
+<p>Now to explain the changes.</p>
+<p><code>defp get_person_id(assigns), do: assigns[:person][:id] || 0</code></p>
+<p>This function attempts to extract the <code>:id</code> of the <code>:person</code> from the given <code>assigns</code> (a map or struct). If it doesn't find an ID, it defaults to <code>0</code>.</p>
+<p><code>person_id = get_person_id(socket.assigns)</code></p>
+<p>This line inside the <code>mount/3</code> retrieves the <code>person_id</code> from the <code>socket.assigns</code> using the aforementioned private function.</p>
+<p>Furthermore, the <code>assign/3</code> function call has been updated to include this <code>person_id</code> in the socket's assigns.</p>
+<p>In the previous step, we made adjustments to the <code>AppWeb.StatsLive</code> module to extract the <code>person_id</code> of the currently logged-in user. Now, it's time to use that to visually distinguish the user's row in our table.</p>
+<p>Open the <code>stats_live.html.heex</code> file, where our table is defined. We're going to conditionally set the background and border colors of each table row based on whether the row corresponds to the currently logged-in user.</p>
+<p>Locate the <code>&lt;tbody&gt;</code> section of your table, where each metric from <code>@metrics</code> is looped over to generate table rows and update the code to the following below:</p>
+<pre><code class="language-html">...
+
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;%= for metric &lt;- @metrics do %&gt;
+    &lt;tr class={
+      if metric.person_id == @person_id,
+        do:
+          &quot;bg-teal-100 border-teal-500 dark:bg-teal-800 dark:border-teal-700&quot;,
+        else: &quot;bg-white border-b dark:bg-gray-800 dark:border-gray-700&quot;
+    }&gt;
+      &lt;td class=&quot;px-6 py-4&quot;&gt;
+        &lt;a href={person_link(metric.person_id)}&gt;
+          &lt;%= metric.person_id %&gt;
+...
+</code></pre>
+<p>What we're doing here is checking if the <code>person_id</code> of the current metric matches the <code>@person_id</code> (the ID of the logged-in user). If it does:</p>
+<ul>
+<li>The row will have a teal background (<code>bg-teal-100</code>) and border (<code>border-teal-500</code>).</li>
+<li>In dark mode, it will have a darker teal background (<code>dark:bg-teal-800</code>) and border (<code>dark:border-teal-700</code>).</li>
+</ul>
+<p>And if the IDs don't match, the row will maintain the same look.</p>
+<p>With these changes, when you view your table now, the row corresponding to the currently logged-in user will be distinctly highlighted, providing an intuitive visual cue for users.</p>
+<h2 id="creating-a-table-livecomponent"><a class="header" href="#creating-a-table-livecomponent">Creating a Table LiveComponent</a></h2>
+<p>In this section we are going to build a <code>LiveComponent</code> that can be reused throughout our application.</p>
+<p>This <code>LiveComponent</code> will be a table with dynamic rows and columns so we can create other tables if needed. This will be a good showcase of the <code>LiveComponent</code> capabilities as well.</p>
+<p>From the <code>Phoenix.LiveComponent</code> <a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html">docs</a>:</p>
+<blockquote>
+<p>LiveComponents are a mechanism to compartmentalize state, markup, and events in LiveView.</p>
+</blockquote>
+<p>So with that in mind, let's begin by creating our live component file.</p>
+<p>Remember to create new folders if needed.</p>
+<p>Create a new file inside the <code>lib/app_web/live/components/table_component.ex</code> with the following content:</p>
+<pre><code class="language-elixir">defmodule AppWeb.TableComponent do
+  use Phoenix.LiveComponent
+
+  def render(assigns) do
+    Phoenix.View.render(
+      AppWeb.TableComponentView,
+      &quot;table_component.html&quot;,
+      assigns
+    )
+  end
+end
+</code></pre>
+<p>This is a simple LiveComponent code that points to a new <code>table_component.html</code> template, let's create this file too inside the <code>lib/app_web/templates/table_component/table_component.html.heex</code> with the following content:</p>
+<pre><code class="language-html">&lt;table class=&quot;text-sm text-left text-gray-500 dark:text-gray-400 table-auto&quot;&gt;
+  &lt;thead class=&quot;text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400&quot;&gt;
+    &lt;%= for column &lt;- @column do %&gt;
+      &lt;th
+        scope=&quot;col&quot;
+        class=&quot;px-6 py-3 text-center cursor-pointer&quot;
+      &gt;
+        &lt;a href=&quot;#&quot; class=&quot;group inline-flex&quot;&gt;
+          &lt;%= column.label %&gt;
+        &lt;/a&gt;
+      &lt;/th&gt;
+    &lt;% end %&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;%= for row &lt;- @rows do %&gt;
+      &lt;tr class={
+        if @highlight.(row),
+          do:
+            &quot;bg-teal-100 border-teal-500 dark:bg-teal-800 dark:border-teal-700&quot;,
+          else: &quot;bg-white border-b dark:bg-gray-800 dark:border-gray-700&quot;
+      }&gt;
+        &lt;%= for column &lt;- @column do %&gt;
+          &lt;%= render_slot(column, row) %&gt;
+        &lt;% end %&gt;
+      &lt;/tr&gt;
+    &lt;% end %&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p>Before we proceed, let's take a moment to understand what we've just created:</p>
+<h3 id="the-livecomponent-file"><a class="header" href="#the-livecomponent-file">The LiveComponent File:</a></h3>
+<ul>
+<li>We've created a new <code>LiveComponent</code> named <code>AppWeb.TableComponent</code>.</li>
+<li>This component uses <code>Phoenix.View.render/3</code> to render a template named <code>table_component.html</code>.</li>
+</ul>
+<h3 id="the-template-file"><a class="header" href="#the-template-file">The Template File:</a></h3>
+<ul>
+<li>This is a general-purpose table template with the all the current styles that we have on our <code>stats_live</code> template.</li>
+<li>The headers (<thead>) of the table are dynamically generated based on the <code>@column</code> assign, which is expected to be a list of columns with their respective labels.</li>
+<li>The body (<tbody>) of the table is dynamically generated based on the <code>@rows</code> assign. Each row's appearance can be conditionally modified using the <code>@highlight</code> function (we are going to use to highlight the current logged user, remember?).</li>
+<li>The <code>render_slot/2</code> function suggests that this component will use &quot;<a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html#module-slots">slots</a>&quot; - a feature in Phoenix LiveView that allows for rendering dynamic parts of a component.</li>
+</ul>
+<p>To finish the LiveComponent we just need to create our <code>view</code> file that will make everything work together, create this new file inside <code>lb/app_web/views/table_component_view.ex</code> with the following content:</p>
+<pre><code class="language-elixir">defmodule AppWeb.TableComponentView do
+  use AppWeb, :view
+end
+</code></pre>
+<p>With that in place, we can update our Stats page to use this LiveComponent in a dynamic way. Open the <code>stats_live.html.heex</code> and make the following modifications:</p>
+<pre><code class="language-html">...
+      Stats
+    &lt;/h1&gt;
+
+    &lt;.live_component
+      module={AppWeb.TableComponent}
+      id=&quot;table_component&quot;
+      rows={@metrics}
+      highlight={&amp;is_highlighted_person?(&amp;1, @person_id)}
+    &gt;
+      &lt;:column :let={metric} label=&quot;Id&quot; key=&quot;person_id&quot;&gt;
+        &lt;td class=&quot;px-6 py-4&quot; data-test-id=&quot;person_id&quot;&gt;
+          &lt;a href={person_link(metric.person_id)}&gt;
+            &lt;%= metric.person_id %&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;Items&quot; key=&quot;num_items&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;num_items&quot;&gt;
+          &lt;%= metric.num_items %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;Timers&quot; key=&quot;num_timers&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;num_timers&quot;&gt;
+          &lt;%= metric.num_timers %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;First Joined&quot; key=&quot;first_inserted_at&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;first_inserted_at&quot;&gt;
+          &lt;%= format_date(metric.first_inserted_at) %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;Last Item Inserted&quot; key=&quot;last_inserted_at&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;last_inserted_at&quot;&gt;
+          &lt;%= format_date(metric.last_inserted_at) %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column
+        :let={metric}
+        label=&quot;Total Elapsed Time&quot;
+        key=&quot;total_timers_in_seconds&quot;
+      &gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;total_timers_in_seconds&quot;&gt;
+          &lt;%= format_seconds(metric.total_timers_in_seconds) %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+    &lt;/.live_component&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+</code></pre>
+<p>Now let's breakdown the code.</p>
+<pre><code class="language-html">&lt;.live_component
+  module={AppWeb.TableComponent}
+  id=&quot;table_component&quot;
+  rows={@metrics}
+  highlight={&amp;is_highlighted_person?(&amp;1, @person_id)}
+&gt;
+</code></pre>
+<ul>
+<li>The tag <code>&lt;.live_component&gt;</code> is the syntax to embed a LiveComponent within a LiveView.</li>
+<li>We specify which LiveComponent to use using the <code>module</code> attribute. In this case, it's the <code>AppWeb.TableComponent</code> we discussed in the previous steps.</li>
+<li>Setting the <code>id</code> is essential for Phoenix to keep track of the component's state across updates.</li>
+<li><code>rows={@metrics}</code> passes the <code>@metrics</code> assign to the component as its rows property.</li>
+<li><code>highlight={&amp;is_highlighted_person?(&amp;1, @person_id)}</code> passes a function as the highlight property to the component. This function checks if a given row should be highlighted. We will create this function inside our <code>stats_live.ex</code> on the next step.</li>
+</ul>
+<p>The next sections use the slot feature of LiveComponents:</p>
+<pre><code class="language-html">&lt;:column :let={metric} label=&quot;Id&quot; key=&quot;person_id&quot;&gt;
+  ...
+&lt;/:column&gt;
+</code></pre>
+<ul>
+<li><code>&lt;:column ...&gt;</code> is a slot. It tells the <code>TableComponent</code> how to render each cell of a column. The <code>:let={metric}</code> attribute means that inside this slot, you can access each row's data with the variable metric.</li>
+<li><code>label=&quot;Id&quot;</code> specifies the header label for this column.</li>
+<li><code>key=&quot;person_id&quot;</code> this key will be used to sort the columns when we get there.</li>
+</ul>
+<p>Inside each slot, the template for rendering the cell is provided. For instance:</p>
+<pre><code class="language-html">&lt;td class=&quot;px-6 py-4&quot; data-test-id=&quot;person_id&quot;&gt;
+  &lt;a href={person_link(metric.person_id)}&gt;
+    &lt;%= metric.person_id %&gt;
+  &lt;/a&gt;
+&lt;/td&gt;
+</code></pre>
+<p>This renders a table cell with the <code>person_id</code> content. The <code>data-test-id</code> attribute will be used for testing purposes, making it easier to find this specific element in test scenarios, more about that later.</p>
+<p>As a last update for this section we need to create the <code>is_highlighted_person?/2</code> method inside our <code>stats_live.ex</code> file:</p>
+<pre><code class="language-elixir">defmodule AppWeb.StatsLive do
+
+  ...
+
+  def is_highlighted_person?(metric, person_id),
+      do: metric.person_id == person_id
+end
+</code></pre>
+<p>In summary, this code replaces the static table that we had with a dynamic one, utilizing our <code>TableComponent</code>.</p>
+<p>Now you can run the code and see the same result that we had before.</p>
+<h2 id="implement-column-sorting"><a class="header" href="#implement-column-sorting">Implement Column Sorting</a></h2>
+<p>Finally, we are in our last section to add the column sorting feature!</p>
+<p>For these we will need:</p>
+<ul>
+<li>Add the sorting logic inside our query and method of <code>item.ex</code> file.</li>
+<li>Include the sort mechanism on the Table <code>LiveComponent</code> by adding a onclick event in the table header's</li>
+<li>Add the event to sort on the <code>Stats LiveView</code></li>
+<li>Create tests for everything</li>
+</ul>
+<p>To add the sorting logic inside <code>item.ex</code> file, we are going to create two parameters to our current method that fetches the stats. And we are going to validate the parameters as well.</p>
+<p>Open the <code>item.ex</code> file and update to the following:</p>
+<pre><code class="language-elixir">  ...
+
+  def person_with_item_and_timer_count(
+          sort_column \\ :person_id,
+          sort_order \\ :asc
+      ) do
+    
+    sort_column = to_string(sort_column)
+    sort_order = to_string(sort_order)
+
+    sort_column =
+      if validate_sort_column(sort_column), do: sort_column, else: &quot;person_id&quot;
+
+    sort_order = if validate_order(sort_order), do: sort_order, else: &quot;asc&quot;
+
+    sql = &quot;&quot;&quot;
+    SELECT i.person_id,
+    COUNT(distinct i.id) AS &quot;num_items&quot;,
+    COUNT(distinct t.id) AS &quot;num_timers&quot;,
+    MIN(i.inserted_at) AS &quot;first_inserted_at&quot;,
+    MAX(i.inserted_at) AS &quot;last_inserted_at&quot;,
+    SUM(EXTRACT(EPOCH FROM (t.stop - t.start))) AS &quot;total_timers_in_seconds&quot;
+    FROM items i
+    LEFT JOIN timers t ON t.item_id = i.id
+    GROUP BY i.person_id
+    ORDER BY #{sort_column} #{sort_order}
+    &quot;&quot;&quot;
+
+  ...
+
+  # validates the items columns to make sure it's a valid column passed
+  defp validate_sort_column(column) do
+    Enum.member?(
+      ~w(person_id num_items num_timers first_inserted_at last_inserted_at total_timers_in_seconds),
+      column
+    )
+  end
+
+  # validates the order SQL to make sure it's a valid asc or desc
+  defp validate_order(order) do
+    Enum.member?(
+      ~w(asc desc),
+      order
+    )
+  end
+end
+</code></pre>
+<p>In the <code>person_with_item_and_timer_count/2</code> function, two default parameters have been introduced: <code>sort_column</code> and <code>sort_order</code>. These parameters dictate which column the result should be sorted by and the direction of the sort, respectively.</p>
+<p>The default values (<code>:person_id</code> for column and <code>:asc</code> for order) ensure that if no sorting criteria are provided when calling the function, it will default to sorting by <code>person_id</code> in ascending order.</p>
+<p>To ensure that only valid column names and sorting orders are used in our SQL query (and to prevent potential SQL injection attacks), we need to validate these parameters:</p>
+<pre><code class="language-elixir">sort_column = to_string(sort_column)
+sort_order = to_string(sort_order)
+
+sort_column =
+  if validate_sort_column(sort_column), do: sort_column, else: &quot;person_id&quot;
+
+sort_order = if validate_order(sort_order), do: sort_order, else: &quot;asc&quot;
+</code></pre>
+<p>Here, the <code>sort_column</code> and <code>sort_order</code> parameters are first converted to strings. Then, the <code>validate_sort_column/1</code> and <code>validate_order/1</code> private functions are used to check if the provided values are valid. If they aren't, defaults are set.</p>
+<p>The SQL query has been modified to include an ORDER BY clause as well using string interpolation to insert the parameters on the query after validating them.</p>
+<p>The private function <code>validate_sort_column/1</code> and <code>validate_order/1</code> are similar, since they ensure that the provided column/order is one of the valid ones in our stats.</p>
+<p>The <code>~w(...)</code> is a word list in Elixir, which creates a list of strings. The <code>Enum.member?/2</code> function checks if the provided value exists in this list.</p>
+<p>By introducing these changes, you've made the <code>person_with_item_and_timer_count/2</code> function more versatile, allowing it to retrieve sorted results based on provided criteria. Additionally, by validating the input parameters, you've added an essential layer of security to prevent potential misuse or attacks.</p>
+<p>Let's include now the sorting mechanism inside the TableComponent.</p>
+<p>For that, we will create two template files that will be used as SVG with an arrow poiting up and another pointing down to include these on our table header's.</p>
+<p>Create the following two files.</p>
+<p><code>lib/app_web/templates/table_component/arrow_down.html.heex</code></p>
+<pre><code class="language-html">&lt;span
+  class=&quot;ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200&quot;
+  data-test-id=&quot;arrow_down&quot;
+&gt;
+  &lt;svg
+    class=&quot;h-5 w-5&quot;
+    viewBox=&quot;0 0 20 20&quot;
+    fill=&quot;currentColor&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z&quot;
+      clip-rule=&quot;evenodd&quot;
+    /&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+</code></pre>
+<p><code>lib/app_web/templates/table_component/arrow_up.html.heex</code></p>
+<pre><code class="language-html">&lt;%= if @invisible do %&gt;
+  &lt;span
+    class=&quot;invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible&quot;
+    data-test-id=&quot;invisible_arrow_up&quot;
+  &gt;
+    &lt;svg
+      class=&quot;invisible ml-2 h-5 rotate-180 w-5 flex-none rounded text-gray-400 group-hover:visible group-focus:visible&quot;
+      viewBox=&quot;0 0 20 20&quot;
+      fill=&quot;currentColor&quot;
+      aria-hidden=&quot;true&quot;
+    &gt;
+      &lt;path
+        fill-rule=&quot;evenodd&quot;
+        d=&quot;M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z&quot;
+        clip-rule=&quot;evenodd&quot;
+      /&gt;
+    &lt;/svg&gt;
+  &lt;/span&gt;
+&lt;% else %&gt;
+  &lt;span
+    class=&quot;ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200&quot;
+    data-test-id=&quot;arrow_up&quot;
+  &gt;
+    &lt;svg
+      class=&quot;h-5 w-5 rotate-180&quot;
+      viewBox=&quot;0 0 20 20&quot;
+      fill=&quot;currentColor&quot;
+      aria-hidden=&quot;true&quot;
+    &gt;
+      &lt;path
+        fill-rule=&quot;evenodd&quot;
+        d=&quot;M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z&quot;
+        clip-rule=&quot;evenodd&quot;
+      /&gt;
+    &lt;/svg&gt;
+  &lt;/span&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>These files are similar, the only difference is that the arrow_up will be invisible when there is no selection. We will create a method to deal with the show/hide of the arrows inside our <code>table_component_view.ex</code>.</p>
+<p>Let's open this file and create the following methods:</p>
+<pre><code class="language-elixir">defmodule AppWeb.TableComponentView do
+  use AppWeb, :view
+
+  def render_arrow_down() do
+    Phoenix.View.render(AppWeb.TableComponentView, &quot;arrow_down.html&quot;, %{})
+  end
+
+  def render_arrow_up() do
+    Phoenix.View.render(AppWeb.TableComponentView, &quot;arrow_up.html&quot;, %{
+      invisible: false
+    })
+  end
+
+  def render_arrow_up(:invisible) do
+    Phoenix.View.render(AppWeb.TableComponentView, &quot;arrow_up.html&quot;, %{
+      invisible: true
+    })
+  end
+end
+</code></pre>
+<p>There are three methods added to render arrow icons:</p>
+<ul>
+<li><code>render_arrow_down/0</code>: Renders a downward-pointing arrow, used to indicate descending sort order.</li>
+<li><code>render_arrow_up/0</code>: Renders an upward-pointing arrow, used to indicate ascending sort order. By default, this arrow is visible.</li>
+<li><code>render_arrow_up/:invisible</code>: An overloaded version of the above method, which renders the upward-pointing arrow but marks it as invisible.</li>
+</ul>
+<p>The invisible attribute in the third method will be used as a conditional rendering in the <code>arrow_up.html</code> template to hide the arrow when invisible is set to <code>true</code>.</p>
+<p>Let's update our <code>table_component.html.heex</code> template now, to include the arrows and the new Phoenix event that will be used to trigger the sorting mechanism.</p>
+<p>Open the <code>table_component.html.heex</code> and make the following modifications:</p>
+<pre><code class="language-html">&lt;table class=&quot;text-sm text-left text-gray-500 dark:text-gray-400 table-auto&quot;&gt;
+  &lt;thead class=&quot;text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400&quot;&gt;
+    &lt;%= for column &lt;- @column do %&gt;
+      &lt;th
+        scope=&quot;col&quot;
+        class=&quot;px-6 py-3 text-center cursor-pointer&quot;
+        phx-click=&quot;sort&quot;
+        phx-value-key={column.key}
+      &gt;
+        &lt;a href=&quot;#&quot; class=&quot;group inline-flex&quot;&gt;
+          &lt;%= column.label %&gt;
+
+          &lt;%= if @sort_column == String.to_atom(column.key) do %&gt;
+            &lt;%= if @sort_order == :asc do %&gt;
+              &lt;%= render_arrow_up() %&gt;
+            &lt;% else %&gt;
+              &lt;%= render_arrow_down() %&gt;
+            &lt;% end %&gt;
+          &lt;% else %&gt;
+            &lt;%= render_arrow_up(:invisible) %&gt;
+          &lt;% end %&gt;
+        &lt;/a&gt;
+      &lt;/th&gt;
+    &lt;% end %&gt;
+  &lt;/thead&gt;
+...
+</code></pre>
+<p>The <code>phx-click=&quot;sort&quot;</code> attribute indicates that when a user clicks a header, the sort event will be triggered in the LiveView. The <code>phx-value-key</code> sends the key of the column (like person_id, num_items, etc.) to the server as the value of the clicked item, that will be used for determining which column to sort by.</p>
+<pre><code class="language-html">&lt;%= if @sort_column == String.to_atom(column.key) do %&gt;
+  &lt;%= if @sort_order == :asc do %&gt;
+    &lt;%= render_arrow_up() %&gt;
+  &lt;% else %&gt;
+    &lt;%= render_arrow_down() %&gt;
+  &lt;% end %&gt;
+&lt;% else %&gt;
+  &lt;%= render_arrow_up(:invisible) %&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>This logic determines which arrow to display next to a column label:</p>
+<ul>
+<li>If the current sort column (<code>@sort_column</code>) matches the column's key, it means this column is the one currently being sorted.
+<ul>
+<li>Within this condition, if the sort order (<code>@sort_order</code>) is ascending (<code>:asc</code>), the upward-pointing arrow is displayed using the <code>render_arrow_up()</code> function.</li>
+<li>If the sort order is not ascending, then the downward-pointing arrow is displayed using the <code>render_arrow_down()</code> function.</li>
+</ul>
+</li>
+<li>If the current sort column does not match the column's key, an upward-pointing arrow in an invisible state is displayed using <code>render_arrow_up(:invisible)</code>. This gives a visual cue to the user that they can click to sort by this column.</li>
+</ul>
+<p>The additions to this file enhance the table by adding sortable column headers. When a user clicks on a column header, the table's content is re-ordered based on that column. The sort arrows provide a clear visual indication of the current sort column and its direction (ascending or descending).</p>
+<p>Now, we just need to update our Stats LiveView to include this new variables and logic.</p>
+<p>Open the <code>stats_live.ex</code> and update to the following code:</p>
+<pre><code class="language-elixir">defmodule AppWeb.StatsLive do
+...
+
+  def mount(_params, _session, socket) do
+    # subscribe to the channel
+    if connected?(socket), do: AppWeb.Endpoint.subscribe(@stats_topic)
+
+    person_id = get_person_id(socket.assigns)
+    metrics = Item.person_with_item_and_timer_count()
+
+    {:ok,
+     assign(socket,
+       person_id: person_id,
+       metrics: metrics,
+       sort_column: :person_id,
+       sort_order: :asc
+     )}
+  end
+
+...
+
+  @impl true
+  def handle_event(&quot;sort&quot;, %{&quot;key&quot; =&gt; key}, socket) do
+    sort_column =
+      key
+      |&gt; String.to_atom()
+
+    sort_order =
+      if socket.assigns.sort_column == sort_column do
+        toggle_sort_order(socket.assigns.sort_order)
+      else
+        :asc
+      end
+
+    metrics = Item.person_with_item_and_timer_count(sort_column, sort_order)
+
+    {:noreply,
+     assign(socket,
+       metrics: metrics,
+       sort_column: sort_column,
+       sort_order: sort_order
+     )}
+  end
+
+...
+
+  defp toggle_sort_order(:asc), do: :desc
+  defp toggle_sort_order(:desc), do: :asc
+end
+</code></pre>
+<p>In the <code>mount/3</code> function, two new assigns are initialized: <code>sort_column</code> and <code>sort_order</code>.</p>
+<pre><code class="language-elixir">sort_column: :person_id,
+sort_order: :asc
+</code></pre>
+<ul>
+<li><code>sort_column</code>: Represents the column on which the table is currently sorted. By default, it's set to <code>:person_id</code>.</li>
+<li><code>sort_order</code>: Represents the order in which the table is currently sorted. By default, it's set to <code>:asc</code> (ascending).</li>
+</ul>
+<p>A new function, <code>handle_event/3</code>, has been added to handle the &quot;sort&quot; event, 
+which is triggered when a user clicks on a table column header to sort by that column.</p>
+<pre><code class="language-elixir">def handle_event(&quot;sort&quot;, %{&quot;key&quot; =&gt; key}, socket) do
+</code></pre>
+<p>This function takes in an event payload with a key (the column to sort by) and the current socket.</p>
+<ul>
+<li>The provided key is converted to an atom to get the <code>sort_column</code>.</li>
+<li>The <code>sort_order</code> is determined using the <code>toggle_sort_order/1</code> function. If the clicked column (<code>sort_column</code>) 
+is the same as the one currently being sorted, the sort order is toggled (from ascending to descending or vice versa). 
+If it's a different column, the sort order is set to ascending by default.</li>
+<li>With the determined <code>sort_column</code> and <code>sort_order</code>, 
+the function fetches the sorted metrics using <code>Item.person_with_item_and_timer_count/2</code>.</li>
+<li>Finally, the <code>socket</code> is updated with the new metrics and sorting parameters.</li>
+</ul>
+<p>A private helper function, <code>toggle_sort_order/1</code>, has been introduced to toggle the sorting order:</p>
+<pre><code class="language-elixir">defp toggle_sort_order(:asc), do: :desc
+defp toggle_sort_order(:desc), do: :asc
+</code></pre>
+<p>If the current order is ascending (<code>:asc</code>), it returns descending (<code>:desc</code>), and vice versa.</p>
+<p>These modifications enhance the <code>AppWeb.StatsLive</code> module with dynamic sorting capabilities. 
+Users can now click on table column headers to sort the table's content based on the chosen column, and the sort order will toggle between ascending and descending with each click.</p>
+<p>Finally, we need to update our usage of the Table LiveComponent for the usage of these new sort variables.</p>
+<p>Open the <code>stats_live.html.heex</code> file and make the following modifications:</p>
+<pre><code class="language-html">...
+
+   &lt;.live_component
+      module={AppWeb.TableComponent}
+      id=&quot;table_component&quot;
+      rows={@metrics}
+      sort_column={@sort_column}
+      sort_order={@sort_order}
+      highlight={&amp;is_highlighted_person?(&amp;1, @person_id)}
+    &gt;
+      &lt;:column :let={metric} label=&quot;Id&quot; key=&quot;person_id&quot;&gt;
+        &lt;td class=&quot;px-6 py-4&quot; data-test-id=&quot;person_id&quot;&gt;
+          &lt;a href={person_link(metric.person_id)}&gt;
+            &lt;%= metric.person_id %&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;Items&quot; key=&quot;num_items&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;num_items&quot;&gt;
+          &lt;%= metric.num_items %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={metric} label=&quot;Timers&quot; key=&quot;num_timers&quot;&gt;
+        &lt;td class=&quot;px-6 py-4 text-center&quot; data-test-id=&quot;num_timers&quot;&gt;
+          &lt;%= metric.num_timers %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+...
+</code></pre>
+<p>We are just passing the <code>sort_column</code> and <code>sort_order</code> to the live component to be used internally for the arrow logic.</p>
+<blockquote>
+<p>Remember the <code>key</code> attribute that we created before? It's used to determine which column was clicked and to trigger the sort event.</p>
+</blockquote>
+<p>With that, we finished all of our tasks! Yay! Let's run the application and see our results:</p>
+<pre><code class="language-sh">mix s
+</code></pre>
+<p>Our final modification will be create tests for everything, let's update all tests to test the new features:</p>
+<p><code>test/app/item_test.exs</code></p>
+<pre><code class="language-elixir">...
+  describe &quot;items&quot; do
+    ...
+    @another_person %{text: &quot;some text&quot;, person_id: 2, status: 2}
+    ...
+
+...
+
+  test &quot;Item.person_with_item_and_timer_count/0 returns a list of count of timers and items for each given person&quot; do
+    ...
+
+    assert first_element.num_items == 2
+    assert first_element.num_timers == 2
+
+    assert NaiveDateTime.compare(
+             first_element.first_inserted_at,
+             item1.inserted_at
+           ) == :eq
+
+    assert NaiveDateTime.compare(
+             first_element.last_inserted_at,
+             item2.inserted_at
+           ) == :eq
+  end
+
+  test &quot;Item.person_with_item_and_timer_count/1 returns a list sorted in ascending order&quot; do
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+
+    # list person with number of timers and items
+    result = Item.person_with_item_and_timer_count(:person_id)
+
+    assert length(result) == 2
+
+    first_element = Enum.at(result, 0)
+    assert first_element.person_id == 1
+  end
+
+  test &quot;Item.person_with_item_and_timer_count/1 returns a sorted list based on the column&quot; do
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+
+    # list person with number of timers and items
+    result = Item.person_with_item_and_timer_count(:person_id, :desc)
+
+    assert length(result) == 2
+
+    first_element = Enum.at(result, 0)
+    assert first_element.person_id == 2
+  end
+
+  test &quot;Item.person_with_item_and_timer_count/1 returns a sorted list by person_id if invalid sorted column and order&quot; do
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@valid_attrs)
+
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+    {:ok, %{model: _, version: _version}} = Item.create_item(@another_person)
+
+    # list person with number of timers and items
+    result =
+      Item.person_with_item_and_timer_count(:invalid_column, :invalid_order)
+
+    assert length(result) == 2
+
+    first_element = Enum.at(result, 0)
+    assert first_element.person_id == 1
+  end
+end
+</code></pre>
+<p><code>test/app_web/live/components/table_component_test.exs</code></p>
+<pre><code class="language-elixir">defmodule AppWeb.TableComponentTest do
+  use AppWeb.ConnCase, async: true
+  alias AppWeb.TableComponent
+  import Phoenix.LiveViewTest
+
+  @column [
+    %{label: &quot;Person Id&quot;, key: &quot;person_id&quot;},
+    %{label: &quot;Num Items&quot;, key: &quot;num_items&quot;}
+  ]
+
+  test &quot;renders table correctly&quot; do
+    component_rendered =
+      render_component(TableComponent,
+        column: @column,
+        sort_column: :person_id,
+        sort_order: :asc,
+        rows: []
+      )
+
+    assert component_rendered =~ &quot;Person Id&quot;
+    assert component_rendered =~ &quot;Num Items&quot;
+
+    assert component_rendered =~ &quot;person_id&quot;
+    assert component_rendered =~ &quot;num_items&quot;
+
+    assert component_rendered =~ &quot;arrow_up&quot;
+    assert component_rendered =~ &quot;invisible_arrow_up&quot;
+  end
+
+  test &quot;renders table correctly with desc arrow&quot; do
+    component_rendered =
+      render_component(TableComponent,
+        column: @column,
+        sort_column: :person_id,
+        sort_order: :desc,
+        rows: []
+      )
+
+    assert component_rendered =~ &quot;Person Id&quot;
+    assert component_rendered =~ &quot;Num Items&quot;
+
+    assert component_rendered =~ &quot;person_id&quot;
+    assert component_rendered =~ &quot;num_items&quot;
+
+    assert component_rendered =~ &quot;arrow_down&quot;
+    assert component_rendered =~ &quot;invisible_arrow_up&quot;
+  end
+end
+</code></pre>
+<p><code>test/app_web/live/stats_live_test.exs</code></p>
+<pre><code class="language-elixir">defmodule AppWeb.StatsLiveTest do
+  alias App.DateTimeHelper
+  
+  ...
+
+  test &quot;display metrics on mount&quot;, %{conn: conn} do
+    ...
+      # Creating one timer
+    started = NaiveDateTime.utc_now()
+    {:ok, timer} = Timer.start(%{item_id: item.id, start: started})
+    {:ok, _} = Timer.stop(%{id: timer.id})
+
+    ...
+
+    # two items and one timer expected
+    assert page_live |&gt; element(&quot;td[data-test-id=person_id]&quot;) |&gt; render() =~
+             &quot;55&quot;
+
+    assert page_live |&gt; element(&quot;td[data-test-id=num_items]&quot;) |&gt; render() =~ &quot;2&quot;
+
+    assert page_live |&gt; element(&quot;td[data-test-id=num_timers]&quot;) |&gt; render() =~
+             &quot;1&quot;
+
+    assert page_live
+           |&gt; element(&quot;td[data-test-id=first_inserted_at]&quot;)
+           |&gt; render() =~
+             DateTimeHelper.format_date(started)
+
+    assert page_live
+           |&gt; element(&quot;td[data-test-id=last_inserted_at]&quot;)
+           |&gt; render() =~
+             DateTimeHelper.format_date(started)
+
+    assert page_live
+           |&gt; element(&quot;td[data-test-id=total_timers_in_seconds]&quot;)
+           |&gt; render() =~
+             &quot;&quot;
+  end
+
+  test &quot;handle broadcast when item is created&quot;, %{conn: conn} do
+    ...
+
+    assert render(page_live) =~ &quot;Stats&quot;
+    # num of items
+    assert page_live |&gt; element(&quot;td[data-test-id=num_items]&quot;) |&gt; render() =~ &quot;1&quot;
+
+    ...
+
+    # num of items
+    assert page_live |&gt; element(&quot;td[data-test-id=num_items]&quot;) |&gt; render() =~ &quot;2&quot;
+
+    ...
+
+    # num of items
+    assert page_live |&gt; element(&quot;td[data-test-id=num_items]&quot;) |&gt; render() =~ &quot;2&quot;
+  end
+
+  test &quot;handle broadcast when timer is created&quot;, %{conn: conn} do
+    ...
+
+    assert render(page_live) =~ &quot;Stats&quot;
+    # num of timers
+    assert page_live |&gt; element(&quot;td[data-test-id=num_timers]&quot;) |&gt; render() =~
+             &quot;0&quot;
+    ...
+
+    # num of timers
+    assert page_live |&gt; element(&quot;td[data-test-id=num_timers]&quot;) |&gt; render() =~
+             &quot;1&quot;
+
+    ...
+
+    # num of timers
+    assert page_live |&gt; element(&quot;td[data-test-id=num_timers]&quot;) |&gt; render() =~
+             &quot;1&quot;
+  end
+
+  ...
+
+  test &quot;sorting column when clicked&quot;, %{conn: conn} do
+    {:ok, %{model: _, version: _version}} =
+      Item.create_item(%{text: &quot;Learn Elixir&quot;, status: 2, person_id: 1})
+
+    {:ok, %{model: _, version: _version}} =
+      Item.create_item(%{text: &quot;Learn Elixir&quot;, status: 4, person_id: 2})
+
+    {:ok, page_live, _html} = live(conn, &quot;/stats&quot;)
+
+    # sort first time
+    result =
+      page_live |&gt; element(&quot;th[phx-value-key=person_id]&quot;) |&gt; render_click()
+
+    [first_element | _] = Floki.find(result, &quot;td[data-test-id=person_id]&quot;)
+
+    assert first_element |&gt; Floki.text() =~ &quot;2&quot;
+
+    # sort second time
+    result =
+      page_live |&gt; element(&quot;th[phx-value-key=person_id]&quot;) |&gt; render_click()
+
+    [first_element | _] = Floki.find(result, &quot;td[data-test-id=person_id]&quot;)
+
+    assert first_element |&gt; Floki.text() =~ &quot;1&quot;
+  end
+end
+</code></pre>
+<p>Let's run the tests:</p>
+<pre><code class="language-sh">mix t
+</code></pre>
+<p>That's it! I'll let the tests file for you to explore and test different cases if you want.</p>
+<p>Congratulations!</p>
 
                     </main>
 
@@ -206,11 +1211,19 @@ and we can start to expand our &quot;book&quot;.</p>
 
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
 
         <script src="../elasticlunr.min.js"></script>
         <script src="../mark.min.js"></script>
