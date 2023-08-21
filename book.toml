@@ -13,7 +13,7 @@ edition = "2018"
 mathjax-support = true
 site-url = "/book/"
 git-repository-url = "https://github.com/dwyl/book/tree/main/src"
-edit-url-template = "https://github.com/dwyl/book/edit/main/src/{path}"
+edit-url-template = "https://github.com/dwyl/book/edit/main/{path}"
 
 [output.html.playground]
 editable = true
