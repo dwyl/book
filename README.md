@@ -15,8 +15,25 @@ for people building ***beautiful***, ***robust*** & ***maintainable***
 apps individually or in teams!
 
 
-# How? 
+# Why?
 
+Think/say what you like about Steve,
+he was _right_ about (_at least_) one thing:
+
+![steve jobs learn how to code!](https://cloud.githubusercontent.com/assets/194400/21953417/2bb48e3c-da2e-11e6-8ae9-2a46fa6e2a7d.png)
+
+Considering that there are
+[_millions_ of "Apps"](https://www.statista.com/statistics/276623/number-of-apps-available-in-leading-app-stores/)
+_already_, why should I (_or anyone for that matter_) bother
+learning how to make _more_ of them?
+
+This is a _great_ question and one we ask _ourselves_
+[@dwyl](https://twitter.com/dwyl) _often_!  
+The _answer_ is _another_ question: do you think _all_ the world's
+problems/challenges have been _resolved_...?
+To which the _answer_ is: ***not even close!***
+
+# How? 
 
 ## Read it Online
 
@@ -40,13 +57,16 @@ without any distractions.
 
 ## _Run_ it on your `localhost`
 
-Run the following commands:
+Run the following commands 
+in the `Terminal` on your computer:
 
 ```sh
 git clone git@github.com:dwyl/book.git & cd book
 cargo install mdbook
 mdbook serve --open
 ```
+
+That will open your Web Browser with the book.
 
 > **Note**: that `cargo` command 
 _assumes_ you have `Rust` installed on your machine.
@@ -56,9 +76,17 @@ If you don't already, see:
 
 # Contributing
 
-If you want to help us improve this book,
+To help us improve the book,
 the easiest way is to edit it directly on `GitHub`:
 [dwyl/book/src](https://github.com/dwyl/book/tree/main/src)
+
+While reading the book online,
+simply click/tap the "Edit" button on any page:
+
+<img width="278" alt="dwyl-book-suggest-an-edit" src="https://github.com/dwyl/book/assets/194400/ca3ed7f9-307d-4a64-ba19-4239cc710da9">
+
+That will take you straight to the page
+where you can make your changes and create a Pull Request.
 
 
 ## Editing on `localhost`
@@ -83,21 +111,6 @@ and people who don't _make_ the time to _learn/practice_ are _destined for disap
 
 ## _Why_ Should _Anyone_ Learn How to Build Web Apps _Today_?
 
-Think/say what you like about Steve,
-he was _right_ about (_at least_) one thing:
-
-![steve jobs learn how to code!](https://cloud.githubusercontent.com/assets/194400/21953417/2bb48e3c-da2e-11e6-8ae9-2a46fa6e2a7d.png)
-
-Considering that there are
-[_millions_ of "Apps"](https://www.statista.com/statistics/276623/number-of-apps-available-in-leading-app-stores/)
-_already_, why should I (_or anyone for that matter_) bother
-learning how to make _more_ of them?
-
-This is a _great_ question and one we ask _ourselves_
-[@dwyl](https://twitter.com/dwyl) _often_!  
-The _answer_ is _another_ question: do you think _all_ the world's
-problems/challenges have been _resolved_...?
-To which the _answer_ is: ***not even close!***
 
 > Someone _recently_ asked: "_Is software engineering a **dead end** career?_"  
 https://www.quora.com/Is-software-engineering-a-dead-end-career
