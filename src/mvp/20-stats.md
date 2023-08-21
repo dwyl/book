@@ -1,13 +1,11 @@
-# TODO
+# Metrics
 
-Please copy the additions made to `BUILDIT.md` from the MVP 
-for the "Stats Page" from that repo to this.
-Ref: https://github.com/dwyl/mvp/pull/399
+This chapter adds a few basic metrics for the `people` using the `MVP`. 📈 <br />
+If you have ideas for additional stats you want to see,
+please open an issue:
+[dwyl/mvp/issues](https://github.com/dwyl/mvp/issues) 🙏
 
-Spliting out the pages means we don't have to keep shifting sections
-and we can start to expand our "book".
-
-# Adding Sorting to the track metrics table and more additional fields
+## Adding Sorting to the track metrics table and more additional fields
 
 What happens when we need to track more `metrics`?
 And even, when we get more users on the `MVP`?
