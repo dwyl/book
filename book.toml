@@ -1,6 +1,20 @@
 [book]
-authors = ["nelsonic"]
+authors = ["Ines Teles", "Lucas Reis", "Nelson"]
 language = "en"
 multilingual = false
 src = "src"
 title = "dwyl book"
+
+
+[rust]
+edition = "2018"
+
+[output.html]
+mathjax-support = true
+site-url = "/book/"
+git-repository-url = "https://github.com/dwyl/book/tree/main/src"
+edit-url-template = "https://github.com/dwyl/book/edit/main/src/{path}"
+
+[output.html.playground]
+editable = true
+line-numbers = true
