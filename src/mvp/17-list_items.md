@@ -65,9 +65,11 @@ if we want to avoid conflicts.
 
 As previously noted, the
 `mix phx.gen.schema` command
-does not create any `CRUD` functions 
+does _not_ create any `CRUD` functions 
 or the corresponding `test` file
 for the `schema`.
+In our case that's OK,
+because we want to write a few bespoke functions.
 
 Create the file with the path:
 `test/app/list_items_test.exs` 
