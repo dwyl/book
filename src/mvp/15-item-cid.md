@@ -75,6 +75,42 @@ create a migration file:
 mix ecto.gen.migration add_cid_to_item
 ```
 
+You should see output similar to the following:
+
+```sh
+* creating priv/repo/migrations/20230824153220_add_cid_to_item.exs
+```
+
+This tells us that the migration file was created:
+`priv/repo/migrations/20230824153220_add_cid_to_item.exs`
+Open the file, you should see a blank migration:
+
+```elixir
+defmodule App.Repo.Migrations.AddCidToItem do
+  use Ecto.Migration
+
+  def change do
+
+  end
+end
+```
+
+
+Update it to:
+
+```elixir
+defmodule App.Repo.Migrations.AddCidToItem do
+  use Ecto.Migration
+
+  def change do
+    alter table(:items) do
+      add(:cid, :string)
+    end
+  end
+end
+```
+
+
 > **Note**: if you're rusty on `migrations`,
 see:
 [devhints.io/phoenix-migrations](https://devhints.io/phoenix-migrations)
