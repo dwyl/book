@@ -32,6 +32,7 @@ item = %{text: "Build PARA System App", person_id: 2, status: 2}
 Cid.cid(item)
 "zb2rhn92tqTt41uFZ3hh3VPnssXjYCW4yDSX7KB39dXZyMtNC"
 ```
+
 This `cid` string is unique to this content
 therefore creating it on the client (Mobile device)
 will generate the _same_ `cid`
@@ -138,20 +139,68 @@ Add the line:
 field :cid, :string
 ```
 
-## Add `:cid` to `changeset/2`
+
+## Create `put_cid/1` test
+
+In the 
+`test/app/item_test.exs`
+file, 
+add the following test:
+
+```elixir
+test "put_cid/1 adds a `cid` for the `item` record" do
+  # Create a changeset with a valid item record as the "changes":
+  changeset_before = %{changes: @valid_attrs}
+  # Should not yet have a cid:
+  refute Map.has_key?(changeset_before.changes, :cid)
+
+  # Confirm cid was added to the changes:
+  changeset_with_cid = Item.put_cid(changeset_before)
+  assert changeset_with_cid.changes.cid == Cid.cid(@valid_attrs)
+
+  # confirm idepodent:
+  assert Item.put_cid(changeset_with_cid) == changeset_with_cid
+end
+```
+
+
+
+## Create `put_cid/1` function
+
+Add the following function definition in `lib/app/item.ex`:
+
+```elixir
+def put_cid(changeset) do
+  if(Map.has_key?(changeset.changes, :cid)) do
+    changeset
+  else
+    cid = Cid.cid(changeset.changes)
+    %{changeset | changes: Map.put(changeset.changes, :cid, cid)}
+  end
+end
+```
+
+
+
+## Add `:cid` to `changeset/2`
 
 Still in the 
 `lib/app/item.ex`
 file, locate the `changeset/2` function definition
-and change the line: 
+and change the lines: 
 
 ```elixir
 |> cast(attrs, [:person_id, :status, :text])
+|> validate_required([:text, :person_id])
 ```
 
 To: 
 
 ```elixir
 |> cast(attrs, [:cid, :person_id, :status, :text])
+|> validate_required([:text, :person_id])
+|> put_cid()
 ```
+
+That call to `put_cid/1` adds the `cid` to the `item` record.
 
