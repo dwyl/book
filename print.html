@@ -1354,20 +1354,26 @@ could be used as a reference by other people building MVPs.</p>
 and split it into separate files here in <code>book</code>.
 See: 
 <a href="https://github.com/dwyl/mvp/issues/350">dwyl/mvp/<strong>issues/350</strong></a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="use-cid-for-item-unique-id"><a class="header" href="#use-cid-for-item-unique-id">Use <code>cid</code> for <code>item</code> <em>unique</em> <code>id</code></a></h1>
-<p>By default the <code>items</code> table uses an auto-incrementing (<code>Serial</code>) 
-for the <code>id</code> (Primary Key):</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="use-cid-for-universally-unique-ids"><a class="header" href="#use-cid-for-universally-unique-ids">Use <code>cid</code> for <em>universally unique</em> <code>ids</code></a></h1>
+<p>By default all the tables 
+in a <code>Phoenix</code> Application 
+use an auto-incrementing (<code>Serial</code>) 
+for the <code>id</code> (Primary Key).
+e.g the <code>items</code> table:</p>
 <p><img src="https://github.com/dwyl/mvp/assets/194400/d3020e53-2ad8-43ff-b0ed-95251ee21a87" alt="items-id-integer" /></p>
 <p>This is fine for a <em>server</em>-side rendered app 
 with a <em>single</em> relational database instance.
+i.e. the server/database controls the id of records.
 But our ambition has always been 
 to build a mobile + offline-first distributed App.</p>
 <p>Luckily our friends at 
-<a href="mvp/">Protocol Labs</a>
-(creators of )
+<a href="https://github.com/ipfs">Protocol Labs</a>
+creators of
 <a href="https://github.com/dwyl/learn-ipfs"><code>IPFS</code></a>
-have done some groundwork on &quot;Distributed Apps&quot; problem
-and we have a little library that creates <code>IPFS</code> compliant
+have done some great groundwork on the 
+<a href="https://en.wikipedia.org/wiki/Decentralized_application">&quot;Decentralized Apps&quot;</a>
+problem so we can build on that.
+We have a little library that creates <code>IPFS</code> compliant
 Content Identifiers: 
 <a href="https://github.com/dwyl/cid"><code>cid</code></a></p>
 <p>The basic usage is:</p>
@@ -1375,8 +1381,12 @@ Content Identifiers:
 Cid.cid(item)
 &quot;zb2rhn92tqTt41uFZ3hh3VPnssXjYCW4yDSX7KB39dXZyMtNC&quot;
 </code></pre>
-<h2 id="add-cid-package-to-deps"><a class="header" href="#add-cid-package-to-deps">Add <code>cid</code> package to <code>deps</code></a></h2>
-<p>Add the <code>cid</code> package to the <code>deps</code> in <code>mix.exs</code>:</p>
+<p>This <code>cid</code> string is unique to this content
+therefore creating it on the client (Mobile device)
+will generate the <em>same</em> <code>cid</code>
+if the record is created <em>offline</em>.</p>
+<h2 id="add-excid-package-to-deps"><a class="header" href="#add-excid-package-to-deps">Add <code>excid</code> package to <code>deps</code></a></h2>
+<p>Add the <code>excid</code> package to the <code>deps</code> in <code>mix.exs</code>:</p>
 <pre><code class="language-elixir"># Universally Unique Deterministic Content IDs: github.com/dwyl/cid
 {:excid, &quot;~&gt; 1.0.1&quot;},
 </code></pre>
@@ -1392,22 +1402,22 @@ because it uses 17% fewer characters to represent the same <code>ID</code>
 when compared to <code>base32</code>.</p>
 <pre><code class="language-elixir">&quot;bafkreihght5nbnmn6xbwoakmjyhkiu2naxmwpxgxbp6xkpbiweuetbohde&quot;
 |&gt; String.length()
-49
+59
 </code></pre>
 <p>vs.</p>
 <pre><code class="language-elixir">&quot;zb2rhn92tqTt41uFZ3hh3VPnssXjYCW4yDSX7KB39dXZyMtNC&quot;
 |&gt; String.length()
-59
+49
 </code></pre>
-<h2 id="create-a-migration-to-add-cid-field-to-item"><a class="header" href="#create-a-migration-to-add-cid-field-to-item">Create a Migration to add <code>cid</code> field to <code>item</code></a></h2>
+<h2 id="create-migration"><a class="header" href="#create-migration">Create <code>migration</code></a></h2>
 <p>Using the 
 <a href="https://hexdocs.pm/ecto_sql/Mix.Tasks.Ecto.Gen.Migration.html"><code>mix ecto.gen.migration</code></a>
 command, 
 create a migration file:</p>
-<pre><code class="language-sh">mix ecto.gen.migration add_cid_to_item
+<pre><code class="language-sh">mix ecto.gen.migration add_cid
 </code></pre>
 <p>You should see output similar to the following:</p>
-<pre><code class="language-sh">* creating priv/repo/migrations/20230824153220_add_cid_to_item.exs
+<pre><code class="language-sh">* creating priv/repo/migrations/20230824153220_add_cid.exs
 </code></pre>
 <p>This tells us that the migration file was created:
 <code>priv/repo/migrations/20230824153220_add_cid_to_item.exs</code>
@@ -1436,6 +1446,23 @@ end
 see:
 <a href="https://devhints.io/phoenix-migrations">devhints.io/phoenix-migrations</a></p>
 </blockquote>
+<h2 id="add-cid-field-to-item-schema"><a class="header" href="#add-cid-field-to-item-schema">Add <code>cid</code> field to <code>item</code> schema</a></h2>
+<p>Open the 
+<code>lib/app/item.ex</code>
+file and locate the <code>schema items do</code> section.
+Add the line:</p>
+<pre><code class="language-elixir">field :cid, :string
+</code></pre>
+<p>## Add <code>:cid</code> to <code>changeset/2</code></p>
+<p>Still in the 
+<code>lib/app/item.ex</code>
+file, locate the <code>changeset/2</code> function definition
+and change the line: </p>
+<pre><code class="language-elixir">|&gt; cast(attrs, [:person_id, :status, :text])
+</code></pre>
+<p>To: </p>
+<pre><code class="language-elixir">|&gt; cast(attrs, [:cid, :person_id, :status, :text])
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
 <p>Our <strong>MVP App</strong> already has 
 much of the basic functionality we need/want 
