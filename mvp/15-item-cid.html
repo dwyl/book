@@ -185,23 +185,24 @@
                         <h1 id="use-cid-for-universally-unique-ids"><a class="header" href="#use-cid-for-universally-unique-ids">Use <code>cid</code> for <em>universally unique</em> <code>ids</code></a></h1>
 <p>By default all the tables 
 in a <code>Phoenix</code> Application 
-use an auto-incrementing (<code>Serial</code>) 
+use an auto-incrementing <code>integer</code> (<code>Serial</code>) 
 for the <code>id</code> (Primary Key).
 e.g the <code>items</code> table:</p>
 <p><img src="https://github.com/dwyl/mvp/assets/194400/d3020e53-2ad8-43ff-b0ed-95251ee21a87" alt="items-id-integer" /></p>
 <p>This is fine for a <em>server</em>-side rendered app 
 with a <em>single</em> relational database instance.
-i.e. the server/database controls the id of records.
+i.e. the server/database controls the <code>id</code> of records.
 But our ambition has always been 
 to build a mobile + offline-first distributed App.</p>
 <p>Luckily our friends at 
 <a href="https://github.com/ipfs">Protocol Labs</a>
 creators of
 <a href="https://github.com/dwyl/learn-ipfs"><code>IPFS</code></a>
-have done some great groundwork on the 
+have done some great groundwork on
 <a href="https://en.wikipedia.org/wiki/Decentralized_application">&quot;Decentralized Apps&quot;</a>
-problem so we can build on that.
-We have a little library that creates <code>IPFS</code> compliant
+so we can build on that.
+We created an <code>Elixir</code> package 
+that creates <code>IPFS</code> compliant
 Content Identifiers: 
 <a href="https://github.com/dwyl/cid"><code>cid</code></a></p>
 <p>The basic usage is:</p>
@@ -213,6 +214,12 @@ Cid.cid(item)
 therefore creating it on the client (Mobile device)
 will generate the <em>same</em> <code>cid</code>
 if the record is created <em>offline</em>.</p>
+<p>We can easily confirm the validity of this <code>cid</code>
+by inputting it into CID Inspector:
+<a href="https://cid.ipfs.tech">cid.ipfs.tech</a>
+e.g:
+https://cid.ipfs.tech/#zb2rhn92tqTt41uFZ3hh3VPnssXjYCW4yDSX7KB39dXZyMtNC</p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/56ac8bdf-663a-4cb3-8ad3-f8bd4e9a4be3" alt="cid-inspector" /></p>
 <h2 id="add-excid-package-to-deps"><a class="header" href="#add-excid-package-to-deps">Add <code>excid</code> package to <code>deps</code></a></h2>
 <p>Add the <code>excid</code> package to the <code>deps</code> in <code>mix.exs</code>:</p>
 <pre><code class="language-elixir"># Universally Unique Deterministic Content IDs: github.com/dwyl/cid
@@ -282,37 +289,59 @@ Add the line:</p>
 <pre><code class="language-elixir">field :cid, :string
 </code></pre>
 <h2 id="create-put_cid1-test"><a class="header" href="#create-put_cid1-test">Create <code>put_cid/1</code> test</a></h2>
-<p>In the 
-<code>test/app/item_test.exs</code>
-file, 
-add the following test:</p>
-<pre><code class="language-elixir">test &quot;put_cid/1 adds a `cid` for the `item` record&quot; do
-  # Create a changeset with a valid item record as the &quot;changes&quot;:
-  changeset_before = %{changes: @valid_attrs}
-  # Should not yet have a cid:
-  refute Map.has_key?(changeset_before.changes, :cid)
+<p>Create a new file with the path:
+<code>test/app/cid_test.exs</code>
+and add the following test:</p>
+<pre><code class="language-elixir">defmodule App.CidTest do
+  use App.DataCase, async: true
 
-  # Confirm cid was added to the changes:
-  changeset_with_cid = Item.put_cid(changeset_before)
-  assert changeset_with_cid.changes.cid == Cid.cid(@valid_attrs)
+  @valid_attrs %{text: &quot;Buy Bananas&quot;, person_id: 1, status: 2}
 
-  # confirm idepodent:
-  assert Item.put_cid(changeset_with_cid) == changeset_with_cid
-end
-</code></pre>
-<h2 id="create-put_cid1-function"><a class="header" href="#create-put_cid1-function">Create <code>put_cid/1</code> function</a></h2>
-<p>Add the following function definition in <code>lib/app/item.ex</code>:</p>
-<pre><code class="language-elixir">def put_cid(changeset) do
-  if(Map.has_key?(changeset.changes, :cid)) do
-    changeset
-  else
-    cid = Cid.cid(changeset.changes)
-    %{changeset | changes: Map.put(changeset.changes, :cid, cid)}
+  test &quot;put_cid/1 adds a `cid` for the `item` record&quot; do
+    # Create a changeset with a valid item record as the &quot;changes&quot;:
+    changeset_before = %{changes: @valid_attrs}
+    # Should not yet have a cid:
+    refute Map.has_key?(changeset_before.changes, :cid)
+
+    # Confirm cid was added to the changes:
+    changeset_with_cid = App.Cid.put_cid(changeset_before)
+    assert changeset_with_cid.changes.cid == Cid.cid(@valid_attrs)
+
+    # confirm idempotent:
+    assert App.Cid.put_cid(changeset_with_cid) == changeset_with_cid
   end
 end
 </code></pre>
-<h2 id="add-cid-to-changeset2"><a class="header" href="#add-cid-to-changeset2">Add <code>:cid</code> to <code>changeset/2</code></a></h2>
-<p>Still in the 
+<p>Running this test will fail:</p>
+<pre><code class="language-sh">mix test test/app/cid_test.exs
+</code></pre>
+<p>E.g:</p>
+<pre><code class="language-sh">** (UndefinedFunctionError) function App.Cid.put_cid/1 is undefined or private.
+</code></pre>
+<p>Let's implement it!</p>
+<h2 id="create-put_cid1-function"><a class="header" href="#create-put_cid1-function">Create <code>put_cid/1</code> function</a></h2>
+<p>Create a new file with the path:
+<code>lib/app/cid.ex</code>.
+Add the following function definition to the file:</p>
+<pre><code class="language-elixir">defmodule App.Cid do
+  def put_cid(changeset) do
+    if Map.has_key?(changeset.changes, :cid) do
+      changeset
+    else
+      cid = Cid.cid(changeset.changes)
+      %{changeset | changes: Map.put(changeset.changes, :cid, cid)}
+    end
+  end
+end
+</code></pre>
+<p>The function just adds a <code>cid</code> to the <code>changeset.changes</code>
+so that it creates a hash of the contents of the changeset
+and then adds the <code>cid</code> to identify that content. 
+If the <code>changes</code> already have a <code>cid</code> don't do anything.
+This covers the case where an <code>item</code> is created in the Mobile client
+with a <code>cid</code>. We will add verification for this later. </p>
+<h2 id="invoke-put_cid1-in-itemchangeset2"><a class="header" href="#invoke-put_cid1-in-itemchangeset2">Invoke <code>put_cid/1</code> in <code>Item.changeset/2</code></a></h2>
+<p>In the 
 <code>lib/app/item.ex</code>
 file, locate the <code>changeset/2</code> function definition
 and change the lines: </p>
@@ -322,9 +351,43 @@ and change the lines: </p>
 <p>To: </p>
 <pre><code class="language-elixir">|&gt; cast(attrs, [:cid, :person_id, :status, :text])
 |&gt; validate_required([:text, :person_id])
-|&gt; put_cid()
+|&gt; App.Cid.put_cid()
 </code></pre>
-<p>That call to <code>put_cid/1</code> adds the <code>cid</code> to the <code>item</code> record.</p>
+<p>The call to <code>put_cid/1</code> within <code>changeset/2</code>
+adds the <code>cid</code> to the <code>item</code> record.</p>
+<h2 id="checkpoint-item-table-with-cid"><a class="header" href="#checkpoint-item-table-with-cid">Checkpoint: <code>item</code> table with <code>cid</code></a></h2>
+<p>After running the migration:</p>
+<pre><code class="language-sh">mix ecto.migrate
+</code></pre>
+<p>The <code>item</code> table has the <code>cid</code> column:</p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/cadc5227-40f0-4462-9b32-6034c9a6c0d1" alt="mvp-items-with-cid" /></p>
+<p>Even though the <code>cid</code> field was added to the table,
+it is <em>empty</em> for all <em>existing</em> <code>item</code> records. 
+Easily resolved.</p>
+<h2 id="update-all-item-records"><a class="header" href="#update-all-item-records">Update all <code>item</code> records</a></h2>
+<p>Add the following function to 
+<code>lib/app/item.ex</code>:</p>
+<pre><code class="language-elixir">  def update_all_items_cid do
+    items = list_items()
+    Enum.each(items, fn i -&gt;
+      item = %{
+        person_id: i.person_id,
+        status: i.status,
+        text: i.text,
+        id: i.id,
+      }
+      i
+      |&gt; changeset(Map.put(item, :cid, Cid.cid(item)))
+      |&gt; Repo.update()
+    end)
+  end
+end
+</code></pre>
+<p>Invoke it in the 
+<code>priv/repo/seeds.exs</code>
+so that all <code>items</code>
+are given a <code>cid</code>. </p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/7291050e-4e63-4564-a661-bc848b5b2993" alt="mvp-items-with-cid-populated" /></p>
 
                     </main>
 
