@@ -28,7 +28,7 @@ defmodule App.Repo.Migrations.CreateListItems do
       add :seq, :text
 
       timestamps()
-    end
+    end 
 
     create index(:list_items, [:list_cid])
   end
@@ -41,7 +41,7 @@ and you should see the following table:
 And the **ERD**
 will now look like this:
 
-<img width="550" alt="dwyl-mvp-ERD-with-list_items" src="https://github.com/dwyl/mvp/assets/194400/a81f51b1-0327-4f33-b417-67f37ae889b2">
+<img width="550" alt="dwyl-mvp-ERD-with-list_items" src="https://github.com/dwyl/mvp/assets/194400/c3255969-88d5-41b5-aa51-b4397f8e93f6">
 
 As you can see from this **ERD**,
 the `list_items` table 

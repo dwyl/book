@@ -80,7 +80,7 @@ Once we run `mix ecto.migrate`,
 we have the following database
 ERD:
 
-![mvp-erd-with-lists](https://github.com/dwyl/mvp/assets/194400/7efb0f30-077a-4fe3-84f1-41e187116cfe)
+![mvp-erd-with-lists](https://github.com/dwyl/mvp/assets/194400/4c3c097f-4a93-488d-8be4-591deeb72df7)
 
 This new database table
 lets us create a `list`
