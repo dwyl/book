@@ -2,7 +2,7 @@
 
 By default all the tables 
 in a `Phoenix` Application 
-use an auto-incrementing (`Serial`) 
+use an auto-incrementing `integer` (`Serial`) 
 for the `id` (Primary Key).
 e.g the `items` table:
 
@@ -10,7 +10,7 @@ e.g the `items` table:
 
 This is fine for a _server_-side rendered app 
 with a _single_ relational database instance.
-i.e. the server/database controls the id of records.
+i.e. the server/database controls the `id` of records.
 But our ambition has always been 
 to build a mobile + offline-first distributed App.
 
@@ -18,10 +18,11 @@ Luckily our friends at
 [Protocol Labs](https://github.com/ipfs)
 creators of
 [`IPFS`](https://github.com/dwyl/learn-ipfs)
-have done some great groundwork on the 
+have done some great groundwork on
 ["Decentralized Apps"](https://en.wikipedia.org/wiki/Decentralized_application)
-problem so we can build on that.
-We have a little library that creates `IPFS` compliant
+so we can build on that.
+We created an `Elixir` package 
+that creates `IPFS` compliant
 Content Identifiers: 
 [`cid`](https://github.com/dwyl/cid)
 
@@ -38,7 +39,13 @@ therefore creating it on the client (Mobile device)
 will generate the _same_ `cid`
 if the record is created _offline_.
 
+We can easily confirm the validity of this `cid`
+by inputting it into CID Inspector:
+[cid.ipfs.tech](https://cid.ipfs.tech)
+e.g:
+https://cid.ipfs.tech/#zb2rhn92tqTt41uFZ3hh3VPnssXjYCW4yDSX7KB39dXZyMtNC
 
+![cid-inspector](https://github.com/dwyl/mvp/assets/194400/56ac8bdf-663a-4cb3-8ad3-f8bd4e9a4be3)
 
 
 ## Add `excid` package to `deps`
@@ -142,49 +149,76 @@ field :cid, :string
 
 ## Create `put_cid/1` test
 
-In the 
-`test/app/item_test.exs`
-file, 
-add the following test:
+Create a new file with the path:
+`test/app/cid_test.exs`
+and add the following test:
 
 ```elixir
-test "put_cid/1 adds a `cid` for the `item` record" do
-  # Create a changeset with a valid item record as the "changes":
-  changeset_before = %{changes: @valid_attrs}
-  # Should not yet have a cid:
-  refute Map.has_key?(changeset_before.changes, :cid)
+defmodule App.CidTest do
+  use App.DataCase, async: true
 
-  # Confirm cid was added to the changes:
-  changeset_with_cid = Item.put_cid(changeset_before)
-  assert changeset_with_cid.changes.cid == Cid.cid(@valid_attrs)
+  @valid_attrs %{text: "Buy Bananas", person_id: 1, status: 2}
 
-  # confirm idepodent:
-  assert Item.put_cid(changeset_with_cid) == changeset_with_cid
-end
-```
+  test "put_cid/1 adds a `cid` for the `item` record" do
+    # Create a changeset with a valid item record as the "changes":
+    changeset_before = %{changes: @valid_attrs}
+    # Should not yet have a cid:
+    refute Map.has_key?(changeset_before.changes, :cid)
 
+    # Confirm cid was added to the changes:
+    changeset_with_cid = App.Cid.put_cid(changeset_before)
+    assert changeset_with_cid.changes.cid == Cid.cid(@valid_attrs)
 
-
-## Create `put_cid/1` function
-
-Add the following function definition in `lib/app/item.ex`:
-
-```elixir
-def put_cid(changeset) do
-  if(Map.has_key?(changeset.changes, :cid)) do
-    changeset
-  else
-    cid = Cid.cid(changeset.changes)
-    %{changeset | changes: Map.put(changeset.changes, :cid, cid)}
+    # confirm idempotent:
+    assert App.Cid.put_cid(changeset_with_cid) == changeset_with_cid
   end
 end
 ```
 
+Running this test will fail:
+
+```sh
+mix test test/app/cid_test.exs
+```
+
+E.g:
+```sh
+** (UndefinedFunctionError) function App.Cid.put_cid/1 is undefined or private.
+```
+
+Let's implement it!
 
 
-## Add `:cid` to `changeset/2`
+## Create `put_cid/1` function
 
-Still in the 
+Create a new file with the path:
+`lib/app/cid.ex`.
+Add the following function definition to the file:
+
+```elixir
+defmodule App.Cid do
+  def put_cid(changeset) do
+    if Map.has_key?(changeset.changes, :cid) do
+      changeset
+    else
+      cid = Cid.cid(changeset.changes)
+      %{changeset | changes: Map.put(changeset.changes, :cid, cid)}
+    end
+  end
+end
+```
+
+The function just adds a `cid` to the `changeset.changes`
+so that it creates a hash of the contents of the changeset
+and then adds the `cid` to identify that content. 
+If the `changes` already have a `cid` don't do anything.
+This covers the case where an `item` is created in the Mobile client
+with a `cid`. We will add verification for this later. 
+
+
+## Invoke `put_cid/1` in `Item.changeset/2`
+
+In the 
 `lib/app/item.ex`
 file, locate the `changeset/2` function definition
 and change the lines: 
@@ -199,8 +233,55 @@ To:
 ```elixir
 |> cast(attrs, [:cid, :person_id, :status, :text])
 |> validate_required([:text, :person_id])
-|> put_cid()
+|> App.Cid.put_cid()
 ```
 
-That call to `put_cid/1` adds the `cid` to the `item` record.
+The call to `put_cid/1` within `changeset/2`
+adds the `cid` to the `item` record.
 
+
+## Checkpoint: `item` table with `cid`
+
+After running the migration:
+
+```sh
+mix ecto.migrate
+```
+
+The `item` table has the `cid` column:
+
+![mvp-items-with-cid](https://github.com/dwyl/mvp/assets/194400/cadc5227-40f0-4462-9b32-6034c9a6c0d1)
+
+Even though the `cid` field was added to the table,
+it is _empty_ for all _existing_ `item` records. 
+Easily resolved.
+
+## Update all `item` records 
+
+Add the following function to 
+`lib/app/item.ex`:
+
+```elixir
+  def update_all_items_cid do
+    items = list_items()
+    Enum.each(items, fn i ->
+      item = %{
+        person_id: i.person_id,
+        status: i.status,
+        text: i.text,
+        id: i.id,
+      }
+      i
+      |> changeset(Map.put(item, :cid, Cid.cid(item)))
+      |> Repo.update()
+    end)
+  end
+end
+```
+
+Invoke it in the 
+`priv/repo/seeds.exs`
+so that all `items`
+are given a `cid`. 
+
+![mvp-items-with-cid-populated](https://github.com/dwyl/mvp/assets/194400/7291050e-4e63-4564-a661-bc848b5b2993)

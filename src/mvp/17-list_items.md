@@ -23,14 +23,14 @@ defmodule App.Repo.Migrations.CreateListItems do
 
   def change do
     create table(:list_items) do
-      add :list_id, references(:lists, on_delete: :nothing)
+      add :list_cid, references(:lists, on_delete: :nothing)
       add :person_id, :integer
-      add :seq, :string
+      add :seq, :text
 
       timestamps()
     end
 
-    create index(:list_items, [:list_id])
+    create index(:list_items, [:list_cid])
   end
 end
 ```
