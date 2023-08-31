@@ -285,3 +285,6 @@ so that all `items`
 are given a `cid`. 
 
 ![mvp-items-with-cid-populated](https://github.com/dwyl/mvp/assets/194400/7291050e-4e63-4564-a661-bc848b5b2993)
+
+With that working we can get back to _using_ this 
+in our next feature; `lists`!

@@ -48,7 +48,7 @@ with the following
 command:
 
 ```sh
-mix phx.gen.schema List lists name:string person_id:integer sort:integer status:integer
+mix phx.gen.schema List lists cid:string name:string person_id:integer sort:integer status:integer
 ```
 
 
@@ -64,6 +64,7 @@ defmodule App.Repo.Migrations.CreateLists do
 
   def change do
     create table(:lists) do
+      add :cid, :string
       add :name, :string
       add :person_id, :integer
       add :sort, :integer
@@ -99,6 +100,7 @@ defmodule App.List do
   import Ecto.Changeset
 
   schema "lists" do
+    field :cid, :string
     field :name, :string
     field :person_id, :integer
     filed :sort, :integer
@@ -110,18 +112,20 @@ defmodule App.List do
   @doc false
   def changeset(list, attrs) do
     list
-    |> cast(attrs, [:name, :person_id, :status])
+    |> cast(attrs, [:cid, :name, :person_id, :sort, :status])
     |> validate_required([:name, :person_id])
+    |> App.Cid.put_cid()
   end
 end
 ```
 
 The `schema` matches the `migration` above.
-Just the 4 fields we need for creating `lists`:
-1. `name` - the _name_ of the list. a `:string` of arbitrary length.
-2. `person_id` - the `id` of the `person` who created the `list`
-3. `sort` - the sort order for the 
-4. `status` - the `status` (represented as an `Integer`) for the `list`. 
+Just the 5 fields we need for creating `lists`:
+1. `cid` - the universally unique `id` for the `list`.
+2. `name` - the _name_ of the list. a `:string` of arbitrary length.
+3. `person_id` - the `id` of the `person` who created the `list`
+4. `sort` - the sort order for the 
+5. `status` - the `status` (represented as an `Integer`) for the `list`. 
 see: 
 [dwyl/statuses](https://github.com/dwyl/statuses)
 
