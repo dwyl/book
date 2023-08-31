@@ -1560,6 +1560,8 @@ end
 so that all <code>items</code>
 are given a <code>cid</code>. </p>
 <p><img src="https://github.com/dwyl/mvp/assets/194400/7291050e-4e63-4564-a661-bc848b5b2993" alt="mvp-items-with-cid-populated" /></p>
+<p>With that working we can get back to <em>using</em> this 
+in our next feature; <code>lists</code>!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
 <p>Our <strong>MVP App</strong> already has 
 much of the basic functionality we need/want 
@@ -1596,7 +1598,7 @@ that will make the <code>App</code> more <em>useful</em> both to individuals and
 with the following 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
 command:</p>
-<pre><code class="language-sh">mix phx.gen.schema List lists name:string person_id:integer sort:integer status:integer
+<pre><code class="language-sh">mix phx.gen.schema List lists cid:string name:string person_id:integer sort:integer status:integer
 </code></pre>
 <p>Those two commands will create the following migrations:</p>
 <p><a href="https://github.com/dwyl/mvp/blob/fa0b79eebbe582e3b24213a2c657d0fc343782c9/priv/repo/migrations/20230416001029_create_lists.exs"><code>20230416001029_create_lists.exs</code></a></p>
@@ -1605,6 +1607,7 @@ command:</p>
 
   def change do
     create table(:lists) do
+      add :cid, :string
       add :name, :string
       add :person_id, :integer
       add :sort, :integer
@@ -1632,6 +1635,7 @@ file with the following:</p>
   import Ecto.Changeset
 
   schema &quot;lists&quot; do
+    field :cid, :string
     field :name, :string
     field :person_id, :integer
     filed :sort, :integer
@@ -1643,14 +1647,16 @@ file with the following:</p>
   @doc false
   def changeset(list, attrs) do
     list
-    |&gt; cast(attrs, [:name, :person_id, :status])
+    |&gt; cast(attrs, [:cid, :name, :person_id, :sort, :status])
     |&gt; validate_required([:name, :person_id])
+    |&gt; App.Cid.put_cid()
   end
 end
 </code></pre>
 <p>The <code>schema</code> matches the <code>migration</code> above.
-Just the 4 fields we need for creating <code>lists</code>:</p>
+Just the 5 fields we need for creating <code>lists</code>:</p>
 <ol>
+<li><code>cid</code> - the universally unique <code>id</code> for the <code>list</code>.</li>
 <li><code>name</code> - the <em>name</em> of the list. a <code>:string</code> of arbitrary length.</li>
 <li><code>person_id</code> - the <code>id</code> of the <code>person</code> who created the <code>list</code></li>
 <li><code>sort</code> - the sort order for the </li>
