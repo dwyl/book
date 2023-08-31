@@ -1621,7 +1621,7 @@ end
 <p>Once we run <code>mix ecto.migrate</code>,
 we have the following database
 ERD:</p>
-<p><img src="https://github.com/dwyl/mvp/assets/194400/7efb0f30-077a-4fe3-84f1-41e187116cfe" alt="mvp-erd-with-lists" /></p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/4c3c097f-4a93-488d-8be4-591deeb72df7" alt="mvp-erd-with-lists" /></p>
 <p>This new database table
 lets us create a <code>list</code>
 but there is still more work to be done
@@ -2012,7 +2012,7 @@ command:</p>
       add :seq, :text
 
       timestamps()
-    end
+    end 
 
     create index(:list_items, [:list_cid])
   end
@@ -2022,7 +2022,7 @@ end
 and you should see the following table:</p>
 <p>And the <strong>ERD</strong>
 will now look like this:</p>
-<img width="550" alt="dwyl-mvp-ERD-with-list_items" src="https://github.com/dwyl/mvp/assets/194400/a81f51b1-0327-4f33-b417-67f37ae889b2">
+<img width="550" alt="dwyl-mvp-ERD-with-list_items" src="https://github.com/dwyl/mvp/assets/194400/c3255969-88d5-41b5-aa51-b4397f8e93f6">
 <p>As you can see from this <strong>ERD</strong>,
 the <code>list_items</code> table 
 is <em>not</em> connected to the <code>items</code> table.
