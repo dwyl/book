@@ -15,7 +15,7 @@ The
 [Entity Relationship Diagram](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
 (ERD) is currently:
 
-![mvp-erd-before-lists](https://user-images.githubusercontent.com/194400/233317695-3e036f1f-db13-4697-aa49-fe767a86a773.png)
+![mvp-erd-before-lists](https://github.com/dwyl/mvp/assets/194400/d68b02da-a2f7-4af7-be1e-fa1a62dcfa61)
 
 Just the four tables
 you've already seen 
@@ -48,13 +48,11 @@ with the following
 command:
 
 ```sh
-mix phx.gen.schema List lists cid:string name:string person_id:integer sort:integer status:integer
+mix phx.gen.schema Lista lista cid:string name:string person_id:integer seq:string sort:integer status:integer
 ```
 
 
-
-
-Those two commands will create the following migrations:
+This command will create the following migration:
 
 [`20230416001029_create_lists.exs`](https://github.com/dwyl/mvp/blob/fa0b79eebbe582e3b24213a2c657d0fc343782c9/priv/repo/migrations/20230416001029_create_lists.exs)
 
@@ -67,6 +65,7 @@ defmodule App.Repo.Migrations.CreateLists do
       add :cid, :string
       add :name, :string
       add :person_id, :integer
+      add :seq, :string
       add :sort, :integer
       add :status, :integer
 
@@ -80,7 +79,7 @@ Once we run `mix ecto.migrate`,
 we have the following database
 ERD:
 
-![mvp-erd-with-lists](https://github.com/dwyl/mvp/assets/194400/4c3c097f-4a93-488d-8be4-591deeb72df7)
+![mvp-erd-with-lists](https://github.com/dwyl/mvp/assets/194400/02ad8f68-9b39-4d59-9a54-cfd7824e9bcf)
 
 This new database table
 lets us create a `list`
@@ -103,6 +102,7 @@ defmodule App.List do
     field :cid, :string
     field :name, :string
     field :person_id, :integer
+    field :seq, :string
     filed :sort, :integer
     field :status, :integer
 
@@ -112,7 +112,7 @@ defmodule App.List do
   @doc false
   def changeset(list, attrs) do
     list
-    |> cast(attrs, [:cid, :name, :person_id, :sort, :status])
+    |> cast(attrs, [:cid, :name, :person_id, :seq, :sort, :status])
     |> validate_required([:name, :person_id])
     |> App.Cid.put_cid()
   end
@@ -124,8 +124,9 @@ Just the 5 fields we need for creating `lists`:
 1. `cid` - the universally unique `id` for the `list`.
 2. `name` - the _name_ of the list. a `:string` of arbitrary length.
 3. `person_id` - the `id` of the `person` who created the `list`
-4. `sort` - the sort order for the 
-5. `status` - the `status` (represented as an `Integer`) for the `list`. 
+4. `seq` - the _sequence_ of `item.cid` for the `list`
+5. `sort` - the sort order for the `list` e.g. 1: `Ascending`
+6. `status` - the `status` (represented as an `Integer`) for the `list`. 
 see: 
 [dwyl/statuses](https://github.com/dwyl/statuses)
 
@@ -284,8 +285,6 @@ def update_list(%List{} = list, attrs) do
   |> PaperTrail.update()
 end
 ```
-
-> **TODO**: hyperlink these two files, once they are merged into `main`.
 
 The main functions to pay attention to 
 in the newly created files are:
