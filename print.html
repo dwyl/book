@@ -1575,7 +1575,7 @@ as lean as possible to avoid complexity. <br />
 The 
 <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
 (ERD) is currently:</p>
-<p><img src="https://user-images.githubusercontent.com/194400/233317695-3e036f1f-db13-4697-aa49-fe767a86a773.png" alt="mvp-erd-before-lists" /></p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/d68b02da-a2f7-4af7-be1e-fa1a62dcfa61" alt="mvp-erd-before-lists" /></p>
 <p>Just the four tables
 you've already seen 
 in the previous sections.</p>
@@ -1598,9 +1598,9 @@ that will make the <code>App</code> more <em>useful</em> both to individuals and
 with the following 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
 command:</p>
-<pre><code class="language-sh">mix phx.gen.schema List lists cid:string name:string person_id:integer sort:integer status:integer
+<pre><code class="language-sh">mix phx.gen.schema Lista lista cid:string name:string person_id:integer seq:string sort:integer status:integer
 </code></pre>
-<p>Those two commands will create the following migrations:</p>
+<p>This command will create the following migration:</p>
 <p><a href="https://github.com/dwyl/mvp/blob/fa0b79eebbe582e3b24213a2c657d0fc343782c9/priv/repo/migrations/20230416001029_create_lists.exs"><code>20230416001029_create_lists.exs</code></a></p>
 <pre><code class="language-elixir">defmodule App.Repo.Migrations.CreateLists do
   use Ecto.Migration
@@ -1610,6 +1610,7 @@ command:</p>
       add :cid, :string
       add :name, :string
       add :person_id, :integer
+      add :seq, :string
       add :sort, :integer
       add :status, :integer
 
@@ -1621,7 +1622,7 @@ end
 <p>Once we run <code>mix ecto.migrate</code>,
 we have the following database
 ERD:</p>
-<p><img src="https://github.com/dwyl/mvp/assets/194400/4c3c097f-4a93-488d-8be4-591deeb72df7" alt="mvp-erd-with-lists" /></p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/02ad8f68-9b39-4d59-9a54-cfd7824e9bcf" alt="mvp-erd-with-lists" /></p>
 <p>This new database table
 lets us create a <code>list</code>
 but there is still more work to be done
@@ -1638,6 +1639,7 @@ file with the following:</p>
     field :cid, :string
     field :name, :string
     field :person_id, :integer
+    field :seq, :string
     filed :sort, :integer
     field :status, :integer
 
@@ -1647,7 +1649,7 @@ file with the following:</p>
   @doc false
   def changeset(list, attrs) do
     list
-    |&gt; cast(attrs, [:cid, :name, :person_id, :sort, :status])
+    |&gt; cast(attrs, [:cid, :name, :person_id, :seq, :sort, :status])
     |&gt; validate_required([:name, :person_id])
     |&gt; App.Cid.put_cid()
   end
@@ -1659,7 +1661,8 @@ Just the 5 fields we need for creating <code>lists</code>:</p>
 <li><code>cid</code> - the universally unique <code>id</code> for the <code>list</code>.</li>
 <li><code>name</code> - the <em>name</em> of the list. a <code>:string</code> of arbitrary length.</li>
 <li><code>person_id</code> - the <code>id</code> of the <code>person</code> who created the <code>list</code></li>
-<li><code>sort</code> - the sort order for the </li>
+<li><code>seq</code> - the <em>sequence</em> of <code>item.cid</code> for the <code>list</code></li>
+<li><code>sort</code> - the sort order for the <code>list</code> e.g. 1: <code>Ascending</code></li>
 <li><code>status</code> - the <code>status</code> (represented as an <code>Integer</code>) for the <code>list</code>. 
 see: 
 <a href="https://github.com/dwyl/statuses">dwyl/statuses</a></li>
@@ -1794,9 +1797,6 @@ def update_list(%List{} = list, attrs) do
   |&gt; PaperTrail.update()
 end
 </code></pre>
-<blockquote>
-<p><strong>TODO</strong>: hyperlink these two files, once they are merged into <code>main</code>.</p>
-</blockquote>
 <p>The main functions to pay attention to 
 in the newly created files are:
 <code>App.List.create_list/1</code> 
