@@ -1,3 +1,5 @@
+# SUPERCEDED by [dwyl/mvp#413](https://github.com/dwyl/mvp/issues/413)
+
 # `list_items`
 
 `list_items` allow us track which `items` are on a given `list`
