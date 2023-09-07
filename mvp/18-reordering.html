@@ -206,7 +206,10 @@ and cursor tracking across browsers/devices.
 If you are totally new to drag-and-drop,
 we suggest following at least that one for full context.</p>
 </blockquote>
-<h1 id="todo-upload-screenshot-of-item-being-moved-in-interface-as-visual-explainer-before-diving-into-code"><a class="header" href="#todo-upload-screenshot-of-item-being-moved-in-interface-as-visual-explainer-before-diving-into-code">TODO: upload screenshot of <code>item</code> being moved in interface as visual explainer <code>before</code> diving into code!</a></h1>
+<p>At the end of this chapter you will be able to reorder the <code>items</code> in a <code>list</code>
+with cursor tracking and <code>item</code> highlighting:</p>
+<p><img width="1728" alt="mvp-reordering-hero-screenshot" 
+    src="https://github.com/dwyl/mvp/assets/194400/13753b38-2553-4d59-beb9-54bb9d16e0e0"></p>
 <h2 id="getset-listcid-in-mount3"><a class="header" href="#getset-listcid-in-mount3">Get/Set <code>list.cid</code> in <code>mount/3</code></a></h2>
 <p>In order for us to know which <code>list</code> 
 the <code>person</code> is viewing - and thus reordering - 
@@ -232,6 +235,9 @@ App.List.add_all_items_to_all_list_for_person_id(person_id)
 <p>That will ensure that we know the <code>list.cid</code> 
 later when the <code>person</code> reorders their <code>items</code>.</p>
 <h2 id="moving-items-in-the-interface"><a class="header" href="#moving-items-in-the-interface">Moving <code>items</code> in the interface</a></h2>
+<p>There is quite a lot of code required 
+to move <code>items</code> in the interface,
+we need to update 4 files.</p>
 <h3 id="update-the-li"><a class="header" href="#update-the-li">Update the <code>&lt;li&gt;</code></a></h3>
 <p>In the <code>lib/app_web/live/app_live.html.heex</code> file,
 locate the <code>&lt;ul&gt;</code> (unordered list) defintion:</p>
@@ -377,7 +383,7 @@ window.addEventListener(&quot;phx:dragover-item&quot;, (e) =&gt; {
 <p>Again, there's a fair amount of code there 
 so take a moment to step through it 
 and understand what each event listener does.</p>
-<h2 id="handle-the-update_list_seq-event"><a class="header" href="#handle-the-update_list_seq-event">Handle the <code>update_list_seq</code> event</a></h2>
+<h2 id="handle-event-in-liveview"><a class="header" href="#handle-event-in-liveview">Handle event in <code>LiveView</code></a></h2>
 <p>Back in the <code>LiveView</code> file,
 <code>lib/app_web/live/app_live.ex</code>
 add the following event handlers:</p>
@@ -462,9 +468,10 @@ add the following event handlers:</p>
     {:noreply, socket}
   end
 </code></pre>
+<h3 id="handle-the-update_list_seq-event"><a class="header" href="#handle-the-update_list_seq-event">Handle the <code>update_list_seq</code> event</a></h3>
 <p>All the <code>highlight</code>, <code>remove-highlight</code> and <code>move_items</code> 
 handlers are for presentation and synching between clients.
-The handler that performs the actual list updating is:</p>
+The handler that performs the actual <code>list</code> updating is:</p>
 <pre><code class="language-elixir">  @impl true
   def handle_event(
         &quot;update_list_seq&quot;,
