@@ -429,3 +429,7 @@ because it's testing for
 both the `highlight` 
 _and_ the update of the `seq` (sequence of `item.cid`) in the `list`.
 Take a momemnt to step through it and if you have any questions, ask!
+
+A good place to read all the code for this in one place is:
+https://github.com/dwyl/mvp/pull/345/files
+
