@@ -25,7 +25,11 @@ and cursor tracking across browsers/devices.
 If you are totally new to drag-and-drop,
 we suggest following at least that one for full context.
 
-# TODO: upload screenshot of `item` being moved in interface as visual explainer `before` diving into code!
+At the end of this chapter you will be able to reorder the `items` in a `list`
+with cursor tracking and `item` highlighting:
+
+<img width="1728" alt="mvp-reordering-hero-screenshot" 
+    src="https://github.com/dwyl/mvp/assets/194400/13753b38-2553-4d59-beb9-54bb9d16e0e0">
 
 
 
@@ -70,6 +74,9 @@ later when the `person` reorders their `items`.
 
 ## Moving `items` in the interface
 
+There is quite a lot of code required 
+to move `items` in the interface,
+we need to update 4 files.
 
 
 ### Update the `<li>`
@@ -231,7 +238,7 @@ and understand what each event listener does.
 
 
 
-## Handle the `update_list_seq` event
+## Handle event in `LiveView`
 
 Back in the `LiveView` file,
 `lib/app_web/live/app_live.ex`
@@ -320,9 +327,11 @@ add the following event handlers:
   end
 ```
 
+### Handle the `update_list_seq` event
+
 All the `highlight`, `remove-highlight` and `move_items` 
 handlers are for presentation and synching between clients.
-The handler that performs the actual list updating is:
+The handler that performs the actual `list` updating is:
 
 
 ```elixir
