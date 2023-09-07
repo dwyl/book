@@ -15,7 +15,7 @@ The
 [Entity Relationship Diagram](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
 (ERD) is currently:
 
-![mvp-erd-before-lists](https://github.com/dwyl/mvp/assets/194400/d68b02da-a2f7-4af7-be1e-fa1a62dcfa61)
+![mvp-erd-before-lists](https://github.com/dwyl/mvp/assets/194400/0936903f-97ed-4be3-9f70-54c5e138afcd)
 
 Just the four tables
 you've already seen 
@@ -450,3 +450,71 @@ if we think there's a chance a `person`
 may have _multiple_ `lists` with `"all`" in the `list.name`. 
 
 
+
+## Add _Existing_ `itmes` to the "All" `list`
+
+One final function we need
+in order to _retroactively_ add `lists`
+to our `MVP` App that started out _without_ `lists`
+is a function to add all the _existing_ `items`
+to the newly created "All" `list`. 
+
+### Test `add_all_items_to_all_list_for_person_id/1`
+
+> **Note**: This is a _temporary_ function that we will `delete`
+once all the _existing_ people using the `MVP`
+have transitioned their `items` to the "All" `list`.
+But we still need to have a _test_ for it!
+
+Open 
+`test/app/list_test.exs`
+and add the following test:
+
+```elixir
+test "add_all_items_to_all_list_for_person_id/1 to seed the All list" do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+```
+
+That's a very long test.
+Take a moment to read it through.
+Remember: this will be deleted,
+it's just data migration code.
+
+
+### Define `add_items_to_all_list/1`
+
+In the 
+`lib/app/list_item.ex`
+file,
+add the `add_items_to_all_list/1` function definition:
+
+```elixir
+def add_items_to_all_list(person_id) do
+  all_list = App.List.get_list_by_text!(person_id, "All")
+  all_items = App.Item.all_items_for_person(person_id)
+  item_ids_in_all_list = get_items_on_all_list(person_id)
+
+  all_items
+  |> Enum.with_index()
+  |> Enum.each(fn {item, index} ->
+    unless Enum.member?(item_ids_in_all_list, item.id) do
+      add_list_item(item, all_list, person_id, (index + 1) / 1)
+    end
+  end)
+end
+```
