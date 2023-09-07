@@ -1575,7 +1575,7 @@ as lean as possible to avoid complexity. <br />
 The 
 <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
 (ERD) is currently:</p>
-<p><img src="https://github.com/dwyl/mvp/assets/194400/d68b02da-a2f7-4af7-be1e-fa1a62dcfa61" alt="mvp-erd-before-lists" /></p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/0936903f-97ed-4be3-9f70-54c5e138afcd" alt="mvp-erd-before-lists" /></p>
 <p>Just the four tables
 you've already seen 
 in the previous sections.</p>
@@ -1924,6 +1924,63 @@ end
 if we think there's a chance a <code>person</code> 
 may have <em>multiple</em> <code>lists</code> with <code>&quot;all</code>&quot; in the <code>list.name</code>. </p>
 </blockquote>
+<h2 id="add-existing-itmes-to-the-all-list"><a class="header" href="#add-existing-itmes-to-the-all-list">Add <em>Existing</em> <code>itmes</code> to the &quot;All&quot; <code>list</code></a></h2>
+<p>One final function we need
+in order to <em>retroactively</em> add <code>lists</code>
+to our <code>MVP</code> App that started out <em>without</em> <code>lists</code>
+is a function to add all the <em>existing</em> <code>items</code>
+to the newly created &quot;All&quot; <code>list</code>. </p>
+<h3 id="test-add_all_items_to_all_list_for_person_id1"><a class="header" href="#test-add_all_items_to_all_list_for_person_id1">Test <code>add_all_items_to_all_list_for_person_id/1</code></a></h3>
+<blockquote>
+<p><strong>Note</strong>: This is a <em>temporary</em> function that we will <code>delete</code>
+once all the <em>existing</em> people using the <code>MVP</code>
+have transitioned their <code>items</code> to the &quot;All&quot; <code>list</code>.
+But we still need to have a <em>test</em> for it!</p>
+</blockquote>
+<p>Open 
+<code>test/app/list_test.exs</code>
+and add the following test:</p>
+<pre><code class="language-elixir">test &quot;add_all_items_to_all_list_for_person_id/1 to seed the All list&quot; do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+</code></pre>
+<p>That's a very long test.
+Take a moment to read it through.
+Remember: this will be deleted,
+it's just data migration code.</p>
+<h3 id="define-add_items_to_all_list1"><a class="header" href="#define-add_items_to_all_list1">Define <code>add_items_to_all_list/1</code></a></h3>
+<p>In the 
+<code>lib/app/list_item.ex</code>
+file,
+add the <code>add_items_to_all_list/1</code> function definition:</p>
+<pre><code class="language-elixir">def add_items_to_all_list(person_id) do
+  all_list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  all_items = App.Item.all_items_for_person(person_id)
+  item_ids_in_all_list = get_items_on_all_list(person_id)
+
+  all_items
+  |&gt; Enum.with_index()
+  |&gt; Enum.each(fn {item, index} -&gt;
+    unless Enum.member?(item_ids_in_all_list, item.id) do
+      add_list_item(item, all_list, person_id, (index + 1) / 1)
+    end
+  end)
+end
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="default-lists"><a class="header" href="#default-lists">Default <code>lists</code></a></h1>
 <p>We want <code>people</code> to use our <code>App</code> 
 for a wide variety of areas/projects in their life+work.
@@ -1990,7 +2047,7 @@ def create_list_if_not_exists(list_names, person_id) do
   end)
 end
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="reordering-list_items"><a class="header" href="#reordering-list_items">Reordering <code>list_items</code></a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reordering-items-in-a-list"><a class="header" href="#reordering-items-in-a-list">Reordering <code>items</code> in a <code>list</code></a></h1>
 <p>The <code>people</code> who 
 <a href="https://github.com/dwyl/mvp/issues/140">tested</a>
 the <code>MVP</code>
@@ -1998,9 +2055,10 @@ noted that the ability to <strong><em>organise</em> their <code>items</code></st
 as an <strong><em>essential</em> feature</strong>:
 <a href="https://github.com/dwyl/mvp/issues/145">dwyl/mvp#145</a></p>
 <p>With the addition of <code>lists</code>
-we now have a way of <em>organising</em> our <code>items</code>.
-With the <code>position</code> field on a <code>list_items</code> record
-we can reorder <code>items</code> on a <code>list</code>.</p>
+we now have a way of <em>organising</em> our <code>items</code>
+using the <code>list.seq</code> or <code>sequence</code>. </p>
+<p>This chapter will take you through how we implented reordering
+in the <code>MVP</code> from first principals.</p>
 <blockquote>
 <p><strong>Note</strong>: There is quite a lot to cover in this chapter,
 so we have created two <em>standalone</em>
@@ -2013,6 +2071,351 @@ and cursor tracking across browsers/devices.
 If you are totally new to drag-and-drop,
 we suggest following at least that one for full context.</p>
 </blockquote>
+<h1 id="todo-upload-screenshot-of-item-being-moved-in-interface-as-visual-explainer-before-diving-into-code"><a class="header" href="#todo-upload-screenshot-of-item-being-moved-in-interface-as-visual-explainer-before-diving-into-code">TODO: upload screenshot of <code>item</code> being moved in interface as visual explainer <code>before</code> diving into code!</a></h1>
+<h2 id="getset-listcid-in-mount3"><a class="header" href="#getset-listcid-in-mount3">Get/Set <code>list.cid</code> in <code>mount/3</code></a></h2>
+<p>In order for us to know which <code>list</code> 
+the <code>person</code> is viewing - and thus reordering - 
+we need to add it to the <code>socket.assigns</code> in the <code>mount/3</code> function.
+Open the <code>lib/app_web/live/app_live.ex</code> file 
+and locate the <code>mount/3</code> function.</p>
+<p>Add the following lines to the body:</p>
+<pre><code class="language-elixir"># Create or Get the &quot;all&quot; list for the person_id
+all_list = App.List.get_all_list_for_person(person_id)
+# Temporary function to add All *existing* items to the &quot;All&quot; list:
+App.List.add_all_items_to_all_list_for_person_id(person_id)
+</code></pre>
+<p>This is invoking two functions we previously created in <code>lists</code>.</p>
+<p>Then in the returned tuple:</p>
+<pre><code class="language-elixir">{:ok,
+     assign(socket,
+       items: items,
+       etc.
+</code></pre>
+<p>Make sure to add the line:</p>
+<pre><code class="language-elixir">       list_cid: all_list.cid,
+</code></pre>
+<p>That will ensure that we know the <code>list.cid</code> 
+later when the <code>person</code> reorders their <code>items</code>.</p>
+<h2 id="moving-items-in-the-interface"><a class="header" href="#moving-items-in-the-interface">Moving <code>items</code> in the interface</a></h2>
+<h3 id="update-the-li"><a class="header" href="#update-the-li">Update the <code>&lt;li&gt;</code></a></h3>
+<p>In the <code>lib/app_web/live/app_live.html.heex</code> file,
+locate the <code>&lt;ul&gt;</code> (unordered list) defintion:</p>
+<pre><code class="language-html">  &lt;!-- List of items with inline buttons and controls --&gt;
+  &lt;ul class=&quot;w-full&quot;&gt;
+    &lt;%= for item &lt;- filter_items(@items, @filter, @filter_tag) do %&gt;
+      &lt;li
+        data-id={item.id}
+        class=&quot;mt-2 flex w-full border-t border-slate-200 py-2&quot;
+      &gt;
+</code></pre>
+<p>Replace it with the following:</p>
+<pre><code class="language-html">  &lt;!-- List of items with inline buttons and controls --&gt;
+  &lt;ul id=&quot;items&quot; phx-hook=&quot;Items&quot; x-data=&quot;{selectedItem: null}&quot; class=&quot;w-full&quot;&gt;
+    &lt;%= for item &lt;- filter_items(@items, @filter, @filter_tag) do %&gt;
+      &lt;li
+        id={&quot;item-#{item.id}&quot;}
+        data-id={item.id}
+        class={&quot;mt-2 flex flex-col w-full border-t border-slate-200 py-2 item 
+            #{if item.id == @editing do 'cursor-default' else 'cursor-grab' end}&quot;}
+        draggable={&quot;#{if item.id == @editing do 'false' else 'true' end}&quot;}
+        x-data=&quot;{selected: false}&quot;
+        x-on:dragstart=&quot;selected = true; $dispatch('highlight', {id: $el.id}); selectedItem = $el&quot;
+        x-on:dragend=&quot;selected = false; $dispatch('remove-highlight', {id: $el.id}); selectedItem = null; $dispatch('update-indexes', {fromItemId: $el.dataset.id})&quot;
+        x-bind:class=&quot;selected ?? 'cursor-grabbing'&quot;
+        x-on:dragover.throttle=&quot;$dispatch('dragoverItem', {selectedItemId: selectedItem.id, currentItem: $el})&quot;
+        data-highlight={JS.add_class(&quot;bg-teal-300&quot;)}
+        data-remove-highlight={JS.remove_class(&quot;bg-teal-300&quot;)}
+      &gt;
+</code></pre>
+<p>There's a <em>lot</em> going on in this definition.
+But it's all related to 5 key areas:</p>
+<ol>
+<li><em>Select</em> an <code>item</code> to be moved/reordered</li>
+<li><em>Add</em> a highlight when an <code>item</code> is selected</li>
+<li>_Display) the appropriate <code>cursor-grabbing</code> class when the <code>item</code> is selected.</li>
+<li><em>Dispatch</em> the <code>dragoverItem</code> event so that other connected clients can see the <code>item</code> being moved</li>
+<li><em>Remove</em> the <code>highlight</code> when the <code>item</code> is no longer selected.</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>: if you feel this section could benefit from further explanation,
+please <em>first</em> read: 
+<a href="https://github.com/dwyl/learn-alpine.js/blob/main/drag-and-drop.md">drag-and-drop</a>
+and 
+<a href="https://github.com/dwyl/phoenix-liveview-realtime-cursor-tracking-tutorial">cursor-tracking</a>
+And if anything is still unclear, 
+please open an issue:
+<a href="https://github.com/dwyl/book/issues">dwyl/book/issues</a></p>
+</blockquote>
+<h2 id="add-js-event-handling-code"><a class="header" href="#add-js-event-handling-code">Add <code>JS</code> event handling code:</a></h2>
+<p>In the <code>assets/js/app.js</code> file,
+add the following code:</p>
+<pre><code class="language-js">// Drag and drop highlight handlers
+window.addEventListener(&quot;phx:highlight&quot;, (e) =&gt; {
+  document.querySelectorAll(&quot;[data-highlight]&quot;).forEach(el =&gt; {
+    if(el.id == e.detail.id) {
+        liveSocket.execJS(el, el.getAttribute(&quot;data-highlight&quot;))
+    }
+  })
+})
+
+// Item id of the destination in the DOM
+let itemId_to;
+
+let Hooks = {}
+Hooks.Items = {
+  mounted() {
+    const hook = this
+
+    this.el.addEventListener(&quot;highlight&quot;, e =&gt; {
+      hook.pushEventTo(&quot;#items&quot;, &quot;highlight&quot;, {id: e.detail.id})
+      // console.log('highlight', e.detail.id)
+    })
+
+    this.el.addEventListener(&quot;remove-highlight&quot;, e =&gt; {
+      hook.pushEventTo(&quot;#items&quot;, &quot;removeHighlight&quot;, {id: e.detail.id})
+      // console.log('remove-highlight', e.detail.id)
+    })
+
+    this.el.addEventListener(&quot;dragoverItem&quot;, e =&gt; {
+      // console.log(&quot;dragoverItem&quot;, e.detail)
+      const currentItemId = e.detail.currentItem.id
+      const selectedItemId = e.detail.selectedItemId
+      if( currentItemId != selectedItemId) {
+        hook.pushEventTo(&quot;#items&quot;, &quot;dragoverItem&quot;, {currentItemId: currentItemId, selectedItemId: selectedItemId})
+        itemId_to = e.detail.currentItem.dataset.id
+      }
+    })
+
+    this.el.addEventListener(&quot;update-indexes&quot;, e =&gt; {
+      const item_id = e.detail.fromItemId 
+      const list_ids = get_list_item_cids()
+      console.log(&quot;update-indexes&quot;, e.detail, &quot;list: &quot;, list_ids)
+      // Check if both &quot;from&quot; and &quot;to&quot; are defined
+      if(item_id &amp;&amp; itemId_to &amp;&amp; item_id != itemId_to) {
+        hook.pushEventTo(&quot;#items&quot;, &quot;update_list_seq&quot;, 
+          {seq: list_ids})
+      }
+      
+      itemId_to = null;
+    })
+  }
+}
+
+/**
+ * `get_list_item_ids/0` retrieves the full `list` of visible `items` form the DOM
+ * and returns a String containing the IDs as a space-separated list e.g: &quot;1 2 3 42 71 93&quot;
+ * This is used to determine the `position` of the `item` that has been moved.
+ */
+function get_list_item_cids() {
+  console.log(&quot;invoke get_list_item_ids&quot;)
+  const lis = document.querySelectorAll(&quot;label[phx-value-cid]&quot;);
+  return Object.values(lis).map(li =&gt; {
+    return li.attributes[&quot;phx-value-cid&quot;].nodeValue
+  }).join(&quot;,&quot;)
+}
+
+window.addEventListener(&quot;phx:remove-highlight&quot;, (e) =&gt; {
+  document.querySelectorAll(&quot;[data-highlight]&quot;).forEach(el =&gt; {
+    if(el.id == e.detail.id) {
+        liveSocket.execJS(el, el.getAttribute(&quot;data-remove-highlight&quot;))
+    }
+  })
+})
+
+window.addEventListener(&quot;phx:dragover-item&quot;, (e) =&gt; {
+  console.log(&quot;phx:dragover-item&quot;, e.detail)
+  const selectedItem = document.querySelector(`#${e.detail.selected_item_id}`)
+  const currentItem = document.querySelector(`#${e.detail.current_item_id}`)
+
+  const items = document.querySelector('#items')
+  const listItems = [...document.querySelectorAll('.item')]
+
+  if(listItems.indexOf(selectedItem) &lt; listItems.indexOf(currentItem)){
+    items.insertBefore(selectedItem, currentItem.nextSibling)
+  }
+
+  if(listItems.indexOf(selectedItem) &gt; listItems.indexOf(currentItem)){
+    items.insertBefore(selectedItem, currentItem)
+  }
+})
+</code></pre>
+<p>Again, there's a fair amount of code there 
+so take a moment to step through it 
+and understand what each event listener does.</p>
+<h2 id="handle-the-update_list_seq-event"><a class="header" href="#handle-the-update_list_seq-event">Handle the <code>update_list_seq</code> event</a></h2>
+<p>Back in the <code>LiveView</code> file,
+<code>lib/app_web/live/app_live.ex</code>
+add the following event handlers:</p>
+<pre><code class="language-elixir"> @impl true
+  def handle_event(&quot;highlight&quot;, %{&quot;id&quot; =&gt; id}, socket) do
+    # IO.puts(&quot;highlight: #{id}&quot;)
+    AppWeb.Endpoint.broadcast(@topic, &quot;move_items&quot;, {:drag_item, id})
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event(&quot;removeHighlight&quot;, %{&quot;id&quot; =&gt; id}, socket) do
+    # IO.puts(&quot;removeHighlight: #{id}&quot;)
+    AppWeb.Endpoint.broadcast(@topic, &quot;move_items&quot;, {:drop_item, id})
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event(
+        &quot;dragoverItem&quot;,
+        %{
+          &quot;currentItemId&quot; =&gt; current_item_id,
+          &quot;selectedItemId&quot; =&gt; selected_item_id
+        },
+        socket
+      ) do
+    # IO.puts(&quot;285: current_item_id: #{current_item_id}, selected_item_id: #{selected_item_id} | #{Useful.typeof(selected_item_id)}&quot;)
+    AppWeb.Endpoint.broadcast(
+      @topic,
+      &quot;move_items&quot;,
+      {:dragover_item, {current_item_id, selected_item_id}}
+    )
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(
+        %Broadcast{
+          event: &quot;move_items&quot;,
+          payload: {:dragover_item, {current_item_id, selected_item_id}}
+        },
+        socket
+      ) do
+    # IO.puts(
+    #   &quot;cur_item_id: #{current_item_id}, selected_item_id: #{selected_item_id}&quot;
+    # )
+
+    {:noreply,
+     push_event(socket, &quot;dragover-item&quot;, %{
+       current_item_id: current_item_id,
+       selected_item_id: selected_item_id
+     })}
+  end
+
+  @impl true
+  def handle_info(
+        %Broadcast{event: &quot;move_items&quot;, payload: {:drag_item, item_id}},
+        socket
+      ) do
+    {:noreply, push_event(socket, &quot;highlight&quot;, %{id: item_id})}
+  end
+
+  @impl true
+  def handle_info(
+        %Broadcast{event: &quot;move_items&quot;, payload: {:drop_item, item_id}},
+        socket
+      ) do
+    {:noreply, push_event(socket, &quot;remove-highlight&quot;, %{id: item_id})}
+  end
+
+
+  @impl true
+  def handle_event(
+        &quot;update_list_seq&quot;,
+        %{&quot;seq&quot; =&gt; seq},
+        socket
+      ) do
+    list_cid = get_list_cid(socket.assigns)
+    person_id = get_person_id(socket.assigns)
+    App.List.update_list_seq(list_cid, person_id, seq)
+    {:noreply, socket}
+  end
+</code></pre>
+<p>All the <code>highlight</code>, <code>remove-highlight</code> and <code>move_items</code> 
+handlers are for presentation and synching between clients.
+The handler that performs the actual list updating is:</p>
+<pre><code class="language-elixir">  @impl true
+  def handle_event(
+        &quot;update_list_seq&quot;,
+        %{&quot;seq&quot; =&gt; seq},
+        socket
+      ) do
+    list_cid = get_list_cid(socket.assigns)
+    person_id = get_person_id(socket.assigns)
+    App.List.update_list_seq(list_cid, person_id, seq)
+    {:noreply, socket}
+  end
+</code></pre>
+<p>This receives the <code>seq</code> (sequence of <code>item.cid</code>)
+from the client and and updates the <code>list.seq</code>
+using the previously defined <code>update_list_seq/3</code> function.</p>
+<p>With this code in place we now have everything we need for reordering <code>items</code> on a <em>single</em> <code>list</code>. 
+Try it!</p>
+<h2 id="add-a-test"><a class="header" href="#add-a-test">Add a Test!</a></h2>
+<p>To ensure this feature is tested,
+open the 
+<code>test/app_web/live/app_live_test.exs</code>
+file and add the following test:</p>
+<pre><code class="language-elixir">  test &quot;Drag and Drop item&quot;, %{conn: conn} do
+    person_id = 0
+    # Creating Three items
+    {:ok, %{model: item}} =
+      Item.create_item(%{text: &quot;Learn Elixir&quot;, person_id: person_id, status: 2})
+
+    {:ok, %{model: item2}} =
+      Item.create_item(%{ text: &quot;Build Awesome App&quot;, person_id: person_id, status: 2})
+
+    {:ok, %{model: item3}} =
+      Item.create_item(%{ text: &quot;Profit&quot;, person_id: person_id, status: 2})
+
+    # Create &quot;all&quot; list for this person_id:
+    list = App.List.get_all_list_for_person(person_id)
+
+    # Add all items to &quot;all&quot; list:
+    App.List.add_all_items_to_all_list_for_person_id(person_id)
+
+    # Render LiveView
+    {:ok, view, _html} = live(conn, &quot;/&quot;)
+
+    # Highlight broadcast should have occurred
+    assert render_hook(view, &quot;highlight&quot;, %{&quot;id&quot; =&gt; item.id})
+      |&gt; String.split(&quot;bg-teal-300&quot;)
+      |&gt; Enum.drop(1)
+      |&gt; length() &gt; 0
+
+    # Dragover and remove highlight
+    render_hook(view, &quot;dragoverItem&quot;, %{
+      &quot;currentItemId&quot; =&gt; item2.id,
+      &quot;selectedItemId&quot; =&gt; item.id
+    })
+
+    assert render_hook(view, &quot;removeHighlight&quot;, %{&quot;id&quot; =&gt; item.id})
+
+    # reorder items:
+    render_hook(view, &quot;updateIndexes&quot;, %{
+      &quot;seq&quot; =&gt; &quot;#{item.cid},#{item2.cid},#{item3.cid}&quot;
+    })
+
+    all_list = App.List.get_all_list_for_person(person_id)
+    seq = App.List.get_list_seq(all_list)
+    pos1 = Enum.find_index(seq, fn x -&gt; x == &quot;#{item.cid}&quot; end)
+    pos2 = Enum.find_index(seq, fn x -&gt; x == &quot;#{item2.cid}&quot; end)
+    # IO.puts(&quot;#{pos1}: #{item.cid}&quot;)
+    # IO.puts(&quot;#{pos2}: #{item2.cid}&quot;)
+
+    assert pos1 &lt; pos2
+
+    # Update list_item.seq:
+    {:ok, %{model: list}} = App.List.update_list_seq(list.cid, person_id, 
+        &quot;#{item.cid},#{item3.cid},#{item2.cid}&quot;)
+    new_seq = list.seq |&gt; String.split(&quot;,&quot;)
+    # dbg(new_seq)
+    pos2 = Enum.find_index(new_seq, fn x -&gt; x == &quot;#{item2.cid}&quot; end)
+    pos3 = Enum.find_index(new_seq, fn x -&gt; x == &quot;#{item3.cid}&quot; end)
+    assert pos3 &lt; pos2
+  end
+</code></pre>
+<p>Again, there's a <em>lot</em> going on in this test 
+because it's testing for 
+both the <code>highlight</code> 
+<em>and</em> the update of the <code>seq</code> (sequence of <code>item.cid</code>) in the <code>list</code>.
+Take a momemnt to step through it and if you have any questions, ask!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="metrics"><a class="header" href="#metrics">Metrics</a></h1>
 <p>This chapter adds a few basic metrics for the <code>people</code> using the <code>MVP</code>. 📈 <br />
 If you have ideas for additional stats you want to see,

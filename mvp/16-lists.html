@@ -195,7 +195,7 @@ as lean as possible to avoid complexity. <br />
 The 
 <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Diagram</a>
 (ERD) is currently:</p>
-<p><img src="https://github.com/dwyl/mvp/assets/194400/d68b02da-a2f7-4af7-be1e-fa1a62dcfa61" alt="mvp-erd-before-lists" /></p>
+<p><img src="https://github.com/dwyl/mvp/assets/194400/0936903f-97ed-4be3-9f70-54c5e138afcd" alt="mvp-erd-before-lists" /></p>
 <p>Just the four tables
 you've already seen 
 in the previous sections.</p>
@@ -544,6 +544,63 @@ end
 if we think there's a chance a <code>person</code> 
 may have <em>multiple</em> <code>lists</code> with <code>&quot;all</code>&quot; in the <code>list.name</code>. </p>
 </blockquote>
+<h2 id="add-existing-itmes-to-the-all-list"><a class="header" href="#add-existing-itmes-to-the-all-list">Add <em>Existing</em> <code>itmes</code> to the &quot;All&quot; <code>list</code></a></h2>
+<p>One final function we need
+in order to <em>retroactively</em> add <code>lists</code>
+to our <code>MVP</code> App that started out <em>without</em> <code>lists</code>
+is a function to add all the <em>existing</em> <code>items</code>
+to the newly created &quot;All&quot; <code>list</code>. </p>
+<h3 id="test-add_all_items_to_all_list_for_person_id1"><a class="header" href="#test-add_all_items_to_all_list_for_person_id1">Test <code>add_all_items_to_all_list_for_person_id/1</code></a></h3>
+<blockquote>
+<p><strong>Note</strong>: This is a <em>temporary</em> function that we will <code>delete</code>
+once all the <em>existing</em> people using the <code>MVP</code>
+have transitioned their <code>items</code> to the &quot;All&quot; <code>list</code>.
+But we still need to have a <em>test</em> for it!</p>
+</blockquote>
+<p>Open 
+<code>test/app/list_test.exs</code>
+and add the following test:</p>
+<pre><code class="language-elixir">test &quot;add_all_items_to_all_list_for_person_id/1 to seed the All list&quot; do
+  person_id = 0
+  all_list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  count_before = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before == 1
+
+  item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(item_ids) == 0
+
+  App.ListItem.add_items_to_all_list(person_id)
+  updated_item_ids = App.ListItem.get_items_on_all_list(person_id)
+  assert length(updated_item_ids) ==
+            length(App.Item.all_items_for_person(person_id))
+
+  count_after = App.ListItem.next_position_on_list(all_list.id)
+  assert count_before + length(updated_item_ids) == count_after
+end
+</code></pre>
+<p>That's a very long test.
+Take a moment to read it through.
+Remember: this will be deleted,
+it's just data migration code.</p>
+<h3 id="define-add_items_to_all_list1"><a class="header" href="#define-add_items_to_all_list1">Define <code>add_items_to_all_list/1</code></a></h3>
+<p>In the 
+<code>lib/app/list_item.ex</code>
+file,
+add the <code>add_items_to_all_list/1</code> function definition:</p>
+<pre><code class="language-elixir">def add_items_to_all_list(person_id) do
+  all_list = App.List.get_list_by_text!(person_id, &quot;All&quot;)
+  all_items = App.Item.all_items_for_person(person_id)
+  item_ids_in_all_list = get_items_on_all_list(person_id)
+
+  all_items
+  |&gt; Enum.with_index()
+  |&gt; Enum.each(fn {item, index} -&gt;
+    unless Enum.member?(item_ids_in_all_list, item.id) do
+      add_list_item(item, all_list, person_id, (index + 1) / 1)
+    end
+  end)
+end
+</code></pre>
 
                     </main>
 
