@@ -518,3 +518,56 @@ def add_items_to_all_list(person_id) do
   end)
 end
 ```
+
+## Update `list.seq`
+
+In order to _update_ the sequence of `item` `cids` for a given `list`
+we need to define a simple function.
+
+### Test `update_list_seq/3`
+
+Open the `test/app/list_test.exs` file and add the following test:
+
+```elixir
+  test "update_list_seq/3 updates the list.seq for the given list" do
+    person_id = 314
+    all_list = App.List.get_all_list_for_person(person_id)
+
+    # Create a couple of items:
+    assert {:ok, %{model: item1}} =
+        Item.create_item(%{text: "buy land!", person_id: person_id, status: 2})
+    assert {:ok, %{model: item2}} =
+      Item.create_item(%{text: "plant trees & food", person_id: person_id, status: 2})
+    assert {:ok, %{model: item3}} =
+        Item.create_item(%{text: "live best life", person_id: person_id, status: 2})
+
+    # Add the item cids to the list.seq:
+    seq = "#{item1.cid},#{item2.cid},#{item3.cid}"
+
+    # Update the list.seq for the all_list:
+    {:ok, %{model: list}} = App.List.update_list_seq(all_list.cid, person_id, seq)
+    assert list.seq == seq
+
+    # Reorder the cids and update the list.seq
+    updated_seq = "#{item3.cid},#{item2.cid},#{item1.cid}"
+    {:ok, %{model: list}} = App.List.update_list_seq(all_list.cid, person_id, updated_seq)
+    assert list.seq == updated_seq
+  end
+```
+
+Most of this test is setup code to create the `items`.
+The important bit is defining the `seq` and then invoking the `update_list_seq/3` function.
+
+
+### Implement `update_list_seq/3` function
+
+```elixir
+  def update_list_seq(list_cid, person_id, seq) do
+    list = get_list_by_cid!(list_cid)
+    update_list(list, %{seq: seq, person_id: person_id})
+  end
+```
+
+
+With that function in place we have everything we need for updating a `list`. 
+Let's add some interface code to allow `people` to reorder the `items` in their `list`!
