@@ -19,6 +19,5 @@
 - [MVP](./mvp/README.md)
   - [Cids](mvp/15-item-cid.md)
   - [Lists](mvp/16-lists.md)
-    - [Default Lists](mvp/16a-default-lists.md)
   - [Reordering](mvp/18-reordering.md)
   - [Stats](mvp/20-stats.md)
