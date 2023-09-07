@@ -601,6 +601,46 @@ add the <code>add_items_to_all_list/1</code> function definition:</p>
   end)
 end
 </code></pre>
+<h2 id="update-listseq"><a class="header" href="#update-listseq">Update <code>list.seq</code></a></h2>
+<p>In order to <em>update</em> the sequence of <code>item</code> <code>cids</code> for a given <code>list</code>
+we need to define a simple function.</p>
+<h3 id="test-update_list_seq3"><a class="header" href="#test-update_list_seq3">Test <code>update_list_seq/3</code></a></h3>
+<p>Open the <code>test/app/list_test.exs</code> file and add the following test:</p>
+<pre><code class="language-elixir">  test &quot;update_list_seq/3 updates the list.seq for the given list&quot; do
+    person_id = 314
+    all_list = App.List.get_all_list_for_person(person_id)
+
+    # Create a couple of items:
+    assert {:ok, %{model: item1}} =
+        Item.create_item(%{text: &quot;buy land!&quot;, person_id: person_id, status: 2})
+    assert {:ok, %{model: item2}} =
+      Item.create_item(%{text: &quot;plant trees &amp; food&quot;, person_id: person_id, status: 2})
+    assert {:ok, %{model: item3}} =
+        Item.create_item(%{text: &quot;live best life&quot;, person_id: person_id, status: 2})
+
+    # Add the item cids to the list.seq:
+    seq = &quot;#{item1.cid},#{item2.cid},#{item3.cid}&quot;
+
+    # Update the list.seq for the all_list:
+    {:ok, %{model: list}} = App.List.update_list_seq(all_list.cid, person_id, seq)
+    assert list.seq == seq
+
+    # Reorder the cids and update the list.seq
+    updated_seq = &quot;#{item3.cid},#{item2.cid},#{item1.cid}&quot;
+    {:ok, %{model: list}} = App.List.update_list_seq(all_list.cid, person_id, updated_seq)
+    assert list.seq == updated_seq
+  end
+</code></pre>
+<p>Most of this test is setup code to create the <code>items</code>.
+The important bit is defining the <code>seq</code> and then invoking the <code>update_list_seq/3</code> function.</p>
+<h3 id="implement-update_list_seq3-function"><a class="header" href="#implement-update_list_seq3-function">Implement <code>update_list_seq/3</code> function</a></h3>
+<pre><code class="language-elixir">  def update_list_seq(list_cid, person_id, seq) do
+    list = get_list_by_cid!(list_cid)
+    update_list(list, %{seq: seq, person_id: person_id})
+  end
+</code></pre>
+<p>With that function in place we have everything we need for updating a <code>list</code>. 
+Let's add some interface code to allow <code>people</code> to reorder the <code>items</code> in their <code>list</code>!</p>
 
                     </main>
 
