@@ -17,7 +17,7 @@
   - [Parse User Agent](atm/01-browser-agent.md)
   - [User Agent Schema](atm/02-gen-schema-user_agents.md)
 - [MVP](./mvp/README.md)
-  - [Cids](mvp/15-item-cid.md)
+  - [Content IDs](mvp/15-item-cid.md)
   - [Lists](mvp/16-lists.md)
   - [Reordering](mvp/18-reordering.md)
   - [Add `item` to `list`](src/mvp/19-add-item-to-list.md)

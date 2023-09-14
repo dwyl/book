@@ -17,7 +17,7 @@ we need to be able to:
 
 
 
-We _first_ 
+
 
 ## _Remove_ `item` from `list`
 
