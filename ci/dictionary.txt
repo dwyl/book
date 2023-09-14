@@ -79,6 +79,8 @@ charset
 choo
 chXX
 chYY
+cid
+CID
 clippy
 clippy's
 cmdlet
