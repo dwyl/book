@@ -20,5 +20,5 @@
   - [Content IDs](mvp/15-item-cid.md)
   - [Lists](mvp/16-lists.md)
   - [Reordering](mvp/18-reordering.md)
-  - [Add `item` to `list`](src/mvp/19-add-item-to-list.md)
+  - [Add `item` to `list`](mvp/19-add-item-to-list.md)
   - [Stats](mvp/20-stats.md)
