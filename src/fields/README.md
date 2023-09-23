@@ -1,9 +1,15 @@
+<div align="center">
+
 # `Fields` Guide
 
 A **complete beginner's guide**
 to building a **`Phoenix` Web App**
 using **`fields`**
 to **_appropriately_ store personal data**.
+
+![awesome-header-image](https://github.com/dwyl/fields-demo/assets/194400/a87a35ab-409d-4204-8b9f-8d4725b505f0)
+
+</div>
 
 # TODO: insert screenshot of working `fields-demo` app.
 
@@ -25,8 +31,7 @@ don't skip this chapter.
 
 The `fields-demo` App
 showcases a **registration form**
-for a (ficticious) conference
-"Awesome Conf".
+for a (fictitious) conference called "**_Awesome_ Conf**".
 It shows you all the steps necessary
 to build the form
 using the `fields` package
