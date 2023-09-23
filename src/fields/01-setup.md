@@ -146,7 +146,8 @@ mix setup
 mix phx.server
 ```
 
-> **Note**: we always create an alias for `mix phx.server` as `mix s`.
+> **Tip**: we always create an alias for `mix phx.server` as `mix s`
+> The alias will be used for the remainder of this guide.
 
 With the `Phoenix` server running,
 visit 

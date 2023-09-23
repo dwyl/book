@@ -3,6 +3,8 @@
 [Introduction](./README.md)
 
 - [Fields](./fields/README.md)
+  - [Setup](./fields/01-setup.md)
+  - [Schema](./fields/02-schema.md)
 - [Authentication](./auth/README.md)
   - [Why build Auth?](auth/00-why.md)
   - [What are we building?](auth/01-what.md)
