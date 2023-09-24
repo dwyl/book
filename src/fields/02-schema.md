@@ -1,6 +1,6 @@
 # Create `attendee` schema
 
-The goal is to allow `people` attending **_Awesome_ Conf**
+The goal is to allow `people` attending **_Awesome_ Conf** - the ***`attendees`*** -
 to submit the following data:
 
 + `first_name` - how we greet you. Will appear on your conference pass.
@@ -24,7 +24,7 @@ Using the
 command, 
 run: 
 ```sh
-mix phx.gen.live Accounts Attendee attendees first_name:string last_name:string email:string phone_number:string address_line_1:string address_line_2 postcode:string gender:string diet_pref:string website:string desc:string feedback:string
+mix phx.gen.live Accounts Attendee attendees first_name:binary last_name:binary email:binary phone_number:binary address_line_1:binary address_line_2:binary postcode:binary gender:binary diet_pref:binary website:binary desc:binary feedback:binary
 ```
 
 You should expect to see output similar to the following:

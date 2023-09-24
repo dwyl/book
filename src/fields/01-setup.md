@@ -19,9 +19,12 @@ Create a New Phoenix App:
 mix phx.new fields_demo --no-mailer --no-dashboard --no-gettext
 ```
 
-> **Note**: We don't need to send email, 
-> have a fancy dashboard or translation in this `demo`.
-> All these _advanced_ features are covered later.
+> **Note**: The "flags" (e.g: `--no-mailer`) 
+> after the `fields_demo` app name
+> are there to avoid adding bloat to our app. 
+> We don't need to send `email`, 
+> have a fancy `dashboard` or `translation` in this `demo`.
+> All these _advanced_ features are all covered in depth later.
 
 
 ## 2. Setup Coverage
@@ -158,4 +161,4 @@ you should see something similar to the following:
 <img width="796" alt="image" src="https://github.com/dwyl/fields/assets/194400/891e890e-c94a-402e-baee-ee47fd3725a7">
 
 That completes 2 minutes of "setup".
-Let's add a schema!
+Let's add a `schema` to store the data!
