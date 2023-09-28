@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Quick Review of Old Database Schema - dwyl book</title>
+        <title>Fields - dwyl book</title>
 
 
         <!-- Custom HTML head -->
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../fields/index.html"><strong aria-hidden="true">1.</strong> Fields</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../fields/01-setup.html"><strong aria-hidden="true">1.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../fields/02-schema.html"><strong aria-hidden="true">1.2.</strong> Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">2.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">2.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">2.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html" class="active"><strong aria-hidden="true">2.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">2.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">2.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">2.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">2.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">2.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">2.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../auth/09-encrypt-data.html"><strong aria-hidden="true">2.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../atm/index.html"><strong aria-hidden="true">3.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../atm/01-browser-agent.html"><strong aria-hidden="true">3.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="../atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">3.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../mvp/index.html"><strong aria-hidden="true">4.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mvp/15-item-cid.html"><strong aria-hidden="true">4.1.</strong> Content IDs</a></li><li class="chapter-item expanded "><a href="../mvp/16-lists.html"><strong aria-hidden="true">4.2.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../mvp/18-reordering.html"><strong aria-hidden="true">4.3.</strong> Reordering</a></li><li class="chapter-item expanded "><a href="../mvp/19-add-item-to-list.html"><strong aria-hidden="true">4.4.</strong> Add item to list</a></li><li class="chapter-item expanded "><a href="../mvp/20-stats.html"><strong aria-hidden="true">4.5.</strong> Stats</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../fields/index.html" class="active"><strong aria-hidden="true">1.</strong> Fields</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../fields/01-setup.html"><strong aria-hidden="true">1.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../fields/02-schema.html"><strong aria-hidden="true">1.2.</strong> Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">2.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">2.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">2.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">2.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">2.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">2.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">2.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">2.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">2.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">2.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../auth/09-encrypt-data.html"><strong aria-hidden="true">2.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../atm/index.html"><strong aria-hidden="true">3.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../atm/01-browser-agent.html"><strong aria-hidden="true">3.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="../atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">3.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../mvp/index.html"><strong aria-hidden="true">4.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mvp/15-item-cid.html"><strong aria-hidden="true">4.1.</strong> Content IDs</a></li><li class="chapter-item expanded "><a href="../mvp/16-lists.html"><strong aria-hidden="true">4.2.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../mvp/18-reordering.html"><strong aria-hidden="true">4.3.</strong> Reordering</a></li><li class="chapter-item expanded "><a href="../mvp/19-add-item-to-list.html"><strong aria-hidden="true">4.4.</strong> Add item to list</a></li><li class="chapter-item expanded "><a href="../mvp/20-stats.html"><strong aria-hidden="true">4.5.</strong> Stats</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -153,7 +153,7 @@
                         <a href="https://github.com/dwyl/book/tree/main/src" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/dwyl/book/edit/main/src/auth/02-database-schema-review.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/dwyl/book/edit/main/src/fields/README.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -182,43 +182,49 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="database-schema-review"><a class="header" href="#database-schema-review">Database Schema Review</a></h1>
-<p>If you prefer to start with a blank slate,
-feel free to skip this page.</p>
-<p>Final snapshot of diagram: </p>
-<img width="1163" alt="image" src="https://user-images.githubusercontent.com/194400/218710979-1331f056-01db-40dc-8b31-fad0d47565fa.png">
-<p>Without much knowledge of database schemas, 
-if you just pay <em>close</em> attention, 
-you'll see that that the <strong><code>person_id</code></strong> relationship  (<strong><code>foreign key</code></strong>)
-is not correctly defined on 3 tables: <strong><code>apikeys</code></strong>, <strong><code>apps</code></strong> and <strong><code>roles</code></strong>.</p>
-<p><img width="1176" alt="auth-erd-person_id-fk-incomplete" 
-  src="https://user-images.githubusercontent.com/194400/218711765-51d6c582-7465-444f-8c75-bcbe3f03c13d.png"></p>
-<p>This has caused me/us no end of pain while trying to add new features ... 
-<a href="https://github.com/dwyl/auth/pull/231#issuecomment-1345762532">auth/pull/231</a></p>
-<p>So, in <em>addition</em> to <em>dramatically</em> simplifying the database schema, 
-I will make sure that all the <code>Ecto</code> relationships are well-defined 
-so that we don't run into annoying constraint errors in the future.</p>
-<p>If we <em>start</em> by deleting the tables that we don't <em>need</em>, we <em>immediately</em> simplify the ERD:</p>
-<p><img width="1285" alt="image" 
-  src="https://user-images.githubusercontent.com/194400/218715031-91969a04-4f56-4da3-bf25-d3ae2945f25d.png"></p>
-<p>If we manually edit the diagram to include the <code>person_id</code> links (foreign keys): </p>
-<p><img width="1274" alt="auth-erd-tables-removed-person_id-edited" 
-  src="https://user-images.githubusercontent.com/194400/218716741-ae49971f-98b5-46b8-9493-fcd8a815f6cd.png"></p>
-<p>It becomes clearer what data &quot;belongs&quot; to a <code>person</code>. 
-But we can immediately spot something that incomplete/incorrect:
-<em><strong>who</strong></em> does a <code>group</code> &quot;belong&quot; to? 🤷‍♂️ </p>
-<p>Obviously it's &quot;unfair&quot; to pick holes in a feature that is incomplete.
-But it's &quot;broken&quot; and we (I) need to learn from it. 💭 </p>
+                        <h1 id="fields-guide"><a class="header" href="#fields-guide"><code>Fields</code> Guide</a></h1>
+<p>A <strong>complete beginner's guide</strong>
+to building a <strong><code>Phoenix</code> Web App</strong>
+using <strong><code>fields</code></strong>
+to <strong><em>appropriately</em> store personal data</strong>.</p>
+<h1 id="todo-insert-screenshot-of-working-fields-demo-app"><a class="header" href="#todo-insert-screenshot-of-working-fields-demo-app">TODO: insert screenshot of working <code>fields-demo</code> app.</a></h1>
+<h2 id="why"><a class="header" href="#why">Why?</a></h2>
+<p>Building secure web applications 
+that respect people's privacy
+by considerately storing 
+personal data
+is an <em>essential</em> skill.</p>
+<p>Most beginner's guides
+gloss over the steps 
+we are about to take together.
+If you care about your <em>own</em> privacy - and you should! -
+don't skip this chapter.</p>
+<h2 id="what"><a class="header" href="#what">What?</a></h2>
+<p>The <code>fields-demo</code> App
+showcases a <strong>registration form</strong>
+for a (ficticious) conference
+&quot;Awesome Conf&quot;.
+It shows you all the steps necessary
+to build the form
+using the <code>fields</code> package
+to securely store personal data.</p>
+<h2 id="who"><a class="header" href="#who">Who?</a></h2>
+<p>This guide is for anyone 
+wanting a rigorous approach
+to building an App 
+that collects/stores personal data.</p>
+<h2 id="how"><a class="header" href="#how">How?</a></h2>
+<p>Let's get started by setting up the <code>Phoenix</code> project!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../auth/01-what.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../auth/03-how.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../fields/01-setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -228,11 +234,11 @@ But it's &quot;broken&quot; and we (I) need to learn from it. 💭 </p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../auth/01-what.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../auth/03-how.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../fields/01-setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
