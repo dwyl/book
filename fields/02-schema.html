@@ -182,7 +182,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h1 id="create-attendee-schema"><a class="header" href="#create-attendee-schema">Create <code>attendee</code> schema</a></h1>
+<p>The goal is to allow <code>people</code> attending <strong><em>Awesome</em> Conf</strong>
+to submit the following data:</p>
+<ul>
+<li><code>first_name</code> - how we greet you. Will appear on your conference pass.</li>
+<li><code>last_name</code> - your family name. Will appear on you conference pass.</li>
+<li><code>email</code> - to confirm attendance</li>
+<li><code>phone_number</code>  - to verify your access when attending the secret event.</li>
+<li><code>address_line_1</code> - so we can send the welcome pack and prizes</li>
+<li><code>address_line_2</code> - if your address has multiple lines.</li>
+<li><code>postcode</code> - for the address.</li>
+<li><code>gender</code> - for venue capacity planning.</li>
+<li><code>diet_pref</code> - dietary preferences for meals and snacks provided at the conference.</li>
+<li><code>website</code> - share your awesomeness and have it as a QR code on your conference pass.</li>
+<li><code>desc</code> - brief description of your awesome project.</li>
+<li><code>feedback</code> - Feedback or suggestions</li>
+</ul>
+<h2 id="41-genlive"><a class="header" href="#41-genlive">4.1 <code>gen.live</code></a></h2>
+<p>Using the 
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.live</code></a>
+command, 
+run: </p>
+<pre><code class="language-sh">mix phx.gen.live Accounts Attendee attendees first_name:string last_name:string email:string phone_number:string address_line_1:string address_line_2 postcode:string gender:string diet_pref:string website:string desc:string feedback:string
+</code></pre>
+<p>You should expect to see output similar to the following:</p>
+<pre><code class="language-sh">* creating lib/fields_demo_web/live/attendee_live/show.ex
+* creating lib/fields_demo_web/live/attendee_live/index.ex
+* creating lib/fields_demo_web/live/attendee_live/form_component.ex
+* creating lib/fields_demo_web/live/attendee_live/index.html.heex
+* creating lib/fields_demo_web/live/attendee_live/show.html.heex
+* creating test/fields_demo_web/live/attendee_live_test.exs
+* creating lib/fields_demo/accounts/attendee.ex
+* creating priv/repo/migrations/20230928032757_create_attendees.exs
+* creating lib/fields_demo/accounts.ex
+* injecting lib/fields_demo/accounts.ex
+* creating test/fields_demo/accounts_test.exs
+* injecting test/fields_demo/accounts_test.exs
+* creating test/support/fixtures/accounts_fixtures.ex
+* injecting test/support/fixtures/accounts_fixtures.ex
+
+Add the live routes to your browser scope in lib/fields_demo_web/router.ex:
+
+    live &quot;/attendees&quot;, AttendeeLive.Index, :index
+    live &quot;/attendees/new&quot;, AttendeeLive.Index, :new
+    live &quot;/attendees/:id/edit&quot;, AttendeeLive.Index, :edit
+
+    live &quot;/attendees/:id&quot;, AttendeeLive.Show, :show
+    live &quot;/attendees/:id/show/edit&quot;, AttendeeLive.Show, :edit
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+</code></pre>
+<p>Those are a <em>lot</em> of new files. 😬
+Let's take a moment to go through them 
+and understand what each file is doing.</p>
+<h3 id="libfields_demo_webliveattendee_liveshowex"><a class="header" href="#libfields_demo_webliveattendee_liveshowex"><code>lib/fields_demo_web/live/attendee_live/show.ex</code></a></h3>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
