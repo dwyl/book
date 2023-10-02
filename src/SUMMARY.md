@@ -2,10 +2,10 @@
 
 [Introduction](./README.md)
 
-- [Fields](./fields/README.md)
-  - [Setup](./fields/01-setup.md)
-  - [Schema](./fields/02-schema.md)
-- [Authentication](./auth/README.md)
+- [Fields](fields/README.md)
+  - [Setup](fields/01-setup.md)
+  - [Schema](fields/02-schema.md)
+- [Authentication](auth/README.md)
   - [Why build Auth?](auth/00-why.md)
   - [What are we building?](auth/01-what.md)
     - [Quick Review of Old Database Schema](auth/02-database-schema-review.md)
@@ -25,5 +25,5 @@
   - [Reordering](mvp/18-reordering.md)
   - [Add `item` to `list`](mvp/19-add-item-to-list.md)
   - [Stats](mvp/20-stats.md)
-- [Tidy](./tidy/README.md)
-  - [Setup]()
+- [Tidy](tidy/README.md)
+  - [Setup](tidy/01-setup.md)
