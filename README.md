@@ -69,7 +69,7 @@ mdbook serve --open
 That will open your Web Browser with the book.
 
 > **Note**: that `cargo` command 
-_assumes_ you have `Rust` installed on your machine.
+_assumes_ you have `Rust` installed on your machine. <br />
 If you don't already, see: 
 [dwyl/learn-rust#installing](https://github.com/dwyl/learn-rust#installing)
 
@@ -95,7 +95,7 @@ Just open the `/src` directory and edit the file you want to improve.
 
 > **Note**: If you get stuck,
 we recommend reading:
-[rust-lang/mdBook](https://rust-lang.github.io/mdBook/).
+[rust-lang/mdBook](https://rust-lang.github.io/mdBook/). <br />
 You don't need to know `Rust` to understand any of it.
 
 <!--

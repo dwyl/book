@@ -48,7 +48,7 @@ with the following
 command:
 
 ```sh
-mix phx.gen.schema Lista lista cid:string name:string person_id:integer seq:string sort:integer status:integer
+mix phx.gen.schema List list cid:string name:string person_id:integer seq:string sort:integer status:integer
 ```
 
 

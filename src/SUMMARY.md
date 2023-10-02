@@ -25,3 +25,5 @@
   - [Reordering](mvp/18-reordering.md)
   - [Add `item` to `list`](mvp/19-add-item-to-list.md)
   - [Stats](mvp/20-stats.md)
+- [Tidy](./tidy/README.md)
+  - [Setup]()

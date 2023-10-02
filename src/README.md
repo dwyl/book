@@ -3,7 +3,7 @@
 Our aim with writing a `book` 
 is to **_comprehensively_ document**
 **_everything_ we learned** 
-while building our 
+while building the `@dwyl`
 [**`App`**](https://github.com/dwyl/app)
 and 
 **`API`**
@@ -30,7 +30,8 @@ is that they are
 The disadvantage 
 is that they lack clear progression.
 So people can be left asking:
-"**What _next_**?"
+"**What _next_**?" 🤷‍♀️
+
 By contrast the objective in the `book`
 is to have a **_very_ clear progression**.
 
@@ -39,7 +40,7 @@ in the top-right of this screen: ↗️
 
 <img width="97" alt="image" src="https://user-images.githubusercontent.com/194400/219624215-3d780055-5151-4e2e-8632-893578c4412b.png">
 
-You can save a PDF copy of the book 
+You can save a `PDF` copy of the book 
 and read it ***offline*** in your own time
 without any distractions.
 Or if you have good internet,
@@ -57,4 +58,3 @@ please let us know! 🙏
 
 With that out of the way,
 let's get started learning by _doing_! 🚀
-
