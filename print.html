@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>dwyl book</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
@@ -19,7 +19,7 @@
 
         <meta name="description" content="The @dwyl book on Web &amp; Mobile Application Development">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -42,7 +42,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -72,24 +72,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -127,9 +132,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -232,13 +237,15 @@ please let us know! 🙏
 let's get started learning by <em>doing</em>! 🚀</p>
 <div style="break-before: page; page-break-before: always;"></div><div align="center">
 <h1 id="fields-guide"><a class="header" href="#fields-guide"><code>Fields</code> Guide</a></h1>
-<p>A <strong>complete beginner's guide</strong>
-to building a <strong><code>Phoenix</code> Web App</strong>
+<p>This chapter is a <strong>complete beginner's guide</strong>
+to building a fully-functional <strong>Web Application</strong> <br />
+in <strong><code>Phoenix</code></strong>
 using <strong><code>fields</code></strong>
 to <strong><em>appropriately</em> store personal data</strong>.</p>
-<p><img src="https://github.com/dwyl/fields-demo/assets/194400/a87a35ab-409d-4204-8b9f-8d4725b505f0" alt="awesome-header-image" /></p>
 </div>
-<h1 id="todo-insert-screenshot-of-working-fields-demo-app"><a class="header" href="#todo-insert-screenshot-of-working-fields-demo-app">TODO: insert screenshot of working <code>fields-demo</code> app.</a></h1>
+<!--
+# TODO: insert screenshot of working `fields-demo` app.
+-->
 <h2 id="why"><a class="header" href="#why">Why?</a></h2>
 <p>Building secure web applications 
 that respect people's privacy
@@ -249,12 +256,21 @@ is an <em>essential</em> skill.</p>
 gloss over the steps 
 we are about to take together.
 If you care about your <em>own</em> privacy - and you should! -
-don't skip this chapter.</p>
+follow along 
+and see how <em>easy</em> it is to do the <em>right</em> thing.</p>
+<h3 id="why-build-this-demo-app-first"><a class="header" href="#why-build-this-demo-app-first">Why Build This Demo App <em>First</em>?</a></h3>
+<p>Simple: to showcase how straightforward it is
+to transparently validate, encrypt and decrypt 
+sensitive personal data
+in an ultra-basic but fully-functional web app. </p>
+<p>We will then <em>use</em> these techniques
+to build something more advanced.</p>
 <h2 id="what"><a class="header" href="#what">What?</a></h2>
-<p>The <code>fields-demo</code> App
+<p>The <strong><code>fields-demo</code></strong> App
 showcases a <strong>registration form</strong>
-for a (fictitious) conference called &quot;<strong><em>Awesome</em> Conf</strong>&quot;.
-It shows you all the steps necessary
+for a (fictitious) conference called &quot;<strong><em>Awesome</em> Conf</strong>&quot;.</p>
+<p><img src="https://github.com/dwyl/fields-demo/assets/194400/a87a35ab-409d-4204-8b9f-8d4725b505f0" alt="awesome-header-image" /></p>
+<p>It covers all the steps necessary
 to build the form
 using the <code>fields</code> package
 to securely store personal data.</p>
@@ -279,9 +295,12 @@ please
 <pre><code class="language-sh">mix phx.new fields_demo --no-mailer --no-dashboard --no-gettext
 </code></pre>
 <blockquote>
-<p><strong>Note</strong>: We don't need to send email, 
-have a fancy dashboard or translation in this <code>demo</code>.
-All these <em>advanced</em> features are covered later.</p>
+<p><strong>Note</strong>: The &quot;flags&quot; (e.g: <code>--no-mailer</code>) 
+after the <code>fields_demo</code> app name
+are there to avoid adding bloat to our app. 
+We don't need to send <code>email</code>, 
+have a fancy <code>dashboard</code> or <code>translation</code> in this <code>demo</code>.
+All these <em>advanced</em> features are all covered in depth later.</p>
 </blockquote>
 <h2 id="2-setup-coverage"><a class="header" href="#2-setup-coverage">2. Setup Coverage</a></h2>
 <p>So that we know which files are covered by tests,
@@ -392,9 +411,9 @@ in your web browser,
 you should see something similar to the following:</p>
 <img width="796" alt="image" src="https://github.com/dwyl/fields/assets/194400/891e890e-c94a-402e-baee-ee47fd3725a7">
 <p>That completes 2 minutes of &quot;setup&quot;.
-Let's add a schema!</p>
+Let's add a <code>schema</code> to store the data!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="create-attendee-schema"><a class="header" href="#create-attendee-schema">Create <code>attendee</code> schema</a></h1>
-<p>The goal is to allow <code>people</code> attending <strong><em>Awesome</em> Conf</strong>
+<p>The goal is to allow <code>people</code> attending <strong><em>Awesome</em> Conf</strong> - the <em><strong><code>attendees</code></strong></em> -
 to submit the following data:</p>
 <ul>
 <li><code>first_name</code> - how we greet you. Will appear on your conference pass.</li>
@@ -415,7 +434,7 @@ to submit the following data:</p>
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.live</code></a>
 command, 
 run: </p>
-<pre><code class="language-sh">mix phx.gen.live Accounts Attendee attendees first_name:string last_name:string email:string phone_number:string address_line_1:string address_line_2 postcode:string gender:string diet_pref:string website:string desc:string feedback:string
+<pre><code class="language-sh">mix phx.gen.live Accounts Attendee attendees first_name:binary last_name:binary email:binary phone_number:binary address_line_1:binary address_line_2:binary postcode:binary gender:binary diet_pref:binary website:binary desc:binary feedback:binary
 </code></pre>
 <p>You should expect to see output similar to the following:</p>
 <pre><code class="language-sh">* creating lib/fields_demo_web/live/attendee_live/show.ex
