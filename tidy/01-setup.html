@@ -187,9 +187,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="new-phoenix-project-setup"><a class="header" href="#new-phoenix-project-setup">New <code>Phoenix</code> Project Setup</a></h1>
+                        <h1 id="create-tidy-app"><a class="header" href="#create-tidy-app">Create <code>tidy</code> App!</a></h1>
 <p>These are the steps we took when creating
-the <code>tidy</code> <code>Phoenix</code> project.
+the <code>tidy</code> App.
 You can follow along at your own pace.
 And/or use them as the basis for your own App(s).</p>
 <p>If you feel we have skipped a step
@@ -206,7 +206,7 @@ after the <code>tidy</code> app name
 are there to avoid adding bloat to our app. 
 We don't need to send <code>email</code>, 
 have a fancy <code>dashboard</code> or <code>translation</code> in this <code>demo</code>.
-All these <em>advanced</em> features are all covered in depth later.</p>
+All these <em>advanced</em> features are all covered in other chapters.</p>
 </blockquote>
 <h2 id="2-setup-coverage"><a class="header" href="#2-setup-coverage">2. Setup Coverage</a></h2>
 <p>So that we know which files are covered by tests,
@@ -234,18 +234,18 @@ Randomized with seed 679880
 ----------------
 COV    FILE                                        LINES RELEVANT   MISSED
   0.0% lib/fields_demo.ex                              9        0        0
- 75.0% lib/fields_demo/application.ex                 36        4        1
-  0.0% lib/fields_demo/repo.ex                         5        0        0
-100.0% lib/fields_demo_web.ex                        111        2        0
- 15.9% lib/fields_demo_web/components/core_comp      661      151      127
-  0.0% lib/fields_demo_web/components/layouts.e        5        0        0
-100.0% lib/fields_demo_web/controllers/error_ht       19        1        0
-100.0% lib/fields_demo_web/controllers/error_js       15        1        0
-100.0% lib/fields_demo_web/controllers/page_con        9        1        0
-  0.0% lib/fields_demo_web/controllers/page_htm        5        0        0
-  0.0% lib/fields_demo_web/endpoint.ex                47        0        0
- 66.7% lib/fields_demo_web/router.ex                  27        3        1
- 80.0% lib/fields_demo_web/telemetry.ex               92        5        1
+ 75.0% lib/tidy/application.ex                 36        4        1
+  0.0% lib/tidy/repo.ex                         5        0        0
+100.0% lib/tidy_web.ex                        111        2        0
+ 15.9% lib/tidy_web/components/core_comp      661      151      127
+  0.0% lib/tidy_web/components/layouts.e        5        0        0
+100.0% lib/tidy_web/controllers/error_ht       19        1        0
+100.0% lib/tidy_web/controllers/error_js       15        1        0
+100.0% lib/tidy_web/controllers/page_con        9        1        0
+  0.0% lib/tidy_web/controllers/page_htm        5        0        0
+  0.0% lib/tidy_web/endpoint.ex                47        0        0
+ 66.7% lib/tidy_web/router.ex                  27        3        1
+ 80.0% lib/tidy_web/telemetry.ex               92        5        1
 100.0% test/support/conn_case.ex                      38        2        0
  28.6% test/support/data_case.ex                      58        7        5
 [TOTAL]  23.7%
@@ -253,7 +253,7 @@ COV    FILE                                        LINES RELEVANT   MISSED
 </code></pre>
 <p>Not great. 
 But most of the untested code is in:
-<code>lib/fields_demo_web/components/core_components.ex</code>
+<code>lib/tidy_web/components/core_components.ex</code>
 which has <code>661</code> lines 
 and we aren't going to <em>use</em> in this project ...</p>
 <h3 id="21-ignore-unused-system-files"><a class="header" href="#21-ignore-unused-system-files">2.1 Ignore Unused &quot;System&quot; Files</a></h3>
@@ -264,9 +264,9 @@ and add the following contents:</p>
     &quot;minimum_coverage&quot;: 100
   },
   &quot;skip_files&quot;: [
-    &quot;lib/fields_demo/application.ex&quot;,
-    &quot;lib/fields_demo_web/components/core_components.ex&quot;,
-    &quot;lib/fields_demo_web/telemetry.ex&quot;,
+    &quot;lib/tidy/application.ex&quot;,
+    &quot;lib/tidy_web/components/core_components.ex&quot;,
+    &quot;lib/tidy_web/telemetry.ex&quot;,
     &quot;test/&quot;
   ]
 }
@@ -286,15 +286,15 @@ Randomized with seed 253715
 ----------------
 COV    FILE                                        LINES RELEVANT   MISSED
 100.0% lib/fields_demo.ex                              9        0        0
-100.0% lib/fields_demo/repo.ex                         5        0        0
-100.0% lib/fields_demo_web.ex                        111        2        0
-100.0% lib/fields_demo_web/components/layouts.e        5        0        0
-100.0% lib/fields_demo_web/controllers/error_ht       19        1        0
-100.0% lib/fields_demo_web/controllers/error_js       15        1        0
-100.0% lib/fields_demo_web/controllers/page_con        9        1        0
-100.0% lib/fields_demo_web/controllers/page_htm        5        0        0
-100.0% lib/fields_demo_web/endpoint.ex                47        0        0
-100.0% lib/fields_demo_web/router.ex                  23        2        0
+100.0% lib/tidy/repo.ex                         5        0        0
+100.0% lib/tidy_web.ex                        111        2        0
+100.0% lib/tidy_web/components/layouts.e        5        0        0
+100.0% lib/tidy_web/controllers/error_ht       19        1        0
+100.0% lib/tidy_web/controllers/error_js       15        1        0
+100.0% lib/tidy_web/controllers/page_con        9        1        0
+100.0% lib/tidy_web/controllers/page_htm        5        0        0
+100.0% lib/tidy_web/endpoint.ex                47        0        0
+100.0% lib/tidy_web/router.ex                  23        2        0
 [TOTAL] 100.0%
 ----------------
 </code></pre>
