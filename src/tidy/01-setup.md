@@ -1,7 +1,7 @@
-# New `Phoenix` Project Setup
+# Create `tidy` App!
 
 These are the steps we took when creating
-the `tidy` `Phoenix` project.
+the `tidy` App.
 You can follow along at your own pace.
 And/or use them as the basis for your own App(s).
 
@@ -24,7 +24,7 @@ mix phx.new tidy --no-mailer --no-dashboard --no-gettext
 > are there to avoid adding bloat to our app. 
 > We don't need to send `email`, 
 > have a fancy `dashboard` or `translation` in this `demo`.
-> All these _advanced_ features are all covered in depth later.
+> All these _advanced_ features are all covered in other chapters.
 
 
 ## 2. Setup Coverage
@@ -60,18 +60,18 @@ Randomized with seed 679880
 ----------------
 COV    FILE                                        LINES RELEVANT   MISSED
   0.0% lib/fields_demo.ex                              9        0        0
- 75.0% lib/fields_demo/application.ex                 36        4        1
-  0.0% lib/fields_demo/repo.ex                         5        0        0
-100.0% lib/fields_demo_web.ex                        111        2        0
- 15.9% lib/fields_demo_web/components/core_comp      661      151      127
-  0.0% lib/fields_demo_web/components/layouts.e        5        0        0
-100.0% lib/fields_demo_web/controllers/error_ht       19        1        0
-100.0% lib/fields_demo_web/controllers/error_js       15        1        0
-100.0% lib/fields_demo_web/controllers/page_con        9        1        0
-  0.0% lib/fields_demo_web/controllers/page_htm        5        0        0
-  0.0% lib/fields_demo_web/endpoint.ex                47        0        0
- 66.7% lib/fields_demo_web/router.ex                  27        3        1
- 80.0% lib/fields_demo_web/telemetry.ex               92        5        1
+ 75.0% lib/tidy/application.ex                 36        4        1
+  0.0% lib/tidy/repo.ex                         5        0        0
+100.0% lib/tidy_web.ex                        111        2        0
+ 15.9% lib/tidy_web/components/core_comp      661      151      127
+  0.0% lib/tidy_web/components/layouts.e        5        0        0
+100.0% lib/tidy_web/controllers/error_ht       19        1        0
+100.0% lib/tidy_web/controllers/error_js       15        1        0
+100.0% lib/tidy_web/controllers/page_con        9        1        0
+  0.0% lib/tidy_web/controllers/page_htm        5        0        0
+  0.0% lib/tidy_web/endpoint.ex                47        0        0
+ 66.7% lib/tidy_web/router.ex                  27        3        1
+ 80.0% lib/tidy_web/telemetry.ex               92        5        1
 100.0% test/support/conn_case.ex                      38        2        0
  28.6% test/support/data_case.ex                      58        7        5
 [TOTAL]  23.7%
@@ -80,7 +80,7 @@ COV    FILE                                        LINES RELEVANT   MISSED
 
 Not great. 
 But most of the untested code is in:
-`lib/fields_demo_web/components/core_components.ex`
+`lib/tidy_web/components/core_components.ex`
 which has `661` lines 
 and we aren't going to _use_ in this project ...
 
@@ -95,9 +95,9 @@ and add the following contents:
     "minimum_coverage": 100
   },
   "skip_files": [
-    "lib/fields_demo/application.ex",
-    "lib/fields_demo_web/components/core_components.ex",
-    "lib/fields_demo_web/telemetry.ex",
+    "lib/tidy/application.ex",
+    "lib/tidy_web/components/core_components.ex",
+    "lib/tidy_web/telemetry.ex",
     "test/"
   ]
 }
@@ -123,15 +123,15 @@ Randomized with seed 253715
 ----------------
 COV    FILE                                        LINES RELEVANT   MISSED
 100.0% lib/fields_demo.ex                              9        0        0
-100.0% lib/fields_demo/repo.ex                         5        0        0
-100.0% lib/fields_demo_web.ex                        111        2        0
-100.0% lib/fields_demo_web/components/layouts.e        5        0        0
-100.0% lib/fields_demo_web/controllers/error_ht       19        1        0
-100.0% lib/fields_demo_web/controllers/error_js       15        1        0
-100.0% lib/fields_demo_web/controllers/page_con        9        1        0
-100.0% lib/fields_demo_web/controllers/page_htm        5        0        0
-100.0% lib/fields_demo_web/endpoint.ex                47        0        0
-100.0% lib/fields_demo_web/router.ex                  23        2        0
+100.0% lib/tidy/repo.ex                         5        0        0
+100.0% lib/tidy_web.ex                        111        2        0
+100.0% lib/tidy_web/components/layouts.e        5        0        0
+100.0% lib/tidy_web/controllers/error_ht       19        1        0
+100.0% lib/tidy_web/controllers/error_js       15        1        0
+100.0% lib/tidy_web/controllers/page_con        9        1        0
+100.0% lib/tidy_web/controllers/page_htm        5        0        0
+100.0% lib/tidy_web/endpoint.ex                47        0        0
+100.0% lib/tidy_web/router.ex                  23        2        0
 [TOTAL] 100.0%
 ----------------
 ```
