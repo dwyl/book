@@ -77,7 +77,8 @@ If you don't already, see:
 # Contributing
 
 To help us improve the book,
-the easiest way is to edit it directly on `GitHub`:
+the easiest way is to 
+`edit` it directly on `GitHub`:
 [dwyl/book/src](https://github.com/dwyl/book/tree/main/src)
 
 While reading the book online,

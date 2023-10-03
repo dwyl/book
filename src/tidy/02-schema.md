@@ -1,20 +1,46 @@
-# Create `attendee` schema
+# Create `object` schema
 
-The goal is to allow `people` attending **_Awesome_ Conf** - the ***`attendees`*** -
+As outlined in 
+[tidy#1](https://github.com/dwyl/tidy/issues/1),
+our goal is to allow `people`
+wanting to help `tidy` the house,
 to submit the following data:
 
-+ `first_name` - how we greet you. Will appear on your conference pass.
-+ `last_name` - your family name. Will appear on you conference pass.
-+ `email` - to confirm attendance
-+ `phone_number`  - to verify your access when attending the secret event.
-+ `address_line_1` - so we can send the welcome pack and prizes
-+ `address_line_2` - if your address has multiple lines.
-+ `postcode` - for the address.
-+ `gender` - for venue capacity planning.
-+ `diet_pref` - dietary preferences for meals and snacks provided at the conference.
-+ `website` - share your awesomeness and have it as a QR code on your conference pass.
-+ `desc` - brief description of your awesome project.
-+ `feedback` - Feedback or suggestions
+## `object`
+
++ `name` - the name of the `object` you need help with
++ `desc` - brief description of the `object` 
+    including any salient features.
++ `color` - a `string` for main color of the `object` e.g. "green"
++ `person_id` - the `id` of the `person` who created the `object` record.
++  `owner_id` - `id` of the `person` who _owns_ the `object`
++ `location` - a `string` describing _where_ the `object` belongs.
++ `status` - a `int` representing the current `status` of the `object` record. 
+
+> **Note**: we will need to map out the `statuses` required for this App and add them to our list. 
+
+
+## `images`
+
+An `object` can have one or more `images`.
+These are used identify and categorize the `object`. 
+
++ `obj_id` - the `id` of the `object` the `image` belongs to.
++ `person_id` - `id` of the `person` who uploaded the `image`.
++ `url` - the `URL` of the `image` that was uploaded to 
+[`S3`](https://github.com/dwyl/imgup/issues/98)
+
+
+## `comments`
+
+An `object` can have one ore more `comments` associated with it.
+This allows `people` to discuss the `object` in a conversational style
+similar to what they are already used to 
+from using **Instant Messaging**. 
+
++ `obj_id` - the `id` of the `object` the `image` belongs to.
++ `person_id` - `id` of the `person` who uploaded the `image`.
++ `text` - the `string` of their comment. 
 
 
 ## 4.1 `gen.live`
@@ -24,44 +50,17 @@ Using the
 command, 
 run: 
 ```sh
-mix phx.gen.live Accounts Attendee attendees first_name:binary last_name:binary email:binary phone_number:binary address_line_1:binary address_line_2:binary postcode:binary gender:binary diet_pref:binary website:binary desc:binary feedback:binary
+mix phx.gen.live Objects Object objects name:binary desc:binary color:binary person_id:integer owner_id:integer location:binary status:integer
 ```
 
 You should expect to see output similar to the following:
 
 ```sh
-* creating lib/fields_demo_web/live/attendee_live/show.ex
-* creating lib/fields_demo_web/live/attendee_live/index.ex
-* creating lib/fields_demo_web/live/attendee_live/form_component.ex
-* creating lib/fields_demo_web/live/attendee_live/index.html.heex
-* creating lib/fields_demo_web/live/attendee_live/show.html.heex
-* creating test/fields_demo_web/live/attendee_live_test.exs
-* creating lib/fields_demo/accounts/attendee.ex
-* creating priv/repo/migrations/20230928032757_create_attendees.exs
-* creating lib/fields_demo/accounts.ex
-* injecting lib/fields_demo/accounts.ex
-* creating test/fields_demo/accounts_test.exs
-* injecting test/fields_demo/accounts_test.exs
-* creating test/support/fixtures/accounts_fixtures.ex
-* injecting test/support/fixtures/accounts_fixtures.ex
 
-Add the live routes to your browser scope in lib/fields_demo_web/router.ex:
-
-    live "/attendees", AttendeeLive.Index, :index
-    live "/attendees/new", AttendeeLive.Index, :new
-    live "/attendees/:id/edit", AttendeeLive.Index, :edit
-
-    live "/attendees/:id", AttendeeLive.Show, :show
-    live "/attendees/:id/show/edit", AttendeeLive.Show, :edit
-
-
-Remember to update your repository by running migrations:
-
-    $ mix ecto.migrate
 ```
 
 Those are a _lot_ of new files. 😬
 Let's take a moment to go through them 
 and understand what each file is doing.
 
-### `lib/fields_demo_web/live/attendee_live/show.ex`
+### ``

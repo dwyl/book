@@ -3,7 +3,6 @@
 These are the steps we took when creating
 the `tidy` App.
 You can follow along at your own pace.
-And/or use them as the basis for your own App(s).
 
 If you feel we have skipped a step
 or anything is unclear,
@@ -149,8 +148,9 @@ mix setup
 mix phx.server
 ```
 
-> **Tip**: we always create an alias for `mix phx.server` as `mix s`
-> The alias will be used for the remainder of this guide.
+> **Tip**: we always create an alias 
+> for `mix phx.server` as `mix s`
+> The alias will be used for the remainder of this chapter.
 
 With the `Phoenix` server running,
 visit 

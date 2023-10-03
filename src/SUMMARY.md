@@ -27,3 +27,4 @@
   - [Stats](mvp/20-stats.md)
 - [Tidy](tidy/README.md)
   - [Setup](tidy/01-setup.md)
+  - [Schema](tidy/02-schema.md)
