@@ -80,11 +80,15 @@
   font-style: italic;
 }
 
+.language-bash {
+  background: black;
+  color: #47cf73;
+}
+
 .language-elixir {
   background: #282c34;
 }
 
-.language-bash {
-  background: black;
-  color: #47cf73;
+.language-json {
+  background: #282c34;
 }
