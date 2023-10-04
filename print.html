@@ -3738,16 +3738,20 @@ end
 </code></pre>
 <p>That's it! I'll let the tests file for you to explore and test different cases if you want.</p>
 <p>Congratulations!</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="tidy"><a class="header" href="#tidy"><code>tidy</code></a></h1>
+<div style="break-before: page; page-break-before: always;"></div><div align="center">
+# `tidy`
+<p>The app to help you <code>tidy</code> your life. </p>
+</div>
 <p>The reasoning for creating this 
 <a href="https://github.com/dwyl/product-roadmap/issues/32">mini-app</a>
 is simple: 
 <strong>clutter costs</strong> us <em><strong>cash</strong></em>
-because it <strong><em>wastes</em> time</strong>
-and prevents us from living our &quot;best life&quot;. </p>
+because it <strong><em>wastes</em> time</strong>.
+Having an untidy home prevents us from living our &quot;best life&quot;.
+So we want to fix the problem <em>systematically</em>.</p>
 <p>More detailed background/reasoning in: 
 <a href="https://github.com/dwyl/tidy">dwyl/tidy</a></p>
-<p>Here we are only documenting how we built it!</p>
+<p>Here we are only documenting how we <em>built</em> it!</p>
 <p>Our guiding wireframes 
 for this mini project were:</p>
 <p><a href="https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef"><img src="https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef" alt="tidy-first-screen" /></a></p>
@@ -3884,13 +3888,14 @@ you should see something similar to the following:</p>
 <img width="796" alt="image" src="https://github.com/dwyl/fields/assets/194400/891e890e-c94a-402e-baee-ee47fd3725a7">
 <p>That completes 2 minutes of &quot;setup&quot;.
 Let's add a <code>schema</code> to store the data!</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="create-object-schema"><a class="header" href="#create-object-schema">Create <code>object</code> schema</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="create-schemas"><a class="header" href="#create-schemas">Create Schemas</a></h1>
 <p>As outlined in 
 <a href="https://github.com/dwyl/tidy/issues/1">tidy#1</a>,
 our goal is to allow <code>people</code>
 wanting to help <code>tidy</code> the house,
-to submit the following data:</p>
-<h2 id="object"><a class="header" href="#object"><code>object</code></a></h2>
+to create the records.</p>
+<h2 id="object-schema"><a class="header" href="#object-schema"><code>Object</code> Schema</a></h2>
+<p>An <code>object</code> will have the following fields:</p>
 <ul>
 <li><code>name</code> - the name of the <code>object</code> you need help with</li>
 <li><code>desc</code> - brief description of the <code>object</code> 
@@ -3904,26 +3909,6 @@ including any salient features.</li>
 <blockquote>
 <p><strong>Note</strong>: we will need to map out the <code>statuses</code> required for this App and add them to our list. </p>
 </blockquote>
-<h2 id="images"><a class="header" href="#images"><code>images</code></a></h2>
-<p>An <code>object</code> can have one or more <code>images</code>.
-These are used identify and categorize the <code>object</code>. </p>
-<ul>
-<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>image</code> belongs to.</li>
-<li><code>person_id</code> - <code>id</code> of the <code>person</code> who uploaded the <code>image</code>.</li>
-<li><code>url</code> - the <code>URL</code> of the <code>image</code> that was uploaded to 
-<a href="https://github.com/dwyl/imgup/issues/98"><code>S3</code></a></li>
-</ul>
-<h2 id="comments"><a class="header" href="#comments"><code>comments</code></a></h2>
-<p>An <code>object</code> can have one ore more <code>comments</code> associated with it.
-This allows <code>people</code> to discuss the <code>object</code> in a conversational style
-similar to what they are already used to 
-from using <strong>Instant Messaging</strong>. </p>
-<ul>
-<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>comment</code> belongs to.</li>
-<li><code>person_id</code> - <code>id</code> of the <code>person</code> commenter.</li>
-<li><code>text</code> - the <code>string</code> of their comment. </li>
-</ul>
-<h2 id="create-object-schema-1"><a class="header" href="#create-object-schema-1">Create <code>Object</code> Schema</a></h2>
 <p>Using the 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.live</code></a>
 command, 
@@ -4009,15 +3994,117 @@ So we cannot simply <em>invoke</em> them in a unit test
 to exercise the error handling.</p>
 <p>We have several options for dealing with these untested lines:</p>
 <ol>
-<li>Ignore them - the easiest</li>
+<li>Ignore them - the easiest/fastest</li>
 <li>Convert them from <code>defp</code> to <code>def</code> and test (invoke) them directly </li>
 <li>Construct elaborate tests with bad data to trigger the errors ...</li>
 </ol>
 <p>In <em>our</em> case we <em>know</em> that we won't be using these functions
 when we build our custom interface,
 so we're just going to ignore the untested lines, for now.</p>
-<p>E.g: <a href="https://github.com/dwyl/tidy/commit/2a6cc7eb66a5566168b2506d0bd6769efe2ff7d3#diff-eed745b6b53040c9f58bc13815bdb4ad58af47337ac3c4f9d5cde36b09bc093f"><code>lib/tidy_web/live/object_live/form_component.ex</code></a>
-Ref: https://github.com/dwyl/tidy/issues/1#issuecomment-1746155577</p>
+<p>E.g: 
+<a href="https://github.com/dwyl/tidy/commit/2a6cc7eb66a5566168b2506d0bd6769efe2ff7d3#diff-eed745b6b53040c9f58bc13815bdb4ad58af47337ac3c4f9d5cde36b09bc093f"><code>lib/tidy_web/live/object_live/form_component.ex</code></a>
+Ref: 
+<a href="https://github.com/dwyl/tidy/issues/1#issuecomment-1746155577">tidy#1</a></p>
+<p>Now re-running the tests with coverage <code>mix c</code> we get:</p>
+<pre><code class="language-sh">Finished in 0.2 seconds (0.05s async, 0.1s sync)
+19 tests, 0 failures
+
+Randomized with seed 729041
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+100.0% lib/tidy/objects.ex                           104        6        0
+100.0% lib/tidy/objects/object.ex                     23        2        0
+100.0% lib/tidy/repo.ex                                5        0        0
+100.0% lib/tidy_web.ex                               111        2        0
+100.0% lib/tidy_web/components/layouts.ex              5        0        0
+100.0% lib/tidy_web/controllers/error_html.ex         19        1        0
+100.0% lib/tidy_web/controllers/error_json.ex         15        1        0
+100.0% lib/tidy_web/controllers/page_controller        9        1        0
+100.0% lib/tidy_web/controllers/page_html.ex           5        0        0
+100.0% lib/tidy_web/endpoint.ex                       47        0        0
+100.0% lib/tidy_web/live/object_live/form_compo       98       32        0
+100.0% lib/tidy_web/live/object_live/index.ex         47       10        0
+100.0% lib/tidy_web/live/object_live/show.ex          21        5        0
+100.0% lib/tidy_web/router.ex                         34        7        0
+[TOTAL] 100.0%
+----------------
+</code></pre>
+<p>With that out of the way,
+let's proceed to defining the <code>images</code> schema.</p>
+<h2 id="images"><a class="header" href="#images"><code>images</code></a></h2>
+<p>An <code>object</code> can have one or more <code>images</code>.
+These are used identify and categorize the <code>object</code>. </p>
+<ul>
+<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>image</code> belongs to.</li>
+<li><code>person_id</code> - <code>id</code> of the <code>person</code> who uploaded the <code>image</code>.</li>
+<li><code>url</code> - the <code>URL</code> of the <code>image</code> that was uploaded to 
+<a href="https://github.com/dwyl/imgup/issues/98"><code>S3</code></a></li>
+</ul>
+<p>In the case of images we don't want any &quot;pages&quot;
+to be created, we just want the <code>schema</code>,
+so we use the
+<a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.schema</code></a>
+command:</p>
+<pre><code class="language-sh">mix phx.gen.schema Image images obj_id:integer person_id:integer url:binary
+</code></pre>
+<p>Output should be similar to:</p>
+<pre><code class="language-sh">* creating lib/tidy/image.ex
+* creating priv/repo/migrations/20231004055222_create_images.exs
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+</code></pre>
+<p>This is a <em>far</em> more manageable 2 files.
+But in this case the <em>tests</em> are not generated.
+So if we run <code>mix c</code> we get:</p>
+<pre><code class="language-sh">19 tests, 0 failures
+
+Randomized with seed 852972
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+  0.0% lib/tidy/image.ex                              19        2        2
+100.0% lib/tidy/objects.ex                           104        6        0
+100.0% lib/tidy/objects/object.ex                     23        2        0
+100.0% lib/tidy/repo.ex                                5        0        0
+100.0% lib/tidy_web.ex                               111        2        0
+100.0% lib/tidy_web/components/layouts.ex              5        0        0
+100.0% lib/tidy_web/controllers/error_html.ex         19        1        0
+100.0% lib/tidy_web/controllers/error_json.ex         15        1        0
+100.0% lib/tidy_web/controllers/page_controller        9        1        0
+100.0% lib/tidy_web/controllers/page_html.ex           5        0        0
+100.0% lib/tidy_web/endpoint.ex                       47        0        0
+100.0% lib/tidy_web/live/object_live/form_compo       98       32        0
+100.0% lib/tidy_web/live/object_live/index.ex         47       10        0
+100.0% lib/tidy_web/live/object_live/show.ex          21        5        0
+100.0% lib/tidy_web/router.ex                         34        7        0
+[TOTAL]  97.1%
+----------------
+Generating report...
+Saved to: cover/
+FAILED: Expected minimum coverage of 100%, got 97.1%.
+n@mbp16 tidy %
+</code></pre>
+<p>Where the 
+<code>lib/tidy/image.ex</code>
+file has <code>0%</code> coverage.</p>
+<p>This is easy to fix.
+Create a file with the path:
+<code>test/tidy/image_test.exs</code>
+and add the following test to it:</p>
+<h1 id="todo-test-the-image-schema"><a class="header" href="#todo-test-the-image-schema">TODO: Test the image schema!</a></h1>
+<h2 id="comments"><a class="header" href="#comments"><code>comments</code></a></h2>
+<p>An <code>object</code> can have one ore more <code>comments</code> associated with it.
+This allows <code>people</code> to discuss the <code>object</code> in a conversational style
+similar to what they are already used to 
+from using <strong>Instant Messaging</strong>. </p>
+<ul>
+<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>comment</code> belongs to.</li>
+<li><code>person_id</code> - <code>id</code> of the <code>person</code> commenter.</li>
+<li><code>text</code> - the <code>string</code> of their comment. </li>
+</ul>
 
                     </main>
 
