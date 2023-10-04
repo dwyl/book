@@ -15,8 +15,8 @@ Here we are only documenting how we built it!
 Our guiding wireframes 
 for this mini project were:
 
-<img width="1399" alt="tidy-first-screen" src="https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef">
+[![tidy-first-screen](https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef)](https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef)
 
-<img width="1401" alt="tidy-app-comment-update" src="https://github.com/dwyl/tidy/assets/194400/7d9856d4-0790-472f-b1fd-9ae0de953b7a">
+[![tidy-app-comment-update](https://github.com/dwyl/tidy/assets/194400/7d9856d4-0790-472f-b1fd-9ae0de953b7a)](https://github.com/dwyl/tidy/assets/194400/7d9856d4-0790-472f-b1fd-9ae0de953b7a)
 
 We will refer back to these in the next few pages.
