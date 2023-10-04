@@ -389,16 +389,47 @@ n@mbp16 tidy %
 <p>Where the 
 <code>lib/tidy/image.ex</code>
 file has <code>0%</code> coverage.</p>
-<p>This is easy to fix.
-Create a file with the path:
+<p>This is easy to fix.</p>
+<h3 id="test-images-schema"><a class="header" href="#test-images-schema"><em>Test</em> <code>images</code> Schema</a></h3>
+<p>Create a file with the path:
 <code>test/tidy/image_test.exs</code>
 and add the following test to it:</p>
-<h1 id="todo-test-the-image-schema"><a class="header" href="#todo-test-the-image-schema">TODO: Test the image schema!</a></h1>
+<pre><code class="language-elixir">defmodule TidyWeb.ImageTest do
+  use Tidy.DataCase
+  alias Tidy.Image
+
+  describe &quot;images&quot; do
+    @valid_image %{obj_id: 1, person_id: 1, url: &quot;https://imgur.com/gallery/odNLFdO&quot;}
+
+    test &quot;create_image/1 with valid data creates an image&quot; do
+      assert {:ok, %Image{} = image} = Image.create_image(@valid_image)
+      assert image.url == @valid_image.url
+    end
+  end
+end
+</code></pre>
+<p>With that test in place, we can now re-run <code>mix c</code> 
+and see that we're back up to <code>100%</code> coverage:</p>
+<pre><code class="language-sh">20 tests, 0 failures
+
+Randomized with seed 236415
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+100.0% lib/tidy/image.ex                              39        3        0
+...
+etc.
+
+[TOTAL] 100.0%
+# ----------------
+</code></pre>
+<p>Time for the <code>comments</code> schema!</p>
 <h2 id="comments"><a class="header" href="#comments"><code>comments</code></a></h2>
 <p>An <code>object</code> can have one ore more <code>comments</code> associated with it.
 This allows <code>people</code> to discuss the <code>object</code> in a conversational style
 similar to what they are already used to 
 from using <strong>Instant Messaging</strong>. </p>
+<p>The data/fields we need to store for each <code>comment</code> are:</p>
 <ul>
 <li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>comment</code> belongs to.</li>
 <li><code>person_id</code> - <code>id</code> of the <code>person</code> commenter.</li>
