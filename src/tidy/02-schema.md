@@ -242,13 +242,48 @@ Where the
 file has `0%` coverage.
 
 This is easy to fix.
+
+### _Test_ `images` Schema
+
 Create a file with the path:
 `test/tidy/image_test.exs`
 and add the following test to it:
 
+```elixir
+defmodule TidyWeb.ImageTest do
+  use Tidy.DataCase
+  alias Tidy.Image
 
-# TODO: Test the image schema! 
+  describe "images" do
+    @valid_image %{obj_id: 1, person_id: 1, url: "https://imgur.com/gallery/odNLFdO"}
 
+    test "create_image/1 with valid data creates an image" do
+      assert {:ok, %Image{} = image} = Image.create_image(@valid_image)
+      assert image.url == @valid_image.url
+    end
+  end
+end
+```
+
+With that test in place, we can now re-run `mix c` 
+and see that we're back up to `100%` coverage:
+
+```sh
+20 tests, 0 failures
+
+Randomized with seed 236415
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+100.0% lib/tidy/image.ex                              39        3        0
+...
+etc.
+
+[TOTAL] 100.0%
+# ----------------
+```
+
+Time for the `comments` schema!
 
 
 ## `comments`
@@ -257,6 +292,8 @@ An `object` can have one ore more `comments` associated with it.
 This allows `people` to discuss the `object` in a conversational style
 similar to what they are already used to 
 from using **Instant Messaging**. 
+
+The data/fields we need to store for each `comment` are:
 
 + `obj_id` - the `id` of the `object` the `comment` belongs to.
 + `person_id` - `id` of the `person` commenter.
