@@ -3748,6 +3748,11 @@ and prevents us from living our &quot;best life&quot;. </p>
 <p>More detailed background/reasoning in: 
 <a href="https://github.com/dwyl/tidy">dwyl/tidy</a></p>
 <p>Here we are only documenting how we built it!</p>
+<p>Our guiding wireframes 
+for this mini project were:</p>
+<img width="1399" alt="tidy-first-screen" src="https://github.com/dwyl/tidy/assets/194400/2d0f3a0f-21ca-48d1-a864-ef60a13d4fef">
+<img width="1401" alt="tidy-app-comment-update" src="https://github.com/dwyl/tidy/assets/194400/7d9856d4-0790-472f-b1fd-9ae0de953b7a">
+<p>We will refer back to these in the next few pages.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="create-tidy-app"><a class="header" href="#create-tidy-app">Create <code>tidy</code> App!</a></h1>
 <p>These are the steps we took when creating
 the <code>tidy</code> App.
@@ -3914,14 +3919,15 @@ This allows <code>people</code> to discuss the <code>object</code> in a conversa
 similar to what they are already used to 
 from using <strong>Instant Messaging</strong>. </p>
 <ul>
-<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>image</code> belongs to.</li>
-<li><code>person_id</code> - <code>id</code> of the <code>person</code> who uploaded the <code>image</code>.</li>
+<li><code>obj_id</code> - the <code>id</code> of the <code>object</code> the <code>comment</code> belongs to.</li>
+<li><code>person_id</code> - <code>id</code> of the <code>person</code> commenter.</li>
 <li><code>text</code> - the <code>string</code> of their comment. </li>
 </ul>
 <h2 id="41-genlive-1"><a class="header" href="#41-genlive-1">4.1 <code>gen.live</code></a></h2>
 <p>Using the 
 <a href="https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html"><code>mix phx.gen.live</code></a>
 command, 
+we can create the <code>object</code> schema and <code>LiveView</code> pages,
 run: </p>
 <pre><code class="language-sh">mix phx.gen.live Objects Object objects name:binary desc:binary color:binary person_id:integer owner_id:integer location:binary status:integer
 </code></pre>
