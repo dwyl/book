@@ -113,8 +113,6 @@ COV    FILE                                        LINES RELEVANT   MISSED
 100.0% lib/tidy_web/router.ex                         35        7        0
 [TOTAL]  97.1%
 ----------------
-Generating report...
-Saved to: cover/
 FAILED: Expected minimum coverage of 100%, got 97.1%.
 ```
 
@@ -216,25 +214,11 @@ COV    FILE                                        LINES RELEVANT   MISSED
 100.0% lib/tidy.ex                                     9        0        0
   0.0% lib/tidy/image.ex                              19        2        2
 100.0% lib/tidy/objects.ex                           104        6        0
-100.0% lib/tidy/objects/object.ex                     23        2        0
-100.0% lib/tidy/repo.ex                                5        0        0
-100.0% lib/tidy_web.ex                               111        2        0
-100.0% lib/tidy_web/components/layouts.ex              5        0        0
-100.0% lib/tidy_web/controllers/error_html.ex         19        1        0
-100.0% lib/tidy_web/controllers/error_json.ex         15        1        0
-100.0% lib/tidy_web/controllers/page_controller        9        1        0
-100.0% lib/tidy_web/controllers/page_html.ex           5        0        0
-100.0% lib/tidy_web/endpoint.ex                       47        0        0
-100.0% lib/tidy_web/live/object_live/form_compo       98       32        0
-100.0% lib/tidy_web/live/object_live/index.ex         47       10        0
-100.0% lib/tidy_web/live/object_live/show.ex          21        5        0
-100.0% lib/tidy_web/router.ex                         34        7        0
+... etc.
+
 [TOTAL]  97.1%
 ----------------
-Generating report...
-Saved to: cover/
 FAILED: Expected minimum coverage of 100%, got 97.1%.
-n@mbp16 tidy %
 ```
 
 Where the 
@@ -276,6 +260,7 @@ Randomized with seed 236415
 COV    FILE                                        LINES RELEVANT   MISSED
 100.0% lib/tidy.ex                                     9        0        0
 100.0% lib/tidy/image.ex                              39        3        0
+100.0% lib/tidy/objects.ex                           104        6        0
 ...
 etc.
 
@@ -299,3 +284,87 @@ The data/fields we need to store for each `comment` are:
 + `person_id` - `id` of the `person` commenter.
 + `text` - the `string` of their comment. 
 
+Again using the 
+[`mix phx.gen.schema`](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html)
+command:
+
+```sh
+mix phx.gen.schema Comment comments obj_id:integer person_id:integer text:binary
+```
+
+Output should be similar to:
+
+```sh
+* creating lib/tidy/comment.ex
+* creating priv/repo/migrations/20231004142856_create_comments.exs
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+```
+
+Same as with the `images` above, no tests are created,
+so if we run `mix c` we get:
+
+```sh
+20 tests, 0 failures
+
+Randomized with seed 986302
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+  0.0% lib/tidy/comment.ex                            19        2        2
+100.0% lib/tidy/image.ex                              39        3        0
+100.0% lib/tidy/objects.ex                           104        6        0
+... etc.
+
+[TOTAL]  97.2%
+----------------
+FAILED: Expected minimum coverage of 100%, got 97.2%.
+```
+
+### _Test_ `comment` Schema
+
+Create a file with the path:
+`test/tidy/comment_test.exs`
+and add the following test to it:
+
+```elixir
+defmodule TidyWeb.CommentTest do
+  use Tidy.DataCase
+  alias Tidy.Comment
+
+  describe "comments" do
+    @valid_attrs %{obj_id: 1, person_id: 1, text: "Candles on the kitchen counter"}
+
+    test "create_comment/1 with valid data creates an comment" do
+      assert {:ok, %Comment{} = com} = Comment.create_comment(@valid_attrs)
+      assert com.text == @valid_attrs.text
+    end
+  end
+end
+
+```
+
+With that test in place, we can now re-run `mix c` 
+and see that we're back up to `100%` coverage:
+
+```sh
+20 tests, 0 failures
+
+Randomized with seed 236415
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+100.0% lib/tidy/comment.ex                            40        3        0
+100.0% lib/tidy/image.ex                              39        3        0
+100.0% lib/tidy/objects.ex                           104        6        0
+...
+etc.
+
+[TOTAL] 100.0%
+# ----------------
+```
+
+With all the schemas & functions tested,
+we can now move on to the _interface_! 🪄
