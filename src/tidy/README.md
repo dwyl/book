@@ -1,16 +1,22 @@
+<div align="center">
 # `tidy`
+
+The app to help you `tidy` your life. 
+
+</div>
 
 The reasoning for creating this 
 [mini-app](https://github.com/dwyl/product-roadmap/issues/32)
 is simple: 
 **clutter costs** us ***cash***
-because it **_wastes_ time**
-and prevents us from living our "best life". 
+because it **_wastes_ time**.
+Having an untidy home prevents us from living our "best life".
+So we want to fix the problem _systematically_.
 
 More detailed background/reasoning in: 
 [dwyl/tidy](https://github.com/dwyl/tidy)
 
-Here we are only documenting how we built it!
+Here we are only documenting how we _built_ it!
 
 Our guiding wireframes 
 for this mini project were:

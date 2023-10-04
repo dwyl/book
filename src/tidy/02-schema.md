@@ -1,12 +1,15 @@
-# Create `object` schema
+# Create Schemas
 
 As outlined in 
 [tidy#1](https://github.com/dwyl/tidy/issues/1),
 our goal is to allow `people`
 wanting to help `tidy` the house,
-to submit the following data:
+to create the records.
 
-## `object`
+
+## `Object` Schema
+
+An `object` will have the following fields:
 
 + `name` - the name of the `object` you need help with
 + `desc` - brief description of the `object` 
@@ -19,31 +22,6 @@ to submit the following data:
 
 > **Note**: we will need to map out the `statuses` required for this App and add them to our list. 
 
-
-## `images`
-
-An `object` can have one or more `images`.
-These are used identify and categorize the `object`. 
-
-+ `obj_id` - the `id` of the `object` the `image` belongs to.
-+ `person_id` - `id` of the `person` who uploaded the `image`.
-+ `url` - the `URL` of the `image` that was uploaded to 
-[`S3`](https://github.com/dwyl/imgup/issues/98)
-
-
-## `comments`
-
-An `object` can have one ore more `comments` associated with it.
-This allows `people` to discuss the `object` in a conversational style
-similar to what they are already used to 
-from using **Instant Messaging**. 
-
-+ `obj_id` - the `id` of the `object` the `comment` belongs to.
-+ `person_id` - `id` of the `person` commenter.
-+ `text` - the `string` of their comment. 
-
-
-## Create `Object` Schema
 
 Using the 
 [`mix phx.gen.live`](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html)
@@ -148,7 +126,7 @@ So we cannot simply _invoke_ them in a unit test
 to exercise the error handling.
 
 We have several options for dealing with these untested lines:
-1. Ignore them - the easiest
+1. Ignore them - the easiest/fastest
 2. Convert them from `defp` to `def` and test (invoke) them directly 
 3. Construct elaborate tests with bad data to trigger the errors ...
 
@@ -156,5 +134,131 @@ In _our_ case we _know_ that we won't be using these functions
 when we build our custom interface,
 so we're just going to ignore the untested lines, for now.
 
-E.g: [`lib/tidy_web/live/object_live/form_component.ex`](https://github.com/dwyl/tidy/commit/2a6cc7eb66a5566168b2506d0bd6769efe2ff7d3#diff-eed745b6b53040c9f58bc13815bdb4ad58af47337ac3c4f9d5cde36b09bc093f)
-Ref: https://github.com/dwyl/tidy/issues/1#issuecomment-1746155577
+E.g: 
+[`lib/tidy_web/live/object_live/form_component.ex`](https://github.com/dwyl/tidy/commit/2a6cc7eb66a5566168b2506d0bd6769efe2ff7d3#diff-eed745b6b53040c9f58bc13815bdb4ad58af47337ac3c4f9d5cde36b09bc093f)
+Ref: 
+[tidy#1](https://github.com/dwyl/tidy/issues/1#issuecomment-1746155577)
+
+Now re-running the tests with coverage `mix c` we get:
+
+```sh
+Finished in 0.2 seconds (0.05s async, 0.1s sync)
+19 tests, 0 failures
+
+Randomized with seed 729041
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+100.0% lib/tidy/objects.ex                           104        6        0
+100.0% lib/tidy/objects/object.ex                     23        2        0
+100.0% lib/tidy/repo.ex                                5        0        0
+100.0% lib/tidy_web.ex                               111        2        0
+100.0% lib/tidy_web/components/layouts.ex              5        0        0
+100.0% lib/tidy_web/controllers/error_html.ex         19        1        0
+100.0% lib/tidy_web/controllers/error_json.ex         15        1        0
+100.0% lib/tidy_web/controllers/page_controller        9        1        0
+100.0% lib/tidy_web/controllers/page_html.ex           5        0        0
+100.0% lib/tidy_web/endpoint.ex                       47        0        0
+100.0% lib/tidy_web/live/object_live/form_compo       98       32        0
+100.0% lib/tidy_web/live/object_live/index.ex         47       10        0
+100.0% lib/tidy_web/live/object_live/show.ex          21        5        0
+100.0% lib/tidy_web/router.ex                         34        7        0
+[TOTAL] 100.0%
+----------------
+```
+
+With that out of the way,
+let's proceed to defining the `images` schema.
+
+
+## `images`
+
+An `object` can have one or more `images`.
+These are used identify and categorize the `object`. 
+
++ `obj_id` - the `id` of the `object` the `image` belongs to.
++ `person_id` - `id` of the `person` who uploaded the `image`.
++ `url` - the `URL` of the `image` that was uploaded to 
+[`S3`](https://github.com/dwyl/imgup/issues/98)
+
+
+In the case of images we don't want any "pages"
+to be created, we just want the `schema`,
+so we use the
+[`mix phx.gen.schema`](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html)
+command:
+
+```sh
+mix phx.gen.schema Image images obj_id:integer person_id:integer url:binary
+```
+
+Output should be similar to:
+
+```sh
+* creating lib/tidy/image.ex
+* creating priv/repo/migrations/20231004055222_create_images.exs
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+```
+
+This is a _far_ more manageable 2 files.
+But in this case the _tests_ are not generated.
+So if we run `mix c` we get:
+
+```sh
+19 tests, 0 failures
+
+Randomized with seed 852972
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/tidy.ex                                     9        0        0
+  0.0% lib/tidy/image.ex                              19        2        2
+100.0% lib/tidy/objects.ex                           104        6        0
+100.0% lib/tidy/objects/object.ex                     23        2        0
+100.0% lib/tidy/repo.ex                                5        0        0
+100.0% lib/tidy_web.ex                               111        2        0
+100.0% lib/tidy_web/components/layouts.ex              5        0        0
+100.0% lib/tidy_web/controllers/error_html.ex         19        1        0
+100.0% lib/tidy_web/controllers/error_json.ex         15        1        0
+100.0% lib/tidy_web/controllers/page_controller        9        1        0
+100.0% lib/tidy_web/controllers/page_html.ex           5        0        0
+100.0% lib/tidy_web/endpoint.ex                       47        0        0
+100.0% lib/tidy_web/live/object_live/form_compo       98       32        0
+100.0% lib/tidy_web/live/object_live/index.ex         47       10        0
+100.0% lib/tidy_web/live/object_live/show.ex          21        5        0
+100.0% lib/tidy_web/router.ex                         34        7        0
+[TOTAL]  97.1%
+----------------
+Generating report...
+Saved to: cover/
+FAILED: Expected minimum coverage of 100%, got 97.1%.
+n@mbp16 tidy %
+```
+
+Where the 
+`lib/tidy/image.ex`
+file has `0%` coverage.
+
+This is easy to fix.
+Create a file with the path:
+`test/tidy/image_test.exs`
+and add the following test to it:
+
+
+# TODO: Test the image schema! 
+
+
+
+## `comments`
+
+An `object` can have one ore more `comments` associated with it.
+This allows `people` to discuss the `object` in a conversational style
+similar to what they are already used to 
+from using **Instant Messaging**. 
+
++ `obj_id` - the `id` of the `object` the `comment` belongs to.
++ `person_id` - `id` of the `person` commenter.
++ `text` - the `string` of their comment. 
+
