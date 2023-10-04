@@ -38,8 +38,8 @@ This allows `people` to discuss the `object` in a conversational style
 similar to what they are already used to 
 from using **Instant Messaging**. 
 
-+ `obj_id` - the `id` of the `object` the `image` belongs to.
-+ `person_id` - `id` of the `person` who uploaded the `image`.
++ `obj_id` - the `id` of the `object` the `comment` belongs to.
++ `person_id` - `id` of the `person` commenter.
 + `text` - the `string` of their comment. 
 
 
@@ -48,7 +48,9 @@ from using **Instant Messaging**.
 Using the 
 [`mix phx.gen.live`](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Schema.html)
 command, 
+we can create the `object` schema and `LiveView` pages,
 run: 
+
 ```sh
 mix phx.gen.live Objects Object objects name:binary desc:binary color:binary person_id:integer owner_id:integer location:binary status:integer
 ```
