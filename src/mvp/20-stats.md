@@ -416,7 +416,7 @@ With that in place, we can update our Stats page to use this LiveComponent in a 
       highlight={&is_highlighted_person?(&1, @person_id)}
     >
       <:column :let={metric} label="Id" key="person_id">
-        <td class="px-6 py-4" data-test-id="person_id">
+        <td class="px-6 py-4" data-test-id={"person_id_#{metric.person_id}"}>
           <a href={person_link(metric.person_id)}>
             <%= metric.person_id %>
           </a>
@@ -424,25 +424,25 @@ With that in place, we can update our Stats page to use this LiveComponent in a 
       </:column>
 
       <:column :let={metric} label="Items" key="num_items">
-        <td class="px-6 py-4 text-center" data-test-id="num_items">
+        <td class="px-6 py-4 text-center" data-test-id={"num_items_#{metric.person_id}"}>
           <%= metric.num_items %>
         </td>
       </:column>
 
       <:column :let={metric} label="Timers" key="num_timers">
-        <td class="px-6 py-4 text-center" data-test-id="num_timers">
+        <td class="px-6 py-4 text-center" data-test-id={"num_timers_#{metric.person_id}"}>
           <%= metric.num_timers %>
         </td>
       </:column>
 
       <:column :let={metric} label="First Joined" key="first_inserted_at">
-        <td class="px-6 py-4 text-center" data-test-id="first_inserted_at">
+        <td class="px-6 py-4 text-center" data-test-id={"first_inserted_at_#{metric.person_id}"}>
           <%= format_date(metric.first_inserted_at) %>
         </td>
       </:column>
 
       <:column :let={metric} label="Last Item Inserted" key="last_inserted_at">
-        <td class="px-6 py-4 text-center" data-test-id="last_inserted_at">
+        <td class="px-6 py-4 text-center" data-test-id={"last_inserted_at_#{metric.person_id}"}>
           <%= format_date(metric.last_inserted_at) %>
         </td>
       </:column>
@@ -452,7 +452,7 @@ With that in place, we can update our Stats page to use this LiveComponent in a 
         label="Total Elapsed Time"
         key="total_timers_in_seconds"
       >
-        <td class="px-6 py-4 text-center" data-test-id="total_timers_in_seconds">
+        <td class="px-6 py-4 text-center" data-test-id={"total_timers_in_seconds_#{metric.person_id}"}>
           <%= format_seconds(metric.total_timers_in_seconds) %>
         </td>
       </:column>
@@ -1036,83 +1036,138 @@ end
 `test/app_web/live/stats_live_test.exs`
 ```elixir
 defmodule AppWeb.StatsLiveTest do
-  alias App.DateTimeHelper
-  
-  ...
+  # alias App.DateTimeHelper
+  use AppWeb.ConnCase, async: true
+  alias App.{Item, Timer, DateTimeHelper}
+  import Phoenix.LiveViewTest
+
+  @person_id 55
+
+  test "disconnected and connected render", %{conn: conn} do
+    {:ok, page_live, disconnected_html} = live(conn, "/stats")
+    assert disconnected_html =~ "Stats"
+    assert render(page_live) =~ "Stats"
+  end
 
   test "display metrics on mount", %{conn: conn} do
-    ...
-      # Creating one timer
+    # Creating two items
+    {:ok, %{model: item, version: _version}} =
+      Item.create_item(%{text: "Learn Elixir", status: 2, person_id: @person_id})
+
+    {:ok, %{model: _item2, version: _version}} =
+      Item.create_item(%{text: "Learn Elixir", status: 4, person_id: @person_id})
+
+    assert item.status == 2
+
+    # Creating one timer
     started = NaiveDateTime.utc_now()
     {:ok, timer} = Timer.start(%{item_id: item.id, start: started})
     {:ok, _} = Timer.stop(%{id: timer.id})
 
-    ...
+    {:ok, page_live, _html} = live(conn, "/stats")
+
+    assert render(page_live) =~ "Stats"
 
     # two items and one timer expected
-    assert page_live |> element("td[data-test-id=person_id]") |> render() =~
+    assert page_live |> element("td[data-test-id=person_id_55]") |> render() =~
              "55"
 
-    assert page_live |> element("td[data-test-id=num_items]") |> render() =~ "2"
+    assert page_live |> element("td[data-test-id=num_items_55]") |> render() =~ "2"
 
-    assert page_live |> element("td[data-test-id=num_timers]") |> render() =~
-             "1"
+    assert page_live |> render() =~ "1"
 
     assert page_live
-           |> element("td[data-test-id=first_inserted_at]")
+           |> element("td[data-test-id=first_inserted_at_55]")
            |> render() =~
              DateTimeHelper.format_date(started)
 
     assert page_live
-           |> element("td[data-test-id=last_inserted_at]")
+           |> element("td[data-test-id=last_inserted_at_55]")
            |> render() =~
              DateTimeHelper.format_date(started)
 
     assert page_live
-           |> element("td[data-test-id=total_timers_in_seconds]")
+           |> element("td[data-test-id=total_timers_in_seconds_55]")
            |> render() =~
              ""
   end
 
   test "handle broadcast when item is created", %{conn: conn} do
-    ...
+    # Creating an item
+    {:ok, %{model: _item, version: _version}} =
+      Item.create_item(%{text: "Learn Elixir", status: 2, person_id: @person_id})
+
+    {:ok, page_live, _html} = live(conn, "/stats")
 
     assert render(page_live) =~ "Stats"
+
+    assert page_live |> element("td[data-test-id=num_items_55]") |> render() =~ "5"
+
+    # Creating another item.
+    AppWeb.Endpoint.broadcast(
+      "stats",
+      "item",
+      {:create, payload: %{person_id: @person_id}}
+    )
+
     # num of items
-    assert page_live |> element("td[data-test-id=num_items]") |> render() =~ "1"
+    assert page_live |> element("td[data-test-id=num_items_55]") |> render() =~ "2"
 
-    ...
+    # Broadcasting update. Shouldn't effect anything in the page
+    AppWeb.Endpoint.broadcast(
+      "stats",
+      "item",
+      {:update, payload: %{person_id: @person_id}}
+    )
 
     # num of items
-    assert page_live |> element("td[data-test-id=num_items]") |> render() =~ "2"
-
-    ...
-
-    # num of items
-    assert page_live |> element("td[data-test-id=num_items]") |> render() =~ "2"
+    assert page_live |> element("td[data-test-id=num_items_55]") |> render() =~ "2"
   end
 
   test "handle broadcast when timer is created", %{conn: conn} do
-    ...
+    # Creating an item
+    {:ok, %{model: _item, version: _version}} =
+      Item.create_item(%{text: "Learn Elixir", status: 2, person_id: @person_id})
+
+    {:ok, page_live, _html} = live(conn, "/stats")
 
     assert render(page_live) =~ "Stats"
-    # num of timers
-    assert page_live |> element("td[data-test-id=num_timers]") |> render() =~
+    assert page_live |> element("td[data-test-id=num_timers_55]") |> render() =~
              "0"
-    ...
 
-    # num of timers
-    assert page_live |> element("td[data-test-id=num_timers]") |> render() =~
+    # Creating a timer.
+    AppWeb.Endpoint.broadcast(
+      "stats",
+      "timer",
+      {:create, payload: %{person_id: @person_id}}
+    )
+
+    assert page_live |> element("td[data-test-id=num_timers_55]") |> render() =~
              "1"
 
-    ...
+    # Broadcasting update. Shouldn't effect anything in the page
+    AppWeb.Endpoint.broadcast(
+      "stats",
+      "timer",
+      {:update, payload: %{person_id: @person_id}}
+    )
 
     # num of timers
-    assert page_live |> element("td[data-test-id=num_timers]") |> render() =~
-             "1"
+    assert page_live |> render() =~ "1"
   end
 
-  ...
+  test "add_row/3 adds 1 to row.num_timers" do
+    row = %{person_id: 1, num_items: 1, num_timers: 1}
+    payload = %{person_id: 1}
+
+    # expect row.num_timers to be incremented by 1:
+    row_updated = AppWeb.StatsLive.add_row(row, payload, :num_timers)
+    assert row_updated == %{person_id: 1, num_items: 1, num_timers: 2}
+
+    # no change expected:
+    row2 = %{person_id: 2, num_items: 1, num_timers: 42}
+    assert row2 == AppWeb.StatsLive.add_row(row2, payload, :num_timers)
+  end
 
   test "sorting column when clicked", %{conn: conn} do
     {:ok, %{model: _, version: _version}} =
@@ -1127,7 +1182,7 @@ defmodule AppWeb.StatsLiveTest do
     result =
       page_live |> element("th[phx-value-key=person_id]") |> render_click()
 
-    [first_element | _] = Floki.find(result, "td[data-test-id=person_id]")
+    [first_element | _] = Floki.find(result, "td[data-test-id=person_id_2]")
 
     assert first_element |> Floki.text() =~ "2"
 
@@ -1135,11 +1190,12 @@ defmodule AppWeb.StatsLiveTest do
     result =
       page_live |> element("th[phx-value-key=person_id]") |> render_click()
 
-    [first_element | _] = Floki.find(result, "td[data-test-id=person_id]")
+    [first_element | _] = Floki.find(result, "td[data-test-id=person_id_1]")
 
     assert first_element |> Floki.text() =~ "1"
   end
 end
+
 ```
 
 Let's run the tests:
