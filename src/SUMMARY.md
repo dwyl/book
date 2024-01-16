@@ -25,6 +25,7 @@
   - [Reordering](mvp/18-reordering.md)
   - [Add `item` to `list`](mvp/19-add-item-to-list.md)
   - [Stats](mvp/20-stats.md)
+  - [Tags Page Enhanced](mvp/22-enhance-tags-page.md)
 - [Tidy](tidy/README.md)
   - [Setup](tidy/01-setup.md)
   - [Schema](tidy/02-schema.md)
