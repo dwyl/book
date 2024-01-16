@@ -1,10 +1,14 @@
 # Implementing Enhanced Tag Details and Sorting
 
-These modifications are designed to enhance functionality and improve user experience. We'll cover updates made to the Repo module, changes in the Tag schema, alterations in the TagController and StatsLive modules, and updates to LiveView files.
+These modifications are designed to enhance functionality and improve user experience. 
+We'll cover updates made to the `Repo` module, changes in the `Tag` schema, 
+alterations in the `TagController` and `StatsLive` modules, 
+and updates to LiveView files.
 
-## Implementing the toggle_sort_order on the Repo.ex
+## Implementing the `toggle_sort_order` in `Repo.ex`
 
-The `toggle_sort_order` function in the Repo module allows us to dynamically change the sorting order of our database queries. This is useful for features where the user can sort items in ascending or descending order that will be used throughout the whole app where we need to sort it.
+The `toggle_sort_order` function in the `Repo` module allows us to dynamically change the sorting order of our database queries. 
+This is useful for features where the user can sort items in ascending or descending order that will be used throughout the whole app where we need to sort it.
 
 `lib/app/repo.ex`
 ```elixir
@@ -13,25 +17,26 @@ def toggle_sort_order(:desc), do: :asc
 ```
 If the current order is :asc (ascending), it changes to :desc (descending), and vice versa​​.
 
-## Extending the Tag Model
+## Extending the `Tag` Model
 
-Open `lib/app/tag.ex` and add new fields to the Tag schema.
+Open `lib/app/tag.ex` and add new fields to the `Tag` schema.
 
 ```elixir
 field :last_used_at, :naive_datetime, virtual: true
 field :items_count, :integer, virtual: true
 field :total_time_logged, :integer, virtual: true
 ```
-These fields are 'virtual', meaning they're not stored in the database but calculated on-the-fly.
+These fields are 'virtual', meaning they're not stored in the database but calculated on the fly.
 
 The purposes of the fields are:
 `last_used_at`: the date a Tag was last used
 `items_count`: how many items are using the Tag
 `total_time_logged`: the total time that was logged with this particular Tag being used by a Item
 
-We will add a new method that will query with this new fields on the same file. 
+We will add a new method that will query with these new fields on the same file. 
 
 Define `list_person_tags_complete/3`:
+
 ```elixir
 def list_person_tags_complete(
       person_id,
@@ -69,6 +74,7 @@ end
 ```
 
 And add these new methods at the end of the file:
+
 ```elixir
 defp validate_sort_column(column) do
   Enum.member?(
@@ -93,11 +99,13 @@ defp get_order_by_keyword(sort_column, :desc) do
 end
 ```
 
-These methods are using in the previous method to validate the columns that can be searched and to transform into key words [asc: column] to work on the query.
+These methods are used in the previous method to validate the columns 
+that can be searched and to transform into keywords [asc: column] to work on the query.
 
-## Adding the new columns on the Tags Page
+## Adding the new columns on the `Tags` Page
 
-First, we need to remove the index page from the `tag_controller.ex` because we are going to include it on a new LiveView for Tags.
+First, we need to remove the index page from the `tag_controller.ex` 
+because we are going to include it on a new LiveView for `Tags`.
 
 This is needed because of the sorting events of the table.
 
@@ -115,9 +123,11 @@ def index(conn, _params) do
 end
 ```
 
-Now, let's create the LiveView that will have the table for tags and the redirections to all other pages on the TagController.
+Now, let's create the LiveView that will have the table for tags 
+and the redirections to all other pages on the `TagController`.
 
 Create a new file on `lib/app_web/live/tags_live.ex` with the following content.
+
 ```elixir
 defmodule AppWeb.TagsLive do
   use AppWeb, :live_view
@@ -183,7 +193,7 @@ end
 
 The whole code is similar to other LiveViews created on the project.
 
-`mount`
+**`mount`**
 
 This function is invoked when the LiveView component is mounted. It initializes the state of the LiveView.
 - `on_mount(AppWeb.AuthController)`: This line ensures that authentication is run when the LiveView component mounts.
@@ -192,7 +202,7 @@ This function is invoked when the LiveView component is mounted. It initializes 
 - tags are fetched using `Tag.list_person_tags_complete(person_id)`, which retrieves all tags associated with the `person_id` and is the method that we created previously.
 - The socket is assigned various values, such as tags, lists, custom_list, sort_column, and sort_order, setting up the initial state of the LiveView.
 
-`handle_event`
+**`handle_event`**
 
 This function is called when a "sort" event is triggered by user interaction on the UI.
 - `sort_column` is set based on the event's key, determining which column to sort by.
@@ -200,17 +210,19 @@ This function is called when a "sort" event is triggered by user interaction on 
 - Tags are then re-fetched with the new sort order and column, and the socket is updated with these new values.
 - This dynamic sorting mechanism allows the user interface to update the display order of tags based on user interaction.
 
-`format_date(date)`
+**`format_date(date)`**
 
 Uses DateTimeHelper.format_date to format a given date.
 
-`format_seconds(seconds)`
+**`format_seconds(seconds)`**
 
 Uses DateTimeHelper.format_duration to format a duration in seconds into a more human-readable format.
 
-### Creating the LiveView html
+### Creating the LiveView HTML template
 
-Create a new file on `lib/app_web/live/tags_live.html.heex` that will handle the LiveView created in the previous section:
+Create a new file on `lib/app_web/live/tags_live.html.heex` 
+that will handle the LiveView created in the previous section:
+
 ```html
 <main class="font-sans container mx-auto">
   <div class="relative overflow-x-auto mt-12">
@@ -306,11 +318,14 @@ Create a new file on `lib/app_web/live/tags_live.html.heex` that will handle the
 </main>
 ```
 
-The structure is similar to the `stats_live.html.heex` with the new columns for tags and the events to sorting. And it's using the TableComponent as well.
+The structure is similar to the `stats_live.html.heex` 
+with the new columns for tags and the events for sorting. 
+And it's using the `TableComponent` as well.
 
 ## Adding the new page to the router
 
 Open the `lib/app_web/router.ex` and change the following line:
+
 ```elixir
 ...
 
@@ -327,11 +342,12 @@ end
 ...
 ```
 
-After that, you can remove the `lib/app_web/templates/tag/index.html.heex` file, since we will use the Tags LiveView for the tags page now.
+After that, you can remove the `lib/app_web/templates/tag/index.html.heex` file, 
+since we will use the `Tags` LiveView for the tags page now.
 
 Done! The Tags Page has the new columns and everything to be enhanced, congratulations!
 
-It's just missing tests, let's add it:
+It's just missing tests, let's add them:
 
 `test/app/repo_test.exs`
 ```elixir
@@ -352,6 +368,7 @@ end
 ```
 
 Add new test cases to the `test/app/tag_test.exs`
+
 ```elixir
 describe "list_person_tags/1" do
   test "returns an empty list for a person with no tags" do
@@ -470,6 +487,7 @@ end
 ```
 
 `test/app_web/live/tags_live_test.exs`
+
 ```elixir
 defmodule AppWeb.TagsLiveTest do
   use AppWeb.ConnCase, async: true
