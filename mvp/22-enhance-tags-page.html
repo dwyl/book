@@ -1,0 +1,768 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tags Page Enhanced - dwyl book</title>
+
+
+        <!-- Custom HTML head -->
+        <script defer data-domain="dwyl.github.io" src="https://plausible.io/js/script.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        
+        <!-- additional languages -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/elixir.min.js"></script>
+        
+        <script>hljs.highlightAll();</script>
+
+        <meta name="description" content="The @dwyl book on Web &amp; Mobile Application Development">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../fields/index.html"><strong aria-hidden="true">1.</strong> Fields</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../fields/01-setup.html"><strong aria-hidden="true">1.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../fields/02-schema.html"><strong aria-hidden="true">1.2.</strong> Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/index.html"><strong aria-hidden="true">2.</strong> Authentication</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/00-why.html"><strong aria-hidden="true">2.1.</strong> Why build Auth?</a></li><li class="chapter-item expanded "><a href="../auth/01-what.html"><strong aria-hidden="true">2.2.</strong> What are we building?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/02-database-schema-review.html"><strong aria-hidden="true">2.2.1.</strong> Quick Review of Old Database Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../auth/03-how.html"><strong aria-hidden="true">2.3.</strong> How?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../auth/04-prerequisites.html"><strong aria-hidden="true">2.3.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="../auth/05-mix-phx-new.html"><strong aria-hidden="true">2.3.2.</strong> Create New Phoenix Project</a></li><li class="chapter-item expanded "><a href="../auth/06-mix-gen-auth.html"><strong aria-hidden="true">2.3.3.</strong> Generate Auth Schema</a></li><li class="chapter-item expanded "><a href="../auth/07-notes-on-naming.html"><strong aria-hidden="true">2.3.4.</strong> Notes on Naming</a></li><li class="chapter-item expanded "><a href="../auth/08-modals-antipattern.html"><strong aria-hidden="true">2.3.5.</strong> Modals Are An Antipattern</a></li><li class="chapter-item expanded "><a href="../auth/09-encrypt-data.html"><strong aria-hidden="true">2.3.6.</strong> Encrypt Personal Data</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../atm/index.html"><strong aria-hidden="true">3.</strong> ATM</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../atm/01-browser-agent.html"><strong aria-hidden="true">3.1.</strong> Parse User Agent</a></li><li class="chapter-item expanded "><a href="../atm/02-gen-schema-user_agents.html"><strong aria-hidden="true">3.2.</strong> User Agent Schema</a></li></ol></li><li class="chapter-item expanded "><a href="../mvp/index.html"><strong aria-hidden="true">4.</strong> MVP</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mvp/15-item-cid.html"><strong aria-hidden="true">4.1.</strong> Content IDs</a></li><li class="chapter-item expanded "><a href="../mvp/16-lists.html"><strong aria-hidden="true">4.2.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../mvp/18-reordering.html"><strong aria-hidden="true">4.3.</strong> Reordering</a></li><li class="chapter-item expanded "><a href="../mvp/19-add-item-to-list.html"><strong aria-hidden="true">4.4.</strong> Add item to list</a></li><li class="chapter-item expanded "><a href="../mvp/20-stats.html"><strong aria-hidden="true">4.5.</strong> Stats</a></li><li class="chapter-item expanded "><a href="../mvp/22-enhance-tags-page.html" class="active"><strong aria-hidden="true">4.6.</strong> Tags Page Enhanced</a></li></ol></li><li class="chapter-item expanded "><a href="../tidy/index.html"><strong aria-hidden="true">5.</strong> Tidy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tidy/01-setup.html"><strong aria-hidden="true">5.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../tidy/02-schema.html"><strong aria-hidden="true">5.2.</strong> Schema</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwyl book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/dwyl/book/tree/main/src" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/dwyl/book/edit/main/src/mvp/22-enhance-tags-page.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="implementing-enhanced-tag-details-and-sorting"><a class="header" href="#implementing-enhanced-tag-details-and-sorting">Implementing Enhanced Tag Details and Sorting</a></h1>
+<p>These modifications are designed to enhance functionality and improve user experience.
+We'll cover updates made to the <code>Repo</code> module, changes in the <code>Tag</code> schema,
+alterations in the <code>TagController</code> and <code>StatsLive</code> modules,
+and updates to LiveView files.</p>
+<h2 id="implementing-the-toggle_sort_order-in-repoex"><a class="header" href="#implementing-the-toggle_sort_order-in-repoex">Implementing the <code>toggle_sort_order</code> in <code>Repo.ex</code></a></h2>
+<p>The <code>toggle_sort_order</code> function in the <code>Repo</code> module allows us to dynamically change the sorting order of our database queries.
+This is useful for features where the user can sort items in ascending or descending order that will be used throughout the whole app where we need to sort it.</p>
+<p><code>lib/app/repo.ex</code></p>
+<pre><code class="language-elixir">def toggle_sort_order(:asc), do: :desc
+def toggle_sort_order(:desc), do: :asc
+</code></pre>
+<p>If the current order is :asc (ascending), it changes to :desc (descending), and vice versa​​.</p>
+<h2 id="extending-the-tag-model"><a class="header" href="#extending-the-tag-model">Extending the <code>Tag</code> Model</a></h2>
+<p>Open <code>lib/app/tag.ex</code> and add new fields to the <code>Tag</code> schema.</p>
+<pre><code class="language-elixir">field :last_used_at, :naive_datetime, virtual: true
+field :items_count, :integer, virtual: true
+field :total_time_logged, :integer, virtual: true
+</code></pre>
+<p>These fields are 'virtual', meaning they're not stored in the database but calculated on the fly.</p>
+<p>The purposes of the fields are:
+<code>last_used_at</code>: the date a Tag was last used
+<code>items_count</code>: how many items are using the Tag
+<code>total_time_logged</code>: the total time that was logged with this particular Tag being used by a Item</p>
+<p>We will add a new method that will query with these new fields on the same file.</p>
+<p>Define <code>list_person_tags_complete/3</code>:</p>
+<pre><code class="language-elixir">def list_person_tags_complete(
+      person_id,
+      sort_column \\ :text,
+      sort_order \\ :asc
+    ) do
+  sort_column =
+    if validate_sort_column(sort_column), do: sort_column, else: :text
+
+  Tag
+  |&gt; where(person_id: ^person_id)
+  |&gt; join(:left, [t], it in ItemTag, on: t.id == it.tag_id)
+  |&gt; join(:left, [t, it], i in Item, on: i.id == it.item_id)
+  |&gt; join(:left, [t, it, i], tm in Timer, on: tm.item_id == i.id)
+  |&gt; group_by([t], t.id)
+  |&gt; select([t, it, i, tm], %{
+    t
+    | last_used_at: max(it.inserted_at),
+      items_count: fragment("count(DISTINCT ?)", i.id),
+      total_time_logged:
+        sum(
+          coalesce(
+            fragment(
+              "EXTRACT(EPOCH FROM (? - ?))",
+              tm.stop,
+              tm.start
+            ),
+            0
+          )
+        )
+  })
+  |&gt; order_by(^get_order_by_keyword(sort_column, sort_order))
+  |&gt; Repo.all()
+end
+</code></pre>
+<p>And add these new methods at the end of the file:</p>
+<pre><code class="language-elixir">defp validate_sort_column(column) do
+  Enum.member?(
+    [
+      :text,
+      :color,
+      :created_at,
+      :last_used_at,
+      :items_count,
+      :total_time_logged
+    ],
+    column
+  )
+end
+
+defp get_order_by_keyword(sort_column, :asc) do
+  [asc: sort_column]
+end
+
+defp get_order_by_keyword(sort_column, :desc) do
+  [desc: sort_column]
+end
+</code></pre>
+<p>These methods are used in the previous method to validate the columns
+that can be searched and to transform into keywords [asc: column] to work on the query.</p>
+<h2 id="adding-the-new-columns-on-the-tags-page"><a class="header" href="#adding-the-new-columns-on-the-tags-page">Adding the new columns on the <code>Tags</code> Page</a></h2>
+<p>First, we need to remove the index page from the <code>tag_controller.ex</code>
+because we are going to include it on a new LiveView for <code>Tags</code>.</p>
+<p>This is needed because of the sorting events of the table.</p>
+<p>So <strong>remove</strong> these next lines of code from the <code>lib/app_web/controllers/tag_controller.ex</code></p>
+<pre><code class="language-elixir">def index(conn, _params) do
+  person_id = conn.assigns[:person][:id] || 0
+  tags = Tag.list_person_tags(person_id)
+
+  render(conn, "index.html",
+    tags: tags,
+    lists: App.List.get_lists_for_person(person_id),
+    custom_list: false
+  )
+end
+</code></pre>
+<p>Now, let's create the LiveView that will have the table for tags
+and the redirections to all other pages on the <code>TagController</code>.</p>
+<p>Create a new file on <code>lib/app_web/live/tags_live.ex</code> with the following content.</p>
+<pre><code class="language-elixir">defmodule AppWeb.TagsLive do
+  use AppWeb, :live_view
+  alias App.{DateTimeHelper, Person, Tag, Repo}
+
+  # run authentication on mount
+  on_mount(AppWeb.AuthController)
+
+  @tags_topic "tags"
+
+  @impl true
+  def mount(_params, _session, socket) do
+    if connected?(socket), do: AppWeb.Endpoint.subscribe(@tags_topic)
+
+    person_id = Person.get_person_id(socket.assigns)
+
+    tags = Tag.list_person_tags_complete(person_id)
+
+    {:ok,
+     assign(socket,
+       tags: tags,
+       lists: App.List.get_lists_for_person(person_id),
+       custom_list: false,
+       sort_column: :text,
+       sort_order: :asc
+     )}
+  end
+
+  @impl true
+  def handle_event("sort", %{"key" =&gt; key}, socket) do
+    sort_column =
+      key
+      |&gt; String.to_atom()
+
+    sort_order =
+      if socket.assigns.sort_column == sort_column do
+        Repo.toggle_sort_order(socket.assigns.sort_order)
+      else
+        :asc
+      end
+
+    person_id = Person.get_person_id(socket.assigns)
+
+    tags = Tag.list_person_tags_complete(person_id, sort_column, sort_order)
+
+    {:noreply,
+     assign(socket,
+       tags: tags,
+       sort_column: sort_column,
+       sort_order: sort_order
+     )}
+  end
+
+  def format_date(date) do
+    DateTimeHelper.format_date(date)
+  end
+
+  def format_seconds(seconds) do
+    DateTimeHelper.format_duration(seconds)
+  end
+end
+</code></pre>
+<p>The whole code is similar to other LiveViews created on the project.</p>
+<p><strong><code>mount</code></strong></p>
+<p>This function is invoked when the LiveView component is mounted. It initializes the state of the LiveView.</p>
+<ul>
+<li><code>on_mount(AppWeb.AuthController)</code>: This line ensures that authentication is run when the LiveView component mounts.</li>
+<li>The <code>if connected?(socket)</code> block subscribes to a topic (@tags_topic) if the user is connected, enabling real-time updates.</li>
+<li><code>person_id</code> is retrieved to identify the current user.</li>
+<li>tags are fetched using <code>Tag.list_person_tags_complete(person_id)</code>, which retrieves all tags associated with the <code>person_id</code> and is the method that we created previously.</li>
+<li>The socket is assigned various values, such as tags, lists, custom_list, sort_column, and sort_order, setting up the initial state of the LiveView.</li>
+</ul>
+<p><strong><code>handle_event</code></strong></p>
+<p>This function is called when a "sort" event is triggered by user interaction on the UI.</p>
+<ul>
+<li><code>sort_column</code> is set based on the event's key, determining which column to sort by.</li>
+<li><code>sort_order</code> is determined by the current state of sort_column and sort_order. If the sort_column is the same as the one already in the socket's assigns, the order is toggled using <code>Repo.toggle_sort_order</code>. Otherwise, it defaults to ascending (:asc).</li>
+<li>Tags are then re-fetched with the new sort order and column, and the socket is updated with these new values.</li>
+<li>This dynamic sorting mechanism allows the user interface to update the display order of tags based on user interaction.</li>
+</ul>
+<p><strong><code>format_date(date)</code></strong></p>
+<p>Uses DateTimeHelper.format_date to format a given date.</p>
+<p><strong><code>format_seconds(seconds)</code></strong></p>
+<p>Uses DateTimeHelper.format_duration to format a duration in seconds into a more human-readable format.</p>
+<h3 id="creating-the-liveview-html-template"><a class="header" href="#creating-the-liveview-html-template">Creating the LiveView HTML template</a></h3>
+<p>Create a new file on <code>lib/app_web/live/tags_live.html.heex</code>
+that will handle the LiveView created in the previous section:</p>
+<pre><code class="language-html">&lt;main class="font-sans container mx-auto"&gt;
+  &lt;div class="relative overflow-x-auto mt-12"&gt;
+    &lt;h1 class="mb-2 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"&gt;
+      Listing Tags
+    &lt;/h1&gt;
+
+    &lt;.live_component
+      module={AppWeb.TableComponent}
+      id="tags_table_component"
+      rows={@tags}
+      sort_column={@sort_column}
+      sort_order={@sort_order}
+      highlight={fn _ -&gt; false end}
+    &gt;
+      &lt;:column :let={tag} label="Name" key="text"&gt;
+        &lt;td class="px-6 py-4 text-center" data-test-id={"text_#{tag.id}"}&gt;
+          &lt;%= tag.text %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Color" key="color"&gt;
+        &lt;td class="px-6 py-4 text-center" data-test-id={"color_#{tag.id}"}&gt;
+          &lt;span
+            style={"background-color:#{tag.color}"}
+            class="max-w-[144px] text-white font-bold py-1 px-2 rounded-full 
+            overflow-hidden text-ellipsis whitespace-nowrap inline-block"
+          &gt;
+            &lt;%= tag.color %&gt;
+          &lt;/span&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Created At" key="inserted_at"&gt;
+        &lt;td class="px-6 py-4 text-center" data-test-id={"inserted_at_#{tag.id}"}&gt;
+          &lt;%= format_date(tag.inserted_at) %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Latest" key="last_used_at"&gt;
+        &lt;td
+          class="px-6 py-4 text-center"
+          data-test-id={"last_used_at_#{tag.id}"}
+        &gt;
+          &lt;%= if tag.last_used_at do %&gt;
+            &lt;%= format_date(tag.last_used_at) %&gt;
+          &lt;% else %&gt;
+            -
+          &lt;% end %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Items Count" key="items_count"&gt;
+        &lt;td class="px-6 py-4 text-center" data-test-id={"items_count_#{tag.id}"}&gt;
+          &lt;a href={~p"/?filter_by_tag=#{tag.text}"} class="underline"&gt;
+            &lt;%= tag.items_count %&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Total Time Logged" key="total_time_logged"&gt;
+        &lt;td
+          class="px-6 py-4 text-center"
+          data-test-id={"total_time_logged_#{tag.id}"}
+        &gt;
+          &lt;%= format_seconds(tag.total_time_logged) %&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+
+      &lt;:column :let={tag} label="Actions" key="actions"&gt;
+        &lt;td class="px-6 py-4 text-center" data-test-id={"actions_#{tag.id}"}&gt;
+          &lt;%= link("Edit", to: Routes.tag_path(@socket, :edit, tag)) %&gt;
+
+          &lt;span class="text-red-500 ml-10"&gt;
+            &lt;%= link("Delete",
+              to: Routes.tag_path(@socket, :delete, tag),
+              method: :delete,
+              data: [confirm: "Are you sure you want to delete this tag?"]
+            ) %&gt;
+          &lt;/span&gt;
+        &lt;/td&gt;
+      &lt;/:column&gt;
+    &lt;/.live_component&gt;
+
+    &lt;.button
+      link_type="a"
+      to={Routes.tag_path(@socket, :new)}
+      label="Create Tag"
+      class="text-2xl text-center float-left rounded-md bg-green-600 hover:bg-green-700 
+      my-2 mt-2 ml-2 px-4 py-2 font-semibold text-white shadow-sm"
+    /&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+</code></pre>
+<p>The structure is similar to the <code>stats_live.html.heex</code>
+with the new columns for tags and the events for sorting.
+And it's using the <code>TableComponent</code> as well.</p>
+<h2 id="adding-the-new-page-to-the-router"><a class="header" href="#adding-the-new-page-to-the-router">Adding the new page to the router</a></h2>
+<p>Open the <code>lib/app_web/router.ex</code> and change the following line:</p>
+<pre><code class="language-elixir">...
+
+ scope "/", AppWeb do
+  pipe_through [:browser, :authOptional]
+  live "/", AppLive
+  resources "/lists", ListController, except: [:show]
+  get "/logout", AuthController, :logout
+  live "/stats", StatsLive
++  live "/tags", TagsLive
+  resources "/tags", TagController, except: [:show]
+end
+
+...
+</code></pre>
+<p>After that, you can remove the <code>lib/app_web/templates/tag/index.html.heex</code> file,
+since we will use the <code>Tags</code> LiveView for the tags page now.</p>
+<p>Done! The Tags Page has the new columns and everything to be enhanced, congratulations!</p>
+<p>It's just missing tests, let's add them:</p>
+<p><code>test/app/repo_test.exs</code></p>
+<pre><code class="language-elixir">defmodule App.RepoTest do
+  use ExUnit.Case
+  alias App.Repo
+
+  describe "toggle_sort_order/1" do
+    test "toggles :asc to :desc" do
+      assert Repo.toggle_sort_order(:asc) == :desc
+    end
+
+    test "toggles :desc to :asc" do
+      assert Repo.toggle_sort_order(:desc) == :asc
+    end
+  end
+end
+</code></pre>
+<p>Add new test cases to the <code>test/app/tag_test.exs</code></p>
+<pre><code class="language-elixir">describe "list_person_tags/1" do
+  test "returns an empty list for a person with no tags" do
+    assert [] == Tag.list_person_tags(-1)
+  end
+
+  test "returns a single tag for a person with one tag" do
+    tag = add_test_tag(%{text: "TestTag", person_id: 1, color: "#FCA5A5"})
+    assert [tag] == Tag.list_person_tags(1)
+  end
+
+  test "returns tags in alphabetical order for a person with multiple tags" do
+    add_test_tag(%{text: "BTag", person_id: 2, color: "#FCA5A5"})
+    add_test_tag(%{text: "ATag", person_id: 2, color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags(2)
+    assert length(tags) == 2
+    assert tags |&gt; Enum.map(&amp; &amp;1.text) == ["ATag", "BTag"]
+  end
+end
+
+describe "list_person_tags_complete/3" do
+  test "returns detailed tag information for a given person" do
+    add_test_tag_with_details(%{person_id: 3, text: "DetailedTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(3)
+    assert length(tags) &gt; 0
+    assert tags |&gt; Enum.all?(&amp;is_map(&amp;1))
+    assert tags |&gt; Enum.all?(&amp;Map.has_key?(&amp;1, :last_used_at))
+    assert tags |&gt; Enum.all?(&amp;Map.has_key?(&amp;1, :items_count))
+    assert tags |&gt; Enum.all?(&amp;Map.has_key?(&amp;1, :total_time_logged))
+  end
+
+  test "sorts tags based on specified sort_column and sort_order" do
+    add_test_tag_with_details(%{person_id: 4, text: "CTag", color: "#FCA5A5"})
+    add_test_tag_with_details(%{person_id: 4, text: "ATag", color: "#FCA5A5"})
+    add_test_tag_with_details(%{person_id: 4, text: "BTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(4, :text, :asc)
+    assert tags |&gt; Enum.map(&amp; &amp;1.text) == ["ATag", "BTag", "CTag"]
+  end
+
+  test "sorts tags with desc sort_order" do
+    add_test_tag_with_details(%{person_id: 4, text: "CTag", color: "#FCA5A5"})
+    add_test_tag_with_details(%{person_id: 4, text: "ATag", color: "#FCA5A5"})
+    add_test_tag_with_details(%{person_id: 4, text: "BTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(4, :text, :desc)
+    assert tags |&gt; Enum.map(&amp; &amp;1.text) == ["CTag", "BTag", "ATag"]
+  end
+
+  test "uses default sort_order when none are provided" do
+    add_test_tag_with_details(%{person_id: 5, text: "SingleTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(5, :text)
+    assert length(tags) == 1
+  end
+
+  test "uses default parameters when none are provided" do
+    add_test_tag_with_details(%{person_id: 5, text: "SingleTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(5)
+    assert length(tags) == 1
+  end
+
+  test "handles invalid column" do
+    add_test_tag_with_details(%{person_id: 6, text: "BTag", color: "#FCA5A5"})
+    add_test_tag_with_details(%{person_id: 6, text: "AnotherTag", color: "#FCA5A5"})
+
+    tags = Tag.list_person_tags_complete(6, :invalid_column)
+    assert length(tags) == 2
+    assert tags |&gt; Enum.map(&amp; &amp;1.text) == ["AnotherTag", "BTag"]
+  end
+end
+
+defp add_test_tag(attrs) do
+  {:ok, tag} = Tag.create_tag(attrs)
+  tag
+end
+
+defp add_test_tag_with_details(attrs) do
+  tag = add_test_tag(attrs)
+
+  {:ok, %{model: item}} = Item.create_item(%{
+    person_id: tag.person_id,
+    status: 0,
+    text: "some item",
+    tags: [tag]
+  })
+
+  seconds_ago_date = NaiveDateTime.new(Date.utc_today(), Time.add(Time.utc_now(), -10))
+  Timer.start(%{item_id: item.id, person_id: tag.person_id, start: seconds_ago_date})
+  Timer.stop_timer_for_item_id(item.id)
+
+  tag
+end
+</code></pre>
+<p><strong>Remove</strong> these next lines from the <code>tag_controller_test.exs</code> since we don't have this page anymore:</p>
+<pre><code class="language-elixir">describe "index" do
+  test "lists all tags", %{conn: conn} do
+    conn = get(conn, Routes.tag_path(conn, :index))
+    assert html_response(conn, 200) =~ "Listing Tags"
+  end
+
+  test "lists all tags and display logout button", %{conn: conn} do
+    conn =
+      conn
+      |&gt; assign(:jwt, AuthPlug.Token.generate_jwt!(%{id: 1, picture: ""}))
+      |&gt; get(Routes.tag_path(conn, :index))
+
+    assert html_response(conn, 200) =~ "logout"
+  end
+end
+</code></pre>
+<p><code>test/app_web/live/tags_live_test.exs</code></p>
+<pre><code class="language-elixir">defmodule AppWeb.TagsLiveTest do
+  use AppWeb.ConnCase, async: true
+  alias App.{Item, Timer, Tag}
+  import Phoenix.LiveViewTest
+
+  @person_id 0
+
+  test "disconnected and connected render", %{conn: conn} do
+    {:ok, page_live, disconnected_html} = live(conn, "/tags")
+    assert disconnected_html =~ "Tags"
+    assert render(page_live) =~ "Tags"
+  end
+
+  test "display tags on table", %{conn: conn} do
+    tag1 = add_test_tag_with_details(%{person_id: @person_id, text: "Tag1", color: "#000000"})
+    tag2 = add_test_tag_with_details(%{person_id: @person_id, text: "Tag2", color: "#000000"})
+    tag3 = add_test_tag_with_details(%{person_id: @person_id, text: "Tag3", color: "#000000"})
+
+    {:ok, page_live, _html} = live(conn, "/tags")
+
+    assert render(page_live) =~ "Tags"
+
+    assert page_live
+           |&gt; element("td[data-test-id=text_#{tag1.id}")
+           |&gt; render() =~
+             "Tag1"
+
+    assert page_live
+           |&gt; element("td[data-test-id=text_#{tag2.id}")
+           |&gt; render() =~
+             "Tag2"
+
+    assert page_live
+           |&gt; element("td[data-test-id=text_#{tag3.id}")
+           |&gt; render() =~
+             "Tag3"
+  end
+
+  @tag tags: true
+  test "sorting column when clicked", %{conn: conn} do
+    add_test_tag_with_details(%{person_id: @person_id, text: "a", color: "#000000"})
+    add_test_tag_with_details(%{person_id: @person_id, text: "z", color: "#000000"})
+
+    {:ok, page_live, _html} = live(conn, "/tags")
+
+    # sort first time
+    result =
+      page_live |&gt; element("th[phx-value-key=text]") |&gt; render_click()
+
+    [first_element | _] = Floki.find(result, "td[data-test-id^=text_]")
+    assert first_element |&gt; Floki.text() =~ "z"
+
+    # sort second time
+    result =
+      page_live |&gt; element("th[phx-value-key=text]") |&gt; render_click()
+
+    [first_element | _] = Floki.find(result, "td[data-test-id^=text_]")
+
+    assert first_element |&gt; Floki.text() =~ "a"
+  end
+
+  defp add_test_tag_with_details(attrs) do
+    {:ok, tag} = Tag.create_tag(attrs)
+
+    {:ok, %{model: item}} = Item.create_item(%{
+      person_id: tag.person_id,
+      status: 0,
+      text: "some item",
+      tags: [tag]
+    })
+
+    seconds_ago_date = NaiveDateTime.new(Date.utc_today(), Time.add(Time.utc_now(), -10))
+    Timer.start(%{item_id: item.id, person_id: tag.person_id, start: seconds_ago_date})
+    Timer.stop_timer_for_item_id(item.id)
+
+    tag
+  end
+end
+</code></pre>
+<p>After these tests, you are ready to run the application and see your new changes!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mvp/20-stats.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../tidy/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mvp/20-stats.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../tidy/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+        <script>
+            window.playground_line_numbers = true;
+        </script>
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
